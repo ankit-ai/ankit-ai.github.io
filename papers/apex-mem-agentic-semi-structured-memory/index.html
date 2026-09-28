@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>APEX-MEM: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI | Ankit Chadha</title>
+<link rel="canonical" href="https://ankit-ai.github.io/papers/apex-mem-agentic-semi-structured-memory/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="description" content="APEX-MEM introduced an append-only property graph memory with temporal reasoning, entity-centric events, and retrieval-time resolution for long-term conversational AI.">
+<meta name="author" content="Ankit Chadha">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Ankit Chadha">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://ankit-ai.github.io/papers/apex-mem-agentic-semi-structured-memory/">
+<meta property="og:title" content="APEX-MEM: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI | Ankit Chadha">
+<meta property="og:description" content="APEX-MEM introduced an append-only property graph memory with temporal reasoning, entity-centric events, and retrieval-time resolution for long-term conversational AI.">
+<meta property="og:image" content="https://ankit-ai.github.io/assets/img/cards/apex-mem-agentic-semi-structured-memory-1200x630.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pipeline: raw conversation becomes typed entities, dated facts and events in a graph a SQL agent queries to answer.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ankitrchadha">
+<meta name="twitter:creator" content="@ankitrchadha">
+<meta name="twitter:title" content="APEX-MEM: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI | Ankit Chadha">
+<meta name="twitter:description" content="APEX-MEM introduced an append-only property graph memory with temporal reasoning, entity-centric events, and retrieval-time resolution for long-term conversational AI.">
+<meta name="twitter:image" content="https://ankit-ai.github.io/assets/img/cards/apex-mem-agentic-semi-structured-memory-1200x630.jpg">
+<meta name="twitter:image:alt" content="Pipeline: raw conversation becomes typed entities, dated facts and events in a graph a SQL agent queries to answer.">
+<meta name="citation_title" content="APEX-MEM: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI">
+<meta name="citation_author" content="Banerjee, Pratyay">
+<meta name="citation_author" content="Moshtaghi, Masud">
+<meta name="citation_author" content="Subramanian, Shivashankar">
+<meta name="citation_author" content="Misra, Amita">
+<meta name="citation_author" content="Chadha, Ankit">
+<meta name="citation_publication_date" content="2026">
+<meta name="citation_online_date" content="2026/04/15">
+<meta name="citation_conference_title" content="Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)">
+<meta name="citation_firstpage" content="16470">
+<meta name="citation_lastpage" content="16489">
+<meta name="citation_doi" content="10.18653/v1/2026.acl-long.749">
+<meta name="citation_arxiv_id" content="2604.14362">
+<meta name="citation_pdf_url" content="https://ankit-ai.github.io/papers/apex-mem-agentic-semi-structured-memory/apex-mem.pdf">
+<meta name="citation_abstract" content="Large language models still struggle with reliable long-term conversational memory: simply enlarging context windows or applying naïve retrieval often introduces noise and destabilizes responses. We present APEX-MEM, a conversational memory system that combines three key innovations: (1) a property graph which uses domain-agnostic ontology to structure conversations as temporally grounded events in an entity-centric framework, (2) append-only storage that preserves the full temporal evolution of information, and (3) a multi-tool retrieval agent that understands and resolves conflicting or evolving information at query time, producing a compact and contextually relevant memory summary. This retrieval-time resolution preserves the full interaction history while suppressing irrelevant details. APEX-MEM achieves 88.88% accuracy on LOCOMO’s Question Answering task and 86.2% on LongMemEval, outperforming state-of-the-art session-aware approaches and demonstrating that structured property graphs enable more temporally coherent long-term conversational reasoning.">
+<meta name="citation_keywords" content="long-term conversational memory; property graph memory; temporal reasoning; locomo benchmark; longmemeval; sealqa; react agent; entity resolution; graphsql text-to-sql; append-only knowledge graph; llm agent memory; retrieval-augmented generation; retrieval-time resolution; domain-agnostic ontology; multi-tool retrieval agent; entity-centric events">
+<meta name="citation_language" content="en">
+<meta name="DC.title" content="APEX-MEM: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI">
+<meta name="DC.creator" content="Banerjee, Pratyay">
+<meta name="DC.creator" content="Moshtaghi, Masud">
+<meta name="DC.creator" content="Subramanian, Shivashankar">
+<meta name="DC.creator" content="Misra, Amita">
+<meta name="DC.creator" content="Chadha, Ankit">
+<meta name="DC.issued" content="2026">
+<meta name="DC.relation.ispartof" content="Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)">
+<meta name="DC.identifier" content="https://ankit-ai.github.io/papers/apex-mem-agentic-semi-structured-memory/apex-mem.pdf">
+<meta name="DC.language" content="en">
+<meta property="article:modified_time" content="2026-09-15T00:00:00Z">
+<meta property="article:author" content="https://ankit-ai.github.io/">
+<meta property="article:tag" content="long-term conversational memory">
+<meta property="article:tag" content="property graph memory">
+<meta property="article:tag" content="temporal reasoning">
+<meta property="article:tag" content="locomo benchmark">
+<meta property="article:tag" content="longmemeval">
+<meta property="article:tag" content="sealqa">
+<style>:root{--ink:#10202f;--ink2:#293b4a;--mut:#596b79;--faint:#748592;
+ --line:#dce4e8;--hair:#edf1f3;--rule:#bdc9cf;--acc:#0d5c63;--acc2:#147983;
+ --navy:#0b2239;--navy2:#153e58;--gold:#c99a4b;
+ --tint:#edf6f5;--tintline:#cfe3e0;--flag:#8a5a00;--flagbg:#fdf8ee;
+ --flagline:#ecdfc4;
+ --bg:#fff;--soft:#f5f7f8;--warm:#faf8f3;--warmline:#e8e1d4}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;
+ font:17px/1.72 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+.wrap{max-width:920px;margin:0 auto;padding:0 30px}
+main.wrap{padding-top:48px}
+a{color:var(--acc);text-decoration-thickness:1px;text-underline-offset:2px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--acc2);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:14px;top:12px;z-index:9;background:#fff;padding:7px 13px;
+ border:1px solid var(--acc);border-radius:3px}
+
+/* ---- site chrome ---- */
+/* The navy bar at the top is the one piece of brand that repeats everywhere,
+   including on the social cards, so a shared page and a visited page look like
+   the same site. The header stays 15px because Google Scholar reads relative font
+   size to decide which line on a paper page is the title, and it must lose to the
+   35px h1. Colour does not enter that calculation, so tinting it is free. */
+header.site{border-top:3px solid var(--acc);background:rgba(255,255,255,.94);
+ border-bottom:1px solid var(--line);position:sticky;top:0;z-index:8;
+ backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+header.site .wrap{display:flex;flex-wrap:wrap;gap:2px 22px;align-items:center;
+ padding-top:16px;padding-bottom:15px}
+header.site .who{font-size:15px;font-weight:720;letter-spacing:.01em;
+ color:var(--navy);text-decoration:none}
+header.site nav{font-size:14px;display:flex;gap:20px;margin-left:auto}
+header.site nav a{color:var(--mut);text-decoration:none;padding-bottom:3px}
+header.site nav a:hover{color:var(--acc)}
+header.site nav a[aria-current]{color:var(--ink);font-weight:600;
+ box-shadow:inset 0 -2px 0 var(--acc)}
+footer.site{border-top:1px solid var(--line);margin-top:80px;padding:32px 0 64px;
+ background:var(--navy);font-size:13.5px;color:#b8c8d3}
+footer.site .wrap{display:flex;flex-wrap:wrap;gap:14px 40px}
+footer.site p{margin:0}
+/* flex:0 1, not flex:0 0. With shrink disabled this row of six links stayed at its
+   454px natural width inside a 390px phone viewport, which pushed the document's
+   scroll width to 472px and gave every page on the site a horizontal scrollbar and a
+   clipped right edge. Shrink lets it wrap at the separators, which is what the
+   separators are for. */
+footer.site .links{flex:0 1 auto;min-width:0;color:#e5edf2}
+footer.site .fine{flex:1 1 320px;font-size:12.5px;line-height:1.65;max-width:44em}
+footer.site a{color:#dce7ed;text-decoration-color:#6e8492}
+footer.site a:hover{color:#fff}
+
+/* ---- type scale ---- */
+h1{font-size:40px;line-height:1.12;font-weight:680;letter-spacing:-.035em;
+ margin:0 0 .42em;text-wrap:balance}
+h2{font-size:23px;line-height:1.3;font-weight:680;letter-spacing:-.022em;
+ margin:2.35em 0 .7em;padding-top:1.05em;border-top:1px solid var(--line);
+ display:flex;align-items:center;gap:9px;position:relative}
+/* A short navy segment sitting on the left of the hairline, so a section break
+   reads at a glance without a heavy rule or a coloured band. */
+h2::before{content:"";position:absolute;top:-1px;left:0;width:26px;height:2px;
+ background:var(--acc)}
+h3{font-size:13px;line-height:1.4;font-weight:700;letter-spacing:.11em;
+ text-transform:uppercase;color:var(--acc);margin:2.4em 0 .55em}
+
+/* ---- brand marks ---- */
+/* Filled, not stroked, because a 1.7px stroke at 15px turns the GitHub cat into
+   a smudge. Optical size is tuned down to 14px for the two marks that fill their
+   whole box, so all six read as the same weight in the row. */
+svg.b{flex:0 0 auto;width:15px;height:15px;fill:currentColor;stroke:none}
+.chips svg.b{color:var(--acc2);margin-right:8px}
+.chips a:hover svg.b{color:var(--acc)}
+
+/* ---- icons ---- */
+svg.i{flex:0 0 auto;width:16px;height:16px;fill:none;stroke:var(--acc2);
+ stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;overflow:visible}
+h2 svg.i{width:18px;height:18px;stroke-width:1.55}
+a svg.i,.qual svg.i{stroke:currentColor;vertical-align:-3px;margin-right:6px;
+ stroke-width:1.8}
+p{margin:0 0 1.15em}
+ul,ol{margin:0 0 1.2em;padding-left:20px}
+li{margin:.35em 0}
+strong{font-weight:640}
+.mut{color:var(--mut)}
+.small{font-size:15px}
+.tiny{font-size:12.5px;line-height:1.65;color:var(--mut)}
+.lab{display:block;font-size:11px;font-weight:700;letter-spacing:.13em;
+ text-transform:uppercase;color:var(--faint);margin:0 0 .5em}
+.n{font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink)}
+.note{border-top:1px solid var(--hair);padding-top:13px;margin:1.6em 0 0}
+nav.crumb{font-size:12.5px;color:var(--faint);margin:0 0 20px;letter-spacing:.01em}
+nav.crumb a{color:var(--mut);text-decoration:none}
+nav.crumb a:hover{text-decoration:underline}
+
+/* ---- paper masthead ---- */
+.byline{font-size:16px;font-weight:400;text-transform:none;letter-spacing:0;
+ color:var(--ink2);margin:0 0 .5em;line-height:1.55}
+.byline strong{font-weight:640;color:var(--ink)}
+.venue{font-size:13.5px;color:var(--mut);margin:0 0 1.4em;line-height:1.6;
+ font-variant-numeric:tabular-nums}
+/* Amber, not grey, for "not peer reviewed": it is a caveat, and a caveat that
+   looks like every other grey label is one nobody reads. One warm hue only. */
+.flag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.09em;
+ text-transform:uppercase;color:var(--flag);background:var(--flagbg);
+ border:1px solid var(--flagline);border-radius:2px;padding:2px 7px;white-space:nowrap}
+.actions{margin:0;font-size:13.5px;display:flex;flex-wrap:wrap;gap:8px;
+ padding-bottom:28px;border-bottom:1px solid var(--line)}
+.actions a,.chips a{display:inline-flex;align-items:center;padding:7px 13px;
+ text-decoration:none;border:1px solid var(--line);border-radius:999px;background:#fff;
+ color:var(--ink2)}
+.actions a:hover,.chips a:hover{border-color:var(--acc2);color:var(--acc);
+ background:var(--tint)}
+.actions a:first-child{border-color:var(--acc2);color:var(--acc);font-weight:600;
+ background:var(--tint)}
+
+/* ---- the two signature blocks ---- */
+.tldr{margin:28px 0 2px;border-left:3px solid var(--acc);padding:1px 0 1px 21px}
+.tldr p{font-size:20px;line-height:1.5;letter-spacing:-.012em;color:var(--ink);margin:0}
+.topics{font-size:15px;color:var(--mut)}
+.candid{background:var(--warm);border:1px solid var(--warmline);border-radius:5px;
+ padding:22px 26px;margin:2.5em 0 1.4em}
+.candid h2{border-top:0;padding-top:0;margin:0 0 .45em;font-size:18px}
+.candid h2::before{display:none}
+.candid h2 svg.i{stroke:var(--flag)}
+.candid p{margin:0;color:var(--ink2);font-size:16px;line-height:1.68}
+.calib{background:var(--tint);border:1px solid var(--tintline);border-radius:5px;
+ border-left:3px solid var(--acc2);padding:18px 22px;margin:.2em 0 1.9em;
+ font-size:16px;line-height:1.68;color:var(--ink2);font-variant-numeric:tabular-nums}
+.namenote{border-top:1px solid var(--hair);padding-top:14px;font-size:14px;
+ line-height:1.65;color:var(--mut)}
+
+/* ---- key results ---- */
+ul.kr{list-style:none;padding:0;margin:.3em 0 0}
+ul.kr li{margin:0;padding:13px 0;border-top:1px solid var(--hair);
+ font-size:16px;line-height:1.62}
+ul.kr li:first-child{border-top:0;padding-top:4px}
+/* A result that was null or went the wrong way gets the warm hue, the same one
+   the preprint caveat uses. The colour carries the meaning; it is not decoration. */
+ul.kr li.neg{border-left:2px solid var(--flagline);padding-left:18px;color:var(--ink2)}
+.qual{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;
+ text-transform:uppercase;color:var(--flag);border:1px solid var(--flagline);
+ background:var(--flagbg);border-radius:2px;padding:1px 6px;margin-right:8px;
+ vertical-align:1.5px;white-space:nowrap}
+
+/* ---- prose furniture ---- */
+.abs{line-height:1.78}
+figure{margin:2.1em 0 1.6em;padding:0}
+figure img{max-width:100%;height:auto;display:block;border:1px solid var(--line);
+ border-radius:3px;background:#fff}
+figcaption{font-size:12.5px;color:var(--mut);margin-top:.75em;line-height:1.65}
+pre{background:var(--soft);border:1px solid var(--line);border-radius:4px;
+ padding:15px 17px;font-size:12.5px;line-height:1.55;margin:0 0 1.2em;
+ white-space:pre-wrap;overflow-wrap:break-word}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.back{margin:2.6em 0 0;font-size:14px}
+.back a{text-decoration:none;font-weight:600}
+.back a:hover{text-decoration:underline}
+
+/* ---- homepage ---- */
+.home{background:linear-gradient(180deg,#f1f6f6 0,#fff 540px)}
+.home main.wrap{padding-top:40px}
+.hero{display:flex;gap:38px;align-items:center;margin:0 0 22px;padding:42px 44px;
+ color:#fff;background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 72%,#17636b 100%);
+ border-radius:18px;box-shadow:0 22px 60px rgba(10,34,55,.16);position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;
+ right:-100px;top:-130px;border:1px solid rgba(255,255,255,.16);
+ box-shadow:0 0 0 48px rgba(255,255,255,.035),0 0 0 96px rgba(255,255,255,.025)}
+.hero picture{position:relative;z-index:1}
+.hero img{width:154px;height:154px;border-radius:14px;flex:0 0 auto;
+ border:1px solid rgba(255,255,255,.3);object-fit:cover;box-shadow:0 14px 34px rgba(0,0,0,.22)}
+.hero .lead{flex:1 1 auto;min-width:0}
+.hero h1{margin:0 0 .25em;color:#fff;font-size:48px;font-weight:680}
+.eyebrow{margin:0 0 12px;color:#9fd3d2;font-size:11.5px;font-weight:750;
+ letter-spacing:.15em;text-transform:uppercase}
+.tag{font-size:18px;color:#d6e3ea;margin:0;line-height:1.58;max-width:54ch}
+.tag .role{color:#fff;font-weight:680}
+.chips{display:flex;flex-wrap:wrap;gap:8px;font-size:13px;margin:0 0 34px;padding:0;
+ list-style:none}
+.home .chips a{background:rgba(255,255,255,.82);border-color:#d4e2e4;
+ box-shadow:0 3px 12px rgba(15,45,58,.06)}
+.home .chips a:hover{background:#fff;transform:translateY(-1px)}
+.home .bp{font-size:18px;line-height:1.72;color:var(--ink2);max-width:76ch}
+.signal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0 16px}
+.signal{position:relative;padding:21px 20px 20px;border:1px solid var(--line);
+ border-radius:10px;background:#fff;box-shadow:0 8px 28px rgba(15,42,55,.055);
+ overflow:hidden}
+.signal::before{content:"";position:absolute;inset:0 auto auto 0;width:100%;height:3px;
+ background:linear-gradient(90deg,var(--acc),var(--acc2) 44%,transparent 88%)}
+.signal-head{display:flex;align-items:baseline;justify-content:space-between;
+ gap:12px;margin-bottom:11px}
+.signal .lab{color:var(--acc);margin:0}
+.signal-mark{display:grid;place-items:center;flex:0 0 auto;width:31px;height:31px;
+ border-radius:8px;background:var(--tint);border:1px solid var(--tintline)}
+.signal-mark svg.i{width:17px;height:17px;stroke:var(--acc2);stroke-width:1.65}
+.signal p{font-size:14.5px;line-height:1.58;color:var(--mut);margin:0}
+.signal p strong{display:block;margin-bottom:4px;color:var(--ink);
+ font-size:16px;line-height:1.38;letter-spacing:-.008em}
+.contact-tabs{margin:.5em 0 1.5em;border:1px solid var(--line);border-radius:12px;
+ background:#fff;box-shadow:0 8px 28px rgba(15,42,55,.05);overflow:hidden}
+.contact-tabs>input{position:absolute;opacity:0;pointer-events:none}
+.contact-tab-list{display:flex;gap:4px;padding:7px;border-bottom:1px solid var(--line);
+ background:var(--soft)}
+.contact-tab-list label{padding:9px 14px;border-radius:7px;color:var(--mut);
+ font-size:12.5px;font-weight:680;cursor:pointer}
+#contact-general:checked~.contact-tab-list label[for="contact-general"],
+#contact-speaking:checked~.contact-tab-list label[for="contact-speaking"]{
+ color:var(--ink);background:#fff;box-shadow:0 1px 5px rgba(15,42,55,.1)}
+#contact-general:focus-visible~.contact-tab-list label[for="contact-general"],
+#contact-speaking:focus-visible~.contact-tab-list label[for="contact-speaking"]{
+ outline:2px solid var(--acc2);outline-offset:2px}
+.contact-panel{display:none;padding:22px 24px 23px}
+.contact-panel p{max-width:68ch;margin:0;color:var(--ink2);line-height:1.68}
+.contact-panel p+p{margin-top:10px}
+.contact-panel .contact-lead{font-size:17px;font-weight:650;color:var(--ink)}
+#contact-general:checked~.contact-panels .contact-general,
+#contact-speaking:checked~.contact-panels .contact-speaking{display:block}
+ul.tl{list-style:none;padding:0;margin:.2em 0 1.4em}
+ul.tl li{margin:0;padding:10px 0;border-top:1px solid var(--hair)}
+ul.tl li:first-child{border-top:0}
+ul.tl>li>a,ul.tl .t{font-size:16px;line-height:1.45;color:var(--ink);font-weight:600;
+ letter-spacing:-.008em}
+ul.tl>li>a{text-decoration:underline;text-decoration-color:var(--rule);
+ text-underline-offset:3px}
+ul.tl>li>a:hover{color:var(--acc);text-decoration-color:var(--acc)}
+ul.tl .v{display:block;font-size:12.5px;line-height:1.5;color:var(--faint);
+ margin-top:3px;font-variant-numeric:tabular-nums}
+ul.tl .v a{color:var(--mut);text-decoration-color:var(--rule)}
+
+/* ---- what I work on ---- */
+/* Two columns, not four stacked blocks. This section used to be a heading, then a
+   paragraph, then a list of long paper titles, four times over, which is one wall of
+   text with no way into it. Now the left rail answers "what, when, how many" and the
+   right column answers "which papers", so a reader can go down the left edge, pick a
+   topic, and only then read across. The rail is 186px because the longest heading
+   wraps to two lines there and no further. */
+.work{margin:.3em 0 1.7em;padding:0}
+.work .row{display:grid;grid-template-columns:210px 1fr;gap:34px;
+ padding:26px 0;border-top:1px solid var(--line)}
+.work .row:first-child{border-top:0;padding-top:8px}
+.work dt{margin:0;font-size:16.5px;font-weight:650;color:var(--ink);
+ line-height:1.32;letter-spacing:-.01em}
+/* The year span and the count are computed from papers.json, never typed, so the
+   rail cannot drift from the list beside it. */
+.work .when{display:block;margin-top:6px;font-size:12.5px;color:var(--faint);
+ font-variant-numeric:tabular-nums;line-height:1.5}
+.work .pill{margin-top:8px}
+.work dd{margin:0;min-width:0}
+.work dd .g{margin:0 0 4px;font-size:15.5px;line-height:1.56;color:var(--mut);
+ max-width:60ch}
+.work dd ul.tl{margin:.55em 0 0}
+.work dd ul.tl li{padding:9px 0}
+.work dd ul.tl>li>a{font-size:15px;font-weight:600;text-decoration:none;
+ border-bottom:1px solid var(--rule)}
+.work dd ul.tl>li>a:hover{border-bottom-color:var(--acc)}
+/* The one-line form of the result panel. This rail is an index, so it carries the
+   size of the result and what it was measured on, and leaves the bars and the
+   baseline's own number to the panel further down the page. Tabular numerals so the
+   deltas line up down the column and can be compared without reading each one. */
+.work dd ul.tl .d{display:block;margin-top:3px;font-size:12.5px;font-weight:650;
+ color:var(--acc);font-variant-numeric:tabular-nums;letter-spacing:-.005em}
+.work dd ul.tl .d .on{font-weight:400;color:var(--faint);letter-spacing:0}
+
+/* ---- experience ---- */
+/* Same left-rail idea as above, narrower, because a year range is short and fixed
+   width. Years only, no months: months read as a resume, and the useful signal here
+   is the shape of the path, not its precise boundaries. */
+ol.cv{list-style:none;margin:.3em 0 1.7em;padding:0}
+ol.cv>li{display:grid;grid-template-columns:118px 1fr;gap:24px;
+ padding:16px 0;border-top:1px solid var(--hair)}
+ol.cv>li:first-child{border-top:0;padding-top:6px}
+ol.cv .yr{font-size:13px;color:var(--faint);font-variant-numeric:tabular-nums;
+ line-height:1.62;white-space:nowrap}
+ol.cv .role{margin:0;font-size:16px;font-weight:650;color:var(--ink);
+ line-height:1.42;letter-spacing:-.008em}
+ol.cv .org{display:block;margin-top:2px;font-size:13.5px;font-weight:400;
+ color:var(--acc2)}
+ol.cv .g{margin:6px 0 0;font-size:15px;line-height:1.55;color:var(--mut);
+ max-width:64ch}
+
+/* ---- topic tags ---- */
+/* Named .pill and not .tag: .tag is the homepage tagline, and when this rule was
+   called .tag it won on specificity and rendered the tagline as a 10.5px uppercase
+   letter-spaced blue pill, which is unreadable. Two different things must not
+   share a class name just because the same English word fits both.
+
+   One tint, not five. Five tags in five different hues would look like a
+   dashboard and would imply a colour taxonomy that does not exist; the tag is
+   here to be read, not decoded. Uppercase at 10.5px because it has to lose to
+   both the venue line beside it and the title beneath it. */
+.pill{display:inline-flex;align-items:center;font-size:10.5px;font-weight:700;
+ letter-spacing:.1em;text-transform:uppercase;color:var(--acc);
+ background:var(--tint);border:1px solid var(--tintline);border-radius:2px;
+ padding:3px 7px;white-space:nowrap;line-height:1.35}
+/* The legend is the only place the counts appear, so a reader can see that the
+   current line of work has three papers and the oldest has two, without
+   counting rows. */
+.legend{display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+ margin:0 0 2.1em;padding-bottom:1.5em;border-bottom:1px solid var(--hair)}
+.legend .lg{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;
+ color:var(--mut);margin-right:4px}
+.legend .pill .c{margin-left:6px;color:var(--faint);font-weight:400;letter-spacing:0}
+
+/* ---- publication cards ---- */
+.pub{display:flex;gap:24px;align-items:flex-start;
+ padding:28px 0;border-top:1px solid var(--line)}
+.pub .body{flex:1 1 auto;min-width:0}
+/* ---- the result panel ---- */
+/* The right-hand column of a publication row. This was a cropped figure through two
+   designs; see result_panel() in build.py for why it stopped being one. 240px is
+   inherited from that crop, which was itself the widest box the layout could give up
+   without squeezing the title column, and it turns out to be about the narrowest a
+   two-bar chart with a label under each bar can be.
+
+   No fixed height, unlike the image it replaced: the panel is the shorter of the two
+   columns in every row, so it cannot make a row taller, and letting it size itself
+   avoids either clipping a long baseline label or padding a short one. */
+.pub .res{flex:0 0 250px;order:2;margin-top:4px;padding:14px 15px 13px;
+ border:1px solid var(--line);border-radius:9px;background:var(--soft)}
+.pub .res .hd{display:flex;gap:8px;align-items:baseline;justify-content:space-between;
+ margin:0}
+/* The benchmark name is the heading here, not the metric: a reader who knows the
+   field recognises LOCOMO or SQuAD instantly, and one who does not gets the metric
+   spelled out in words on the next line.
+
+   Not uppercased, unlike every other small label on this site. Benchmark names are
+   proper nouns with their own capitalisation, and text-transform destroyed it: it
+   turned Xtr-WikiQA into XTR-WIKIQA, KGQAGen-10k into KGQAGEN-10K, and worst of all
+   turned tau-bench, whose name starts with a Greek tau, into T-BENCH, which is a
+   different benchmark's name. A style rule is not worth misspelling somebody's
+   dataset. */
+.pub .res .bm{font-size:11.5px;font-weight:700;letter-spacing:.005em;
+ color:var(--acc);line-height:1.32}
+/* The gap is derived from the two values in build.py, never typed. It is the only
+   number on the panel allowed to be this size, because it is the one thing a reader
+   skimming thirteen rows is comparing. */
+.pub .res .dl{font-size:13px;font-weight:700;color:var(--acc);white-space:nowrap;
+ font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.pub .res .mt{margin:2px 0 0;font-size:11.5px;line-height:1.4;color:var(--mut)}
+.pub .res .bars{margin-top:11px;display:flex;flex-direction:column;gap:8px}
+/* Value, bar, then label under both. The value sits before the bar so the numbers
+   share one left edge and can be read as a column without the eye tracking across
+   bars of different lengths. */
+.pub .res .r{display:grid;grid-template-columns:44px 1fr;gap:2px 9px;
+ align-items:center}
+.pub .res .r .n{font-size:13px;font-weight:600;color:var(--faint);text-align:right;
+ font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.pub .res .r.us .n{font-size:15px;font-weight:700;color:var(--acc)}
+.pub .res .r .t{height:13px;border-radius:2px;background:#fff;
+ border:1px solid var(--line);position:relative;overflow:hidden}
+.pub .res .r .t i{position:absolute;left:0;top:0;bottom:0;background:var(--rule)}
+.pub .res .r.us .t i{background:var(--acc)}
+.pub .res .r .l{grid-column:2;font-size:10.5px;line-height:1.35;color:var(--faint)}
+.pub .res .r.us .l{color:var(--mut)}
+/* The footnote is where a result that cuts both ways is admitted at the same size as
+   the result itself, rather than being left for the paper page to disclose. */
+.pub .res .fn{margin:10px 0 0;padding-top:9px;border-top:1px solid var(--line);
+ font-size:10.5px;line-height:1.42;color:var(--faint)}
+h2+.pub,p+.pub{border-top:0;padding-top:4px}
+.pub .meta{display:flex;flex-wrap:wrap;gap:3px 12px;align-items:baseline;margin:0 0 .3em;
+ font-size:12.5px;line-height:1.5;color:var(--mut);font-variant-numeric:tabular-nums}
+.pub .cites{margin-left:auto;white-space:nowrap;color:var(--faint)}
+.pub h3{margin:0 0 .32em;font-size:20px;line-height:1.3;font-weight:660;
+ letter-spacing:-.016em;text-transform:none;color:var(--ink)}
+.pub h3 a{color:var(--ink);text-decoration:underline;
+ text-decoration-color:var(--rule);text-underline-offset:3px}
+.pub h3 a:hover{color:var(--acc);text-decoration-color:var(--acc)}
+.pub .who{font-size:13.5px;color:var(--mut);margin:0 0 .5em;line-height:1.55}
+.pub .who strong{color:var(--ink2);font-weight:640}
+.pub .sum{font-size:15px;line-height:1.62;margin:0;color:var(--ink2)}
+.contribution{margin:12px 0 0;padding:11px 13px;border-left:3px solid var(--acc2);
+ border-radius:0 6px 6px 0;background:var(--tint);font-size:14px;line-height:1.55;
+ color:var(--ink2)}
+.contribution .lab{display:inline;margin:0 7px 0 0;color:var(--acc);font-size:10px}
+.pub.featured{margin:14px 0;padding:22px;border:1px solid var(--line);border-radius:14px;
+ background:#fff;box-shadow:0 10px 34px rgba(15,42,55,.065);gap:24px}
+.pub.featured+.pub.featured{border-top:1px solid var(--line)}
+.paperthumb{flex:0 0 224px;display:block;align-self:flex-start;border-radius:9px;
+ overflow:hidden;background:var(--soft);border:1px solid var(--line)}
+.paperthumb picture{display:block}
+.paperthumb img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:contain}
+.paperthumb:hover{border-color:var(--acc2);box-shadow:0 8px 24px rgba(13,92,99,.14)}
+.impact{display:inline-flex;align-items:center;border-radius:999px;padding:3px 9px;
+ color:var(--acc);background:var(--tint);border:1px solid var(--tintline);
+ font-size:11px;font-weight:720;white-space:nowrap;font-variant-numeric:tabular-nums}
+
+/* ---- reading measure ---- */
+/* 68 characters is the top of the comfortable range for prose that is read
+   start to finish. The wrap stays 740px because the list rows, the figures and
+   the action buttons all want that width; only the blocks somebody actually
+   reads through are narrowed. The panels and metadata lines are left alone on
+   purpose: capping a block that has a background makes it look misaligned
+   rather than considered. */
+p.bp,p.abs,p.topics,section.candid p,.pub .sum,.tldr p{max-width:68ch}
+/* The abstract is the longest single block on the site and the one Google
+   Scholar reads, so it gets the most generous leading of anything here. */
+p.abs{line-height:1.78}
+
+/* ---- earlier work table ---- */
+table.earlier{width:100%;border-collapse:collapse;font-size:14px;margin:.4em 0 1.4em;
+ font-variant-numeric:tabular-nums}
+table.earlier th,table.earlier td{text-align:left;padding:11px 14px 11px 0;
+ border-bottom:1px solid var(--hair);vertical-align:top}
+table.earlier thead th{font-size:10.5px;font-weight:700;letter-spacing:.12em;
+ text-transform:uppercase;color:var(--faint);padding-bottom:8px;
+ border-bottom:1px solid var(--rule)}
+table.earlier .n{text-align:right;white-space:nowrap;padding:11px 0 11px 16px;width:1%;
+ color:var(--ink2);font-weight:400}
+table.earlier td a{color:var(--ink);font-weight:600;
+ text-decoration-color:var(--rule);text-underline-offset:3px}
+table.earlier td a:hover{color:var(--acc)}
+table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
+
+@media (max-width:640px){
+ body{font-size:16px;line-height:1.68}
+ .wrap{padding:0 18px}
+ main.wrap{padding-top:26px}
+ h1{font-size:27px;letter-spacing:-.02em}
+ h2{font-size:19px;margin-top:2.3em;padding-top:.95em}
+ footer.site{margin-top:44px}
+ footer.site .wrap{gap:12px}
+ .home main.wrap{padding-top:18px}
+ .hero{flex-direction:column;align-items:flex-start;gap:18px;margin-bottom:20px;
+  padding:26px 24px;border-radius:12px}
+ .hero img{width:104px;height:104px;border-radius:10px}
+ .hero h1{font-size:34px}
+ .eyebrow{margin-bottom:8px}
+ .tag{font-size:16px}
+ .signal-grid{grid-template-columns:1fr;gap:9px}
+ .signal{padding:16px 17px}
+ .contact-panel{padding:18px}
+ .contact-tab-list label{padding:8px 10px}
+ .tldr{margin-top:24px;padding-left:16px}
+ .tldr p{font-size:18px}
+ .candid,.calib{padding:16px 18px}
+ .abs{line-height:1.72}
+ .pub{padding:19px 0;gap:14px;flex-direction:column}
+ /* The row stacks on a phone and the panel goes under the summary, not above the
+    title. A 240px chart squeezed into a 300px column beside the text is unreadable,
+    and putting it first would push the title, which is what a reader is scanning for,
+    below the fold of every row. order is what moves it; flex-direction:column keeps
+    it full width once it is there. */
+ .pub .res{flex:1 1 auto;width:100%;margin-top:12px}
+ .pub .res .r{grid-template-columns:52px 1fr}
+ .pub h3{font-size:17px}
+ .pub .meta,.pub .cites{display:block;margin-left:0}
+ .pub.featured{padding:16px;gap:17px}
+ .paperthumb{width:100%;flex:1 1 auto}
+ .impact{display:inline-flex;margin-top:6px}
+ /* Both rails collapse to one column on a phone. A 186px label column next to a
+    140px text column is worse than no rail at all. */
+ .work .row,ol.cv>li{grid-template-columns:1fr;gap:8px}
+ .work .when{margin-top:4px}
+ ol.cv .yr{order:-1;font-size:12.5px}
+ ul.kr li{font-size:15.5px}
+}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": [
+    "ScholarlyArticle",
+    "Article"
+  ],
+  "@id": "https://ankit-ai.github.io/papers/apex-mem-agentic-semi-structured-memory/#article",
+  "mainEntityOfPage": "https://ankit-ai.github.io/papers/apex-mem-agentic-semi-structured-memory/",
+  "url": "https://ankit-ai.github.io/papers/apex-mem-agentic-semi-structured-memory/",
+  "headline": "APEX-MEM: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI",
+  "name": "APEX-MEM: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI",
+  "abstract": "Large language models still struggle with reliable long-term conversational memory: simply enlarging context windows or applying naïve retrieval often introduces noise and destabilizes responses. We present APEX-MEM, a conversational memory system that combines three key innovations: (1) a property graph which uses domain-agnostic ontology to structure conversations as temporally grounded events in an entity-centric framework, (2) append-only storage that preserves the full temporal evolution of information, and (3) a multi-tool retrieval agent that understands and resolves conflicting or evolving information at query time, producing a compact and contextually relevant memory summary. This retrieval-time resolution preserves the full interaction history while suppressing irrelevant details. APEX-MEM achieves 88.88% accuracy on LOCOMO’s Question Answering task and 86.2% on LongMemEval, outperforming state-of-the-art session-aware approaches and demonstrating that structured property graphs enable more temporally coherent long-term conversational reasoning.",
+  "description": "APEX-MEM uses an append-only property graph of temporally grounded, entity-centric events and a multi-tool retrieval agent to resolve evolving information at query time.",
+  "inLanguage": "en",
+  "datePublished": "2026",
+  "dateModified": "2026-09-15",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Pratyay Banerjee"
+    },
+    {
+      "@type": "Person",
+      "name": "Masud Moshtaghi"
+    },
+    {
+      "@type": "Person",
+      "name": "Shivashankar Subramanian"
+    },
+    {
+      "@type": "Person",
+      "name": "Amita Misra"
+    },
+    {
+      "@type": "Person",
+      "name": "Ankit Chadha",
+      "@id": "https://ankit-ai.github.io/#person",
+      "url": "https://ankit-ai.github.io/",
+      "sameAs": [
+        "https://scholar.google.com/citations?user=hcslcm0AAAAJ"
+      ],
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Amazon"
+      }
+    }
+  ],
+  "keywords": [
+    "long-term conversational memory",
+    "property graph memory",
+    "temporal reasoning",
+    "locomo benchmark",
+    "longmemeval",
+    "sealqa",
+    "react agent",
+    "entity resolution",
+    "graphsql text-to-sql",
+    "append-only knowledge graph",
+    "llm agent memory",
+    "retrieval-augmented generation",
+    "retrieval-time resolution",
+    "domain-agnostic ontology",
+    "multi-tool retrieval agent",
+    "entity-centric events"
+  ],
+  "image": [
+    "https://ankit-ai.github.io/assets/img/figs/2604.14362.jpg"
+  ],
+  "encoding": {
+    "@type": "MediaObject",
+    "contentUrl": "https://ankit-ai.github.io/papers/apex-mem-agentic-semi-structured-memory/apex-mem.pdf",
+    "encodingFormat": "application/pdf"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Association for Computational Linguistics"
+  },
+  "publication": {
+    "@type": "PublicationEvent",
+    "name": "Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)"
+  },
+  "pagination": "16470–16489",
+  "pageStart": "16470",
+  "pageEnd": "16489",
+  "identifier": [
+    {
+      "@type": "PropertyValue",
+      "propertyID": "DOI",
+      "value": "10.18653/v1/2026.acl-long.749"
+    },
+    {
+      "@type": "PropertyValue",
+      "propertyID": "arXiv",
+      "value": "2604.14362"
+    }
+  ],
+  "sameAs": [
+    "https://doi.org/10.18653/v1/2026.acl-long.749",
+    "https://arxiv.org/abs/2604.14362"
+  ],
+  "isBasedOn": "https://arxiv.org/abs/2604.14362"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Publications",
+      "item": "https://ankit-ai.github.io/publications/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "APEX-MEM: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="who" href="/" aria-label="Ankit Chadha, home">AC</a>
+<nav aria-label="Site"><a href="/">About</a> <a href="/publications/">Publications</a> <a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me">Scholar</a> <a href="/contact/">Contact me</a></nav>
+</div></header>
+<main class="wrap" id="main">
+<nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/publications/">Publications</a></nav>
+<article>
+<h1 class="citation_title">APEX-MEM: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI</h1>
+<h3 class="citation_author byline">Pratyay Banerjee, Masud Moshtaghi, Shivashankar Subramanian, Amita Misra, <strong>Ankit Chadha</strong></h3>
+<p class="venue"><span class="pill">Agent memory</span>ACL 2026 (Main Conference, Long Papers), pages 16470&ndash;16489 &middot; Amazon</p>
+<p class="actions"><a href="apex-mem.pdf"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4 M10 17v-5h1.6a1.7 1.7 0 0 1 0 3.4H10"/></svg>PDF</a>
+<a href="https://arxiv.org/abs/2604.14362" rel="noopener"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M14 4h6v6 M20 4 11 13 M18 14v5H5V6h5"/></svg>arXiv</a>
+<a href="https://doi.org/10.18653/v1/2026.acl-long.749" rel="noopener"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 15l6-6 M11 6l1.5-1.5a4.2 4.2 0 0 1 6 6L17 12 M13 18l-1.5 1.5a4.2 4.2 0 0 1-6-6L7 12"/></svg>DOI</a>
+<a href="https://aclanthology.org/2026.acl-long.749/" rel="noopener"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 5.5C4 4.1 6.7 3 10 3s6 1.1 6 2.5V21c0-1.4-2.7-2.5-6-2.5S4 19.6 4 21z M16 5.5C16 4.1 17.3 3 19 3v15.5c-1.7 0-3 1.1-3 2.5"/></svg>Publisher page</a>
+<a href="#cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>BibTeX</a></p>
+<div class="tldr"><span class="lab">In one sentence</span><p>APEX-MEM uses an append-only property graph of temporally grounded, entity-centric events and a multi-tool retrieval agent to resolve evolving information at query time.</p></div>
+<p class="contribution"><span class="lab">Research contribution</span>Introduced an append-only property graph memory that represents conversations as temporally grounded, entity-centric events and resolves evolving information at retrieval time.</p>
+<h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4"/></svg>Abstract</h2>
+<p class="abs">Large language models still struggle with reliable long-term conversational memory: simply enlarging context windows or applying naïve retrieval often introduces noise and destabilizes responses. We present APEX-MEM, a conversational memory system that combines three key innovations: (1) a property graph which uses domain-agnostic ontology to structure conversations as temporally grounded events in an entity-centric framework, (2) append-only storage that preserves the full temporal evolution of information, and (3) a multi-tool retrieval agent that understands and resolves conflicting or evolving information at query time, producing a compact and contextually relevant memory summary. This retrieval-time resolution preserves the full interaction history while suppressing irrelevant details. APEX-MEM achieves 88.88% accuracy on LOCOMO’s Question Answering task and 86.2% on LongMemEval, outperforming state-of-the-art session-aware approaches and demonstrating that structured property graphs enable more temporally coherent long-term conversational reasoning.</p>
+<h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M12 3v2 M12 19v2 M4.2 12H2 M22 12h-2.2 M6 6 4.5 4.5 M18 6l1.5-1.5 M9.5 15a4.5 4.5 0 1 1 5 0v2.5h-5z M10 20h4"/></svg>Why it matters</h2>
+<p>Chatbots that must remember months of conversation usually either stuff everything into the prompt, which adds noise, or overwrite old facts, which destroys the record of what changed and when. APEX-MEM keeps every version of a fact with its date and decides which one applies at question time. Practitioners get better answers on time-sensitive questions, at the cost of a heavier build step and many tool calls per query.</p>
+<h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 20V9 M10 20V4 M16 20v-7 M22 20H2"/></svg>Key results</h2>
+<ul class="kr">
+<li>Raises overall accuracy on the LOCOMO conversational-memory benchmark from <span class="n">85.38%</span> for MIRIX, the previous best system, to <span class="n">88.88%</span> for APEX-MEM with GPT5 as the question-answering agent, a gain of <span class="n">3.50</span> percentage points.</li>
+<li>Raises the LongMemEval overall score from <span class="n">74.6%</span> for Nemori and <span class="n">72.5%</span> for a session-aware SimpleSearch RAG baseline to <span class="n">86.2%</span> for APEX-MEM with Claude 4.5 Sonnet, gains of <span class="n">11.6</span> and <span class="n">13.7</span> percentage points.</li>
+<li>On LOCOMO temporal questions, accuracy is <span class="n">90.63%</span> for APEX-MEM versus <span class="n">65.62%</span> for MIRIX and <span class="n">75.71%</span> for Mem0, which the authors attribute to never overwriting superseded facts.</li>
+<li class="neg"><span class="qual">Null or negative</span>In the tool ablation on LOCOMO with Claude 4.5 Haiku, adding the hybrid Search tool raises overall accuracy from <span class="n">79.45%</span> to <span class="n">87.00%</span> but lowers temporal accuracy from <span class="n">82.29%</span> to <span class="n">79.17%</span>, so the GraphSQL-only setup is better on the paper&#x27;s headline reasoning category.</li>
+<li class="neg"><span class="qual">Null or negative</span>On SealQA-Hard, APEX-MEM with GPT5 reaches <span class="n">40.15%</span> accuracy against <span class="n">38.6%</span> for plain GPT5 with a web-search tool, a margin of about <span class="n">1.5</span> points; the paper&#x27;s claimed <span class="n">5.55</span> point gain is measured instead against O3 at <span class="n">34.6%</span>.</li>
+<li class="neg"><span class="qual">Null or negative</span>On LOCOMO the plain full-context GPT4o baseline scores <span class="n">87.52%</span> overall, above the <span class="n">86.35%</span> APEX-MEM reaches when it also uses GPT4o as the question-answering agent, so the memory system only pulls ahead by switching to a stronger backend model.</li>
+</ul>
+<p class="tiny note">Every number above appears in the paper. Results that were null or went the wrong way are included and marked.</p>
+<figure>
+<picture>
+<source srcset="/assets/img/figs/2604.14362.webp" type="image/webp">
+<img src="/assets/img/figs/2604.14362.jpg" width="1200" height="332"
+ loading="lazy" decoding="async" alt="Pipeline: raw conversation becomes typed entities, dated facts and events in a graph a SQL agent queries to answer.">
+</picture>
+<figcaption>Figure 1: End-to-end pipeline for constructing and querying APEX-MEM Graph, showing data flow from unstructured conversation to GraphSQL QA Agent. Taken from the paper.</figcaption>
+</figure>
+<h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 4h7l9 9-7 7-9-9z M8 8h.01"/></svg>Topics</h2>
+<p class="topics">This paper studies long-term conversational memory through property graph memory, temporal reasoning, retrieval-time resolution, a domain-agnostic ontology, entity-centric events, append-only knowledge graphs, multi-tool retrieval agents, LOCOMO, LongMemEval, SealQA, GraphSQL text-to-SQL, LLM agent memory, and retrieval-augmented generation.</p>
+<section class="candid"><h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 0 1 18 0 9 9 0 0 1-18 0z M12 8v5 M12 16h.01"/></svg>What this paper does not show</h2>
+<p>Every accuracy number here comes from an LLM judge, not from human raters. Append-only storage is the paper&#x27;s headline idea and we never ablated it directly, so the evidence for it is indirect. Full-context GPT-4o beats our GPT-4o configuration on LOCOMO, <span class="n">87.52</span> against <span class="n">86.35</span>, and adding search hurts temporal accuracy. On SealQA-Hard our <span class="n">5.55</span> point margin is measured against O3, but the same table has GPT-5 with web search at <span class="n">38.6</span>, which makes the honest margin about <span class="n">1.5</span> points. Table 1 and Table 3 also disagree on the Haiku overall score, <span class="n">84.92</span> against <span class="n">87.00</span>, so quote the GPT-5 number and not that one.</p></section>
+<h2 id="cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>How to cite</h2>
+<p>Pratyay Banerjee, Masud Moshtaghi, Shivashankar Subramanian, Amita Misra, and Ankit Chadha. 2026. APEX-MEM: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI. In <em>Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)</em>, pages 16470&ndash;16489.</p>
+<pre><code>@inproceedings{banerjee2026apexmem,
+  title         = {{APEX-MEM}: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI},
+  author        = {Banerjee, Pratyay and Moshtaghi, Masud and Subramanian, Shivashankar and Misra, Amita and Chadha, Ankit},
+  booktitle     = {Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  year          = {2026},
+  pages         = {16470--16489},
+  publisher     = {Association for Computational Linguistics},
+  eprint        = {2604.14362},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL}
+}</code></pre>
+<h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 15l6-6 M11 6l1.5-1.5a4.2 4.2 0 0 1 6 6L17 12 M13 18l-1.5 1.5a4.2 4.2 0 0 1-6-6L7 12"/></svg>Related work of mine</h2>
+<ul class="tl">
+<li><a href="/papers/apex-em-procedural-episodic-experience-replay/">APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay</a><span class="v">EMNLP 2026, accepted, to appear</span></li>
+<li><a href="/papers/routed-graph-handoff/">Routed Graph Handoff: Adaptive Format Selection for Multi-Agent LLM Delegation</a><span class="v">EMNLP 2026, accepted, to appear</span></li>
+</ul>
+<p class="tiny note">arXiv version. Cited 14 times as counted by Google Scholar on 2026-09-15.</p>
+</article>
+<p class="back"><a href="/publications/">&larr; All publications</a></p>
+</main>
+<footer class="site"><div class="wrap">
+<p class="links"><a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me noopener">Google Scholar</a> &middot; <a href="https://github.com/ankit-ai" rel="me noopener">GitHub</a> &middot; <a href="https://www.linkedin.com/in/ankitrc/" rel="me noopener">LinkedIn</a> &middot; <a href="https://aclanthology.org/people/ankit-chadha/" rel="me noopener">ACL Anthology</a> &middot; <a href="https://www.amazon.science/author/ankit-chadha" rel="me noopener">Amazon Science</a> &middot; <a href="https://x.com/ankitrchadha" rel="me noopener">X</a></p>
+<p class="fine">Ankit Chadha, California.</p>
+</div></footer>
+</body>
+</html>

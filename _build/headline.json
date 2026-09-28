@@ -1,0 +1,144 @@
+{
+ "_note": "One headline result per paper, for the panel that sits where the figure crop used to sit in the publication list. Every value here must appear verbatim in the key_results entry named by source_kr in content.json, and check.py enforces that, so the panel can never drift from the paper page below it. Where a number is arithmetic on a stated figure rather than a stated figure itself, base.derived or ours.derived records why, and check.py accepts the entry only because that note is there. scale is the metric's real ceiling and the bars are drawn as value/scale, never rescaled to make the gap look bigger: a 3.50 point gain is supposed to look like a 3.50 point gain.",
+
+ "routed-graph-handoff": {
+  "bench": "τ-bench retail",
+  "metric": "task success rate",
+  "scale": 100,
+  "delta_unit": "pp",
+  "source_kr": 1,
+  "base": {"label": "prose handoff only", "value": "12.0"},
+  "ours": {"label": "routed", "value": "24.7"},
+  "note": "3.2× less text passed between the two agents"
+ },
+
+ "apex-mem-agentic-semi-structured-memory": {
+  "bench": "LOCOMO",
+  "metric": "overall accuracy, conversational memory",
+  "scale": 100,
+  "delta_unit": "pp",
+  "source_kr": 1,
+  "base": {"label": "MIRIX, previous best", "value": "85.38"},
+  "ours": {"label": "APEX-MEM", "value": "88.88"},
+  "note": "90.63 against 65.62 on the temporal questions"
+ },
+
+ "apex-em-procedural-episodic-experience-replay": {
+  "bench": "KGQAGen-10k",
+  "metric": "accuracy on a blind 1,079-question split",
+  "scale": 100,
+  "delta_unit": "pp",
+  "source_kr": 1,
+  "base": {"label": "no memory", "value": "42.0"},
+  "ours": {"label": "APEX-EM", "value": "73.7"},
+  "note": "memory frozen, no retraining; the oracle gets 84.9"
+ },
+
+ "question-context-alignment-answer-sentence-selection": {
+  "bench": "WikiQA",
+  "metric": "precision at rank 1, encoder not fine-tuned",
+  "scale": 100,
+  "delta_unit": "pp",
+  "source_kr": 1,
+  "base": {"label": "context concatenation", "value": "68.09"},
+  "ours": {"label": "CASSIE", "value": "74.16"}
+ },
+
+ "controlled-text-generation-hidden-representation-transformations": {
+  "bench": "RealToxicityPrompts",
+  "metric": "average maximum toxicity, lower is better",
+  "scale": 1,
+  "lower_is_better": true,
+  "delta_unit": "toxicity",
+  "source_kr": 1,
+  "base": {"label": "GPT-2, unsteered", "value": "0.827"},
+  "ours": {"label": "CHRT", "value": "0.085"},
+  "note": "0.154 for DExperts, the strongest prior method"
+ },
+
+ "cross-lingual-knowledge-distillation-answer-sentence-selection": {
+  "bench": "Xtr-WikiQA, Arabic",
+  "metric": "precision at rank 1",
+  "scale": 100,
+  "delta_unit": "pp",
+  "source_kr": 1,
+  "base": {"label": "trained on gold labels", "value": "64.2"},
+  "ours": {"label": "distilled, no labels", "value": "76.3"}
+ },
+
+ "efficient-fine-tuning-knowledge-aware-response-planning": {
+  "bench": "WikiQA",
+  "metric": "precision at rank 1, ASNQ-adapted encoder",
+  "scale": 100,
+  "delta_unit": "pp",
+  "source_kr": 2,
+  "base": {"label": "TANDA", "value": "78.67"},
+  "ours": {"label": "KARP", "value": "83.77"}
+ },
+
+ "attribute-conditioning-multi-document-summarization": {
+  "bench": "MultiNews",
+  "metric": "ROUGE-1, word overlap with the reference",
+  "scale": 100,
+  "delta_unit": "",
+  "source_kr": 1,
+  "base": {"label": "GraphSum", "value": "42.99"},
+  "ours": {"label": "ACM", "value": "50.12"}
+ },
+
+ "wdrass-web-scale-document-retrieval-answer-sentence-selection": {
+  "bench": "WDRASS",
+  "metric": "share of questions whose top passage is relevant",
+  "scale": 100,
+  "delta_unit": "pp",
+  "source_kr": 1,
+  "base": {"label": "trained on Natural Questions", "value": "31.8",
+           "derived": "the paper states 0.318; shown here as a percentage"},
+  "ours": {"label": "trained on WDRASS", "value": "41.4"}
+ },
+
+ "federated-learning-mixed-domain-translation": {
+  "bench": "German to English",
+  "metric": "BLEU, averaged over five separate domains",
+  "scale": 100,
+  "delta_unit": "BLEU",
+  "source_kr": 1,
+  "base": {"label": "best centralized baseline", "value": "32.00",
+           "derived": "the paper states the 33.83 average is 1.83 points above it"},
+  "ours": {"label": "federated, data never pooled", "value": "33.83"},
+  "note": "loses on 1 of the 5 domains, OpenSubtitles"
+ },
+
+ "communication-efficient-federated-learning-nmt": {
+  "bench": "Federated translation",
+  "metric": "BLEU, averaged over five clients",
+  "scale": 100,
+  "delta_unit": "BLEU",
+  "source_kr": 1,
+  "base": {"label": "shares every layer", "value": "28.40"},
+  "ours": {"label": "shares Controllers only", "value": "29.46"},
+  "note": "15.2M parameters exchanged per round instead of 94.1M"
+ },
+
+ "dr-sas-deep-reinforced-self-attention-masks": {
+  "bench": "CNN/Daily Mail",
+  "metric": "ROUGE-1, word overlap with the reference",
+  "scale": 100,
+  "delta_unit": "",
+  "source_kr": 1,
+  "base": {"label": "fine-tuned UniLM", "value": "40.79"},
+  "ours": {"label": "DR.SAS", "value": "41.89"},
+  "note": "ROUGE-2 moves 19.01 to 19.22, effectively a tie"
+ },
+
+ "bertqa-attention-on-steroids": {
+  "bench": "SQuAD 2.0 dev",
+  "metric": "F1, base model",
+  "scale": 100,
+  "delta_unit": "",
+  "source_kr": 1,
+  "base": {"label": "BERT base", "value": "74.15"},
+  "ours": {"label": "BERTQA", "value": "77.03"},
+  "note": "the gain is a trade: has-answer F1 falls 80.62 to 76.30"
+ }
+}

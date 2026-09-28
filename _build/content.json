@@ -1,0 +1,762 @@
+{
+ "apex-em-procedural-episodic-experience-replay": {
+  "abstract": "LLM agents rerun full reasoning for every task, even one they solved moments earlier. We introduce APEX-EM, a non-parametric experience memory that stores complete procedural-episodic traces in a typed Procedural Knowledge Graph (PKG) and retrieves them through three channels: semantic search, structural-signature matching over abstract operation sequences, and graph traversal. A Plan-Retrieve-Generate-Iterate-Ingest (PRGII) workflow produces, quality-gates, and commits experiences, indexing both successes and failures so the agent learns what to reuse and what to avoid. No weights change during deployment. We evaluate on five benchmarks: BigCodeBench, KGQAGen-10k, HLE, Lifelong Agent Bench, and ALFWorld. Because prior work uses different backbones, we base our claims on same-backbone comparisons that hold model capability fixed. On held-out BigCodeBench transfer with a shared GPT-4o backbone, APEX-EM gains +7.6 pp over the no-memory baseline, 3.3× MemRL’s +2.3 pp under the identical setup. On Lifelong Agent Bench with a shared GPT-4o-mini backbone, it gains +1.4 pp (OS) and +1.0 pp (DB) cumulative success. On KGQAGen-10k, frozen memory transfers to a blind 1,079-question test split at 73.7% versus 42.0% with no memory, approaching an oracle handed the ground-truth subgraph (84.9%). Across three Opus scales the memory gain stays at +27 to +32 pp, so it adds to model capability rather than substituting for it. Component analysis shows no single mechanism dominates: teacher feedback is negligible for code but adds +10.3 pp on structured queries, structural signatures give 3.3× the transfer of semantic-only retrieval, and within-epoch iteration recovers most of the gain when rich feedback is unavailable. These results argue for modular memory composed per domain.",
+  "abstract_word_count": 257,
+  "bibtex": "@misc{banerjee2026apexem,\n  title         = {{APEX-EM}: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay},\n  author        = {Banerjee, Pratyay and Moshtaghi, Masud and Chadha, Ankit},\n  year          = {2026},\n  month         = aug,\n  eprint        = {2603.29093},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.CL},\n  note          = {arXiv:2603.29093v3. Accepted to EMNLP 2026, proceedings not yet published},\n  url           = {https://arxiv.org/abs/2603.29093}\n}",
+  "figure_alt": "PRGII loop: plan, retrieve past successes and failures, generate, iterate, then quality-gate commit into the memory graph.",
+  "figure_caption": "Figure 1(a): The PRGII workflow. A task flows Plan to Retrieve to Generate and Iterate to Ingest; retrieved successes and failures condition Generate, and the quality gate commits to memory M.",
+  "honesty_note": "No human evaluation. The headline comparison against MemRL is not a controlled one, because each system runs on its own backbone; only 3 of 5 benchmarks get a same-backbone comparison, and where they do the margins are thin, plus 1.4 and plus 1.0 points on Lifelong and a tie at 78.8 percent on the OS split. The 3.3 times MemRL figure depends on which no-memory baseline the delta uses, and the paper does not say; against GPT-4o's own no-memory row the multiple is closer to 2.2 times. The teacher judge makes code generation worse, not better, and costs about 30 percent more compute. Cost and latency are estimated from list pricing, not measured.",
+  "key_results": [
+   {
+    "is_negative_or_null": false,
+    "text": "On the blind 1,079-question KGQAGen-10k test split with memory frozen, structural retrieval (S1) transfers at 73.7% versus 42.0% for the no-memory baseline and 68.7% for semantic-only retrieval, approaching the 84.9% oracle that is handed the ground-truth supporting subgraph."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "On held-out BigCodeBench transfer with a shared GPT-4o backbone, APEX-EM reaches 53.5% for a stated +7.6 pp gain, described as 3.3 times MemRL's +2.3 pp (48.5% to 50.8%)."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "On Humanity's Last Exam the memory gain holds across three Claude Opus checkpoints, lifting Opus 4.7 cumulative success from a 39.4% no-memory baseline to 71.2% (+31.8 pp), with Opus 4.5 at +28.1 pp and Opus 4.6 at +27.4 pp."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "Adding the Teacher judge does not help code generation: on BigCodeBench, A1 (semantic memory, no judge) reaches 80.1% while A2 (semantic plus judge) drops to 78.8%, whereas on KGQAGen-10k the judge adds +10.3 pp (75.6% to 85.9%)."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "On Lifelong Agent Bench OS, APEX-EM only ties MemRL at 78.8% last-epoch success rate, and its relative gain is smaller (+6.8 pp from a 72.0% baseline) than MemRL's (+11.4 pp from a 67.4% baseline); the same-backbone GPT-4o-mini margins are +1.4 pp (OS) and +1.0 pp (DB) cumulative success."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "Estimated API cost per correctly solved KGQAGen-10k task falls from $0.304 in epoch 1 to $0.137 in epoch 10 for A5, a 55% reduction, against $0.497 for the no-memory run, as average iterations drop from 4.40 to 2.50."
+   }
+  ],
+  "meta_description": "APEX-EM introduced procedural knowledge graphs for LLM agent memory: a typed Procedural Knowledge Graph stores complete procedural-episodic traces for structural retrieval and experience replay.",
+  "tldr": "APEX-EM introduced procedural knowledge graphs for LLM agent memory: its typed Procedural Knowledge Graph stores complete solution traces and retrieves them by meaning, operation structure, and graph traversal, with no model retraining.",
+  "contribution": "Introduced procedural knowledge graphs for LLM agent memory through a typed Procedural Knowledge Graph, procedural-episodic experience replay, and cross-domain structural retrieval.",
+  "featured_thumbnail": "apex-em",
+  "featured_thumbnail_alt": "A typed Procedural Knowledge Graph with Entity, Experience, Operation, Sub-Task and TaskTopic nodes feeding semantic, structural-signature and graph-traversal retrieval.",
+  "topics": [
+   "llm agent memory",
+   "procedural knowledge graph",
+   "experience replay",
+   "non-parametric online learning",
+   "structural signature matching",
+   "cross-domain transfer",
+   "bigcodebench",
+   "kgqagen-10k",
+   "alfworld",
+   "lifelong agent bench",
+   "humanity's last exam",
+   "case-based reasoning",
+   "procedural memory",
+   "self-evolving agents",
+   "self-improving agents",
+   "cross-domain structural retrieval"
+  ],
+  "topics_sentence": "This paper introduces a typed Procedural Knowledge Graph for LLM agent memory and studies procedural memory, procedural-episodic experience replay, non-parametric online learning, structural-signature matching, self-evolving and self-improving agents, cross-domain structural retrieval, BigCodeBench, KGQAGen-10k, ALFWorld, Lifelong Agent Bench, Humanity's Last Exam, and case-based reasoning.",
+  "verification": {
+   "abstract_verbatim": true,
+   "unverified_numbers": [],
+   "verdict": "CLEAN"
+  },
+  "why_it_matters": "Most agent systems throw away what they learned as soon as a task ends, so the same work gets redone. APEX-EM keeps the full trace, including the failed attempts, in a graph and looks it up by the shape of the reasoning rather than by wording alone. That matters for teams who cannot fine-tune a hosted model: the gains come from storage and retrieval, and the paper reports lower cost per solved task as memory fills."
+ },
+ "apex-mem-agentic-semi-structured-memory": {
+  "abstract": "Large language models still struggle with reliable long-term conversational memory: simply enlarging context windows or applying naïve retrieval often introduces noise and destabilizes responses. We present APEX-MEM, a conversational memory system that combines three key innovations: (1) a property graph which uses domain-agnostic ontology to structure conversations as temporally grounded events in an entity-centric framework, (2) append-only storage that preserves the full temporal evolution of information, and (3) a multi-tool retrieval agent that understands and resolves conflicting or evolving information at query time, producing a compact and contextually relevant memory summary. This retrieval-time resolution preserves the full interaction history while suppressing irrelevant details. APEX-MEM achieves 88.88% accuracy on LOCOMO’s Question Answering task and 86.2% on LongMemEval, outperforming state-of-the-art session-aware approaches and demonstrating that structured property graphs enable more temporally coherent long-term conversational reasoning.",
+  "abstract_word_count": 133,
+  "bibtex": "@inproceedings{banerjee2026apexmem,\n  title         = {{APEX-MEM}: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI},\n  author        = {Banerjee, Pratyay and Moshtaghi, Masud and Subramanian, Shivashankar and Misra, Amita and Chadha, Ankit},\n  booktitle     = {Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n  year          = {2026},\n  pages         = {16470--16489},\n  publisher     = {Association for Computational Linguistics},\n  eprint        = {2604.14362},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.CL}\n}",
+  "figure_alt": "Pipeline: raw conversation becomes typed entities, dated facts and events in a graph a SQL agent queries to answer.",
+  "figure_caption": "Figure 1: End-to-end pipeline for constructing and querying APEX-MEM Graph, showing data flow from unstructured conversation to GraphSQL QA Agent.",
+  "honesty_note": "Every accuracy number here comes from an LLM judge, not from human raters. Append-only storage is the paper's headline idea and we never ablated it directly, so the evidence for it is indirect. Full-context GPT-4o beats our GPT-4o configuration on LOCOMO, 87.52 against 86.35, and adding search hurts temporal accuracy. On SealQA-Hard our 5.55 point margin is measured against O3, but the same table has GPT-5 with web search at 38.6, which makes the honest margin about 1.5 points. Table 1 and Table 3 also disagree on the Haiku overall score, 84.92 against 87.00, so quote the GPT-5 number and not that one.",
+  "key_results": [
+   {
+    "is_negative_or_null": false,
+    "text": "Raises overall accuracy on the LOCOMO conversational-memory benchmark from 85.38% for MIRIX, the previous best system, to 88.88% for APEX-MEM with GPT5 as the question-answering agent, a gain of 3.50 percentage points."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "Raises the LongMemEval overall score from 74.6% for Nemori and 72.5% for a session-aware SimpleSearch RAG baseline to 86.2% for APEX-MEM with Claude 4.5 Sonnet, gains of 11.6 and 13.7 percentage points."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "On LOCOMO temporal questions, accuracy is 90.63% for APEX-MEM versus 65.62% for MIRIX and 75.71% for Mem0, which the authors attribute to never overwriting superseded facts."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "In the tool ablation on LOCOMO with Claude 4.5 Haiku, adding the hybrid Search tool raises overall accuracy from 79.45% to 87.00% but lowers temporal accuracy from 82.29% to 79.17%, so the GraphSQL-only setup is better on the paper's headline reasoning category."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "On SealQA-Hard, APEX-MEM with GPT5 reaches 40.15% accuracy against 38.6% for plain GPT5 with a web-search tool, a margin of about 1.5 points; the paper's claimed 5.55 point gain is measured instead against O3 at 34.6%."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "On LOCOMO the plain full-context GPT4o baseline scores 87.52% overall, above the 86.35% APEX-MEM reaches when it also uses GPT4o as the question-answering agent, so the memory system only pulls ahead by switching to a stronger backend model."
+   }
+  ],
+  "meta_description": "APEX-MEM introduced an append-only property graph memory with temporal reasoning, entity-centric events, and retrieval-time resolution for long-term conversational AI.",
+  "tldr": "APEX-MEM uses an append-only property graph of temporally grounded, entity-centric events and a multi-tool retrieval agent to resolve evolving information at query time.",
+  "contribution": "Introduced an append-only property graph memory that represents conversations as temporally grounded, entity-centric events and resolves evolving information at retrieval time.",
+  "featured_thumbnail": "apex-mem",
+  "featured_thumbnail_alt": "The APEX-MEM graph connects facts, entities and sessions to retrieval tools and a question-answering agent responding to a user's temporal memory question.",
+  "topics": [
+   "long-term conversational memory",
+   "property graph memory",
+   "temporal reasoning",
+   "locomo benchmark",
+   "longmemeval",
+   "sealqa",
+   "react agent",
+   "entity resolution",
+   "graphsql text-to-sql",
+   "append-only knowledge graph",
+   "llm agent memory",
+   "retrieval-augmented generation",
+   "retrieval-time resolution",
+   "domain-agnostic ontology",
+   "multi-tool retrieval agent",
+   "entity-centric events"
+  ],
+  "topics_sentence": "This paper studies long-term conversational memory through property graph memory, temporal reasoning, retrieval-time resolution, a domain-agnostic ontology, entity-centric events, append-only knowledge graphs, multi-tool retrieval agents, LOCOMO, LongMemEval, SealQA, GraphSQL text-to-SQL, LLM agent memory, and retrieval-augmented generation.",
+  "verification": {
+   "abstract_verbatim": true,
+   "unverified_numbers": [],
+   "verdict": "CLEAN"
+  },
+  "why_it_matters": "Chatbots that must remember months of conversation usually either stuff everything into the prompt, which adds noise, or overwrite old facts, which destroys the record of what changed and when. APEX-MEM keeps every version of a fact with its date and decides which one applies at question time. Practitioners get better answers on time-sensitive questions, at the cost of a heavier build step and many tool calls per query."
+ },
+ "attribute-conditioning-multi-document-summarization": {
+  "abstract": "Abstractive multi document summarization has evolved as a task through the basic sequence to sequence approaches to transformer and graph based techniques. Each of these approaches has primarily focused on the issues of multi document information synthesis and attention based approaches to extract salient information. A challenge that arises with multi document summarization which is not prevalent in single document summarization is the need to effectively summarize multiple documents that might have conflicting polarity, sentiment or subjective information about a given topic. In this paper we propose ACM, attribute conditioned multi document summarization,a model that incorporates attribute conditioning modules in order to decouple conflicting information by conditioning for a certain attribute in the output summary. This approach shows strong gains in ROUGE score over baseline multi document summarization approaches and shows gains in fluency, informativeness and reduction in repetitiveness as shown through a human annotation analysis study.",
+  "abstract_word_count": 147,
+  "bibtex": "@misc{sankar2022acm,\n  title         = {ACM -- Attribute Conditioning for Abstractive Multi Document Summarization},\n  author        = {Sankar, Aiswarya and Chadha, Ankit},\n  year          = {2022},\n  month         = may,\n  eprint        = {2205.03978},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.CL},\n  url           = {https://arxiv.org/abs/2205.03978},\n  note          = {arXiv preprint arXiv:2205.03978}\n}",
+  "figure_alt": "ACM inserts attribute conditioning modules into paragraph encoding and decoder output so summaries keep one viewpoint.",
+  "figure_caption": "Figure 1: Attribute conditioned multi document summarization (ACM) model diagram. At each stage of the summarization process, ACM uses the attribute conditioning module to preserve viewpoint consistency in the output summary. As attribute future discriminators is a component of model evaluation, it is included separately in figure 3.",
+  "honesty_note": "Preprint, not peer reviewed, and its conclusion claims a new state of the art that no reviewer ever tested. No significance tests or seeds on any ROUGE number, so gains of 0.07 to 0.8 points cannot be separated from run-to-run noise. One dataset only. The human evaluation used 5 annotators over 182 summaries and the 78 percent figure is raw agreement, not chance-corrected. Table 5's best single-component variant beats the full system on two of three metrics, which the paper does not explain. The acronym in the title has nothing to do with the ACM.",
+  "key_results": [
+   {
+    "is_negative_or_null": false,
+    "text": "On MultiNews, ACM with the polarity attribute raises ROUGE-1 from 42.99 to 50.12, ROUGE-2 from 27.83 to 28.12, and ROUGE-L from 36.97 to 38.19 over the GraphSum baseline (Table 3)."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "In a human study over 182 randomly selected MultiNews output summaries with 5 Amazon Mechanical Turk evaluators, ACM improves fluency from 3.48 to 3.91 and informativeness from 3.24 to 3.86, and lowers repetitiveness from 2.3 to 1.74, on a 1 to 5 scale, against GraphSum (Table 4)."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "In the ablation on MultiNews, adding attribute future discriminators to BART+Longformer raises ROUGE-1 from 49.03 to 49.83 and ROUGE-2 from 19.04 to 19.85 over the plain BART+Longformer baseline (Table 5)."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "Scoring generated summaries with the trained polarity classifier, attribute future discriminators reach mean 0.891 with standard deviation 0.103, versus 0.76 with 0.288 for graph conditional weighting and 0.82 with 0.274 for conditional training (Table 6)."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "The two attribute choices are effectively a tie: the paper states the sentiment and polarity modules \"perform on par\", with ACM w/ Sentiment at ROUGE-1 50.05 versus ACM w/ Polarity at 50.12, a gap of 0.07 with no significance test reported."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "The ablation table contradicts the headline table: a single component, GraphSum w/ conditional training, reaches ROUGE-2 28.22 and ROUGE-L 38.61, above the full ACM w/ Polarity system's 28.12 and 38.19, so the complete model is not the paper's best number on two of three metrics; on BART, ROUGE-L barely moves at all, from 20.84 to 20.94 for both conditional training and attribute future discriminators, below the 21.01 from graph conditional weighting alone."
+   }
+  ],
+  "meta_description": "Adds a sentiment and polarity classifier to a news multi-document summarizer so it sticks to one viewpoint, raising the word-overlap ROUGE-1 score on MultiNews from 42.99 to 50.12 versus GraphSum.",
+  "tldr": "Adds a sentiment and polarity classifier to a news multi-document summarizer so it sticks to one viewpoint, raising the word-overlap ROUGE-1 score on MultiNews from 42.99 to 50.12 versus GraphSum.",
+  "topics": [
+   "multi-document summarization",
+   "abstractive summarization",
+   "attribute conditioning",
+   "controllable text generation",
+   "conditional language modeling",
+   "multinews",
+   "graphsum",
+   "bart longformer",
+   "xlnet sentiment classifier",
+   "rouge evaluation",
+   "future discriminators beam search",
+   "viewpoint consistency"
+  ],
+  "topics_sentence": "This paper is about multi-document summarization, abstractive summarization, attribute conditioning, controllable text generation, conditional language modeling, multinews, graphsum, bart longformer, xlnet sentiment classifier, rouge evaluation, future discriminators beam search, and viewpoint consistency.",
+  "verification": {
+   "abstract_verbatim": true,
+   "unverified_numbers": [],
+   "verdict": "CLEAN"
+  },
+  "why_it_matters": "When you summarize several news stories about the same event, the sources often disagree, and a summarizer trained only to compress text can blend opposing claims into one incoherent paragraph. This paper attaches a small sentiment and polarity classifier at three points, graph edge weights, training logits, and beam search, so the summarizer favors text that shares one viewpoint. The classifier is separate from the summarizer, so it can be bolted onto BART, BART with Longformer attention, or GraphSum without retraining the base model."
+ },
+ "bertqa-attention-on-steroids": {
+  "abstract": "In this work, we extend the Bidirectional Encoder Representations from Transformers (BERT) with an emphasis on directed coattention to obtain an improved F1 performance on the SQUAD2.0 dataset. The Transformer architecture on which BERT is based places hierarchical global attention on the concatenation of the context and query. Our additions to the BERT architecture augment this attention with a more focused context to query (C2Q) and query to context (Q2C) attention via a set of modified Transformer encoder units. In addition, we explore adding convolution based feature extraction within the coattention architecture to add localized information to self-attention. We found that coattention significantly improves the no answer F1 by 4 points in the base and 1 point in the large architecture. After adding skip connections the no answer F1 improved further without causing an additional loss in has answer F1. The addition of localized feature extraction added to attention produced an overall dev F1 of 77.03 in the base architecture. We applied our findings to the large BERT model which contains twice as many layers and further used our own augmented version of the SQUAD 2.0 dataset created by back translation, which we have named SQUAD 2.Q. Finally, we performed hyperparameter tuning and ensembled our best models for a final F1/EM of 82.317/79.442 (Attention on Steroids, PCE Test Leaderboard).",
+  "abstract_word_count": 219,
+  "bibtex": "@misc{chadha2019bertqa,\n  title         = {{BERTQA} - Attention on Steroids},\n  author        = {Ankit Chadha and Rewa Sood},\n  year          = {2019},\n  eprint        = {1912.10435},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.CL},\n  url           = {https://arxiv.org/abs/1912.10435},\n  note          = {Stanford CS224n Pre-trained Contextual Embeddings course project report, dated March 17, 2019}\n}",
+  "figure_alt": "BERT embeddings are split into query and context, then passed through 7 directed C2Q/Q2C coattention blocks.",
+  "figure_caption": "Figure 1: Proposed C2Q and Q2C directed coattention architecture",
+  "honesty_note": "This is a Stanford CS224n course project report from March 2019, posted to arXiv nine months later. It is not a peer-reviewed paper and should not be read as one. Single runs on one dataset, no seeds or error bars, and no comparison against the 2019 leaders such as XLNet or RoBERTa. The conclusion claims a 3.5 point ensemble gain; the table shows 2.84. The headline test numbers are from the internal course leaderboard, not the public SQuAD 2.0 one. Answerable-question F1 never beats the baseline, so the gains come almost entirely from predicting \"no answer\" better.",
+  "key_results": [
+   {
+    "is_negative_or_null": false,
+    "text": "On the SQuAD 2.0 dev set, adding localized convolutional feature extraction inside the coattention blocks raises overall F1 from 74.15 to 77.03 and EM from 71.09 to 74.37 over the BERT base baseline."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "Directed C2Q/Q2C coattention alone raises no-answer F1 on SQuAD 2.0 dev from 68.21 to 72.54 over BERT base, and the best base configuration reaches 73.83."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "The gain is a trade, not a free win: has-answer F1 on SQuAD 2.0 dev falls from 80.62 for BERT base to 76.30 with C2Q/Q2C coattention, and the best base configuration only recovers to 78.47, still below the baseline."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "On BERT large, the three-model ensemble raises SQuAD 2.0 dev F1 from 80.58 to 83.42 and EM from 77.74 to 80.53, with no-answer F1 going from 77.08 to 85.56 but has-answer F1 dropping from 84.39 to 81.09; the best single model reaches 82.08 F1."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "In the per-question-type error analysis, the model is worse than the baseline on \"Which\" questions, getting 69 wrong versus the baseline's 64, while on \"What\" questions it makes 30 fewer errors than the baseline's 776."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "The final ensemble reports F1/EM of 82.317/79.442 on the CS224n Pre-trained Contextual Embeddings test leaderboard, with roughly 300 GPU hours of total training."
+   }
+  ],
+  "meta_description": "Adds two extra attention layers to BERT so a question and its passage look at each other directly, which lifts SQuAD 2.0 dev F1 from 74.15 to 77.03 on the base model.",
+  "tldr": "Adds two extra attention layers to BERT so a question and its passage look at each other directly, which lifts SQuAD 2.0 dev F1 from 74.15 to 77.03 on the base model.",
+  "topics": [
+   "question answering",
+   "squad 2.0",
+   "bert fine-tuning",
+   "directed coattention",
+   "context-to-query attention",
+   "unanswerable questions",
+   "no-answer f1",
+   "back-translation data augmentation",
+   "squad 2.q",
+   "bidaf",
+   "qanet",
+   "model ensembling"
+  ],
+  "topics_sentence": "This paper is about question answering, squad 2.0, bert fine-tuning, directed coattention, context-to-query attention, unanswerable questions, no-answer f1, back-translation data augmentation, squad 2.q, bidaf, qanet, and model ensembling.",
+  "verification": {
+   "abstract_verbatim": true,
+   "unverified_numbers": [],
+   "verdict": "CLEAN"
+  },
+  "why_it_matters": "SQuAD 2.0 asks a model to say \"no answer\" when the passage does not contain one, and plain BERT is weak at that. The extra directed attention here mostly buys accuracy on the unanswerable questions, raising no-answer F1 from 68.21 to 72.54 on the base model, while costing accuracy on answerable ones. If you are tuning a reader for cases where refusing to answer matters, that trade is the useful signal. The back-translated SQuAD 2.Q data and code are public."
+ },
+ "communication-efficient-federated-learning-nmt": {
+  "abstract": "Training neural machine translation (NMT) models in federated learning (FL) settings could be inefficient both computationally and communication-wise, due to the large size of translation engines as well as the multiple rounds of updates required to train clients and a central server. In this paper, we explore how to efficiently build NMT models in an FL setup by proposing a novel solution. In order to reduce the communication overhead, out of all neural layers we only exchange what we term “Controller” layers. Controllers are a small number of additional neural components connected to our pre-trained architectures. These new components are placed in between original layers. They act as liaisons to communicate with the central server and learn minimal information that is sufficient enough to update clients. We evaluated the performance of our models on five datasets from different domains to translate from German into English. We noted that the models equipped with Controllers preform on par with those trained in a central and non-FL setting. In addition, we observed a substantial reduction in the communication traffic of the FL pipeline, which is a direct consequence of using Controllers. Based on our experiments, Controller-based models are ∼ 6 times less expensive than their other peers. This reduction is significantly important when we consider the number of parameters in large models and it becomes even more critical when such parameters need to be exchanged for multiple rounds in FL settings.",
+  "abstract_word_count": 238,
+  "bibtex": "@inproceedings{roosta2021communication,\n  title         = {Communication-Efficient Federated Learning for Neural Machine Translation},\n  author        = {Roosta, Tanya and Passban, Peyman and Chadha, Ankit},\n  booktitle     = {Proceedings of the 1st Workshop on Efficient Natural Language and Speech Processing (ENLSP), 35th Conference on Neural Information Processing Systems (NeurIPS 2021)},\n  year          = {2021},\n  eprint        = {2112.06135},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.CL},\n  url           = {https://arxiv.org/abs/2112.06135}\n}",
+  "figure_alt": "Only the inserted Controller layers are trained and sent to the server; the original Transformer layers stay frozen.",
+  "figure_caption": "Figure 1: A comparison between a client model equipped with Controller layers and its ordinary peer.",
+  "honesty_note": "The Controller models lose to both comparators in our own tables, 29.46 BLEU against 33.83 for full-parameter federated training and 32.00 for centralized fine-tuning, so \"on par\" is generous. The roughly 6 times saving is a parameter count, not measured bytes on the wire or wall-clock time. No comparison against the standard communication-efficiency baselines such as sparsification or quantization, and the adapter comparison is qualitative with no numbers. Controllers are adapter-style layers under a new name, which the paper acknowledges.",
+  "key_results": [
+   {
+    "is_negative_or_null": false,
+    "text": "Sharing and training only Controller layers (8E-8D/C-C (2-6)) reaches 29.46 average BLEU versus 28.40 for the matched federated baseline that shares and trains all layers (8E-8D/A-A)."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "Controller-only exchange moves 15,240,704 parameters per round instead of the 94,079,328 of the 8E-8D/A-A baseline (which includes the 33,116,512-parameter embedding table), making Controller-based models about 6 times less expensive."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "Plain federated averaging over five clients (6E-6D/A-A) averages 33.83 BLEU, above the centralized mixed-domain Fine Tuning model at 32.00 and far above Chained Training at 21.83."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "The Controller models do not actually match the non-FL centralized setting on average, scoring 29.46 BLEU against 32.00 for centralized Fine Tuning and 33.83 for the full-parameter federated model, so the abstract's \"on par\" wording overstates Table 1."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "Growing the federated model from 6 to 8 encoder and decoder layers under the same 150K-step budget lowered average BLEU from 33.83 (6E-6D/A-A) to 28.40 (8E-8D/A-A), the opposite of the authors' stated expectation."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "Reusing existing layers of the 6-layer model as Controllers is highly position-sensitive: average BLEU drops from 29.58 at positions (0-3) to 27.67 at (1-4), and the paper reports that placing a Controller between the embedding table and the first encoder layer stops the client from converging at all."
+   }
+  ],
+  "meta_description": "To train translation models across separate data owners, the authors share only a few small added \"Controller\" layers, cutting exchanged parameters about six times with average translation quality slightly above the matched baseline.",
+  "tldr": "To train translation models across separate data owners, the authors share only a few small added \"Controller\" layers, cutting exchanged parameters about six times with average translation quality slightly above the matched baseline.",
+  "topics": [
+   "federated learning",
+   "neural machine translation",
+   "communication-efficient training",
+   "parameter-efficient fine-tuning",
+   "adapter layers",
+   "controller layers",
+   "transformer",
+   "fedavg",
+   "german-english translation",
+   "wmt newstest-14",
+   "opensubtitles",
+   "non-iid data"
+  ],
+  "topics_sentence": "This paper is about federated learning, neural machine translation, communication-efficient training, parameter-efficient fine-tuning, adapter layers, controller layers, transformer, fedavg, german-english translation, wmt newstest-14, opensubtitles, and non-iid data.",
+  "verification": {
+   "abstract_verbatim": true,
+   "unverified_numbers": [],
+   "verdict": "CLEAN"
+  },
+  "why_it_matters": "Federated training keeps each owner's data in place, but every round ships the whole model back and forth, which is costly for a translation engine with tens of millions of parameters. This work inserts two small trainable layers into the encoder and decoder and shares only those, holding average BLEU, a standard automatic translation score, about a point above a same-size baseline that shares everything, at roughly one sixth of the parameter traffic. Useful when bandwidth, not accuracy, is the binding constraint."
+ },
+ "controlled-text-generation-hidden-representation-transformations": {
+  "abstract": "We propose CHRT (Control Hidden Representation Transformation) – a controlled language generation framework that steers large language models to generate text pertaining to certain attributes (such as toxicity). CHRT gains attribute control by modifying the hidden representation of the base model through learned transformations. We employ a contrastive-learning framework to learn these transformations that can be combined to gain multi-attribute control. The effectiveness of CHRT is experimentally shown by comparing it with seven baselines over three attributes. CHRT outperforms all the baselines in the task of detoxification, positive sentiment steering, and text simplification while minimizing the loss in linguistic qualities. Further, our approach has the lowest inference latency of only 0.01 seconds more than the base model, making it the most suitable for high-performance production environments. We open-source our code and release two novel datasets to further propel controlled language generation research.",
+  "abstract_word_count": 142,
+  "bibtex": "@inproceedings{kumar2023controlled,\n  title     = {Controlled Text Generation with Hidden Representation Transformations},\n  author    = {Kumar, Vaibhav and Koorehdavoudi, Hana and Moshtaghi, Masud and Misra, Amita and Chadha, Ankit and Ferrara, Emilio},\n  editor    = {Rogers, Anna and Boyd-Graber, Jordan and Okazaki, Naoaki},\n  booktitle = {Findings of the Association for Computational Linguistics: ACL 2023},\n  month     = jul,\n  year      = {2023},\n  address   = {Toronto, Canada},\n  publisher = {Association for Computational Linguistics},\n  pages     = {9440--9455},\n  doi       = {10.18653/v1/2023.findings-acl.602},\n  url       = {https://aclanthology.org/2023.findings-acl.602/}\n}",
+  "figure_alt": "CHRT freezes the base model and trains only a transform block on its hidden states, guided by two fine-tuned models.",
+  "figure_caption": "Figure 1: Visual Representation for CHRT’s Training, Inference and Transformation Block.",
+  "honesty_note": "The abstract says seven baselines; the body compares against five plus base GPT-2. Everything runs on GPT-2 medium, 355M parameters, with nothing on larger or instruction-tuned models, and the attribute scorers are the same classifier families used to build the training data. Human evaluation is a real strength here, and it shows topicality is a statistical tie against all six baselines and that DExperts ties us on linguistic quality. Fluency regresses on sentiment steering. So \"outperforms all the baselines\" does not hold metric by metric.",
+  "key_results": [
+   {
+    "is_negative_or_null": false,
+    "text": "On RealToxicityPrompts, average maximum toxicity falls from 0.827 for the base GPT-2 to 0.085 for CHRT12, below DExperts at 0.154, and human raters likewise score CHRT12 lowest at 0.027 against 0.369 for GPT-2."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "On the new RealSentimentPrompts set, average maximum negative sentiment drops from 0.934 for GPT-2 to 0.094 for CHRT12, which the paper states is more than 62% lower than DExperts at 0.249, with negative-sentiment probability falling from 0.534 to 0.005."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "On RealSimplicityPrompts, the probability of generating simple continuations rises from 0.259 for GPT-2 to 0.996 for CHRT12 with average maximum simplicity of 0.995, against 0.959 and 0.992 for DExperts."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "Generation time per 25-token continuation goes from 0.811 seconds for GPT-2 to 0.823 seconds for CHRT, an increase of +0.01, compared with 10.12 seconds for PPLM (+9.30) and 1.989 seconds for DExperts (+1.17)."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "Fluency gets worse, not better, on sentiment steering: CHRT12 perplexity rises from 17.372 for GPT-2 to 28.160, a 10.84 point loss that is also worse than NLC at 17.542 and DAPT at 19.570."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "In the human evaluation, topicality shows no advantage for CHRT12 at 1.160 against 1.320 for GPT-2, and every baseline has p greater than 0.05 in a pairwise T-test, so the paper draws no conclusion about superiority on that metric."
+   }
+  ],
+  "meta_description": "CHRT steers a language model away from toxic or negative text by editing its internal number vectors, cutting toxicity from 0.827 to 0.085 while adding only 0.01 seconds per generation.",
+  "tldr": "CHRT steers a language model away from toxic or negative text by editing its internal number vectors, cutting toxicity from 0.827 to 0.085 while adding only 0.01 seconds per generation.",
+  "topics": [
+   "controlled text generation",
+   "detoxification",
+   "toxicity reduction in language models",
+   "sentiment steering",
+   "text simplification",
+   "contrastive learning",
+   "triplet loss",
+   "hidden representation transformation",
+   "realtoxicityprompts",
+   "dexperts",
+   "gedi",
+   "pplm",
+   "gpt-2",
+   "inference latency",
+   "multi-attribute control"
+  ],
+  "topics_sentence": "This paper is about controlled text generation, detoxification, toxicity reduction in language models, sentiment steering, text simplification, contrastive learning, triplet loss, hidden representation transformation, realtoxicityprompts, dexperts, gedi, pplm, gpt-2, inference latency, and multi-attribute control.",
+  "verification": {
+   "abstract_verbatim": true,
+   "unverified_numbers": [],
+   "verdict": "CLEAN"
+  },
+  "why_it_matters": "Most ways to stop a language model from producing toxic text either slow generation down a lot or make the text read worse. CHRT trains a small block that rewrites the model's internal representations, so the base model and its decoder stay untouched at run time. On the paper's tests it cut toxicity further than five prior methods while adding 0.01 seconds per continuation, against 9.30 extra seconds for PPLM. Attribute blocks can also be mixed at inference time without retraining."
+ },
+ "cross-lingual-knowledge-distillation-answer-sentence-selection": {
+  "abstract": "While impressive performance has been achieved on the task of Answer Sentence Selection (AS2) for English, the same does not hold for languages that lack large labeled datasets. In this work, we propose Cross-Lingual Knowledge Distillation (CLKD) from a strong English AS2 teacher as a method to train AS2 models for low-resource languages in the tasks without the need of labeled data for the target language. To evaluate our method, we introduce 1) Xtr-WikiQA, a translation-based WikiQA dataset for 9 additional languages, and 2) TyDi-AS2, a multilingual AS2 dataset with over 70K questions spanning 8 typologically diverse languages. We conduct extensive experiments on Xtr-WikiQA and TyDi-AS2 with multiple teachers, diverse monolingual and multilingual pretrained language models (PLMs) as students, and both monolingual and multilingual training. The results demonstrate that CLKD either outperforms or rivals even supervised fine-tuning with the same amount of labeled data and a combination of machine translation and the teacher model. Our method can potentially enable stronger AS2 models for low-resource languages, while TyDi-AS2 can serve as the largest multilingual AS2 dataset for further studies in the research community.",
+  "abstract_word_count": 182,
+  "bibtex": "@inproceedings{gupta2023cross,\n  title     = {Cross-Lingual Knowledge Distillation for Answer Sentence Selection in Low-Resource Languages},\n  author    = {Gupta, Shivanshu and Matsubara, Yoshitomo and Chadha, Ankit and Moschitti, Alessandro},\n  editor    = {Rogers, Anna and Boyd-Graber, Jordan and Okazaki, Naoaki},\n  booktitle = {Findings of the Association for Computational Linguistics: ACL 2023},\n  month     = jul,\n  year      = {2023},\n  address   = {Toronto, Canada},\n  publisher = {Association for Computational Linguistics},\n  pages     = {14078--14092},\n  url       = {https://aclanthology.org/2023.findings-acl.885/},\n  doi       = {10.18653/v1/2023.findings-acl.885}\n}",
+  "figure_alt": "CLKD pipeline: an English teacher scores machine-translated QA pairs; the low-resource student learns to copy those scores.",
+  "figure_caption": "Figure 1: Cross-Lingual Knowledge Distillation (CLKD) in two different scenarios: (Top) using unlabeled English AS2 dataset for target low-resource language lacking any data and (Bottom) using unlabeled original low-resource language AS2 dataset. CLKD enables student AS2 models to learn from English teacher AS2 models without human-annotated datasets.",
+  "honesty_note": "The paper says the method beats supervised fine-tuning for all target languages. That is too strong. German and Swahili are losses in the tables, and with the largest student trained on all languages on original TyDi-AS2 data it loses in five of seven. No student ever reaches the English teacher. Three seeds were run but only averages are reported, so the sub-point gaps are not shown to be real. Both datasets were built with Amazon Translate by a team that is mostly Amazon, so the machine-translation side is not vendor-neutral.",
+  "key_results": [
+   {
+    "is_negative_or_null": false,
+    "text": "On Xtr-WikiQA with an XLM-R-Large student trained on a single target language, Arabic P@1 rises from 64.2 with supervised fine-tuning on gold labels to 76.3 with CLKD from either the ELECTRA-Large or RoBERTa-Large English teacher."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "On Xtr-WikiQA with a smaller mBERT student trained on a single language, Italian P@1 rises from 60.8 with supervised fine-tuning to 75.7 with CLKD using the RoBERTa-Large English teacher."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "On the Xtr-TyDi-AS2 translationese data with an XLM-R-Large student trained on all languages, Bengali P@1 goes from 62.8 with supervised fine-tuning to 67.2 with CLKD, above the 63.9 of the machine-translation-plus-English-teacher pipeline."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "On original-language TyDi-AS2 with an XLM-R-Large student trained on all languages, Korean P@1 goes from 80.5 with supervised fine-tuning to 83.4 with CLKD, above the machine-translation-plus-English-teacher pipeline at 77.8."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "In that same strongest configuration, CLKD actually loses to supervised fine-tuning in five of seven languages: Japanese falls from 62.9 to 58.0, Finnish from 72.3 to 68.8, Bengali from 70.0 to 68.0, Swahili from 88.6 to 87.1, and Russian from 68.4 to 68.3."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "No student ever catches the English teacher on Xtr-WikiQA: the best student result is 85.1 P@1 (Portuguese, XLM-R-Large, all-language CLKD with RoBERTa-Large) against teacher scores of 87.7 for ELECTRA-Large and 91.8 for RoBERTa-Large."
+   }
+  ],
+  "meta_description": "The paper trains answer-ranking models for languages with no labeled data by copying the soft scores of a strong English model, lifting Arabic accuracy on translated WikiQA from 64.2 to 76.3.",
+  "tldr": "The paper trains answer-ranking models for languages with no labeled data by copying the soft scores of a strong English model, lifting Arabic accuracy on translated WikiQA from 64.2 to 76.3.",
+  "topics": [
+   "answer sentence selection",
+   "cross-lingual knowledge distillation",
+   "low-resource languages",
+   "knowledge distillation",
+   "multilingual question answering",
+   "wikiqa",
+   "tydi qa",
+   "xtr-wikiqa",
+   "tydi-as2",
+   "xlm-roberta",
+   "mbert",
+   "machine translation for question answering"
+  ],
+  "topics_sentence": "This paper is about answer sentence selection, cross-lingual knowledge distillation, low-resource languages, knowledge distillation, multilingual question answering, wikiqa, tydi qa, xtr-wikiqa, tydi-as2, xlm-roberta, mbert, and machine translation for question answering.",
+  "verification": {
+   "abstract_verbatim": true,
+   "unverified_numbers": [],
+   "verdict": "CORRECTED"
+  },
+  "why_it_matters": "Picking the sentence that answers a question works well in English because there is labeled data. For most languages there is not, and hand-labeling is expensive because one question can have hundreds of candidate sentences. This work shows a cheaper route: run an English model over machine-translated text and train the target-language model to copy its confidence scores. The authors also release two multilingual datasets, so others can test the idea rather than take it on trust."
+ },
+ "dr-sas-deep-reinforced-self-attention-masks": {
+  "abstract": "We present a novel architectural scheme to tackle the abstractive summarization problem based on the CNN/DM dataset [1] which fuses Reinforcement Learning (RL) with UniLM, which is a pre-trained Deep Learning Model, to solve various natural language tasks. We have tested the limits of learning fine-grained attention in Transfomers [3] to improve the summarization quality. UniLM applies attention to the entire token space in a global fashion. We propose DR.SAS which applies the Actor Critic (AC) algorithm [2] to learn a dynamic self-attention distribution over the tokens to reduce redundancy and generate factual and coherent summaries to improve the quality of summarization. After performing hyperparameter tuning, we achieved better ROUGE results compared to the baseline. Our model tends to be more extractive/factual yet coherent in details because of optimization over ROUGE rewards. We present detailed error analysis with examples of strengths and limitations of our model. Our codebase will be publicly available on our github [20]",
+  "abstract_word_count": 156,
+  "bibtex": "@misc{chadha2019deep,\n  title         = {Deep Reinforced Self-Attention Masks for Abstractive Summarization (DR.SAS)},\n  author        = {Chadha, Ankit and Masoud, Mohamed},\n  year          = {2019},\n  month         = dec,\n  eprint        = {2001.00009},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.CL},\n  url           = {https://arxiv.org/abs/2001.00009},\n  note          = {arXiv preprint arXiv:2001.00009}\n}",
+  "figure_alt": "Actor-critic net reads UniLM attention scores, samples 0 or -10000 masks, and feeds them back into the encoder.",
+  "figure_caption": "Figure 3. Encoder with AC Policy Learning for Self-Attention masks",
+  "honesty_note": "This started as a Stanford CS221 course project and was never peer reviewed. The gain is about one ROUGE point and the paper calls it marginal. Training was cut to 6 of 30 epochs at a quarter of the intended batch size, so the baseline is under-trained and 41.89 is not comparable to published CNN/DailyMail numbers. No human evaluation, no seeds, no significance tests. The claim that the summaries are more factual rests on two hand-picked articles with no factuality metric.",
+  "key_results": [
+   {
+    "is_negative_or_null": false,
+    "text": "Raises ROUGE-1 F1 on the CNN/Daily Mail test set from 40.79 to 41.89 over the fine-tuned UniLM baseline (Table 1)."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "Raises ROUGE-L F1 on CNN/Daily Mail from 38.10 to 39.28 over the fine-tuned UniLM baseline, the largest of the three ROUGE gains at +1.18."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "ROUGE-2 F1 moves only from 19.01 to 19.22, a 0.21 point change that the authors themselves describe as a \"marginal improvement\" over fine-tuned UniLM, essentially a tie."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "Against the TextRank extractive baseline, DR.SAS lifts ROUGE-1 from 21.0 to 41.89 and ROUGE-L from 19.2 to 39.28, but almost all of that gap comes from UniLM itself rather than from the reinforcement learning."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "The only reported ablation-style number is a hyperparameter change: extending the maximum sequence length from 384 to 512 tokens gave a 0.1 ROUGE score improvement."
+   }
+  ],
+  "meta_description": "Adds a reinforcement-learning agent that decides which input words a summarizer should ignore, raising the word-overlap score ROUGE-1 on CNN/Daily Mail news from 40.79 to 41.89 against fine-tuned UniLM.",
+  "tldr": "Adds a reinforcement-learning agent that decides which input words a summarizer should ignore, raising the word-overlap score ROUGE-1 on CNN/Daily Mail news from 40.79 to 41.89 against fine-tuned UniLM.",
+  "topics": [
+   "abstractive summarization",
+   "reinforcement learning for nlp",
+   "actor-critic",
+   "advantage actor-critic (a2c)",
+   "self-attention masks",
+   "unilm",
+   "cnn/daily mail",
+   "rouge",
+   "policy gradient",
+   "transformer attention",
+   "textrank",
+   "text summarization"
+  ],
+  "topics_sentence": "This paper is about abstractive summarization, reinforcement learning for nlp, actor-critic, advantage actor-critic (a2c), self-attention masks, unilm, cnn/daily mail, rouge, policy gradient, transformer attention, textrank, and text summarization.",
+  "verification": {
+   "abstract_verbatim": true,
+   "unverified_numbers": [],
+   "verdict": "CLEAN"
+  },
+  "why_it_matters": "Most summarization systems let the model attend to every word in the article. This work asks whether an agent can learn, per token, which words to hide, and reports a small gain: about one ROUGE-1 point over the same UniLM model fine-tuned normally. The practical lesson is mostly cautionary. Because the reward is ROUGE, an n-gram overlap score, the learned masks push the summaries toward copying source text, so gains in the metric can come with a shift toward extractive output rather than better writing."
+ },
+ "efficient-fine-tuning-knowledge-aware-response-planning": {
+  "abstract": "Large Language Models (LLMs) have shown impressive emergent language capabilities, especially in applications with high ambiguity, such as language reasoning and knowledge consolidation. However, previous work explores the use of LLMs for acquiring information using either parametric or external knowledge, which might lead to serious issues such as hallucination. Toward solving these issues, we present a novel approach of knowledge-aware response planning (KARP) and propose a novel framework that employs (i) a knowledge retriever to obtain relevant information from web documents or databases for a given user query, and (ii) a robust fine-tuning strategy for LLMs to exploit the retrieved external knowledge for planning a final response. Experimental results show that our proposed framework can provide natural, concise answers for open-domain questions with high accuracy.",
+  "abstract_word_count": 125,
+  "bibtex": "@inproceedings{nguyen2023efficient,\n  author    = {Nguyen, Minh and K C, Kishan and Nguyen, Toan and Chadha, Ankit and Vu, Thuy},\n  title     = {Efficient Fine-tuning Large Language Models for Knowledge-Aware Response Planning},\n  booktitle = {Machine Learning and Knowledge Discovery in Databases: Research Track. European Conference, ECML PKDD 2023, Turin, Italy, September 18--22, 2023, Proceedings},\n  series    = {Lecture Notes in Computer Science (Lecture Notes in Artificial Intelligence)},\n  volume    = {14170},\n  pages     = {593--611},\n  publisher = {Springer},\n  address   = {Cham, Switzerland},\n  year      = {2023}\n}",
+  "figure_alt": "Pipeline: retriever picks passages; LLM is fine-tuned with and without them, then answers using both sources.",
+  "figure_caption": "Fig. 1: Overview of our proposed framework for KARP. The blue and orange arrows represent the finetuning and inference processes of our model respectively.",
+  "honesty_note": "The paper never names the generative model it fine-tunes, and the three configurations in Table 3 are described only as different hyper-parameter settings with no values, so the generation results are not reproducible from the paper as written. There is no ablation separating the retriever from the two-step fine-tuning. The end-to-end table reports relative gains over TANDA with no absolute accuracy, no confidence intervals, and no annotator agreement. The method loses to TANDA on WDRASS MAP. The paper also contradicts itself about which configuration is best.",
+  "key_results": [
+   {
+    "is_negative_or_null": false,
+    "text": "On WikiQA without ASNQ transfer, the paper's optimal-transport knowledge retriever raises Precision-at-1 from 63.24 to 74.16 and MAP from 75.00 to 83.29 over the TANDA baseline."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "On WikiQA with an ASNQ-adapted RoBERTa-Base encoder, Precision-at-1 goes from 78.67 to 83.77 and MAP from 86.74 to 89.28 over TANDA."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "On WDRASS the retriever wins on Precision-at-1, 54.60 to 55.9, but loses on MAP, 63.50 down to 61.8, which the authors attribute to WDRASS questions having several correct answers while their model scores candidates one at a time."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "On 2,000 questions sampled from the MS MARCO QA NLG test set, BLEU goes from 14.6 for GenQA to 39.4 for the best KARP configuration, with RougeL from 0.518 to 0.632 and BERTScore from 0.698 to 0.762 for KARP config 1."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "In the end-to-end web-scale setting over roughly 100 million documents and 130 million passages, judged on 2,000 manually labeled WDRASS questions, relative accuracy over the TANDA baseline is +2.20% for GenQA, +6.20% for KARP trained on MS MARCO under data parity, and +7.40% for KARP trained on the larger OKQA collection."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "The paper's own Table 3 undercuts its choice of best system: config 2 is called best-performing on BLEU 39.4 versus 38.3, yet config 1 beats it on RougeL, 0.632 versus 0.608, and on BERTScore, 0.762 versus 0.752, so no single KARP configuration wins on all three metrics."
+   }
+  ],
+  "meta_description": "The paper fine-tunes a question-answering model twice, once with retrieved web text and once without, so it can fall back on what it already knows; end-to-end accuracy rises 7.40% over a ranking baseline.",
+  "tldr": "The paper fine-tunes a question-answering model twice, once with retrieved web text and once without, so it can fall back on what it already knows; end-to-end accuracy rises 7.40% over a ranking baseline.",
+  "topics": [
+   "knowledge-aware response planning",
+   "generative question answering",
+   "retrieval-augmented generation",
+   "dense passage retrieval",
+   "answer sentence selection",
+   "optimal transport alignment",
+   "llm fine-tuning strategy",
+   "hallucination in question answering",
+   "ms marco qa nlg",
+   "wikiqa",
+   "wdrass",
+   "open-domain question answering"
+  ],
+  "topics_sentence": "This paper is about knowledge-aware response planning, generative question answering, retrieval-augmented generation, dense passage retrieval, answer sentence selection, optimal transport alignment, llm fine-tuning strategy, hallucination in question answering, ms marco qa nlg, wikiqa, wdrass, and open-domain question answering.",
+  "verification": {
+   "abstract_verbatim": true,
+   "unverified_numbers": [],
+   "verdict": "CORRECTED"
+  },
+  "why_it_matters": "Retrieval-augmented answer generators often learn to copy whatever passage the retriever hands them, so a bad retrieval means a bad answer. This work trains the same model on two input formats, question plus passage and question alone, which pushes it to keep using its own stored knowledge when the passage is thin. The training recipe is simple to copy, and the retriever piece adds an optimal-transport alignment step that improves top-1 passage selection on WikiQA."
+ },
+ "federated-learning-mixed-domain-translation": {
+  "abstract": "Training mixed-domain translation models is a complex task that demands tailored architectures and costly data preparation techniques. In this work, we leverage federated learning (FL) in order to tackle the problem. Our investigation demonstrates that with slight modifications in the training process, neural machine translation (NMT) engines can be easily adapted when an FL-based aggregation is applied to fuse different domains. Experimental results also show that engines built via FL are able to perform on par with state-of-the-art baselines that rely on centralized training techniques. We evaluate our hypothesis in the presence of five datasets with different sizes, from different domains, to translate from German into English and discuss how FL and NMT can mutually benefit from each other. In addition to providing benchmarking results on the union of FL and NMT, we also propose a novel technique to dynamically control the communication bandwidth by selecting impactful parameters during FL updates. This is a significant achievement considering the large size of NMT engines that need to be exchanged between FL parties.",
+  "abstract_word_count": 171,
+  "bibtex": "@inproceedings{passban2022training,\n  title     = {Training Mixed-Domain Translation Models via Federated Learning},\n  author    = {Passban, Peyman and Roosta, Tanya and Gupta, Rahul and Chadha, Ankit and Chung, Clement},\n  booktitle = {Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies},\n  month     = jul,\n  year      = {2022},\n  address   = {Seattle, United States},\n  publisher = {Association for Computational Linguistics},\n  pages     = {2576--2586}\n}",
+  "figure_alt": "Federated round: four client networks around a central server, with a few high-norm nodes marked red as the only tensors each client sends.",
+  "figure_caption": "Figure 2: DP-based communication in our FL setting.",
+  "honesty_note": "Preliminary work, and the paper says so. One language direction, one aggregation rule, single runs, BLEU only, no human evaluation. The federated server loses to centralized data combination on OpenSubtitles, 19.17 against 21.82. Both bandwidth-saving variants cost quality, 32.28 and 24.49 average against 33.83. The main comparator is our own group's prior paper, sharing three authors, so the headline head-to-head is largely against ourselves. No ablation shows how much of the gain comes simply from starting every client at the strong WMT model.",
+  "key_results": [
+   {
+    "is_negative_or_null": false,
+    "text": "Across the five German-to-English test sets, the federated server averages 33.83 BLEU, which the paper reports as 1.83 points higher than the best centralized baseline (data combination)."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "On the Ubuntu test set the federated server reaches 47.9 BLEU versus 35.61 for centralized data combination and 30.15 for the Ubuntu-only model."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "On the OpenSubtitles test set the federated server scores only 19.17 BLEU, losing to centralized data combination at 21.82 and to the OpenSubtitles-only model at 23.58."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "A PHP client that runs one more round of local fine-tuning on top of the pushed server weights raises in-domain PHP BLEU from 37.32 to 45.07, but the paper notes it then loses its generalization to other domains."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "Dynamic Pulling of the less active tensors (DPlc) halves the parameters exchanged per pull from 45,724,160 to 22,863,104, but average BLEU over the five domains falls from 33.83 to 32.28, a gap of 1.55 points against pulling every tensor."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "The opposite selection rule, pulling the highly fluctuating tensors (DPgc), drops average BLEU to 24.49 and collapses PHP from 37.32 to 13.69, worse than random selection of the same number of parameters (35.33) and worse than DPlc (36.33)."
+   }
+  ],
+  "meta_description": "This work introduced federated mixed-domain neural machine translation and a communication-bandwidth method that selects impactful parameters during federated learning updates.",
+  "tldr": "Five domain-specific translation models use federated learning to build a mixed-domain neural machine translation system without pooling their data, with a method for selecting impactful parameters to control communication bandwidth.",
+  "contribution": "Introduced a federated approach to mixed-domain neural machine translation and a bandwidth-control method that selects impactful parameters during federated updates.",
+  "featured_thumbnail": "federated-translation",
+  "featured_thumbnail_alt": "A line chart showing German-to-English BLEU increasing as federated learning rounds rise from five to fifty.",
+  "topics": [
+   "federated learning",
+   "neural machine translation",
+   "mixed-domain translation",
+   "domain adaptation",
+   "communication-efficient federated learning",
+   "fedavg",
+   "cross-silo federated learning",
+   "transformer nmt",
+   "german-english translation",
+   "bleu",
+   "opensubtitles",
+   "bandwidth reduction",
+   "impactful parameter selection",
+   "mixed-domain neural machine translation"
+  ],
+  "topics_sentence": "This paper studies federated learning for mixed-domain neural machine translation, domain adaptation without pooled data, communication-efficient federated learning, impactful parameter selection, FedAvg, cross-silo federated learning, Transformer NMT, German-to-English translation, BLEU, OpenSubtitles, and bandwidth reduction.",
+  "verification": {
+   "abstract_verbatim": true,
+   "unverified_numbers": [],
+   "verdict": "CLEAN"
+  },
+  "why_it_matters": "Teams often cannot pool translation data across customers, products, or hospitals, so each site ends up with a model that only handles its own text. This paper shows a simple weight-averaging setup reaches slightly better average quality than combining all the data centrally, using five German-to-English corpora. It also shows that sending only the parameters that barely moved between rounds cuts the upload in half and costs 1.55 BLEU, which gives a concrete knob for bandwidth-limited deployments."
+ },
+ "question-context-alignment-answer-sentence-selection": {
+  "abstract": "Answer sentence selection (AS2) in open-domain question answering finds answer for a question by ranking candidate sentences extracted from web documents. Recent work exploits answer context, i.e., sentences around a candidate, by incorporating them as additional input string to the Transformer models to improve the correctness scoring. In this paper, we propose to improve the candidate scoring by explicitly incorporating the dependencies between question-context and answer-context into the final representation of a candidate. Specifically, we use Optimal Transport to compute the question-based dependencies among sentences in the passage where the answer is extracted from. We then represent these dependencies as edges in a graph and use Graph Convolutional Network to derive the representation of a candidate, a node in the graph. Our proposed model achieves significant improvements on popular AS2 benchmarks, i.e., WikiQA and WDRASS, obtaining new state-of-the-art on all benchmarks.",
+  "abstract_word_count": 141,
+  "bibtex": "@inproceedings{nguyen2023question,\n  author    = {Minh Van Nguyen and Kishan KC and Toan Nguyen and Thien Huu Nguyen and Ankit Chadha and Thuy Vu},\n  title     = {Question-Context Alignment and Answer-Context Dependencies for Effective Answer Sentence Selection},\n  booktitle = {Proc. INTERSPEECH 2023},\n  pages     = {3437--3441},\n  year      = {2023},\n  address   = {Dublin, Ireland},\n  publisher = {ISCA},\n  doi       = {10.21437/Interspeech.2023-2240}\n}",
+  "figure_alt": "RoBERTa encodes question plus candidate and neighbor sentences; optimal transport aligns words; a GCN scores the answer.",
+  "figure_caption": "Figure 1: Illustration for our proposed model.",
+  "honesty_note": "There is no ablation anywhere in this paper, so the three components, the alignment, the sentence graph, and the mutual-information term, are never separated. The abstract claims state of the art on all benchmarks and that does not hold: our main model's WDRASS MAP falls below TANDA, 61.8 against 63.5, and the claim only works if the joint-reranking variant is counted. Three seeds, averages only, no significance tests. No latency measurement, which matters for a task that is latency-sensitive in production.",
+  "key_results": [
+   {
+    "is_negative_or_null": false,
+    "text": "On the combined WikiQA development and test sets with a non-finetuned RoBERTa-base encoder, CASSIE raises Precision-at-1 from 68.09 to 74.16 over the LOCT context-concatenation baseline."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "On the same non-finetuned WikiQA setting, MAP rises from 79.00 with LOCT (and 75.00 with TANDA) to 83.29 with CASSIE."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "With an ASNQ-finetuned RoBERTa-base encoder on WikiQA the margin narrows: P@1 goes from 81.31 to 83.77 and MAP from 88.00 to 89.28 over LOCT."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "On the WDRASS test set CASSIE loses to TANDA on MAP, dropping from 63.5 to 61.8, even though P@1 improves from 54.6 to 55.9 and MRR from 64.3 to 69.7."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "A joint reranking variant that reorders TANDA's candidates recovers MAP on WDRASS from 63.5 to 64.2 with P@1 55.9 and MRR 65.0, but its MRR sits well below the single-candidate CASSIE score of 69.7."
+   }
+  ],
+  "meta_description": "Instead of pasting neighboring sentences onto the question, this model matches question words to context words and builds a small sentence graph, raising top-1 answer accuracy on WikiQA from 68.09 to 74.16.",
+  "tldr": "Instead of pasting neighboring sentences onto the question, this model matches question words to context words and builds a small sentence graph, raising top-1 answer accuracy on WikiQA from 68.09 to 74.16.",
+  "topics": [
+   "answer sentence selection",
+   "as2",
+   "wikiqa",
+   "wdrass",
+   "optimal transport",
+   "graph convolutional network",
+   "open-domain question answering",
+   "answer reranking",
+   "roberta",
+   "tanda",
+   "mutual information neural estimation",
+   "contextual answer selection"
+  ],
+  "topics_sentence": "This paper is about answer sentence selection, as2, wikiqa, wdrass, optimal transport, graph convolutional network, open-domain question answering, answer reranking, roberta, tanda, mutual information neural estimation, and contextual answer selection.",
+  "verification": {
+   "abstract_verbatim": true,
+   "unverified_numbers": [],
+   "verdict": "CLEAN"
+  },
+  "why_it_matters": "Voice assistants must pick one answer sentence out of retrieved web pages, and the sentences on either side of a candidate often decide whether it is correct. The common fix is to glue those neighbors into one long input, which also drags in irrelevant text. This work instead keeps only the context words that match the question and models how the three sentences depend on each other, gaining about six points of top-1 accuracy on WikiQA. On the larger WDRASS set the gain is smaller and MAP drops."
+ },
+ "routed-graph-handoff": {
+  "abstract": "Multi-agent LLM systems coordinate through natural-language messages that consume 40–60% of their token budget. Replacing these with structured graphs reduces cost but fails on tasks requiring adaptive reasoning. We propose Routed Graph Handoff, where a lightweight LLM router (155 tokens, 0.15% overhead) selects between a typed dependency graph and natural language for each delegation. On four benchmarks (1,050+ trajectories), the routed system matches or exceeds NL-only on every task: +12.7 pp on τ-retail at 3.2× compression (p<0.01), +8.7 pp on BrowseComp at 2.2× compression (p<0.05), and parity on BFCL and AppWorld. Without the router, graph-only delegation regresses 14.6 pp on AppWorld; the router eliminates this at near-zero cost. A graph-aware executor prompt is required: the same schema without interpretation guidance yields no gain. An oracle analysis reveals 8.6 pp of additional headroom, motivating execution-time adaptive routing as future work.",
+  "abstract_word_count": 139,
+  "bibtex": "@misc{banerjee2026routed,\n  title         = {Routed Graph Handoff: Adaptive Format Selection for Multi-Agent LLM Delegation},\n  author        = {Banerjee, Pratyay and Chadha, Ankit},\n  year          = {2026},\n  eprint        = {2608.25277},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.CL},\n  note          = {arXiv:2608.25277. Accepted to EMNLP 2026, proceedings not yet published},\n  url           = {https://arxiv.org/abs/2608.25277}\n}",
+  "figure_alt": "A 155-token router call sends each task to either a 357-token typed graph handoff or a 576-token prose handoff.",
+  "figure_caption": "Figure 1: System overview. The router (one LLM call) selects Graph (typed DAG, 2× compression) or NL (prose fallback) per task.",
+  "honesty_note": "This was accepted to EMNLP 2026, but the proceedings are not out yet, so this page cites the arXiv version, and the code has not been released. The 76 percent failure figure comes from an automated taxonomy, not human coding, spot-checked on 50 cases. The method wins on 2 of 4 benchmarks: BFCL is a tie, 75.4 against 75.3, and the AppWorld result is parity only because the router sends 89 percent of those tasks back to prose. Graph-only loses 14.6 points there on its own. Realized routing is coarse enough that it behaves close to a per-benchmark rule, and the oracle shows 8.6 points still unclaimed.",
+  "key_results": [
+   {
+    "is_negative_or_null": false,
+    "text": "Raises Task Success Rate on τ-bench retail from 12.0 to 24.7, a +12.7 pp gain with 95% CI [+6.0, +19.3] and p<0.01 over the NL-only prose handoff baseline, at 3.2× handoff compression."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "Raises Pass@1 accuracy on BrowseComp from 38.7 to 47.3, a +8.7 pp gain with CI [+2.7, +14.7] and p<0.05 over NL-only, while being 22% cheaper at 2.2× compression."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "Graph-only delegation without the router drops AppWorld Task Success Rate from 51.7 to 37.1, a −14.6 pp regression with CI [−22.8, −6.4]; the router recovers exact parity (51.7% vs 51.7%) by sending 89% of AppWorld tasks to prose rather than beating the baseline."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "On BFCL v3 the routed system is a statistical tie with the prose baseline, 75.4 versus 75.3 AST match accuracy, so the graph handoff adds no measurable accuracy there despite 2.0× compression."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "In an 8-protocol comparison on the same pinned 50 τ-retail tasks, Routed NGH reaches the highest TSR at 24.7 (+12.7 pp) with no training, ahead of a GRPO-finetuned Qwen 1.5B compressor at 20.7 (+8.7 pp), a T5 autoencoder at 20.0 (+8.0 pp) and off-the-shelf LLMLingua-2 at 18.7 (+6.7 pp)."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "The per-task oracle reaches 60.3% TSR on AppWorld against the router's 51.7%, so 8.6 pp of achievable headroom is left unclaimed, of which 3.4 pp is attributed to outright router mistakes."
+   }
+  ],
+  "meta_description": "An extra classifier call picks per task whether one AI agent sends work to another as a dependency graph or as prose, gaining 12.7 points on τ-retail and preventing a 14.6-point loss on AppWorld.",
+  "tldr": "An extra classifier call picks per task whether one AI agent sends work to another as a dependency graph or as prose, gaining 12.7 points on τ-retail and preventing a 14.6-point loss on AppWorld.",
+  "topics": [
+   "multi-agent llm systems",
+   "agent handoff format",
+   "llm routing",
+   "prompt compression",
+   "typed graph schema",
+   "constrained decoding",
+   "tau-bench",
+   "browsecomp",
+   "appworld",
+   "bfcl function calling",
+   "llm orchestration",
+   "agent delegation"
+  ],
+  "topics_sentence": "This paper is about multi-agent llm systems, agent handoff format, llm routing, prompt compression, typed graph schema, constrained decoding, tau-bench, browsecomp, appworld, bfcl function calling, llm orchestration, and agent delegation.",
+  "verification": {
+   "abstract_verbatim": true,
+   "unverified_numbers": [],
+   "verdict": "CLEAN"
+  },
+  "why_it_matters": "Most multi-agent LLM systems pass work between agents as free prose, which is where most of their failures come from: 76% of failures in the authors' analysis were the receiving agent misreading order or dropping prerequisites. Swapping prose for a typed graph fixes ordering but breaks tasks that need improvisation. The practical takeaway is that one cheap extra classification call, 155 tokens, recovers the better format per task, so you get the accuracy gain without the regression."
+ },
+ "wdrass-web-scale-document-retrieval-answer-sentence-selection": {
+  "abstract": "Open-Domain Question Answering (ODQA) systems generate answers from relevant text returned by search engines, e.g., lexical features-based such as BM25, or embeddings-based such as dense passage retrieval (DPR). Few datasets are available for this task: they mainly focus on QA systems based on machine reading (MR) approach, and show problematic evaluation, mostly based on uncontextualized short answer matching. In this paper, we present WDRASS, a dataset for ODQA based on answer sentence selection (AS2) models, which consider sentences as candidate answers for QA systems. WDRASS consists of ∼64k questions and 800k+ labeled passages and sentences extracted from 30M documents. We evaluate the dataset by training models on it and comparing with the same models trained on Google NQ. Our experiments show that WDRASS significantly improves the performance of retrieval and reranking models, thus boosting the accuracy of downstream QA tasks. We believe our dataset can produce significant impact in advancing IR research.",
+  "abstract_word_count": 152,
+  "bibtex": "@inproceedings{zhang2022wdrass,\n  author    = {Zhang, Zeyu and Vu, Thuy and Gandhi, Sunil and Chadha, Ankit and Moschitti, Alessandro},\n  title     = {{WDRASS}: A Web-scale Dataset for Document Retrieval and Answer Sentence Selection},\n  booktitle = {Proceedings of the 31st ACM International Conference on Information and Knowledge Management (CIKM '22)},\n  year      = {2022},\n  pages     = {4707--4711},\n  publisher = {Association for Computing Machinery},\n  address    = {New York, NY, USA},\n  location  = {Atlanta, GA, USA},\n  isbn      = {978-1-4503-9236-5},\n  doi       = {10.1145/3511808.3557678},\n  url       = {https://doi.org/10.1145/3511808.3557678}\n}",
+  "figure_alt": "Web index retrieves candidates, annotators label answer sentences, then those labels propagate back to passages and docs.",
+  "figure_caption": "Figure 1: ODQA pipeline for generating question-candidate pairs, which are labelled by expert annotators (upper/orange pipeline). The annotation is propagated back to the embedding passages and documents (lower/blue pipeline).",
+  "honesty_note": "The retrieval comparison against Natural Questions is measured only on our own test set, and the paper says why: that test set is not a random sample of NQ data. There is no reverse evaluation on NQ, and no comparison against BM25, ColBERT, or any dense retriever other than DPR. The gap also closes to about 2 points by K equals 5,000. Quote the tables rather than the prose: Section 4.3 and Table 4 disagree on the accuracy gains, and the corpus size is stated four different ways across the paper.",
+  "key_results": [
+   {
+    "is_negative_or_null": false,
+    "text": "On the WDRASS test set in the Close setting (a 50-passage index per question), hit-rate at K=1 for dense passage retrieval rises from 0.318 with encoders trained on Google Natural Questions to 0.414 (41.4%) with encoders trained on WDRASS, about 10 absolute points."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "In the Open setting (a shared index of roughly 250K passages), hit-rate at K=50 rises from 0.777 for NQ-trained DPR to 0.903 for WDRASS-trained DPR, described in the text as more than 90% coverage versus only 77%."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "In the end-to-end human evaluation over 1,296 web-sampled questions against a ~130M-passage index, answer accuracy (H@1) rises from 0.372 for configuration C0 (NQ-trained DPR) to 0.447 for C3 (WDRASS-trained DPR plus WDRASS-trained passage reranker), an improvement the paper reports as 7.48%."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "Broken down by question type, the full WDRASS configuration C3 improves over the NQ baseline C0 by 8.21% on 585 factoid questions (H@1 0.439 to 0.521) and by only 6.89% on 711 non-factoid questions (H@1 0.316 to 0.385), the type the dataset was designed to help most."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "The retrieval advantage is not durable at large K: in the Close setting both NQ-trained and WDRASS-trained DPR tie at 1.000 by K=50, and in the Open setting the gap narrows from 18.2 points at K=10 to 17.4 at K=25 and to 0.971 versus 0.991 at K=5,000."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "On factoid questions at M=5 answer candidates, WDRASS-trained retrieval alone (C2, 0.619) is slightly below the NQ retrieval plus reranker configuration (C1, 0.622), so swapping in WDRASS encoders does not beat simply adding a reranker at that operating point."
+   }
+  ],
+  "meta_description": "WDRASS introduced a web-scale open-domain question answering dataset for document retrieval, dense passage retrieval, reranking, and answer sentence selection over 30 million documents.",
+  "tldr": "WDRASS introduced a web-scale open-domain question answering dataset with 64,000 questions and 800,000+ labeled passages and sentences drawn from 30 million documents.",
+  "contribution": "Introduced a web-scale dataset that connects document retrieval, passage reranking, and answer sentence selection using complete sentence-level answers rather than short answer matching.",
+  "featured_thumbnail": "wdrass",
+  "featured_thumbnail_alt": "A pipeline from a web index through sentence splitting and answer ranking to candidates labeled by expert annotators.",
+  "topics": [
+   "answer sentence selection",
+   "open-domain question answering",
+   "dense passage retrieval",
+   "passage reranking",
+   "non-factoid question answering",
+   "common crawl",
+   "natural questions dataset",
+   "information retrieval dataset",
+   "transformer reranker",
+   "tanda",
+   "hit-rate at k",
+   "web-scale question answering",
+   "sentence-level relevance",
+   "web-scale information retrieval"
+  ],
+  "topics_sentence": "This paper introduces WDRASS for web-scale open-domain question answering and studies answer sentence selection, dense passage retrieval, passage reranking, non-factoid question answering, Common Crawl, Natural Questions, information retrieval datasets, transformer rerankers, TANDA, hit-rate at K, and web-scale question answering.",
+  "verification": {
+   "abstract_verbatim": true,
+   "unverified_numbers": [],
+   "verdict": "CLEAN"
+  },
+  "why_it_matters": "Most question answering datasets call a passage relevant if it merely contains a short answer string, which mislabels passages and sidesteps questions that need a whole sentence, such as \"what makes tides?\". WDRASS instead asks human annotators whether a passage holds a complete, direct answer sentence, drawn from Common Crawl rather than Wikipedia alone. Teams building search-then-answer pipelines get training data whose notion of relevance matches what a user actually reads, plus an end-to-end evaluation judged by people instead of string matching."
+ }
+}

@@ -1,0 +1,229 @@
+{
+ "base_url": "https://ankit-ai.github.io",
+ "name": "Ankit Chadha",
+ "name_citation": "Chadha, Ankit",
+ "given_name": "Ankit",
+ "family_name": "Chadha",
+ "alternate_names": [
+  "Ankit R. Chadha",
+  "Ankit Rakesh Chadha",
+  "A. R. Chadha"
+ ],
+ "job_title": "Director of Applied Science",
+ "employer": "Amazon",
+ "location": "California",
+ "twitter": "@ankitrchadha",
+ "email_display": "ankitrchadha [at] gmail [dot] com",
+ "google_site_verification": "",
+ "indexnow_key": "",
+ "build_date": "2026-09-15",
+ "tagline": "Director of Applied Science at Amazon AGI. I lead science and engineering teams building grounded reasoning for AI agents, agent memory, and web-scale retrieval across text, images, and structured data.",
+ "meta_description": "Ankit Chadha is a Director of Applied Science at Amazon AGI working on grounded reasoning for AI agents, agent memory, procedural knowledge graphs, retrieval-augmented generation, and multimodal web-scale search.",
+ "bio": [
+  "I lead Applied Science and Engineering teams at Amazon AGI, turning research in foundation models and agents into systems that work at web scale. My work spans post-training and alignment, multimodal and grounded retrieval, agent memory, and evaluation. A recurring question connects it: how can an AI system find reliable evidence, reason over it, and retain useful experience? Previously I led deep learning work at Salesforce and worked at Apple and Samsung."
+ ],
+ "knows_about": [
+  "agent memory architectures",
+  "retrieval-augmented generation",
+  "answer sentence selection",
+  "multi-hop question answering",
+  "temporal reasoning over dialogue",
+  "knowledge graph retrieval",
+  "federated learning for machine translation",
+  "controlled text generation",
+  "cross-lingual knowledge distillation",
+  "information retrieval evaluation",
+  "post-training and alignment for large language models",
+  "preference optimization and reinforcement learning from feedback",
+  "multimodal and web-scale search",
+  "tool use and agent orchestration",
+  "factuality and faithfulness evaluation"
+ ],
+ "themes": [
+  {
+   "heading": "Agent memory",
+   "body": "Introduced typed procedural knowledge graphs for reusable agent experience and append-only property graph memory for temporal conversational reasoning.",
+   "papers": [
+    "apex-mem-agentic-semi-structured-memory",
+    "apex-em-procedural-episodic-experience-replay"
+   ]
+  },
+  {
+   "heading": "How agents delegate",
+   "body": "Introduced adaptive routing between typed dependency graphs and natural-language handoffs for multi-agent LLM systems.",
+   "papers": [
+    "routed-graph-handoff"
+   ]
+  },
+  {
+   "heading": "Web-scale question answering",
+   "body": "Built web-scale document retrieval, passage reranking, and answer sentence selection methods spanning thirty million documents and nine languages.",
+   "papers": [
+    "wdrass-web-scale-document-retrieval-answer-sentence-selection",
+    "cross-lingual-knowledge-distillation-answer-sentence-selection",
+    "question-context-alignment-answer-sentence-selection",
+    "efficient-fine-tuning-knowledge-aware-response-planning"
+   ]
+  },
+  {
+   "heading": "Learning from data that cannot move",
+   "body": "Developed mixed-domain neural machine translation and communication-efficient federated learning without pooling data across domains.",
+   "papers": [
+    "federated-learning-mixed-domain-translation",
+    "communication-efficient-federated-learning-nmt"
+   ]
+  },
+  {
+   "heading": "Steering what a model says",
+   "body": "Developed methods for controlling toxicity, sentiment, simplicity, and viewpoint through hidden-state transformations and attribute conditioning.",
+   "papers": [
+    "controlled-text-generation-hidden-representation-transformations",
+    "attribute-conditioning-multi-document-summarization"
+   ]
+  }
+ ],
+ "education": [
+  {
+   "degree": "MS, Computer Engineering",
+   "school": "University of Minnesota, Twin Cities",
+   "url": "https://twin-cities.umn.edu/",
+   "alumni": true
+  },
+  {
+   "degree": "Graduate AI coursework, CS221, CS224n, CS231n, CS234",
+   "school": "Stanford University",
+   "url": "https://online.stanford.edu/"
+  }
+ ],
+ "links": [
+  {
+   "label": "Google Scholar",
+   "url": "https://scholar.google.com/citations?user=hcslcm0AAAAJ&view_op=list_works&sortby=pubdate"
+  },
+  {
+   "label": "GitHub",
+   "url": "https://github.com/ankit-ai"
+  },
+  {
+   "label": "LinkedIn",
+   "url": "https://www.linkedin.com/in/ankitrc/"
+  },
+  {
+   "label": "ACL Anthology",
+   "url": "https://aclanthology.org/people/ankit-chadha/"
+  },
+  {
+   "label": "Amazon Science",
+   "url": "https://www.amazon.science/author/ankit-chadha"
+  },
+  {
+   "label": "X",
+   "url": "https://x.com/ankitrchadha"
+  }
+ ],
+ "same_as": [
+  "https://scholar.google.com/citations?user=hcslcm0AAAAJ",
+  "https://github.com/ankit-ai",
+  "https://www.linkedin.com/in/ankitrc/",
+  "https://aclanthology.org/people/ankit-chadha/",
+  "https://www.amazon.science/author/ankit-chadha",
+  "https://x.com/ankitrchadha",
+  "https://orcid.org/0000-0002-5029-0136",
+  "https://openalex.org/A5027218595",
+  "https://openalex.org/A5133906017"
+ ],
+ "publications_intro": [],
+ "earlier_work_note": "These are from my undergraduate years, in electronics and computer engineering rather than AI, and they appeared in low-selectivity, author-pays journals. I list them because they are genuinely mine and because they still account for a large share of my total citations, not because I would submit them anywhere today. Full text for all of them is on arXiv. Note that Aman Chadha, a co-author on two of these, is a different person.",
+ "same_as_never": {
+  "https://arxiv.org/a/chadha_a_1": "Aman Chadha, a different person. No arXiv author ID exists for Ankit Chadha.",
+  "https://www.semanticscholar.org/author/143836337": "Contaminated: also holds the Wright State power-electronics and NHS clinician work.",
+  "https://www.semanticscholar.org/author/145934595": "Contaminated: split record holding other people's papers.",
+  "https://openalex.org/A5047032131": "Aman Chadha, 152 works. Carries 'Ankit Chadha' as an alias because they really co-authored two undergraduate papers.",
+  "any DBLP pid": "Unverified, and likely merged the same way."
+ },
+ "disambiguating_description": "Director of Applied Science at Amazon in California. Publishes on agent memory, retrieval-augmented generation and question answering at ACL, NAACL, CIKM, Interspeech and ECML PKDD. Aman Chadha, a co-author on two of the 2013 to 2015 undergraduate papers, is a different person.",
+ "topic_tags": [
+  {
+   "tag": "Agent memory",
+   "papers": [
+    "apex-mem-agentic-semi-structured-memory",
+    "apex-em-procedural-episodic-experience-replay"
+   ]
+  },
+  {
+   "tag": "Multi-agent",
+   "papers": [
+    "routed-graph-handoff"
+   ]
+  },
+  {
+   "tag": "Web-scale QA",
+   "papers": [
+    "wdrass-web-scale-document-retrieval-answer-sentence-selection",
+    "cross-lingual-knowledge-distillation-answer-sentence-selection",
+    "question-context-alignment-answer-sentence-selection",
+    "efficient-fine-tuning-knowledge-aware-response-planning"
+   ]
+  },
+  {
+   "tag": "Controlled generation",
+   "papers": [
+    "controlled-text-generation-hidden-representation-transformations"
+   ]
+  },
+  {
+   "tag": "Summarization",
+   "papers": [
+    "attribute-conditioning-multi-document-summarization",
+    "dr-sas-deep-reinforced-self-attention-masks"
+   ]
+  },
+  {
+   "tag": "Federated learning",
+   "papers": [
+    "federated-learning-mixed-domain-translation",
+    "communication-efficient-federated-learning-nmt"
+   ]
+  },
+  {
+   "tag": "Reading comprehension",
+   "papers": [
+    "bertqa-attention-on-steroids"
+   ]
+  }
+ ],
+ "experience": [
+  {
+   "role": "Director of Applied Science",
+   "org": "Amazon",
+   "team": "Amazon AGI",
+   "from": 2021,
+   "to": null,
+   "what": "Lead a team of scientists and engineers on grounded, multimodal language model systems: knowledge graphs, web and multimodal search, retrieval and agentic retrieval, and the post-training and evaluation behind them."
+  },
+  {
+   "role": "Advisor, AI program",
+   "org": "Stanford Center for Professional Development",
+   "team": "",
+   "from": 2020,
+   "to": 2024,
+   "what": "Advised on Stanford's professional AI courses XCS221, XCS224N and XCS224U."
+  },
+  {
+   "role": "Senior Manager, Deep Learning Research and Engineering",
+   "org": "Salesforce",
+   "team": "",
+   "from": 2019,
+   "to": 2021,
+   "what": "Built and led the team behind Einstein Intent, Einstein NER and Einstein Sentiment, the language understanding under Einstein Bots."
+  },
+  {
+   "role": "Previous companies",
+   "org": "Samsung R&D America, Apple",
+   "team": "",
+   "from": 2016,
+   "to": 2019,
+   "what": ""
+  }
+ ]
+}

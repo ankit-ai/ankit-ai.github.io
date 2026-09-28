@@ -1,0 +1,11 @@
+# Research, PDF crops, contact sheets, previews, scratch. Some of this is large,
+# some of it is working notes, and none of it belongs on the public site.
+_work/
+
+# _build/ IS committed on purpose: it is the generator, so the site stays
+# reproducible from the repo alone. robots.txt disallows /_build/ so the raw
+# content.json is never indexed as a duplicate of the paper pages.
+
+.DS_Store
+*.pyc
+__pycache__/
