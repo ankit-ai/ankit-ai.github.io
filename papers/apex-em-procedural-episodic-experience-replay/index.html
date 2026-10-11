@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay | Ankit Chadha</title>
-<link rel="canonical" href="https://ankit-ai.github.io/papers/apex-em-procedural-episodic-experience-replay/">
+<link rel="canonical" href="https://ankitrchadha.com/papers/apex-em-procedural-episodic-experience-replay/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -13,10 +13,10 @@
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Ankit Chadha">
 <meta property="og:locale" content="en_US">
-<meta property="og:url" content="https://ankit-ai.github.io/papers/apex-em-procedural-episodic-experience-replay/">
+<meta property="og:url" content="https://ankitrchadha.com/papers/apex-em-procedural-episodic-experience-replay/">
 <meta property="og:title" content="APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay | Ankit Chadha">
 <meta property="og:description" content="APEX-EM introduced procedural knowledge graphs for LLM agent memory: a typed Procedural Knowledge Graph stores complete procedural-episodic traces for structural retrieval and experience replay.">
-<meta property="og:image" content="https://ankit-ai.github.io/assets/img/cards/apex-em-procedural-episodic-experience-replay-1200x630.jpg">
+<meta property="og:image" content="https://ankitrchadha.com/assets/img/cards/apex-em-procedural-episodic-experience-replay-1200x630.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="PRGII loop: plan, retrieve past successes and failures, generate, iterate, then quality-gate commit into the memory graph.">
@@ -25,7 +25,7 @@
 <meta name="twitter:creator" content="@ankitrchadha">
 <meta name="twitter:title" content="APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay | Ankit Chadha">
 <meta name="twitter:description" content="APEX-EM introduced procedural knowledge graphs for LLM agent memory: a typed Procedural Knowledge Graph stores complete procedural-episodic traces for structural retrieval and experience replay.">
-<meta name="twitter:image" content="https://ankit-ai.github.io/assets/img/cards/apex-em-procedural-episodic-experience-replay-1200x630.jpg">
+<meta name="twitter:image" content="https://ankitrchadha.com/assets/img/cards/apex-em-procedural-episodic-experience-replay-1200x630.jpg">
 <meta name="twitter:image:alt" content="PRGII loop: plan, retrieve past successes and failures, generate, iterate, then quality-gate commit into the memory graph.">
 <meta name="citation_title" content="APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay">
 <meta name="citation_author" content="Banerjee, Pratyay">
@@ -35,7 +35,7 @@
 <meta name="citation_online_date" content="2026/08/31">
 <meta name="citation_doi" content="10.48550/arXiv.2603.29093">
 <meta name="citation_arxiv_id" content="2603.29093">
-<meta name="citation_pdf_url" content="https://ankit-ai.github.io/papers/apex-em-procedural-episodic-experience-replay/apex-em.pdf">
+<meta name="citation_pdf_url" content="https://ankitrchadha.com/papers/apex-em-procedural-episodic-experience-replay/apex-em.pdf">
 <meta name="citation_abstract" content="LLM agents rerun full reasoning for every task, even one they solved moments earlier. We introduce APEX-EM, a non-parametric experience memory that stores complete procedural-episodic traces in a typed Procedural Knowledge Graph (PKG) and retrieves them through three channels: semantic search, structural-signature matching over abstract operation sequences, and graph traversal. A Plan-Retrieve-Generate-Iterate-Ingest (PRGII) workflow produces, quality-gates, and commits experiences, indexing both successes and failures so the agent learns what to reuse and what to avoid. No weights change during deployment. We evaluate on five benchmarks: BigCodeBench, KGQAGen-10k, HLE, Lifelong Agent Bench, and ALFWorld. Because prior work uses different backbones, we base our claims on same-backbone comparisons that hold model capability fixed. On held-out BigCodeBench transfer with a shared GPT-4o backbone, APEX-EM gains +7.6 pp over the no-memory baseline, 3.3× MemRL’s +2.3 pp under the identical setup. On Lifelong Agent Bench with a shared GPT-4o-mini backbone, it gains +1.4 pp (OS) and +1.0 pp (DB) cumulative success. On KGQAGen-10k, frozen memory transfers to a blind 1,079-question test split at 73.7% versus 42.0% with no memory, approaching an oracle handed the ground-truth subgraph (84.9%). Across three Opus scales the memory gain stays at +27 to +32 pp, so it adds to model capability rather than substituting for it. Component analysis shows no single mechanism dominates: teacher feedback is negligible for code but adds +10.3 pp on structured queries, structural signatures give 3.3× the transfer of semantic-only retrieval, and within-epoch iteration recovers most of the gain when rich feedback is unavailable. These results argue for modular memory composed per domain.">
 <meta name="citation_keywords" content="llm agent memory; procedural knowledge graph; experience replay; non-parametric online learning; structural signature matching; cross-domain transfer; bigcodebench; kgqagen-10k; alfworld; lifelong agent bench; humanity&#x27;s last exam; case-based reasoning; procedural memory; self-evolving agents; self-improving agents; cross-domain structural retrieval">
 <meta name="citation_language" content="en">
@@ -44,11 +44,11 @@
 <meta name="DC.creator" content="Moshtaghi, Masud">
 <meta name="DC.creator" content="Chadha, Ankit">
 <meta name="DC.issued" content="2026-08-31">
-<meta name="DC.identifier" content="https://ankit-ai.github.io/papers/apex-em-procedural-episodic-experience-replay/apex-em.pdf">
+<meta name="DC.identifier" content="https://ankitrchadha.com/papers/apex-em-procedural-episodic-experience-replay/apex-em.pdf">
 <meta name="DC.language" content="en">
 <meta property="article:published_time" content="2026-08-31T00:00:00Z">
 <meta property="article:modified_time" content="2026-09-15T00:00:00Z">
-<meta property="article:author" content="https://ankit-ai.github.io/">
+<meta property="article:author" content="https://ankitrchadha.com/">
 <meta property="article:tag" content="llm agent memory">
 <meta property="article:tag" content="procedural knowledge graph">
 <meta property="article:tag" content="experience replay">
@@ -516,9 +516,9 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
     "ScholarlyArticle",
     "Article"
   ],
-  "@id": "https://ankit-ai.github.io/papers/apex-em-procedural-episodic-experience-replay/#article",
-  "mainEntityOfPage": "https://ankit-ai.github.io/papers/apex-em-procedural-episodic-experience-replay/",
-  "url": "https://ankit-ai.github.io/papers/apex-em-procedural-episodic-experience-replay/",
+  "@id": "https://ankitrchadha.com/papers/apex-em-procedural-episodic-experience-replay/#article",
+  "mainEntityOfPage": "https://ankitrchadha.com/papers/apex-em-procedural-episodic-experience-replay/",
+  "url": "https://ankitrchadha.com/papers/apex-em-procedural-episodic-experience-replay/",
   "headline": "APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay",
   "name": "APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay",
   "abstract": "LLM agents rerun full reasoning for every task, even one they solved moments earlier. We introduce APEX-EM, a non-parametric experience memory that stores complete procedural-episodic traces in a typed Procedural Knowledge Graph (PKG) and retrieves them through three channels: semantic search, structural-signature matching over abstract operation sequences, and graph traversal. A Plan-Retrieve-Generate-Iterate-Ingest (PRGII) workflow produces, quality-gates, and commits experiences, indexing both successes and failures so the agent learns what to reuse and what to avoid. No weights change during deployment. We evaluate on five benchmarks: BigCodeBench, KGQAGen-10k, HLE, Lifelong Agent Bench, and ALFWorld. Because prior work uses different backbones, we base our claims on same-backbone comparisons that hold model capability fixed. On held-out BigCodeBench transfer with a shared GPT-4o backbone, APEX-EM gains +7.6 pp over the no-memory baseline, 3.3× MemRL’s +2.3 pp under the identical setup. On Lifelong Agent Bench with a shared GPT-4o-mini backbone, it gains +1.4 pp (OS) and +1.0 pp (DB) cumulative success. On KGQAGen-10k, frozen memory transfers to a blind 1,079-question test split at 73.7% versus 42.0% with no memory, approaching an oracle handed the ground-truth subgraph (84.9%). Across three Opus scales the memory gain stays at +27 to +32 pp, so it adds to model capability rather than substituting for it. Component analysis shows no single mechanism dominates: teacher feedback is negligible for code but adds +10.3 pp on structured queries, structural signatures give 3.3× the transfer of semantic-only retrieval, and within-epoch iteration recovers most of the gain when rich feedback is unavailable. These results argue for modular memory composed per domain.",
@@ -538,8 +538,8 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
     {
       "@type": "Person",
       "name": "Ankit Chadha",
-      "@id": "https://ankit-ai.github.io/#person",
-      "url": "https://ankit-ai.github.io/",
+      "@id": "https://ankitrchadha.com/#person",
+      "url": "https://ankitrchadha.com/",
       "sameAs": [
         "https://scholar.google.com/citations?user=hcslcm0AAAAJ"
       ],
@@ -568,11 +568,11 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
     "cross-domain structural retrieval"
   ],
   "image": [
-    "https://ankit-ai.github.io/assets/img/figs/2603.29093.jpg"
+    "https://ankitrchadha.com/assets/img/figs/2603.29093.jpg"
   ],
   "encoding": {
     "@type": "MediaObject",
-    "contentUrl": "https://ankit-ai.github.io/papers/apex-em-procedural-episodic-experience-replay/apex-em.pdf",
+    "contentUrl": "https://ankitrchadha.com/papers/apex-em-procedural-episodic-experience-replay/apex-em.pdf",
     "encodingFormat": "application/pdf"
   },
   "identifier": [
@@ -603,7 +603,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
       "@type": "ListItem",
       "position": 1,
       "name": "Publications",
-      "item": "https://ankit-ai.github.io/publications/"
+      "item": "https://ankitrchadha.com/publications/"
     },
     {
       "@type": "ListItem",
