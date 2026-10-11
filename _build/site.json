@@ -16,7 +16,7 @@
  "email_display": "ankitrchadha [at] gmail [dot] com",
  "google_site_verification": "",
  "indexnow_key": "",
- "build_date": "2026-09-15",
+ "build_date": "2026-10-11",
  "tagline": "Director of Applied Science at Amazon AGI. I lead science and engineering teams building grounded reasoning for AI agents, agent memory, and web-scale retrieval across text, images, and structured data.",
  "meta_description": "Ankit Chadha is a Director of Applied Science at Amazon AGI working on grounded reasoning for AI agents, agent memory, procedural knowledge graphs, retrieval-augmented generation, and multimodal web-scale search.",
  "bio": [
@@ -101,6 +101,10 @@
    "url": "https://scholar.google.com/citations?user=hcslcm0AAAAJ&view_op=list_works&sortby=pubdate"
   },
   {
+   "label": "ORCID",
+   "url": "https://orcid.org/0000-0002-5029-0136"
+  },
+  {
    "label": "GitHub",
    "url": "https://github.com/ankit-ai"
   },
@@ -111,6 +115,10 @@
   {
    "label": "ACL Anthology",
    "url": "https://aclanthology.org/people/ankit-chadha/"
+  },
+  {
+   "label": "OpenAlex",
+   "url": "https://openalex.org/A5027218595"
   },
   {
    "label": "Amazon Science",

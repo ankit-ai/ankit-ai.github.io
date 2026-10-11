@@ -45,7 +45,7 @@
 <meta name="DC.identifier" content="https://ankitrchadha.com/papers/bertqa-attention-on-steroids/bertqa-attention-on-steroids.pdf">
 <meta name="DC.language" content="en">
 <meta property="article:published_time" content="2019-12-14T00:00:00Z">
-<meta property="article:modified_time" content="2026-09-15T00:00:00Z">
+<meta property="article:modified_time" content="2026-10-11T00:00:00Z">
 <meta property="article:author" content="https://ankitrchadha.com/">
 <meta property="article:tag" content="question answering">
 <meta property="article:tag" content="squad 2.0">
@@ -523,7 +523,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
   "description": "Adds two extra attention layers to BERT so a question and its passage look at each other directly, which lifts SQuAD 2.0 dev F1 from 74.15 to 77.03 on the base model.",
   "inLanguage": "en",
   "datePublished": "2019-12-14",
-  "dateModified": "2026-09-15",
+  "dateModified": "2026-10-11",
   "author": [
     {
       "@type": "Person",
@@ -608,7 +608,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <a class="skip" href="#main">Skip to content</a>
 <header class="site"><div class="wrap">
 <a class="who" href="/" aria-label="Ankit Chadha, home">AC</a>
-<nav aria-label="Site"><a href="/">About</a> <a href="/publications/">Publications</a> <a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me">Scholar</a> <a href="/contact/">Contact me</a></nav>
+<nav aria-label="Site"><a href="/">About</a> <a href="/research/">Research</a> <a href="/publications/">Publications</a> <a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me">Scholar</a> <a href="/contact/">Contact me</a></nav>
 </div></header>
 <main class="wrap" id="main">
 <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/publications/">Publications</a></nav>
@@ -620,6 +620,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <a href="https://arxiv.org/abs/1912.10435" rel="noopener"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M14 4h6v6 M20 4 11 13 M18 14v5H5V6h5"/></svg>arXiv</a>
 <a href="https://github.com/ankit-ai/BertQA-Attention-on-Steroids" rel="noopener"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9.5 8 5 12l4.5 4 M14.5 8 19 12l-4.5 4"/></svg>Code</a>
 <a href="#cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>BibTeX</a></p>
+<p class="tiny note">Public code is linked above; no public dataset is listed.</p>
 <div class="tldr"><span class="lab">In one sentence</span><p>Adds two extra attention layers to BERT so a question and its passage look at each other directly, which lifts SQuAD 2.0 dev F1 from <span class="n">74.15</span> to <span class="n">77.03</span> on the base model.</p></div>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4"/></svg>Abstract</h2>
 <p class="abs">In this work, we extend the Bidirectional Encoder Representations from Transformers (BERT) with an emphasis on directed coattention to obtain an improved F1 performance on the SQUAD2.0 dataset. The Transformer architecture on which BERT is based places hierarchical global attention on the concatenation of the context and query. Our additions to the BERT architecture augment this attention with a more focused context to query (C2Q) and query to context (Q2C) attention via a set of modified Transformer encoder units. In addition, we explore adding convolution based feature extraction within the coattention architecture to add localized information to self-attention. We found that coattention significantly improves the no answer F1 by 4 points in the base and 1 point in the large architecture. After adding skip connections the no answer F1 improved further without causing an additional loss in has answer F1. The addition of localized feature extraction added to attention produced an overall dev F1 of 77.03 in the base architecture. We applied our findings to the large BERT model which contains twice as many layers and further used our own augmented version of the SQUAD 2.0 dataset created by back translation, which we have named SQUAD 2.Q. Finally, we performed hyperparameter tuning and ensembled our best models for a final F1/EM of 82.317/79.442 (Attention on Steroids, PCE Test Leaderboard).</p>
@@ -664,12 +665,12 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <li><a href="/papers/dr-sas-deep-reinforced-self-attention-masks/">Deep Reinforced Self-Attention Masks for Abstractive Summarization (DR.SAS)</a><span class="v">arXiv preprint</span></li>
 <li><a href="/papers/question-context-alignment-answer-sentence-selection/">Question-Context Alignment and Answer-Context Dependencies for Effective Answer Sentence Selection</a><span class="v">INTERSPEECH 2023</span></li>
 </ul>
-<p class="tiny note">arXiv version. Cited 11 times as counted by Google Scholar on 2026-09-15.</p>
+<p class="tiny note">arXiv version.</p>
 </article>
 <p class="back"><a href="/publications/">&larr; All publications</a></p>
 </main>
 <footer class="site"><div class="wrap">
-<p class="links"><a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me noopener">Google Scholar</a> &middot; <a href="https://github.com/ankit-ai" rel="me noopener">GitHub</a> &middot; <a href="https://www.linkedin.com/in/ankitrc/" rel="me noopener">LinkedIn</a> &middot; <a href="https://aclanthology.org/people/ankit-chadha/" rel="me noopener">ACL Anthology</a> &middot; <a href="https://www.amazon.science/author/ankit-chadha" rel="me noopener">Amazon Science</a> &middot; <a href="https://x.com/ankitrchadha" rel="me noopener">X</a></p>
+<p class="links"><a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me noopener">Google Scholar</a> &middot; <a href="https://orcid.org/0000-0002-5029-0136" rel="me noopener">ORCID</a> &middot; <a href="https://github.com/ankit-ai" rel="me noopener">GitHub</a> &middot; <a href="https://www.linkedin.com/in/ankitrc/" rel="me noopener">LinkedIn</a> &middot; <a href="https://aclanthology.org/people/ankit-chadha/" rel="me noopener">ACL Anthology</a> &middot; <a href="https://openalex.org/A5027218595" rel="me noopener">OpenAlex</a> &middot; <a href="https://www.amazon.science/author/ankit-chadha" rel="me noopener">Amazon Science</a> &middot; <a href="https://x.com/ankitrchadha" rel="me noopener">X</a></p>
 <p class="fine">Ankit Chadha, California.</p>
 </div></footer>
 </body>

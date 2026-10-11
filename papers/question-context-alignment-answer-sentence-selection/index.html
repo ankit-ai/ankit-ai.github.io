@@ -57,7 +57,7 @@
 <meta name="DC.identifier" content="https://ankitrchadha.com/papers/question-context-alignment-answer-sentence-selection/question-context-alignment.pdf">
 <meta name="DC.language" content="en">
 <meta property="article:published_time" content="2023-08-20T00:00:00Z">
-<meta property="article:modified_time" content="2026-09-15T00:00:00Z">
+<meta property="article:modified_time" content="2026-10-11T00:00:00Z">
 <meta property="article:author" content="https://ankitrchadha.com/">
 <meta property="article:tag" content="answer sentence selection">
 <meta property="article:tag" content="as2">
@@ -535,7 +535,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
   "description": "Instead of pasting neighboring sentences onto the question, this model matches question words to context words and builds a small sentence graph, raising top-1 answer accuracy on WikiQA from 68.09 to 74.16.",
   "inLanguage": "en",
   "datePublished": "2023-08-20",
-  "dateModified": "2026-09-15",
+  "dateModified": "2026-10-11",
   "author": [
     {
       "@type": "Person",
@@ -647,7 +647,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <a class="skip" href="#main">Skip to content</a>
 <header class="site"><div class="wrap">
 <a class="who" href="/" aria-label="Ankit Chadha, home">AC</a>
-<nav aria-label="Site"><a href="/">About</a> <a href="/publications/">Publications</a> <a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me">Scholar</a> <a href="/contact/">Contact me</a></nav>
+<nav aria-label="Site"><a href="/">About</a> <a href="/research/">Research</a> <a href="/publications/">Publications</a> <a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me">Scholar</a> <a href="/contact/">Contact me</a></nav>
 </div></header>
 <main class="wrap" id="main">
 <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/publications/">Publications</a></nav>
@@ -660,6 +660,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <a href="https://doi.org/10.21437/Interspeech.2023-2240" rel="noopener"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 15l6-6 M11 6l1.5-1.5a4.2 4.2 0 0 1 6 6L17 12 M13 18l-1.5 1.5a4.2 4.2 0 0 1-6-6L7 12"/></svg>DOI</a>
 <a href="https://www.isca-archive.org/interspeech_2023/nguyen23b_interspeech.html" rel="noopener"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 5.5C4 4.1 6.7 3 10 3s6 1.1 6 2.5V21c0-1.4-2.7-2.5-6-2.5S4 19.6 4 21z M16 5.5C16 4.1 17.3 3 19 3v15.5c-1.7 0-3 1.1-3 2.5"/></svg>Publisher page</a>
 <a href="#cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>BibTeX</a></p>
+<p class="tiny note">No public code or dataset is listed for this paper.</p>
 <div class="tldr"><span class="lab">In one sentence</span><p>Instead of pasting neighboring sentences onto the question, this model matches question words to context words and builds a small sentence graph, raising top-1 answer accuracy on WikiQA from <span class="n">68.09</span> to <span class="n">74.16</span>.</p></div>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4"/></svg>Abstract</h2>
 <p class="abs">Answer sentence selection (AS2) in open-domain question answering finds answer for a question by ranking candidate sentences extracted from web documents. Recent work exploits answer context, i.e., sentences around a candidate, by incorporating them as additional input string to the Transformer models to improve the correctness scoring. In this paper, we propose to improve the candidate scoring by explicitly incorporating the dependencies between question-context and answer-context into the final representation of a candidate. Specifically, we use Optimal Transport to compute the question-based dependencies among sentences in the passage where the answer is extracted from. We then represent these dependencies as edges in a graph and use Graph Convolutional Network to derive the representation of a candidate, a node in the graph. Our proposed model achieves significant improvements on popular AS2 benchmarks, i.e., WikiQA and WDRASS, obtaining new state-of-the-art on all benchmarks.</p>
@@ -696,19 +697,20 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
   year      = {2023},
   address   = {Dublin, Ireland},
   publisher = {ISCA},
-  doi       = {10.21437/Interspeech.2023-2240}
+  doi       = {10.21437/Interspeech.2023-2240},
+  url           = {https://www.isca-archive.org/interspeech_2023/nguyen23b_interspeech.html}
 }</code></pre>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 15l6-6 M11 6l1.5-1.5a4.2 4.2 0 0 1 6 6L17 12 M13 18l-1.5 1.5a4.2 4.2 0 0 1-6-6L7 12"/></svg>Related work of mine</h2>
 <ul class="tl">
 <li><a href="/papers/wdrass-web-scale-document-retrieval-answer-sentence-selection/">WDRASS: A Web-scale Dataset for Document Retrieval and Answer Sentence Selection</a><span class="v">CIKM 2022</span></li>
 <li><a href="/papers/cross-lingual-knowledge-distillation-answer-sentence-selection/">Cross-Lingual Knowledge Distillation for Answer Sentence Selection in Low-Resource Languages</a><span class="v">Findings of ACL 2023</span></li>
 </ul>
-<p class="tiny note">arXiv version. Cited 3 times as counted by Google Scholar on 2026-09-15.</p>
+<p class="tiny note">arXiv version.</p>
 </article>
 <p class="back"><a href="/publications/">&larr; All publications</a></p>
 </main>
 <footer class="site"><div class="wrap">
-<p class="links"><a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me noopener">Google Scholar</a> &middot; <a href="https://github.com/ankit-ai" rel="me noopener">GitHub</a> &middot; <a href="https://www.linkedin.com/in/ankitrc/" rel="me noopener">LinkedIn</a> &middot; <a href="https://aclanthology.org/people/ankit-chadha/" rel="me noopener">ACL Anthology</a> &middot; <a href="https://www.amazon.science/author/ankit-chadha" rel="me noopener">Amazon Science</a> &middot; <a href="https://x.com/ankitrchadha" rel="me noopener">X</a></p>
+<p class="links"><a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me noopener">Google Scholar</a> &middot; <a href="https://orcid.org/0000-0002-5029-0136" rel="me noopener">ORCID</a> &middot; <a href="https://github.com/ankit-ai" rel="me noopener">GitHub</a> &middot; <a href="https://www.linkedin.com/in/ankitrc/" rel="me noopener">LinkedIn</a> &middot; <a href="https://aclanthology.org/people/ankit-chadha/" rel="me noopener">ACL Anthology</a> &middot; <a href="https://openalex.org/A5027218595" rel="me noopener">OpenAlex</a> &middot; <a href="https://www.amazon.science/author/ankit-chadha" rel="me noopener">Amazon Science</a> &middot; <a href="https://x.com/ankitrchadha" rel="me noopener">X</a></p>
 <p class="fine">Ankit Chadha, California.</p>
 </div></footer>
 </body>

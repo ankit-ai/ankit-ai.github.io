@@ -53,7 +53,7 @@
 <meta name="DC.identifier" content="https://ankitrchadha.com/papers/efficient-fine-tuning-knowledge-aware-response-planning/knowledge-aware-response-planning.pdf">
 <meta name="DC.language" content="en">
 <meta property="article:published_time" content="2023-09-17T00:00:00Z">
-<meta property="article:modified_time" content="2026-09-15T00:00:00Z">
+<meta property="article:modified_time" content="2026-10-11T00:00:00Z">
 <meta property="article:author" content="https://ankitrchadha.com/">
 <meta property="article:tag" content="knowledge-aware response planning">
 <meta property="article:tag" content="generative question answering">
@@ -531,7 +531,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
   "description": "The paper fine-tunes a question-answering model twice, once with retrieved web text and once without, so it can fall back on what it already knows; end-to-end accuracy rises 7.40% over a ranking baseline.",
   "inLanguage": "en",
   "datePublished": "2023-09-17",
-  "dateModified": "2026-09-15",
+  "dateModified": "2026-10-11",
   "author": [
     {
       "@type": "Person",
@@ -632,7 +632,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <a class="skip" href="#main">Skip to content</a>
 <header class="site"><div class="wrap">
 <a class="who" href="/" aria-label="Ankit Chadha, home">AC</a>
-<nav aria-label="Site"><a href="/">About</a> <a href="/publications/">Publications</a> <a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me">Scholar</a> <a href="/contact/">Contact me</a></nav>
+<nav aria-label="Site"><a href="/">About</a> <a href="/research/">Research</a> <a href="/publications/">Publications</a> <a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me">Scholar</a> <a href="/contact/">Contact me</a></nav>
 </div></header>
 <main class="wrap" id="main">
 <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/publications/">Publications</a></nav>
@@ -644,6 +644,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <a href="https://doi.org/10.1007/978-3-031-43415-0_35" rel="noopener"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 15l6-6 M11 6l1.5-1.5a4.2 4.2 0 0 1 6 6L17 12 M13 18l-1.5 1.5a4.2 4.2 0 0 1-6-6L7 12"/></svg>DOI</a>
 <a href="https://doi.org/10.1007/978-3-031-43415-0_35" rel="noopener"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 5.5C4 4.1 6.7 3 10 3s6 1.1 6 2.5V21c0-1.4-2.7-2.5-6-2.5S4 19.6 4 21z M16 5.5C16 4.1 17.3 3 19 3v15.5c-1.7 0-3 1.1-3 2.5"/></svg>Publisher page</a>
 <a href="#cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>BibTeX</a></p>
+<p class="tiny note">No public code or dataset is listed for this paper.</p>
 <div class="tldr"><span class="lab">In one sentence</span><p>The paper fine-tunes a question-answering model twice, once with retrieved web text and once without, so it can fall back on what it already knows; end-to-end accuracy rises <span class="n">7.40%</span> over a ranking baseline.</p></div>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4"/></svg>Abstract</h2>
 <p class="abs">Large Language Models (LLMs) have shown impressive emergent language capabilities, especially in applications with high ambiguity, such as language reasoning and knowledge consolidation. However, previous work explores the use of LLMs for acquiring information using either parametric or external knowledge, which might lead to serious issues such as hallucination. Toward solving these issues, we present a novel approach of knowledge-aware response planning (KARP) and propose a novel framework that employs (i) a knowledge retriever to obtain relevant information from web documents or databases for a given user query, and (ii) a robust fine-tuning strategy for LLMs to exploit the retrieved external knowledge for planning a final response. Experimental results show that our proposed framework can provide natural, concise answers for open-domain questions with high accuracy.</p>
@@ -682,19 +683,21 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
   pages     = {593--611},
   publisher = {Springer},
   address   = {Cham, Switzerland},
-  year      = {2023}
+  year      = {2023},
+  doi           = {10.1007/978-3-031-43415-0_35},
+  url           = {https://doi.org/10.1007/978-3-031-43415-0_35}
 }</code></pre>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 15l6-6 M11 6l1.5-1.5a4.2 4.2 0 0 1 6 6L17 12 M13 18l-1.5 1.5a4.2 4.2 0 0 1-6-6L7 12"/></svg>Related work of mine</h2>
 <ul class="tl">
 <li><a href="/papers/wdrass-web-scale-document-retrieval-answer-sentence-selection/">WDRASS: A Web-scale Dataset for Document Retrieval and Answer Sentence Selection</a><span class="v">CIKM 2022</span></li>
 <li><a href="/papers/question-context-alignment-answer-sentence-selection/">Question-Context Alignment and Answer-Context Dependencies for Effective Answer Sentence Selection</a><span class="v">INTERSPEECH 2023</span></li>
 </ul>
-<p class="tiny note">Author copy, self-archived. Published version: Springer, LNAI 14170, pages 593-611. Cited 16 times as counted by Google Scholar on 2026-09-15.</p>
+<p class="tiny note">Author copy, self-archived. Published version: Springer, LNAI 14170, pages 593-611.</p>
 </article>
 <p class="back"><a href="/publications/">&larr; All publications</a></p>
 </main>
 <footer class="site"><div class="wrap">
-<p class="links"><a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me noopener">Google Scholar</a> &middot; <a href="https://github.com/ankit-ai" rel="me noopener">GitHub</a> &middot; <a href="https://www.linkedin.com/in/ankitrc/" rel="me noopener">LinkedIn</a> &middot; <a href="https://aclanthology.org/people/ankit-chadha/" rel="me noopener">ACL Anthology</a> &middot; <a href="https://www.amazon.science/author/ankit-chadha" rel="me noopener">Amazon Science</a> &middot; <a href="https://x.com/ankitrchadha" rel="me noopener">X</a></p>
+<p class="links"><a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me noopener">Google Scholar</a> &middot; <a href="https://orcid.org/0000-0002-5029-0136" rel="me noopener">ORCID</a> &middot; <a href="https://github.com/ankit-ai" rel="me noopener">GitHub</a> &middot; <a href="https://www.linkedin.com/in/ankitrc/" rel="me noopener">LinkedIn</a> &middot; <a href="https://aclanthology.org/people/ankit-chadha/" rel="me noopener">ACL Anthology</a> &middot; <a href="https://openalex.org/A5027218595" rel="me noopener">OpenAlex</a> &middot; <a href="https://www.amazon.science/author/ankit-chadha" rel="me noopener">Amazon Science</a> &middot; <a href="https://x.com/ankitrchadha" rel="me noopener">X</a></p>
 <p class="fine">Ankit Chadha, California.</p>
 </div></footer>
 </body>

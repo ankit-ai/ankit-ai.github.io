@@ -169,6 +169,32 @@ def plain_citation(p):
     return " ".join(e(b) if i == 0 else b for i, b in enumerate(bits))
 
 
+def bibtex_for(p, c):
+    """Return the maintained citation, adding verified identifiers when absent."""
+    text = c["bibtex"].strip()
+    additions = []
+    if p.get("doi") and not p["doi"].startswith("10.48550") and "doi" not in text.lower():
+        additions.append("  doi           = {%s}" % p["doi"])
+    venue_url = p.get("anthology_url") or p.get("publisher_url")
+    if venue_url and "\n  url" not in text.lower():
+        additions.append("  url           = {%s}" % venue_url)
+    if additions:
+        text = re.sub(r"\n}\s*$", ",\n" + ",\n".join(additions) + "\n}", text)
+    return text
+
+
+def artifact_note(p):
+    has_code = bool(p.get("code_url"))
+    has_data = bool(p.get("data_url") or p.get("data_urls"))
+    if has_code and has_data:
+        return "Public code and data are linked above."
+    if has_code:
+        return "Public code is linked above; no public dataset is listed."
+    if has_data:
+        return "Public datasets are linked above; no public code repository is listed."
+    return "No public code or dataset is listed for this paper."
+
+
 # Inline SVG only. Every icon here is a hand-written path drawn on a 24-unit grid
 # with stroke:currentColor, so it inherits the colour of the text it sits beside,
 # scales with the font, needs no icon font, and costs no network request. An icon
@@ -802,12 +828,13 @@ def site_header(active=""):
 <a class="skip" href="#main">Skip to content</a>
 <header class="site"><div class="wrap">
 <a class="who" href="/" aria-label="Ankit Chadha, home">AC</a>
-<nav aria-label="Site">%s %s %s %s</nav>
+<nav aria-label="Site">%s %s %s %s %s</nav>
 </div></header>
 <main class="wrap" id="main">
 """ % (
         body_class,
         link("/", "About", "home"),
+        link("/research/", "Research", "research"),
         link("/publications/", "Publications", "pubs"),
         '<a href="%s" rel="me">Scholar</a>' % e(SITE["links"][0]["url"]),
         link("/contact/", "Contact me", "contact"),
@@ -1125,6 +1152,7 @@ def paper_page(p):
                     % (e(d["url"]), icon("data"), e(d["label"])))
     acts.append('<a href="#cite">%sBibTeX</a>' % icon("quote"))
     parts.append('<p class="actions">%s</p>\n' % "\n".join(acts))
+    parts.append('<p class="tiny note">%s</p>\n' % e(artifact_note(p)))
 
     parts.append('<div class="tldr"><span class="lab">In one sentence</span>'
                  '<p>%s</p></div>\n' % nums(c["tldr"]))
@@ -1170,7 +1198,7 @@ def paper_page(p):
 
     parts.append(h2("How to cite", "quote", ' id="cite"') + '<p>%s</p>\n'
                  % plain_citation(p))
-    parts.append("<pre><code>%s</code></pre>\n" % e(c["bibtex"]))
+    parts.append("<pre><code>%s</code></pre>\n" % e(bibtex_for(p, c)))
 
     rel = [BY_SLUG[s] for s in p.get("related", []) if s in BY_SLUG and s in CONTENT]
     if rel:
@@ -1184,9 +1212,6 @@ def paper_page(p):
     note = []
     if p.get("pdf_note"):
         note.append(e(p["pdf_note"]))
-    if p.get("scholar_citations", 0) > 0:
-        note.append('Cited %d times as counted by Google Scholar on %s.'
-                    % (p["scholar_citations"], e(SITE["build_date"])))
     if note:
         parts.append('<p class="tiny note">%s</p>\n' % " ".join(note))
 
@@ -1280,10 +1305,6 @@ def pub_card(p, c, featured=False):
         where += ", pages " + p["pages"].replace("-", "&ndash;")
     if pub_status(p) == "preprint":
         where += ' <span class="flag">Preprint</span>'
-    cites = ""
-    if p.get("scholar_citations", 0) > 0:
-        cites = '<span class="cites">%d citations</span>' % p["scholar_citations"]
-
     contribution = ""
     if c.get("contribution"):
         contribution = ('<p class="contribution"><span class="lab">Research contribution'
@@ -1315,7 +1336,7 @@ def pub_card(p, c, featured=False):
 
     return """<div class="{card_class}">
 {thumb}<div class="body">
-<p class="meta">{tag}<span>{where}</span>{impact}{cites}</p>
+<p class="meta">{tag}<span>{where}</span>{impact}</p>
 <h3><a href="/papers/{slug}/">{title}</a></h3>
 <p class="who">{who}</p>
 <p class="sum">{tldr}</p>
@@ -1324,8 +1345,145 @@ def pub_card(p, c, featured=False):
 </div>
 """.format(slug=e(p["slug"]), title=e(p["title"]), thumb=visual,
            tag=tag_pill(p["slug"]), who=author_line_html(p), where=where,
-           impact=impact, cites=cites, tldr=nums(c["tldr"]),
+           impact=impact, tldr=nums(c["tldr"]),
            contribution=contribution, card_class=card_class)
+
+
+HUBS = {
+    "agent-memory": {
+        "title": "Agent memory: changing facts and reusable procedures",
+        "description": ("A guide to two complementary agent-memory designs: temporal "
+                        "event memory and procedural experience replay."),
+        "intro": ("An agent may need to resolve what is true now, or reuse how it "
+                  "solved a task before. These are related but distinct memory problems."),
+        "papers": [
+            ("apex-mem-agentic-semi-structured-memory",
+             "For changing conversational facts",
+             "An append-only property graph represents dated, entity-centric events and a multi-tool retrieval agent resolves conflicting or evolving information at query time.",
+             "Reported results include 88.88% on LOCOMO and 86.2% on LongMemEval."),
+            ("apex-em-procedural-episodic-experience-replay",
+             "For repeated procedures",
+             "A typed Procedural Knowledge Graph stores complete successful and failed traces, retrieved through semantic search, structural signatures, and graph traversal—without changing model weights during deployment.",
+             "On a blind KGQAGen-10k test split with frozen memory, the paper reports 73.7% versus 42.0% without memory."),
+        ],
+        "caveat": ("These papers address complementary settings, not a universal memory "
+                   "solution. Their evaluation settings and model backbones differ."),
+    },
+    "agent-delegation": {
+        "title": "Adaptive handoffs for multi-agent systems",
+        "description": ("A practical reading guide to choosing a typed dependency graph "
+                        "or natural-language handoff for each agent task."),
+        "intro": ("A delegation need not always be prose or always be structured. "
+                  "Routed Graph Handoff selects a typed dependency graph or natural language "
+                  "for each task, then relies on an executor that understands the chosen form."),
+        "papers": [
+            ("routed-graph-handoff",
+             "Route the handoff format, not just the task",
+             "The system routes between a typed DAG and prose fallback. The contribution is adaptive selection; graph-only handoff is not presented as universally better.",
+             "The paper reports a 12.7-point gain on τ-bench retail and an 8.7-point gain on BrowseComp against named prose baselines."),
+        ],
+        "caveat": ("The paper reports parity rather than universal wins on some benchmarks, "
+                   "and graph-only handoff regresses on AppWorld. Preserve a natural-language "
+                   "fallback for tasks that need adaptive reasoning."),
+    },
+    "web-qa": {
+        "title": "Web QA: retrieve evidence, rank answers, extend to more languages",
+        "description": ("A research lineage from web-scale training data to context-aware "
+                        "answer ranking and low-resource multilingual supervision."),
+        "intro": ("This is a reading map rather than one end-to-end system: WDRASS supplies "
+                  "data and evaluation, Question–Context Alignment improves candidate ranking, "
+                  "and Cross-Lingual Knowledge Distillation extends answer selection to lower-resource languages."),
+        "papers": [
+            ("wdrass-web-scale-document-retrieval-answer-sentence-selection",
+             "Train and evaluate at web scale",
+             "WDRASS connects document retrieval, passage reranking, and answer sentence selection with roughly 64,000 questions and more than 800,000 labeled passages and sentences drawn from 30 million documents.",
+             "In its Open retrieval setting, the paper reports H@50 of 0.903 for WDRASS-trained DPR versus 0.777 for the NQ-trained comparison."),
+            ("question-context-alignment-answer-sentence-selection",
+             "Use question–context dependencies when ranking answers",
+             "The method aligns question and surrounding-context words with optimal transport, represents dependencies as a sentence graph, and derives candidate representations with a graph convolutional network.",
+             "On non-fine-tuned WikiQA, the paper reports P@1 of 74.16 versus 68.09 for the comparison."),
+            ("cross-lingual-knowledge-distillation-answer-sentence-selection",
+             "Transfer answer selection across languages",
+             "A strong English teacher supplies soft scores so target-language models can be trained without target-language labels.",
+             "On Xtr-WikiQA Arabic in the named configuration, the paper reports P@1 of 76.3 versus 64.2."),
+        ],
+        "caveat": ("The multilingual results are configuration- and language-dependent. "
+                   "The paper reports weaker results than supervised training in some settings."),
+    },
+}
+
+
+def hub_paper_card(slug, lens, mechanism, evidence):
+    p, c = BY_SLUG[slug], CONTENT[slug]
+    fw, fh = FIGDIMS[p["img"]]
+    actions = [
+        '<a href="/papers/%s/">%sRead the paper page</a>' % (e(slug), icon("doc")),
+        '<a href="/papers/%s/%s">%sPDF</a>' % (e(slug), e(p["pdf_filename"]), icon("pdf")),
+        '<a href="/papers/%s/">%sCitation + BibTeX</a>' % (e(slug), icon("quote")),
+    ]
+    return """<section>
+%s
+<p class="lab">%s</p>
+<h3 style="font-size:19px;letter-spacing:-.015em;text-transform:none;color:var(--ink);margin:0 0 .55em">%s</h3>
+<p>%s</p>
+<p class="calib">%s</p>
+<figure>
+<picture><source srcset="/assets/img/figs/%s.webp" type="image/webp">
+<img src="/assets/img/figs/%s.jpg" width="%d" height="%d" loading="lazy" decoding="async" alt="%s"></picture>
+<figcaption>%s Taken from the paper.</figcaption>
+</figure>
+<p class="actions">%s</p>
+</section>
+""" % (h2(lens, "why"), e(lens), e(p["title"]), e(mechanism), nums(evidence),
+       e(p["img"]), e(p["img"]), fw, fh, e(c["figure_alt"]), e(c["figure_caption"]),
+       "\n".join(actions))
+
+
+def research_hub_page(key):
+    hub = HUBS[key]
+    out = [head(
+        title=hub["title"] + " | " + SITE["name"],
+        desc=hub["description"],
+        canonical=url("/research/%s/" % key),
+        og_type="article",
+        og_image=url("/assets/img/cards/site-1200x630.jpg"),
+        og_image_alt="Share card: Ankit Chadha research guide.",
+    )]
+    out.append(site_header("research"))
+    out.append('<nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> / '
+               '<a href="/research/">Research</a> / %s</nav>\n' % e(hub["title"]))
+    out.append("<article><h1>%s</h1><p class=\"bp\">%s</p>\n"
+               % (e(hub["title"]), e(hub["intro"])))
+    for card in hub["papers"]:
+        out.append(hub_paper_card(*card))
+    out.append('<section class="candid">' + h2("Scope and limits", "candid")
+               + "<p>%s</p></section>\n" % e(hub["caveat"]))
+    out.append("</article>")
+    out.append(site_footer())
+    return "".join(out)
+
+
+def research_index_page():
+    out = [head(
+        title="Research guides | " + SITE["name"],
+        desc=("Research guides connecting Ankit Chadha's work on agent memory, "
+              "multi-agent delegation, web-scale question answering, and multilingual NLP."),
+        canonical=url("/research/"),
+        og_type="website",
+        og_image=url("/assets/img/cards/site-1200x630.jpg"),
+        og_image_alt="Share card: Ankit Chadha research guides.",
+    )]
+    out.append(site_header("research"))
+    out.append('<nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> / Research</nav>\n')
+    out.append("<h1>Research guides</h1><p class=\"bp\">These guides connect related "
+               "papers around a practical question. They are not substitutes for the papers; "
+               "each guide links to the primary paper, PDF, and citation.</p>\n")
+    for key, hub in HUBS.items():
+        out.append(h2(hub["title"], "grid"))
+        out.append("<p>%s</p><p class=\"actions\"><a href=\"/research/%s/\">%sRead the guide</a></p>\n"
+                   % (e(hub["description"]), e(key), icon("out")))
+    out.append(site_footer())
+    return "".join(out)
 
 
 def publications_page():
@@ -1383,6 +1541,8 @@ def publications_page():
     out.append('<nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> / '
                "Publications</nav>\n")
     out.append("<h1>Publications</h1>\n")
+    out.append('<p class="actions"><a href="/publications.bib">%sDownload all BibTeX</a></p>\n'
+               % icon("quote"))
     for para in SITE["publications_intro"]:
         out.append('<p class="bp">%s</p>\n' % e(para))
 
@@ -1532,14 +1692,23 @@ def home_page():
 """ % (icon("agents"), icon("pipeline"), icon("book")))
 
     out.append(h2("Selected research contributions", "chart"))
-    out.append('<p class="small mut">Counts are what Google Scholar reported on %s. '
-               'The live numbers are on <a href="%s">my Scholar profile</a>.</p>\n'
-               % (e(SITE["build_date"]), e(SITE["links"][0]["url"])))
+    out.append('<p class="small mut">For the live publication and citation record, '
+               'see <a href="%s">my Google Scholar profile</a>.</p>\n'
+               % e(SITE["links"][0]["url"]))
     for p in featured:
         out.append(pub_card(p, CONTENT[p["slug"]], featured=True))
 
     out.append('<p class="back"><a href="/publications/">All %d papers, with abstracts '
                "and numbers &rarr;</a></p>\n" % len(live))
+
+    out.append(h2("Research guides", "grid"))
+    out.append('<p class="small mut">Practical reading guides that connect related papers '
+               'without replacing their primary evidence.</p><ul class="tl">\n')
+    for key, hub in HUBS.items():
+        out.append('<li><a href="/research/%s/">%s</a>'
+                   '<span class="v">%s</span></li>\n'
+                   % (e(key), e(hub["title"]), e(hub["description"])))
+    out.append("</ul>\n")
 
     out.append(h2("Research and systems", "grid"))
     # The year span, the paper count, and which theme is current are all computed from
@@ -1644,8 +1813,11 @@ def error_page():
 
 def sitemap():
     rows = [(url("/"), SITE["build_date"]),
+            (url("/research/"), SITE["build_date"]),
             (url("/publications/"), SITE["build_date"]),
             (url("/contact/"), SITE["build_date"])]
+    for key in HUBS:
+        rows.append((url("/research/%s/" % key), SITE["build_date"]))
     for p in PAPERS:
         if p["slug"] not in CONTENT:
             continue
@@ -1721,12 +1893,18 @@ def main():
                      % (p["pdf_local"], size / 1048576.0))
         shutil.copyfile(src, dst)
 
+    made.append(write("research/index.html", research_index_page()))
+    for key in HUBS:
+        made.append(write("research/%s/index.html" % key, research_hub_page(key)))
     made.append(write("publications/index.html", publications_page()))
     made.append(write("contact/index.html", contact_page()))
     made.append(write("index.html", home_page()))
     made.append(write("404.html", error_page()))
     made.append(write("sitemap.xml", sitemap()))
     made.append(write("robots.txt", robots()))
+    made.append(write("publications.bib", "\n\n".join(
+        bibtex_for(p, CONTENT[p["slug"]]) for p in PAPERS if p["slug"] in CONTENT
+    ) + "\n"))
     write(".nojekyll", "")
     key = SITE.get("indexnow_key")
     if key:

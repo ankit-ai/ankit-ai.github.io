@@ -52,7 +52,7 @@
 <meta name="DC.relation.ispartof" content="Findings of the Association for Computational Linguistics: ACL 2023">
 <meta name="DC.identifier" content="https://ankitrchadha.com/papers/cross-lingual-knowledge-distillation-answer-sentence-selection/cross-lingual-knowledge-distillation.pdf">
 <meta name="DC.language" content="en">
-<meta property="article:modified_time" content="2026-09-15T00:00:00Z">
+<meta property="article:modified_time" content="2026-10-11T00:00:00Z">
 <meta property="article:author" content="https://ankitrchadha.com/">
 <meta property="article:tag" content="answer sentence selection">
 <meta property="article:tag" content="cross-lingual knowledge distillation">
@@ -530,7 +530,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
   "description": "The paper trains answer-ranking models for languages with no labeled data by copying the soft scores of a strong English model, lifting Arabic accuracy on translated WikiQA from 64.2 to 76.3.",
   "inLanguage": "en",
   "datePublished": "2023",
-  "dateModified": "2026-09-15",
+  "dateModified": "2026-10-11",
   "author": [
     {
       "@type": "Person",
@@ -634,7 +634,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <a class="skip" href="#main">Skip to content</a>
 <header class="site"><div class="wrap">
 <a class="who" href="/" aria-label="Ankit Chadha, home">AC</a>
-<nav aria-label="Site"><a href="/">About</a> <a href="/publications/">Publications</a> <a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me">Scholar</a> <a href="/contact/">Contact me</a></nav>
+<nav aria-label="Site"><a href="/">About</a> <a href="/research/">Research</a> <a href="/publications/">Publications</a> <a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me">Scholar</a> <a href="/contact/">Contact me</a></nav>
 </div></header>
 <main class="wrap" id="main">
 <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/publications/">Publications</a></nav>
@@ -649,6 +649,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <a href="https://huggingface.co/datasets/AmazonScience/tydi-as2" rel="noopener"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M12 3c4.4 0 8 1.1 8 2.5S16.4 8 12 8 4 6.9 4 5.5 7.6 3 12 3z M20 5.5v13C20 19.9 16.4 21 12 21s-8-1.1-8-2.5v-13 M4 12c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5"/></svg>TyDi-AS2 (70,000+ questions, 8 languages)</a>
 <a href="https://huggingface.co/datasets/AmazonScience/xtr-wiki_qa" rel="noopener"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M12 3c4.4 0 8 1.1 8 2.5S16.4 8 12 8 4 6.9 4 5.5 7.6 3 12 3z M20 5.5v13C20 19.9 16.4 21 12 21s-8-1.1-8-2.5v-13 M4 12c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5"/></svg>Xtr-WikiQA (9 languages)</a>
 <a href="#cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>BibTeX</a></p>
+<p class="tiny note">Public datasets are linked above; no public code repository is listed.</p>
 <div class="tldr"><span class="lab">In one sentence</span><p>The paper trains answer-ranking models for languages with no labeled data by copying the soft scores of a strong English model, lifting Arabic accuracy on translated WikiQA from <span class="n">64.2</span> to <span class="n">76.3</span>.</p></div>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4"/></svg>Abstract</h2>
 <p class="abs">While impressive performance has been achieved on the task of Answer Sentence Selection (AS2) for English, the same does not hold for languages that lack large labeled datasets. In this work, we propose Cross-Lingual Knowledge Distillation (CLKD) from a strong English AS2 teacher as a method to train AS2 models for low-resource languages in the tasks without the need of labeled data for the target language. To evaluate our method, we introduce 1) Xtr-WikiQA, a translation-based WikiQA dataset for 9 additional languages, and 2) TyDi-AS2, a multilingual AS2 dataset with over 70K questions spanning 8 typologically diverse languages. We conduct extensive experiments on Xtr-WikiQA and TyDi-AS2 with multiple teachers, diverse monolingual and multilingual pretrained language models (PLMs) as students, and both monolingual and multilingual training. The results demonstrate that CLKD either outperforms or rivals even supervised fine-tuning with the same amount of labeled data and a combination of machine translation and the teacher model. Our method can potentially enable stronger AS2 models for low-resource languages, while TyDi-AS2 can serve as the largest multilingual AS2 dataset for further studies in the research community.</p>
@@ -696,12 +697,12 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <li><a href="/papers/question-context-alignment-answer-sentence-selection/">Question-Context Alignment and Answer-Context Dependencies for Effective Answer Sentence Selection</a><span class="v">INTERSPEECH 2023</span></li>
 <li><a href="/papers/wdrass-web-scale-document-retrieval-answer-sentence-selection/">WDRASS: A Web-scale Dataset for Document Retrieval and Answer Sentence Selection</a><span class="v">CIKM 2022</span></li>
 </ul>
-<p class="tiny note">arXiv version. Cited 15 times as counted by Google Scholar on 2026-09-15.</p>
+<p class="tiny note">arXiv version.</p>
 </article>
 <p class="back"><a href="/publications/">&larr; All publications</a></p>
 </main>
 <footer class="site"><div class="wrap">
-<p class="links"><a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me noopener">Google Scholar</a> &middot; <a href="https://github.com/ankit-ai" rel="me noopener">GitHub</a> &middot; <a href="https://www.linkedin.com/in/ankitrc/" rel="me noopener">LinkedIn</a> &middot; <a href="https://aclanthology.org/people/ankit-chadha/" rel="me noopener">ACL Anthology</a> &middot; <a href="https://www.amazon.science/author/ankit-chadha" rel="me noopener">Amazon Science</a> &middot; <a href="https://x.com/ankitrchadha" rel="me noopener">X</a></p>
+<p class="links"><a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me noopener">Google Scholar</a> &middot; <a href="https://orcid.org/0000-0002-5029-0136" rel="me noopener">ORCID</a> &middot; <a href="https://github.com/ankit-ai" rel="me noopener">GitHub</a> &middot; <a href="https://www.linkedin.com/in/ankitrc/" rel="me noopener">LinkedIn</a> &middot; <a href="https://aclanthology.org/people/ankit-chadha/" rel="me noopener">ACL Anthology</a> &middot; <a href="https://openalex.org/A5027218595" rel="me noopener">OpenAlex</a> &middot; <a href="https://www.amazon.science/author/ankit-chadha" rel="me noopener">Amazon Science</a> &middot; <a href="https://x.com/ankitrchadha" rel="me noopener">X</a></p>
 <p class="fine">Ankit Chadha, California.</p>
 </div></footer>
 </body>
