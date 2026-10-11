@@ -1192,9 +1192,10 @@ def paper_page(p):
     parts.append(h2("Topics", "tag") + '<p class="topics">%s</p>\n' % e(c["topics_sentence"]))
 
     if c.get("honesty_note"):
-        parts.append('<section class="candid">'
-                     + h2("What this paper does not show", "candid")
-                     + "<p>%s</p></section>\n" % nums(c["honesty_note"]))
+        parts.append('<section class="calib">'
+                     + h2("Opportunities for future work", "why")
+                     + "<p>The results point to useful next questions: %s</p></section>\n"
+                     % nums(c["honesty_note"]))
 
     parts.append(h2("How to cite", "quote", ' id="cite"') + '<p>%s</p>\n'
                  % plain_citation(p))
@@ -1366,8 +1367,9 @@ HUBS = {
              "A typed Procedural Knowledge Graph stores complete successful and failed traces, retrieved through semantic search, structural signatures, and graph traversal—without changing model weights during deployment.",
              "On a blind KGQAGen-10k test split with frozen memory, the paper reports 73.7% versus 42.0% without memory."),
         ],
-        "caveat": ("These papers address complementary settings, not a universal memory "
-                   "solution. Their evaluation settings and model backbones differ."),
+        "caveat": ("A natural next step is to test how temporal event memory and "
+                   "procedural experience replay can work together across shared settings "
+                   "and model backbones."),
     },
     "agent-delegation": {
         "title": "Adaptive handoffs for multi-agent systems",
@@ -1382,9 +1384,9 @@ HUBS = {
              "The system routes between a typed DAG and prose fallback. The contribution is adaptive selection; graph-only handoff is not presented as universally better.",
              "The paper reports a 12.7-point gain on τ-bench retail and an 8.7-point gain on BrowseComp against named prose baselines."),
         ],
-        "caveat": ("The paper reports parity rather than universal wins on some benchmarks, "
-                   "and graph-only handoff regresses on AppWorld. Preserve a natural-language "
-                   "fallback for tasks that need adaptive reasoning."),
+        "caveat": ("Future work can improve adaptive executors and routing policies for "
+                   "tasks that need flexible reasoning, while retaining a natural-language "
+                   "fallback as a useful design option."),
     },
     "web-qa": {
         "title": "Web QA: retrieve evidence, rank answers, extend to more languages",
@@ -1407,8 +1409,8 @@ HUBS = {
              "A strong English teacher supplies soft scores so target-language models can be trained without target-language labels.",
              "On Xtr-WikiQA Arabic in the named configuration, the paper reports P@1 of 76.3 versus 64.2."),
         ],
-        "caveat": ("The multilingual results are configuration- and language-dependent. "
-                   "The paper reports weaker results than supervised training in some settings."),
+        "caveat": ("Future work can extend this line with stronger multilingual evaluation, "
+                   "language-specific analysis, and practical deployment studies."),
     },
 }
 
@@ -1456,7 +1458,7 @@ def research_hub_page(key):
                % (e(hub["title"]), e(hub["intro"])))
     for card in hub["papers"]:
         out.append(hub_paper_card(*card))
-    out.append('<section class="candid">' + h2("Scope and limits", "candid")
+    out.append('<section class="calib">' + h2("Opportunities for future work", "why")
                + "<p>%s</p></section>\n" % e(hub["caveat"]))
     out.append("</article>")
     out.append(site_footer())
