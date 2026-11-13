@@ -1916,9 +1916,6 @@ def home_page():
 """ % (icon("agents"), icon("pipeline"), icon("book")))
 
     out.append(h2("Selected research contributions", "chart"))
-    out.append('<p class="small mut citation-snapshot">%s '
-               'Follow the source links for the current counts.</p>\n'
-               % citation_snapshot_note())
     for p in featured:
         out.append(pub_card(p, CONTENT[p["slug"]], featured=True))
 
