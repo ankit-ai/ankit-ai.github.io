@@ -39,6 +39,13 @@ def venue_line(p):
     return p.get("venue_short") or p.get("venue_long") or ""
 
 
+def publication_key(p):
+    """Use the website's ordering without inventing a month for year-only dates."""
+    date = [int(x) for x in p["citation_publication_date"].split("/")]
+    date += [0] * (3 - len(date))
+    return tuple(-x for x in date) + (p["title"],)
+
+
 def paper_entry(p, content, base_url):
     slug = p["slug"]
     url = "%s/papers/%s/" % (base_url.rstrip("/"), slug)
@@ -83,8 +90,14 @@ def build(site, papers, content):
     A("---")
     A("")
 
-    peer = [p for p in papers["papers"] if not p.get("is_preprint")]
-    pre = [p for p in papers["papers"] if p.get("is_preprint")]
+    peer = sorted(
+        [p for p in papers["papers"] if not p.get("is_preprint")],
+        key=publication_key,
+    )
+    pre = sorted(
+        [p for p in papers["papers"] if p.get("is_preprint")],
+        key=publication_key,
+    )
 
     A("### Publications")
     A("")
