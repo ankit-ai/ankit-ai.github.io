@@ -1,0 +1,18 @@
+TY  - CONF
+TI  - APEX-MEM: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI
+AU  - Banerjee, Pratyay
+AU  - Moshtaghi, Masud
+AU  - Subramanian, Shivashankar
+AU  - Misra, Amita
+AU  - Chadha, Ankit
+PY  - 2026
+DA  - 2026
+T2  - Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)
+DO  - 10.18653/v1/2026.acl-long.749
+PB  - Association for Computational Linguistics
+SP  - 16470
+EP  - 16489
+UR  - https://aclanthology.org/2026.acl-long.749/
+L1  - https://ankitrchadha.com/papers/apex-mem-agentic-semi-structured-memory/apex-mem.pdf
+AB  - Large language models still struggle with reliable long-term conversational memory: simply enlarging context windows or applying naïve retrieval often introduces noise and destabilizes responses. We present APEX-MEM, a conversational memory system that combines three key innovations: (1) a property graph which uses domain-agnostic ontology to structure conversations as temporally grounded events in an entity-centric framework, (2) append-only storage that preserves the full temporal evolution of information, and (3) a multi-tool retrieval agent that understands and resolves conflicting or evolving information at query time, producing a compact and contextually relevant memory summary. This retrieval-time resolution preserves the full interaction history while suppressing irrelevant details. APEX-MEM achieves 88.88% accuracy on LOCOMO’s Question Answering task and 86.2% on LongMemEval, outperforming state-of-the-art session-aware approaches and demonstrating that structured property graphs enable more temporally coherent long-term conversational reasoning.
+ER  - 

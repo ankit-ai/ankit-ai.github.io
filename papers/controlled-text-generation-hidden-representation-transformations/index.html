@@ -3,30 +3,32 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Controlled Text Generation with Hidden Representation Transformations | Ankit Chadha</title>
+<title>CHRT: Controlled Text Generation | Ankit Chadha</title>
 <link rel="canonical" href="https://ankitrchadha.com/papers/controlled-text-generation-hidden-representation-transformations/">
+<link rel="alternate" type="application/atom+xml" title="Ankit Chadha publications" href="/feed.xml">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="description" content="CHRT steers a language model away from toxic or negative text by editing its internal number vectors, cutting toxicity from 0.827 to 0.085 while adding only 0.01 seconds per generation.">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="Ankit Chadha">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Ankit Chadha">
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://ankitrchadha.com/papers/controlled-text-generation-hidden-representation-transformations/">
-<meta property="og:title" content="Controlled Text Generation with Hidden Representation Transformations | Ankit Chadha">
+<meta property="og:title" content="CHRT: Controlled Text Generation | Ankit Chadha">
 <meta property="og:description" content="CHRT steers a language model away from toxic or negative text by editing its internal number vectors, cutting toxicity from 0.827 to 0.085 while adding only 0.01 seconds per generation.">
 <meta property="og:image" content="https://ankitrchadha.com/assets/img/cards/controlled-text-generation-hidden-representation-transformations-1200x630.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="CHRT freezes the base model and trains only a transform block on its hidden states, guided by two fine-tuned models.">
+<meta property="og:image:alt" content="Controlled Text Generation with Hidden Representation Transformations. Findings of ACL 2023. By Vaibhav Kumar, Hana Koorehdavoudi, Masud Moshtaghi, Amita Misra, Ankit Chadha, Emilio Ferrara.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@ankitrchadha">
 <meta name="twitter:creator" content="@ankitrchadha">
-<meta name="twitter:title" content="Controlled Text Generation with Hidden Representation Transformations | Ankit Chadha">
+<meta name="twitter:title" content="CHRT: Controlled Text Generation | Ankit Chadha">
 <meta name="twitter:description" content="CHRT steers a language model away from toxic or negative text by editing its internal number vectors, cutting toxicity from 0.827 to 0.085 while adding only 0.01 seconds per generation.">
 <meta name="twitter:image" content="https://ankitrchadha.com/assets/img/cards/controlled-text-generation-hidden-representation-transformations-1200x630.jpg">
-<meta name="twitter:image:alt" content="CHRT freezes the base model and trains only a transform block on its hidden states, guided by two fine-tuned models.">
+<meta name="twitter:image:alt" content="Controlled Text Generation with Hidden Representation Transformations. Findings of ACL 2023. By Vaibhav Kumar, Hana Koorehdavoudi, Masud Moshtaghi, Amita Misra, Ankit Chadha, Emilio Ferrara.">
 <meta name="citation_title" content="Controlled Text Generation with Hidden Representation Transformations">
 <meta name="citation_author" content="Kumar, Vaibhav">
 <meta name="citation_author" content="Koorehdavoudi, Hana">
@@ -55,6 +57,9 @@
 <meta name="DC.issued" content="2023">
 <meta name="DC.relation.ispartof" content="Findings of the Association for Computational Linguistics: ACL 2023">
 <meta name="DC.identifier" content="https://ankitrchadha.com/papers/controlled-text-generation-hidden-representation-transformations/controlled-text-generation-chrt.pdf">
+<meta name="DC.identifier" content="https://ankitrchadha.com/papers/controlled-text-generation-hidden-representation-transformations/">
+<meta name="DC.identifier" content="https://doi.org/10.18653/v1/2023.findings-acl.602">
+<meta name="DC.publisher" content="Association for Computational Linguistics">
 <meta name="DC.language" content="en">
 <meta property="article:modified_time" content="2026-11-13T00:00:00Z">
 <meta property="article:author" content="https://ankitrchadha.com/">
@@ -177,6 +182,19 @@ nav.crumb a:hover{text-decoration:underline}
  background:var(--tint)}
 .actions a:first-child{border-color:var(--acc2);color:var(--acc);font-weight:600;
  background:var(--tint)}
+.citation-tools{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;
+ font-size:13.5px;margin:16px 0}
+.citation-tools button{font:inherit;padding:7px 12px;border:1px solid var(--acc2);
+ border-radius:6px;background:var(--tint);color:var(--acc);cursor:pointer}
+.copy-status{color:var(--mut);font-size:12.5px}
+.paper-links{display:flex;flex-wrap:wrap;gap:14px;margin:10px 0 0;font-size:12.5px}
+.publication-search{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px}
+.publication-search input,.publication-search select{font:inherit;font-size:14px;
+ padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:#fff;
+ color:var(--ink);max-width:100%}
+.publication-search input{flex:1 1 240px;min-width:0}
+.publication-search select{flex:0 1 180px}
+[hidden]{display:none!important}
 
 /* ---- the two signature blocks ---- */
 .tldr{margin:28px 0 2px;border-left:3px solid var(--acc);padding:1px 0 1px 21px}
@@ -589,6 +607,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
     "multi-attribute control"
   ],
   "image": [
+    "https://ankitrchadha.com/assets/img/cards/controlled-text-generation-hidden-representation-transformations-1200x630.jpg",
     "https://ankitrchadha.com/assets/img/figs/2305.19230.jpg"
   ],
   "encoding": {
@@ -649,7 +668,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site"><div class="wrap">
-<a class="who" href="/" aria-label="Ankit Chadha, home">AC</a>
+<a class="who" href="/" aria-label="Ankit Chadha, home">Ankit Chadha</a>
 <nav aria-label="Site"><a href="/">About</a> <a href="/research/">Research</a> <a href="/publications/">Publications</a> <a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me">Scholar</a> <a href="/contact/">Contact me</a></nav>
 </div></header>
 <main class="wrap" id="main">
@@ -663,8 +682,9 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <a href="https://doi.org/10.18653/v1/2023.findings-acl.602" rel="noopener"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 15l6-6 M11 6l1.5-1.5a4.2 4.2 0 0 1 6 6L17 12 M13 18l-1.5 1.5a4.2 4.2 0 0 1-6-6L7 12"/></svg>DOI</a>
 <a href="https://aclanthology.org/2023.findings-acl.602/" rel="noopener"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 5.5C4 4.1 6.7 3 10 3s6 1.1 6 2.5V21c0-1.4-2.7-2.5-6-2.5S4 19.6 4 21z M16 5.5C16 4.1 17.3 3 19 3v15.5c-1.7 0-3 1.1-3 2.5"/></svg>Publisher page</a>
 <a href="https://github.com/amazon-science/wqa-controlled-text-generation" rel="noopener"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9.5 8 5 12l4.5 4 M14.5 8 19 12l-4.5 4"/></svg>Code</a>
-<a href="#cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>BibTeX</a></p>
+<a href="#cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>Cite</a></p>
 <p class="tiny note">Public code is linked above; no public dataset is listed.</p>
+<p class="tiny paper-citations"><a href="https://scholar.google.com/scholar?oi=bibs&amp;hl=en&amp;cites=12183936625182621543" rel="noopener" title="Google Scholar: 13 citations, checked 2026-11-13">13 citations</a> on Google Scholar. Checked <time datetime="2026-11-13">2026-11-13</time>.</p>
 <div class="tldr"><span class="lab">In one sentence</span><p>CHRT steers a language model away from toxic or negative text by editing its internal number vectors, cutting toxicity from <span class="n">0.827</span> to <span class="n">0.085</span> while adding only <span class="n">0.01</span> seconds per generation.</p></div>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4"/></svg>Abstract</h2>
 <p class="abs">We propose CHRT (Control Hidden Representation Transformation) – a controlled language generation framework that steers large language models to generate text pertaining to certain attributes (such as toxicity). CHRT gains attribute control by modifying the hidden representation of the base model through learned transformations. We employ a contrastive-learning framework to learn these transformations that can be combined to gain multi-attribute control. The effectiveness of CHRT is experimentally shown by comparing it with seven baselines over three attributes. CHRT outperforms all the baselines in the task of detoxification, positive sentiment steering, and text simplification while minimizing the loss in linguistic qualities. Further, our approach has the lowest inference latency of only 0.01 seconds more than the base model, making it the most suitable for high-performance production environments. We open-source our code and release two novel datasets to further propel controlled language generation research.</p>
@@ -694,7 +714,8 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <p>The results point to useful next questions: The abstract says seven baselines; the body compares against five plus base GPT-2. Everything runs on GPT-2 medium, 355M parameters, with nothing on larger or instruction-tuned models, and the attribute scorers are the same classifier families used to build the training data. Human evaluation is a real strength here, and it shows topicality is a statistical tie against all six baselines and that DExperts ties us on linguistic quality. Fluency regresses on sentiment steering. So &quot;outperforms all the baselines&quot; does not hold metric by metric.</p></section>
 <h2 id="cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>How to cite</h2>
 <p>Vaibhav Kumar, Hana Koorehdavoudi, Masud Moshtaghi, Amita Misra, Ankit Chadha, and Emilio Ferrara. 2023. Controlled Text Generation with Hidden Representation Transformations. In <em>Findings of the Association for Computational Linguistics: ACL 2023</em>, pages 9440&ndash;9455.</p>
-<pre><code>@inproceedings{kumar2023controlled,
+<p class="citation-tools"><button type="button" class="copy-citation" hidden>Copy BibTeX</button><a href="controlled-text-generation-hidden-representation-transformations.bib" download>Download BibTeX</a><a href="controlled-text-generation-hidden-representation-transformations.ris" download>RIS (Zotero / EndNote)</a><a href="controlled-text-generation-hidden-representation-transformations.json" download>CSL JSON</a><span class="copy-status" role="status" aria-live="polite"></span></p>
+<pre id="bibtex"><code>@inproceedings{kumar2023controlled,
   title     = {Controlled Text Generation with Hidden Representation Transformations},
   author    = {Kumar, Vaibhav and Koorehdavoudi, Hana and Moshtaghi, Masud and Misra, Amita and Chadha, Ankit and Ferrara, Emilio},
   editor    = {Rogers, Anna and Boyd-Graber, Jordan and Okazaki, Naoaki},
@@ -707,7 +728,6 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
   doi       = {10.18653/v1/2023.findings-acl.602},
   url       = {https://aclanthology.org/2023.findings-acl.602/}
 }</code></pre>
-<p class="small"><a href="controlled-text-generation-hidden-representation-transformations.bib" download><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>Download BibTeX</a></p>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 15l6-6 M11 6l1.5-1.5a4.2 4.2 0 0 1 6 6L17 12 M13 18l-1.5 1.5a4.2 4.2 0 0 1-6-6L7 12"/></svg>Related work of mine</h2>
 <ul class="tl">
 <li><a href="/papers/attribute-conditioning-multi-document-summarization/">ACM -- Attribute Conditioning for Abstractive Multi Document Summarization</a><span class="v">arXiv preprint</span></li>
@@ -721,5 +741,17 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <p class="links"><a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me noopener">Google Scholar</a> &middot; <a href="https://orcid.org/0000-0002-5029-0136" rel="me noopener">ORCID</a> &middot; <a href="https://github.com/ankit-ai" rel="me noopener">GitHub</a> &middot; <a href="https://www.linkedin.com/in/ankitrc/" rel="me noopener">LinkedIn</a> &middot; <a href="https://aclanthology.org/people/ankit-chadha/" rel="me noopener">ACL Anthology</a> &middot; <a href="https://openalex.org/A5027218595" rel="me noopener">OpenAlex</a> &middot; <a href="https://www.amazon.science/author/ankit-chadha" rel="me noopener">Amazon Science</a> &middot; <a href="https://x.com/ankitrchadha" rel="me noopener">X</a></p>
 <p class="fine">Ankit Chadha, California.</p>
 </div></footer>
+<script>
+const copyButton=document.querySelector('.copy-citation');
+if(copyButton&&navigator.clipboard){
+ copyButton.hidden=false;
+ copyButton.addEventListener('click',async()=>{
+  const status=document.querySelector('.copy-status');
+  try{await navigator.clipboard.writeText(document.querySelector('#bibtex code').textContent);
+   status.textContent='BibTeX copied.';}
+  catch{status.textContent='Use Download BibTeX or select the citation below.';}
+ });
+}
+</script>
 </body>
 </html>

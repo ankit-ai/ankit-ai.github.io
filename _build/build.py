@@ -40,6 +40,7 @@ def load(name):
 
 SITE = load("site.json")
 DATA = load("papers.json")
+CITATIONS = load("citations.json")
 FIGDIMS = load("figdims.json")
 try:
     CONTENT = load("content.json")
@@ -77,6 +78,39 @@ def e(s):
 
 def url(path=""):
     return BASE + "/" + path.lstrip("/")
+
+
+def citation_counts(p):
+    """Linked source counts; never sum separate Scholar records."""
+    records = (CITATIONS["papers"].get(p.get("slug")) if p.get("slug")
+               else CITATIONS["earlier_work"].get(p["title"]))
+    if not records:
+        return ""
+    links = []
+    for record in records:
+        count = record["count"]
+        label = "No citations listed" if count is None else str(count)
+        if count is not None and len(records) == 1:
+            label += " citation" + ("" if count == 1 else "s")
+        detail = ("Google Scholar: %s, checked %s"
+                  % (label, CITATIONS["as_of"]))
+        links.append('<a href="%s" rel="noopener" title="%s">%s</a>'
+                     % (e(record["cited_by_url"] or record["record_url"]),
+                        e(detail), e(label)))
+    text = " / ".join(links)
+    if len(records) > 1:
+        text += ' citations <span class="mut">(split records)</span>'
+    return text
+
+
+def citation_snapshot_note():
+    profile = CITATIONS["profile"]
+    return ('<a href="%s" rel="noopener">Google Scholar</a> reports '
+            '<strong>%s total citations</strong>, h-index %s, and i10-index %s. '
+            'Checked <time datetime="%s">%s</time>.'
+            % (e(CITATIONS["profile_url"]), profile["citations"],
+               profile["h_index"], profile["i10_index"],
+               e(CITATIONS["as_of"]), e(CITATIONS["as_of"])))
 
 
 def iso(date_slashes):
@@ -196,6 +230,55 @@ def artifact_note(p):
     if has_data:
         return "Public datasets are linked above; no public code repository is listed."
     return "No public code or dataset is listed for this paper."
+
+
+def publication_key(p):
+    """Newest verified publication dates first; citation counts do not set order."""
+    date = [int(x) for x in p["citation_publication_date"].split("/")]
+    date += [0] * (3 - len(date))
+    return tuple(-x for x in date) + (p["title"],)
+
+
+def csl_for(p, c):
+    node = {
+        "id": p.get("doi") or p.get("arxiv_id") or p["slug"],
+        "type": "paper-conference" if p.get("venue_long") else "article",
+        "title": p["title"],
+        "author": [
+            {"family": a.rsplit(" ", 1)[-1], "given": a.rsplit(" ", 1)[0]}
+            for a in p["authors"]
+        ],
+        "issued": {"date-parts": [[int(x) for x in p["citation_publication_date"].split("/")]]},
+        "abstract": c["abstract"],
+        "URL": p.get("anthology_url") or (
+            "https://arxiv.org/abs/" + p["arxiv_id"] if p.get("arxiv_id")
+            else url("/papers/%s/" % p["slug"])
+        ),
+    }
+    for source, dest in (("doi", "DOI"), ("venue_long", "container-title"),
+                         ("pages", "page"), ("publisher", "publisher")):
+        if p.get(source):
+            node[dest] = p[source]
+    return node
+
+
+def ris_for(p, c):
+    fields = [("TY", "CONF" if p.get("venue_long") else "GEN"),
+              ("TI", p["title"])]
+    fields += [("AU", "%s, %s" % (a.rsplit(" ", 1)[-1], a.rsplit(" ", 1)[0]))
+               for a in p["authors"]]
+    fields += [("PY", str(p["year"])), ("DA", p["citation_publication_date"])]
+    for field, key in (("T2", "venue_long"), ("DO", "doi"), ("PB", "publisher")):
+        if p.get(key):
+            fields.append((field, p[key]))
+    fp, lp = pages_split(p.get("pages"))
+    if fp:
+        fields += [("SP", fp), ("EP", lp)]
+    fields += [("UR", csl_for(p, c)["URL"]),
+               ("L1", url("/papers/%s/%s" % (p["slug"], p["pdf_filename"]))),
+               ("AB", c["abstract"]), ("ER", "")]
+    return "\n".join("%s  - %s" % (key, re.sub(r"\s+", " ", str(value)))
+                     for key, value in fields) + "\n"
 
 
 # Inline SVG only. Every icon here is a hand-written path drawn on a 24-unit grid
@@ -434,6 +517,19 @@ nav.crumb a:hover{text-decoration:underline}
  background:var(--tint)}
 .actions a:first-child{border-color:var(--acc2);color:var(--acc);font-weight:600;
  background:var(--tint)}
+.citation-tools{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;
+ font-size:13.5px;margin:16px 0}
+.citation-tools button{font:inherit;padding:7px 12px;border:1px solid var(--acc2);
+ border-radius:6px;background:var(--tint);color:var(--acc);cursor:pointer}
+.copy-status{color:var(--mut);font-size:12.5px}
+.paper-links{display:flex;flex-wrap:wrap;gap:14px;margin:10px 0 0;font-size:12.5px}
+.publication-search{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px}
+.publication-search input,.publication-search select{font:inherit;font-size:14px;
+ padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:#fff;
+ color:var(--ink);max-width:100%}
+.publication-search input{flex:1 1 240px;min-width:0}
+.publication-search select{flex:0 1 180px}
+[hidden]{display:none!important}
 
 /* ---- the two signature blocks ---- */
 .tldr{margin:28px 0 2px;border-left:3px solid var(--acc);padding:1px 0 1px 21px}
@@ -779,8 +875,46 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 """.strip()
 
 
+PAPER_SCRIPT = """<script>
+const copyButton=document.querySelector('.copy-citation');
+if(copyButton&&navigator.clipboard){
+ copyButton.hidden=false;
+ copyButton.addEventListener('click',async()=>{
+  const status=document.querySelector('.copy-status');
+  try{await navigator.clipboard.writeText(document.querySelector('#bibtex code').textContent);
+   status.textContent='BibTeX copied.';}
+  catch{status.textContent='Use Download BibTeX or select the citation below.';}
+ });
+}
+</script>"""
+
+SEARCH_SCRIPT = """<script>
+const controls=document.querySelector('.publication-search');
+if(controls){
+ controls.hidden=false;
+ const query=controls.querySelector('input'),topic=controls.querySelector('select');
+ const rows=Array.from(document.querySelectorAll('.pub'));
+ const status=document.querySelector('.search-status');
+ const update=()=>{
+  const terms=query.value.toLocaleLowerCase().trim().split(/\\s+/).filter(Boolean);
+  let count=0;
+  for(const row of rows){
+   const text=row.textContent.toLocaleLowerCase();
+   row.hidden=!(terms.every(term=>text.includes(term))&&(!topic.value||row.dataset.topic===topic.value));
+   if(!row.hidden)count++;
+  }
+  for(const section of document.querySelectorAll('.pub-section')){
+   section.hidden=!Array.from(section.querySelectorAll('.pub')).some(row=>!row.hidden);
+  }
+  status.textContent=count+' of '+rows.length+' papers'+(count===0?'. Try another title, author, topic, or year.':'.');
+ };
+ query.addEventListener('input',update);topic.addEventListener('change',update);update();
+}
+</script>"""
+
 def head(title, desc, canonical, og_type, og_image, og_image_alt,
-         extra_meta="", jsonld=(), img_w=1200, img_h=630):
+         extra_meta="", jsonld=(), img_w=1200, img_h=630,
+         robots_content="index, follow, max-image-preview:large"):
     gv = SITE.get("google_site_verification") or ""
     ver = ('<meta name="google-site-verification" content="%s">\n' % e(gv)) if gv else ""
     blocks = "\n".join(
@@ -795,10 +929,12 @@ def head(title, desc, canonical, og_type, og_image, og_image_alt,
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(title)}</title>
 <link rel="canonical" href="{e(canonical)}">
+<link rel="alternate" type="application/atom+xml" title="Ankit Chadha publications" href="/feed.xml">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="description" content="{e(desc)}">
+<meta name="robots" content="{e(robots_content)}">
 <meta name="author" content="{e(SITE['name'])}">
 {ver}<meta property="og:type" content="{e(og_type)}">
 <meta property="og:site_name" content="{e(SITE['name'])}">
@@ -831,7 +967,7 @@ def site_header(active=""):
     return """<body%s>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site"><div class="wrap">
-<a class="who" href="/" aria-label="Ankit Chadha, home">AC</a>
+<a class="who" href="/" aria-label="Ankit Chadha, home">Ankit Chadha</a>
 <nav aria-label="Site">%s %s %s %s %s</nav>
 </div></header>
 <main class="wrap" id="main">
@@ -845,7 +981,7 @@ def site_header(active=""):
     )
 
 
-def site_footer():
+def site_footer(extra_script=""):
     ln = " &middot; ".join(
         '<a href="%s" rel="me noopener">%s</a>' % (e(l["url"]), e(l["label"]))
         for l in SITE["links"]
@@ -855,12 +991,14 @@ def site_footer():
 <p class="links">%s</p>
 <p class="fine">%s, %s.</p>
 </div></footer>
+%s
 </body>
 </html>
 """ % (
         ln,
         e(SITE["name"]),
         e(SITE["location"]),
+        extra_script,
     )
 
 
@@ -987,7 +1125,8 @@ def article_node(p, c):
         "dateModified": SITE["build_date"],
         "author": authors,
         "keywords": c["topics"],
-        "image": [url("/assets/img/figs/%s.jpg" % p["img"])],
+        "image": [url("/assets/img/cards/%s-1200x630.jpg" % slug),
+                  url("/assets/img/figs/%s.jpg" % p["img"])],
         "encoding": {"@type": "MediaObject",
                      "contentUrl": canon + p["pdf_filename"],
                      "encodingFormat": "application/pdf"},
@@ -1076,6 +1215,14 @@ def citation_meta(p, c):
     if p.get("venue_long"):
         m.append('<meta name="DC.relation.ispartof" content="%s">' % e(p["venue_long"]))
     m.append('<meta name="DC.identifier" content="%s">' % e(canon + p["pdf_filename"]))
+    m.append('<meta name="DC.identifier" content="%s">' % e(canon))
+    if p.get("doi"):
+        m.append('<meta name="DC.identifier" content="%s">'
+                 % e("https://doi.org/" + p["doi"]))
+    if p.get("publisher"):
+        m.append('<meta name="DC.publisher" content="%s">' % e(p["publisher"]))
+    if p.get("license_url"):
+        m.append('<meta name="DC.rights" content="%s">' % e(p["license_url"]))
     m.append('<meta name="DC.language" content="en">')
     # Article namespace
     d = iso(p["citation_publication_date"])
@@ -1104,7 +1251,7 @@ def paper_page(p):
     card = url("/assets/img/cards/%s-1200x630.jpg" % slug)
 
     parts = [head(
-        title="%s | %s" % (p["title"], SITE["name"]),
+        title="%s | %s" % (c.get("search_title") or p["title"], SITE["name"]),
         desc=desc,
         canonical=canon,
         og_type="article",
@@ -1154,9 +1301,12 @@ def paper_page(p):
                                     if p.get("data_url") else []):
         acts.append('<a href="%s" rel="noopener">%s%s</a>'
                     % (e(d["url"]), icon("data"), e(d["label"])))
-    acts.append('<a href="#cite">%sBibTeX</a>' % icon("quote"))
+    acts.append('<a href="#cite">%sCite</a>' % icon("quote"))
     parts.append('<p class="actions">%s</p>\n' % "\n".join(acts))
     parts.append('<p class="tiny note">%s</p>\n' % e(artifact_note(p)))
+    parts.append('<p class="tiny paper-citations">%s on Google Scholar. '
+                 'Checked <time datetime="%s">%s</time>.</p>\n'
+                 % (citation_counts(p), e(CITATIONS["as_of"]), e(CITATIONS["as_of"])))
 
     parts.append('<div class="tldr"><span class="lab">In one sentence</span>'
                  '<p>%s</p></div>\n' % nums(c["tldr"]))
@@ -1203,9 +1353,14 @@ def paper_page(p):
 
     parts.append(h2("How to cite", "quote", ' id="cite"') + '<p>%s</p>\n'
                  % plain_citation(p))
-    parts.append("<pre><code>%s</code></pre>\n" % e(bibtex_for(p, c)))
-    parts.append('<p class="small"><a href="%s.bib" download>'
-                 '%sDownload BibTeX</a></p>\n' % (e(slug), icon("quote")))
+    parts.append('<p class="citation-tools">'
+                 '<button type="button" class="copy-citation" hidden>Copy BibTeX</button>'
+                 '<a href="%s.bib" download>Download BibTeX</a>'
+                 '<a href="%s.ris" download>RIS (Zotero / EndNote)</a>'
+                 '<a href="%s.json" download>CSL JSON</a>'
+                 '<span class="copy-status" role="status" aria-live="polite"></span>'
+                 '</p>\n' % (e(slug), e(slug), e(slug)))
+    parts.append('<pre id="bibtex"><code>%s</code></pre>\n' % e(bibtex_for(p, c)))
 
     rel = [BY_SLUG[s] for s in p.get("related", []) if s in BY_SLUG and s in CONTENT]
     if rel:
@@ -1224,7 +1379,7 @@ def paper_page(p):
 
     parts.append('</article>\n<p class="back"><a href="/publications/">'
                  '&larr; All publications</a></p>\n')
-    parts.append(site_footer())
+    parts.append(site_footer(PAPER_SCRIPT))
     return "".join(parts)
 
 
@@ -1341,19 +1496,25 @@ def pub_card(p, c, featured=False):
             impact = '<span class="impact">%s%s on %s</span>' % (
                 e(dtxt), e(unit), e(h["bench"]))
 
-    return """<div class="{card_class}">
+    return """<div class="{card_class}" id="{slug}" data-topic="{topic}">
 {thumb}<div class="body">
 <p class="meta">{tag}<span>{where}</span>{impact}</p>
 <h3><a href="/papers/{slug}/">{title}</a></h3>
 <p class="who">{who}</p>
 <p class="sum">{tldr}</p>
+<p class="paper-links"><a href="/papers/{slug}/{pdf}">PDF</a>
+<a href="/papers/{slug}/#cite">Cite</a>
+<a href="/papers/{slug}/{slug}.bib" download>BibTeX</a>
+<span class="paper-citations">{citations}</span></p>
 {contribution}
 </div>
 </div>
 """.format(slug=e(p["slug"]), title=e(p["title"]), thumb=visual,
            tag=tag_pill(p["slug"]), who=author_line_html(p), where=where,
            impact=impact, tldr=nums(c["tldr"]),
-           contribution=contribution, card_class=card_class)
+               contribution=contribution, card_class=card_class,
+               pdf=e(p["pdf_filename"]), topic=e(TAG_OF.get(p["slug"], "")),
+               citations=citation_counts(p))
 
 
 HUBS = {
@@ -1433,7 +1594,7 @@ def hub_paper_card(slug, lens, mechanism, evidence):
     actions = [
         '<a href="/papers/%s/">%sRead the paper page</a>' % (e(slug), icon("doc")),
         '<a href="/papers/%s/%s">%sPDF</a>' % (e(slug), e(p["pdf_filename"]), icon("pdf")),
-        '<a href="/papers/%s/">%sCitation + BibTeX</a>' % (e(slug), icon("quote")),
+        '<a href="/papers/%s/#cite">%sCitation + BibTeX</a>' % (e(slug), icon("quote")),
     ]
     return """<section>
 %s
@@ -1462,6 +1623,26 @@ def research_hub_page(key):
         og_type="article",
         og_image=url("/assets/img/cards/site-1200x630.jpg"),
         og_image_alt="Share card: Ankit Chadha research guide.",
+        jsonld=[{
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "@id": url("/research/%s/#guide" % key),
+            "url": url("/research/%s/" % key),
+            "name": hub["title"],
+            "description": hub["description"],
+            "author": {"@id": url("#person")},
+            "dateModified": SITE["build_date"],
+            "isPartOf": {"@id": url("#website")},
+            "mainEntity": {
+                "@type": "ItemList",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": i + 1,
+                     "name": BY_SLUG[card[0]]["title"],
+                     "url": url("/papers/%s/" % card[0])}
+                    for i, card in enumerate(hub["papers"])
+                ],
+            },
+        }],
     )]
     out.append(site_header("research"))
     out.append('<nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> / '
@@ -1506,9 +1687,8 @@ def publications_page():
     # so they belong in the reviewed group, not with the preprints.
     reviewed = [p for p in live if pub_status(p) != "preprint"]
     pre = [p for p in live if pub_status(p) == "preprint"]
-    key = lambda p: (-p["year"], -p.get("scholar_citations", 0), p["title"])
-    reviewed.sort(key=key)
-    pre.sort(key=key)
+    reviewed.sort(key=publication_key)
+    pre.sort(key=publication_key)
 
     items = reviewed + pre
     coll = {
@@ -1555,15 +1735,28 @@ def publications_page():
     out.append('<nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> / '
                "Publications</nav>\n")
     out.append("<h1>Publications</h1>\n")
-    out.append('<p class="actions"><a href="/publications.bib">%sDownload all BibTeX</a></p>\n'
+    out.append('<p class="actions"><a href="/publications.bib">%sAll BibTeX</a>'
+               '<a href="/publications.ris">All RIS</a>'
+               '<a href="/publications.json">All CSL JSON</a>'
+               '<a href="/feed.xml">Publication feed</a></p>\n'
                % icon("quote"))
+    out.append('<p class="small mut">Newest publications first. Every paper includes '
+               'its abstract, PDF, and citation.</p>')
+    out.append('<p class="small mut citation-snapshot">%s '
+               'Paper counts below use the same dated snapshot; split records '
+               'are shown separately.</p>\n' % citation_snapshot_note())
+    out.append('<div class="publication-search" hidden>'
+               '<input type="search" aria-label="Search publications" '
+               'placeholder="Title, author, topic, or year">'
+               '<select aria-label="Filter by research topic"><option value="">All topics</option>')
+    for topic in SITE.get("topic_tags", []):
+        out.append('<option value="%s">%s</option>' % (e(topic["tag"]), e(topic["tag"])))
+    out.append('</select></div><p class="search-status tiny" role="status" aria-live="polite"></p>')
     for para in SITE["publications_intro"]:
         out.append('<p class="bp">%s</p>\n' % e(para))
 
-    # The tag legend. It is not a filter, because filtering needs JavaScript and
-    # this site has none; it is a contents page. Counting the papers per topic is
-    # the fastest way to see what the work actually is, and it makes the small
-    # topics visible as small instead of hiding them among the large ones.
+    # The topic legend remains useful with JavaScript disabled. The enhanced
+    # search above adds filtering while every paper remains in the source HTML.
     if SITE.get("topic_tags"):
         out.append('<p class="legend"><span class="lg">%sTopics on this page</span>'
                    % icon("tag"))
@@ -1573,13 +1766,14 @@ def publications_page():
                 out.append(tag_pill(t["tag"], live_n))
         out.append("</p>\n")
 
-    out.append(h2("Peer reviewed", "check"))
+    out.append('<section class="pub-section">' + h2("Peer reviewed", "check"))
     for p in reviewed:
         out.append(pub_card(p, CONTENT[p["slug"]]))
-    out.append(h2("Preprints", "draft"))
+    out.append('</section><section class="pub-section">' + h2("Preprints", "draft"))
     out.append('<p class="small mut">Not peer reviewed. Listed separately on purpose.</p>\n')
     for p in pre:
         out.append(pub_card(p, CONTENT[p["slug"]]))
+    out.append('</section>')
 
     out.append(h2("Patents", "patent") + '<ul class="tl">\n')
     for pt in DATA["patents"]:
@@ -1593,15 +1787,17 @@ def publications_page():
     out.append("<p>%s</p>\n" % e(SITE["earlier_work_note"]))
     out.append('<table class="earlier">\n<thead><tr><th scope="col">Paper</th>'
                '<th scope="col" class="n">Year</th>'
-               '<th scope="col" class="n">Citations</th></tr></thead>\n<tbody>\n')
+               '<th scope="col" class="n">Citations</th>'
+               '</tr></thead>\n<tbody>\n')
     for w in DATA["earlier_work"]:
         link = ('<a href="https://arxiv.org/abs/%s" rel="noopener">%s</a>'
                 % (e(w["arxiv_id"]), e(w["title"]))) if w.get("arxiv_id") else e(w["title"])
         out.append("<tr><td>%s<span class=\"tiny\">%s. %s.</span></td>"
-                   "<td class=\"n\">%d</td><td class=\"n\">%d</td></tr>\n"
-                   % (link, e(w["authors"]), e(w["venue"]), w["year"], w["citations"]))
+                   "<td class=\"n\">%d</td><td class=\"n\">%s</td></tr>\n"
+                    % (link, e(w["authors"]), e(w["venue"]), w["year"],
+                       citation_counts(w)))
     out.append("</tbody>\n</table>\n")
-    out.append(site_footer())
+    out.append(site_footer(SEARCH_SCRIPT))
     return "".join(out)
 
 
@@ -1639,6 +1835,14 @@ def contact_page():
         og_image=url("/assets/img/cards/site-1200x630.jpg"),
         og_image_alt=("Share card: Ankit Chadha, Director of Applied Science at "
                       "Amazon, with the publication and patent counts."),
+        jsonld=[{
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            "url": url("/contact/"),
+            "name": "Contact Ankit Chadha",
+            "mainEntity": {"@id": url("#person")},
+            "isPartOf": {"@id": url("#website")},
+        }],
     )]
     out.append(site_header("contact"))
     out.append("<h1>Contact me</h1>\n")
@@ -1706,9 +1910,9 @@ def home_page():
 """ % (icon("agents"), icon("pipeline"), icon("book")))
 
     out.append(h2("Selected research contributions", "chart"))
-    out.append('<p class="small mut">For the live publication and citation record, '
-               'see <a href="%s">my Google Scholar profile</a>.</p>\n'
-               % e(SITE["links"][0]["url"]))
+    out.append('<p class="small mut citation-snapshot">%s '
+               'Follow the source links for the current counts.</p>\n'
+               % citation_snapshot_note())
     for p in featured:
         out.append(pub_card(p, CONTENT[p["slug"]], featured=True))
 
@@ -1811,6 +2015,7 @@ def error_page():
         og_image=url("/assets/img/cards/site-1200x630.jpg"),
         og_image_alt=("Share card: Ankit Chadha, Director of Applied Science at "
                       "Amazon, with the publication and patent counts."),
+        robots_content="noindex, follow",
     )]
     out.append(site_header())
     out.append("<h1>Page not found</h1>\n<p>That URL does not exist on this site. "
@@ -1835,10 +2040,7 @@ def sitemap():
     for p in PAPERS:
         if p["slug"] not in CONTENT:
             continue
-        lm = p.get("arxiv_date") or iso(p["citation_publication_date"])
-        lm = lm if len(lm) == 10 else SITE["build_date"]
         rows.append((url("/papers/%s/" % p["slug"]), SITE["build_date"]))
-        rows.append((url("/papers/%s/%s" % (p["slug"], p["pdf_filename"])), lm))
     body = "\n".join(
         "  <url>\n    <loc>%s</loc>\n    <lastmod>%s</lastmod>\n  </url>"
         % (e(loc), lm) for loc, lm in rows)
@@ -1876,6 +2078,53 @@ def robots():
     out.append("Sitemap: %s" % url("/sitemap.xml"))
     return "\n".join(out) + "\n"
 
+def feed():
+    entries = []
+    for p in sorted(PAPERS, key=publication_key):
+        if p["slug"] not in CONTENT:
+            continue
+        entries.append(
+            "<entry><id>%s</id><title>%s</title><link href=\"%s\"/>"
+            "<updated>%sT00:00:00Z</updated><summary>%s</summary></entry>"
+            % (e(url("/papers/%s/" % p["slug"])), e(p["title"]),
+               e(url("/papers/%s/" % p["slug"])), SITE["build_date"],
+               e(CONTENT[p["slug"]]["tldr"]))
+        )
+    return ('<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<feed xmlns="http://www.w3.org/2005/Atom">'
+            '<id>%s</id><title>Ankit Chadha publications</title>'
+            '<link href="%s" rel="self"/><link href="%s"/>'
+            '<updated>%sT00:00:00Z</updated><author><name>Ankit Chadha</name>'
+            '<uri>%s</uri></author>%s</feed>\n'
+            % (e(url("/feed.xml")), e(url("/feed.xml")),
+               e(url("/publications/")), SITE["build_date"], e(url("/")),
+               "".join(entries)))
+
+
+def response_headers():
+    out = ["/*",
+           "  X-Content-Type-Options: nosniff",
+           "  Referrer-Policy: strict-origin-when-cross-origin",
+           "  X-Frame-Options: DENY",
+           "  Permissions-Policy: camera=(), geolocation=(), microphone=()",
+           "  Strict-Transport-Security: max-age=31536000", ""]
+    for p in PAPERS:
+        if p["slug"] not in CONTENT:
+            continue
+        out += ["/papers/%s/%s" % (p["slug"], p["pdf_filename"]),
+                '  Link: <%s>; rel="canonical"' % url("/papers/%s/" % p["slug"]),
+                "  Content-Type: application/pdf", ""]
+    for path, kind in [("/papers/*.bib", "application/x-bibtex; charset=utf-8"),
+                       ("/publications.bib", "application/x-bibtex; charset=utf-8"),
+                       ("/papers/*.ris", "application/x-research-info-systems; charset=utf-8"),
+                       ("/publications.ris", "application/x-research-info-systems; charset=utf-8"),
+                       ("/papers/*.json", "application/vnd.citationstyles.csl+json; charset=utf-8"),
+                       ("/publications.json", "application/vnd.citationstyles.csl+json; charset=utf-8")]:
+        out += [path, "  Content-Type: " + kind, "  X-Robots-Tag: noindex", ""]
+    out += ["/_build/*", "  X-Robots-Tag: noindex", "",
+            "/feed.xml", "  Content-Type: application/atom+xml; charset=utf-8", "",
+            "/404.html", "  X-Robots-Tag: noindex", ""]
+    return "\n".join(out)
 
 # ---------------------------------------------------------------- write
 
@@ -1901,6 +2150,10 @@ def main():
         made.append(write("%s/index.html" % d, page))
         made.append(write("%s/%s.bib" % (d, p["slug"]),
                           bibtex_for(p, CONTENT[p["slug"]]) + "\n"))
+        made.append(write("%s/%s.ris" % (d, p["slug"]), ris_for(p, CONTENT[p["slug"]])))
+        made.append(write("%s/%s.json" % (d, p["slug"]),
+                          json.dumps([csl_for(p, CONTENT[p["slug"]])],
+                                     indent=2, ensure_ascii=False) + "\n"))
         src = os.path.join(ROOT, "assets", "pdf", p["pdf_local"])
         dst = os.path.join(ROOT, d, p["pdf_filename"])
         size = os.path.getsize(src)
@@ -1918,9 +2171,19 @@ def main():
     made.append(write("404.html", error_page()))
     made.append(write("sitemap.xml", sitemap()))
     made.append(write("robots.txt", robots()))
+    made.append(write("feed.xml", feed()))
+    made.append(write("_headers", response_headers()))
     made.append(write("publications.bib", "\n\n".join(
         bibtex_for(p, CONTENT[p["slug"]]) for p in PAPERS if p["slug"] in CONTENT
     ) + "\n"))
+    made.append(write("publications.ris", "\n".join(
+        ris_for(p, CONTENT[p["slug"]]) for p in sorted(PAPERS, key=publication_key)
+        if p["slug"] in CONTENT
+    )))
+    made.append(write("publications.json", json.dumps([
+        csl_for(p, CONTENT[p["slug"]]) for p in sorted(PAPERS, key=publication_key)
+        if p["slug"] in CONTENT
+    ], indent=2, ensure_ascii=False) + "\n"))
     write(".nojekyll", "")
     key = SITE.get("indexnow_key")
     if key:

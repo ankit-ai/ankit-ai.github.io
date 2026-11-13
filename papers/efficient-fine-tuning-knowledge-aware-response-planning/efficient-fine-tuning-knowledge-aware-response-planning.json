@@ -1,0 +1,44 @@
+[
+  {
+    "id": "10.1007/978-3-031-43415-0_35",
+    "type": "paper-conference",
+    "title": "Efficient Fine-Tuning Large Language Models for Knowledge-Aware Response Planning",
+    "author": [
+      {
+        "family": "Nguyen",
+        "given": "Minh"
+      },
+      {
+        "family": "KC",
+        "given": "Kishan"
+      },
+      {
+        "family": "Nguyen",
+        "given": "Toan"
+      },
+      {
+        "family": "Chadha",
+        "given": "Ankit"
+      },
+      {
+        "family": "Vu",
+        "given": "Thuy"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2023,
+          9,
+          17
+        ]
+      ]
+    },
+    "abstract": "Large Language Models (LLMs) have shown impressive emergent language capabilities, especially in applications with high ambiguity, such as language reasoning and knowledge consolidation. However, previous work explores the use of LLMs for acquiring information using either parametric or external knowledge, which might lead to serious issues such as hallucination. Toward solving these issues, we present a novel approach of knowledge-aware response planning (KARP) and propose a novel framework that employs (i) a knowledge retriever to obtain relevant information from web documents or databases for a given user query, and (ii) a robust fine-tuning strategy for LLMs to exploit the retrieved external knowledge for planning a final response. Experimental results show that our proposed framework can provide natural, concise answers for open-domain questions with high accuracy.",
+    "URL": "https://doi.org/10.1007/978-3-031-43415-0_35",
+    "DOI": "10.1007/978-3-031-43415-0_35",
+    "container-title": "Machine Learning and Knowledge Discovery in Databases: Research Track (ECML PKDD 2023), Lecture Notes in Artificial Intelligence volume 14170",
+    "page": "593-611",
+    "publisher": "Springer Nature"
+  }
+]

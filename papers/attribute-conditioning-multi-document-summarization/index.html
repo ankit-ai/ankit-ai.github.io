@@ -3,30 +3,32 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ACM -- Attribute Conditioning for Abstractive Multi Document Summarization | Ankit Chadha</title>
+<title>ACM: Attribute-Conditioned Summarization | Ankit Chadha</title>
 <link rel="canonical" href="https://ankitrchadha.com/papers/attribute-conditioning-multi-document-summarization/">
+<link rel="alternate" type="application/atom+xml" title="Ankit Chadha publications" href="/feed.xml">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="description" content="Adds a sentiment and polarity classifier to a news multi-document summarizer so it sticks to one viewpoint, raising the word-overlap ROUGE-1 score on MultiNews from 42.99 to 50.12 versus GraphSum.">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="Ankit Chadha">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Ankit Chadha">
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://ankitrchadha.com/papers/attribute-conditioning-multi-document-summarization/">
-<meta property="og:title" content="ACM -- Attribute Conditioning for Abstractive Multi Document Summarization | Ankit Chadha">
+<meta property="og:title" content="ACM: Attribute-Conditioned Summarization | Ankit Chadha">
 <meta property="og:description" content="Adds a sentiment and polarity classifier to a news multi-document summarizer so it sticks to one viewpoint, raising the word-overlap ROUGE-1 score on MultiNews from 42.99 to 50.12 versus GraphSum.">
 <meta property="og:image" content="https://ankitrchadha.com/assets/img/cards/attribute-conditioning-multi-document-summarization-1200x630.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="ACM inserts attribute conditioning modules into paragraph encoding and decoder output so summaries keep one viewpoint.">
+<meta property="og:image:alt" content="ACM -- Attribute Conditioning for Abstractive Multi Document Summarization. arXiv preprint. By Aiswarya Sankar, Ankit Chadha.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@ankitrchadha">
 <meta name="twitter:creator" content="@ankitrchadha">
-<meta name="twitter:title" content="ACM -- Attribute Conditioning for Abstractive Multi Document Summarization | Ankit Chadha">
+<meta name="twitter:title" content="ACM: Attribute-Conditioned Summarization | Ankit Chadha">
 <meta name="twitter:description" content="Adds a sentiment and polarity classifier to a news multi-document summarizer so it sticks to one viewpoint, raising the word-overlap ROUGE-1 score on MultiNews from 42.99 to 50.12 versus GraphSum.">
 <meta name="twitter:image" content="https://ankitrchadha.com/assets/img/cards/attribute-conditioning-multi-document-summarization-1200x630.jpg">
-<meta name="twitter:image:alt" content="ACM inserts attribute conditioning modules into paragraph encoding and decoder output so summaries keep one viewpoint.">
+<meta name="twitter:image:alt" content="ACM -- Attribute Conditioning for Abstractive Multi Document Summarization. arXiv preprint. By Aiswarya Sankar, Ankit Chadha.">
 <meta name="citation_title" content="ACM -- Attribute Conditioning for Abstractive Multi Document Summarization">
 <meta name="citation_author" content="Sankar, Aiswarya">
 <meta name="citation_author" content="Chadha, Ankit">
@@ -43,6 +45,8 @@
 <meta name="DC.creator" content="Chadha, Ankit">
 <meta name="DC.issued" content="2022-05-09">
 <meta name="DC.identifier" content="https://ankitrchadha.com/papers/attribute-conditioning-multi-document-summarization/attribute-conditioning-summarization.pdf">
+<meta name="DC.identifier" content="https://ankitrchadha.com/papers/attribute-conditioning-multi-document-summarization/">
+<meta name="DC.identifier" content="https://doi.org/10.48550/arXiv.2205.03978">
 <meta name="DC.language" content="en">
 <meta property="article:published_time" content="2022-05-09T00:00:00Z">
 <meta property="article:modified_time" content="2026-11-13T00:00:00Z">
@@ -166,6 +170,19 @@ nav.crumb a:hover{text-decoration:underline}
  background:var(--tint)}
 .actions a:first-child{border-color:var(--acc2);color:var(--acc);font-weight:600;
  background:var(--tint)}
+.citation-tools{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;
+ font-size:13.5px;margin:16px 0}
+.citation-tools button{font:inherit;padding:7px 12px;border:1px solid var(--acc2);
+ border-radius:6px;background:var(--tint);color:var(--acc);cursor:pointer}
+.copy-status{color:var(--mut);font-size:12.5px}
+.paper-links{display:flex;flex-wrap:wrap;gap:14px;margin:10px 0 0;font-size:12.5px}
+.publication-search{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px}
+.publication-search input,.publication-search select{font:inherit;font-size:14px;
+ padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:#fff;
+ color:var(--ink);max-width:100%}
+.publication-search input{flex:1 1 240px;min-width:0}
+.publication-search select{flex:0 1 180px}
+[hidden]{display:none!important}
 
 /* ---- the two signature blocks ---- */
 .tldr{margin:28px 0 2px;border-left:3px solid var(--acc);padding:1px 0 1px 21px}
@@ -559,6 +576,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
     "viewpoint consistency"
   ],
   "image": [
+    "https://ankitrchadha.com/assets/img/cards/attribute-conditioning-multi-document-summarization-1200x630.jpg",
     "https://ankitrchadha.com/assets/img/figs/2205.03978.jpg"
   ],
   "encoding": {
@@ -608,7 +626,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site"><div class="wrap">
-<a class="who" href="/" aria-label="Ankit Chadha, home">AC</a>
+<a class="who" href="/" aria-label="Ankit Chadha, home">Ankit Chadha</a>
 <nav aria-label="Site"><a href="/">About</a> <a href="/research/">Research</a> <a href="/publications/">Publications</a> <a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me">Scholar</a> <a href="/contact/">Contact me</a></nav>
 </div></header>
 <main class="wrap" id="main">
@@ -619,8 +637,9 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <p class="venue"><span class="pill">Summarization</span>arXiv preprint &middot; Amazon Alexa AI <span class="flag">Preprint, not peer reviewed</span></p>
 <p class="actions"><a href="attribute-conditioning-summarization.pdf"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4 M10 17v-5h1.6a1.7 1.7 0 0 1 0 3.4H10"/></svg>PDF</a>
 <a href="https://arxiv.org/abs/2205.03978" rel="noopener"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M14 4h6v6 M20 4 11 13 M18 14v5H5V6h5"/></svg>arXiv</a>
-<a href="#cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>BibTeX</a></p>
+<a href="#cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>Cite</a></p>
 <p class="tiny note">No public code or dataset is listed for this paper.</p>
+<p class="tiny paper-citations"><a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=hcslcm0AAAAJ&amp;pagesize=100&amp;citation_for_view=hcslcm0AAAAJ:M3ejUd6NZC8C" rel="noopener" title="Google Scholar: No citations listed, checked 2026-11-13">No citations listed</a> on Google Scholar. Checked <time datetime="2026-11-13">2026-11-13</time>.</p>
 <div class="tldr"><span class="lab">In one sentence</span><p>Adds a sentiment and polarity classifier to a news multi-document summarizer so it sticks to one viewpoint, raising the word-overlap ROUGE-1 score on MultiNews from <span class="n">42.99</span> to <span class="n">50.12</span> versus GraphSum.</p></div>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4"/></svg>Abstract</h2>
 <p class="abs">Abstractive multi document summarization has evolved as a task through the basic sequence to sequence approaches to transformer and graph based techniques. Each of these approaches has primarily focused on the issues of multi document information synthesis and attention based approaches to extract salient information. A challenge that arises with multi document summarization which is not prevalent in single document summarization is the need to effectively summarize multiple documents that might have conflicting polarity, sentiment or subjective information about a given topic. In this paper we propose ACM, attribute conditioned multi document summarization,a model that incorporates attribute conditioning modules in order to decouple conflicting information by conditioning for a certain attribute in the output summary. This approach shows strong gains in ROUGE score over baseline multi document summarization approaches and shows gains in fluency, informativeness and reduction in repetitiveness as shown through a human annotation analysis study.</p>
@@ -650,7 +669,8 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <p>The results point to useful next questions: Preprint, not peer reviewed, and its conclusion claims a new state of the art that no reviewer ever tested. No significance tests or seeds on any ROUGE number, so gains of <span class="n">0.07</span> to <span class="n">0.8</span> points cannot be separated from run-to-run noise. One dataset only. The human evaluation used 5 annotators over 182 summaries and the 78 percent figure is raw agreement, not chance-corrected. Table 5&#x27;s best single-component variant beats the full system on two of three metrics, which the paper does not explain. The acronym in the title has nothing to do with the ACM.</p></section>
 <h2 id="cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>How to cite</h2>
 <p>Aiswarya Sankar and Ankit Chadha. 2022. ACM -- Attribute Conditioning for Abstractive Multi Document Summarization. arXiv:2205.03978.</p>
-<pre><code>@misc{sankar2022acm,
+<p class="citation-tools"><button type="button" class="copy-citation" hidden>Copy BibTeX</button><a href="attribute-conditioning-multi-document-summarization.bib" download>Download BibTeX</a><a href="attribute-conditioning-multi-document-summarization.ris" download>RIS (Zotero / EndNote)</a><a href="attribute-conditioning-multi-document-summarization.json" download>CSL JSON</a><span class="copy-status" role="status" aria-live="polite"></span></p>
+<pre id="bibtex"><code>@misc{sankar2022acm,
   title         = {ACM -- Attribute Conditioning for Abstractive Multi Document Summarization},
   author        = {Sankar, Aiswarya and Chadha, Ankit},
   year          = {2022},
@@ -661,7 +681,6 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
   url           = {https://arxiv.org/abs/2205.03978},
   note          = {arXiv preprint arXiv:2205.03978}
 }</code></pre>
-<p class="small"><a href="attribute-conditioning-multi-document-summarization.bib" download><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>Download BibTeX</a></p>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 15l6-6 M11 6l1.5-1.5a4.2 4.2 0 0 1 6 6L17 12 M13 18l-1.5 1.5a4.2 4.2 0 0 1-6-6L7 12"/></svg>Related work of mine</h2>
 <ul class="tl">
 <li><a href="/papers/controlled-text-generation-hidden-representation-transformations/">Controlled Text Generation with Hidden Representation Transformations</a><span class="v">Findings of ACL 2023</span></li>
@@ -675,5 +694,17 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <p class="links"><a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me noopener">Google Scholar</a> &middot; <a href="https://orcid.org/0000-0002-5029-0136" rel="me noopener">ORCID</a> &middot; <a href="https://github.com/ankit-ai" rel="me noopener">GitHub</a> &middot; <a href="https://www.linkedin.com/in/ankitrc/" rel="me noopener">LinkedIn</a> &middot; <a href="https://aclanthology.org/people/ankit-chadha/" rel="me noopener">ACL Anthology</a> &middot; <a href="https://openalex.org/A5027218595" rel="me noopener">OpenAlex</a> &middot; <a href="https://www.amazon.science/author/ankit-chadha" rel="me noopener">Amazon Science</a> &middot; <a href="https://x.com/ankitrchadha" rel="me noopener">X</a></p>
 <p class="fine">Ankit Chadha, California.</p>
 </div></footer>
+<script>
+const copyButton=document.querySelector('.copy-citation');
+if(copyButton&&navigator.clipboard){
+ copyButton.hidden=false;
+ copyButton.addEventListener('click',async()=>{
+  const status=document.querySelector('.copy-status');
+  try{await navigator.clipboard.writeText(document.querySelector('#bibtex code').textContent);
+   status.textContent='BibTeX copied.';}
+  catch{status.textContent='Use Download BibTeX or select the citation below.';}
+ });
+}
+</script>
 </body>
 </html>

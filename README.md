@@ -1,7 +1,8 @@
 # ankit-ai.github.io
 
-Personal site for Ankit Chadha. Static HTML, no build framework, no JavaScript, no
-external requests. Every page is one file and one round trip.
+Personal site for Ankit Chadha. Static HTML, no build framework, external fonts,
+or frontend dependencies. Small inline scripts enhance publication search and
+copying citations; all paper content and citation downloads work without JavaScript.
 
 The point of the site is citations. Every paper gets its own URL, its own complete
 abstract as plain visible text, and its own Google Scholar meta block, because that
@@ -15,6 +16,10 @@ publications/index.html       full list, peer reviewed then preprints then earli
 papers/<slug>/index.html      one page per paper
 papers/<slug>/<paper>.pdf     the PDF, as a SIBLING of the HTML, not in /assets
 papers/<slug>/<slug>.bib      downloadable citation, matching the visible BibTeX
+papers/<slug>/<slug>.ris      Zotero / EndNote import
+papers/<slug>/<slug>.json     CSL JSON citation
+publications.{bib,ris,json}   complete citation collections
+feed.xml                     Atom publication feed
 404.html  robots.txt  sitemap.xml  .nojekyll
 assets/img/headshot-*.{jpg,webp}
 assets/img/papers/            4:3 index cards cropped from each paper
@@ -38,6 +43,13 @@ python3 _build/check.py           # must print "0 fail" before publishing
 prose and config, `_build/papers.json` the bibliographic metadata, and
 `_build/content.json` the per-paper page content. Edit those, never the generated
 HTML, which is overwritten on every build.
+
+The generator also maintains PDF canonical response headers, citation MIME types,
+and indexing exclusions for machine-readable exports in `_headers`. The sitemap
+lists canonical HTML pages; scholarly crawlers find PDFs through the paper's
+`citation_pdf_url` and visible PDF link. Keep complete abstracts in the initial HTML.
+Search-title abbreviations affect general web search; `citation_title` and the
+visible paper heading always retain the official publication title.
 
 WK-Drift uses the final IJCNLP-AACL 2026 proceedings PDF and the publisher's
 BibTeX, including its verified November publication month. To recreate its
@@ -89,11 +101,20 @@ structured-data policy. `_build/check.py` enforces all of them.
 
 Every number on a paper page appears in that paper and was checked against the PDF
 text by a second pass. Results that were null or went the wrong way are included and
-marked. Each page names the baseline and gives the from and to values. No citation
-counts, download counts, or star counts are mirrored anywhere, because they go stale
-and cannot be verified by a reader; the site links to Google Scholar instead. Nothing
+marked. Each page names the baseline and gives the from and to values. Citation
+counts are dated Google Scholar snapshots, with direct links to their source
+records. Separate Scholar records are never summed because citations may overlap.
+A blank Scholar count is labelled "No citations listed"; it is not converted into
+an invented numeric count. Download and star counts are not mirrored. Nothing
 claims a venue it has not been accepted to. Preprints are labelled as preprints in
 the page body, in the listing, and on the social card.
+
+To refresh citation counts, save the complete public Google Scholar profile HTML
+under ignored `_work/`, then run
+`python3 _build/refresh_citations.py --html path-to-profile.html --as-of YYYY-MM-DD`.
+The importer checks the profile, requires exact title matches, and writes
+`_build/citations.json` with the source date, record links, and HTML checksum.
+Rebuild and check before publishing.
 
 ## Publishing
 

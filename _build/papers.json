@@ -53,31 +53,31 @@
       ],
       "affiliations": "Amazon",
       "year": 2026,
-      "venue_short": "EMNLP 2026, accepted, to appear",
-      "venue_long": "",
-      "venue_note": "Preprint, not peer reviewed.",
+      "venue_short": "Findings of EMNLP 2026",
+      "venue_long": "Findings of the Association for Computational Linguistics: EMNLP 2026",
+      "venue_note": "",
       "is_preprint": false,
-      "pages": "",
-      "citation_publication_date": "2026/8/26",
+      "pages": "42756-42765",
+      "citation_publication_date": "2026/10",
       "arxiv_date": "2026-08-26",
       "arxiv_id": "2608.25277",
-      "doi": "10.48550/arXiv.2608.25277",
+      "doi": "10.18653/2026.findings-emnlp.2008",
       "code_url": "",
       "data_url": "",
-      "pdf_local": "arxiv-2608.25277.pdf",
+      "pdf_local": "routed-findings-emnlp-2026.pdf",
       "pdf_filename": "routed-graph-handoff.pdf",
-      "pdf_note": "arXiv version.",
+      "pdf_note": "Published proceedings version, pages 42756–42765. Licensed CC BY 4.0.",
       "img": "2608.25277",
       "img_w": 1003,
       "img_h": 475,
-      "scholar_citations": 0,
       "related": [
         "apex-mem-agentic-semi-structured-memory",
         "apex-em-procedural-episodic-experience-replay"
       ],
-      "status": "accepted",
-      "accepted_note": "Accepted to EMNLP 2026. The proceedings have not been published yet, so this page cites the arXiv version. arXiv comment field, verified 2026-09-15: \"Accepted in EMNLP 2026\".",
-      "publisher": ""
+      "status": "published",
+      "publisher": "Association for Computational Linguistics",
+      "anthology_url": "https://aclanthology.org/2026.findings-emnlp.2008/",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
     },
     {
       "slug": "apex-mem-agentic-semi-structured-memory",
@@ -109,7 +109,6 @@
       "img": "2604.14362",
       "img_w": 1904,
       "img_h": 526,
-      "scholar_citations": 14,
       "related": [
         "apex-em-procedural-episodic-experience-replay",
         "routed-graph-handoff",
@@ -128,32 +127,32 @@
       ],
       "affiliations": "Amazon",
       "year": 2026,
-      "venue_short": "EMNLP 2026, accepted, to appear",
-      "venue_long": "",
-      "venue_note": "Preprint, not peer reviewed.",
+      "venue_short": "Findings of EMNLP 2026",
+      "venue_long": "Findings of the Association for Computational Linguistics: EMNLP 2026",
+      "venue_note": "",
       "is_preprint": false,
-      "pages": "",
-      "citation_publication_date": "2026/8/31",
+      "pages": "42547-42568",
+      "citation_publication_date": "2026/10",
       "arxiv_date": "2026-08-31",
       "arxiv_id": "2603.29093",
-      "doi": "10.48550/arXiv.2603.29093",
+      "doi": "10.18653/2026.findings-emnlp.1996",
       "code_url": "",
       "data_url": "",
-      "pdf_local": "arxiv-2603.29093.pdf",
+      "pdf_local": "apex-em-findings-emnlp-2026.pdf",
       "pdf_filename": "apex-em.pdf",
-      "pdf_note": "arXiv version, v3.",
+      "pdf_note": "Published proceedings version, pages 42547–42568. Licensed CC BY 4.0.",
       "img": "2603.29093",
       "img_w": 1919,
       "img_h": 595,
-      "scholar_citations": 0,
       "related": [
         "apex-mem-agentic-semi-structured-memory",
         "routed-graph-handoff",
         "wk-drift-procedural-memory-maintenance"
       ],
-      "status": "accepted",
-      "accepted_note": "Accepted to EMNLP 2026. The proceedings have not been published yet, so this page cites the arXiv version. arXiv comment field, verified 2026-09-15: \"22 pages, 6 figures, Accepted to EMNLP 2026\".",
-      "publisher": ""
+      "status": "published",
+      "publisher": "Association for Computational Linguistics",
+      "anthology_url": "https://aclanthology.org/2026.findings-emnlp.1996/",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
     },
     {
       "slug": "question-context-alignment-answer-sentence-selection",
@@ -186,7 +185,6 @@
       "img": "2306.02196",
       "img_w": 913,
       "img_h": 739,
-      "scholar_citations": 3,
       "related": [
         "wdrass-web-scale-document-retrieval-answer-sentence-selection",
         "cross-lingual-knowledge-distillation-answer-sentence-selection"
@@ -225,7 +223,6 @@
       "img": "2305.19230",
       "img_w": 1851,
       "img_h": 796,
-      "scholar_citations": 13,
       "related": [
         "attribute-conditioning-multi-document-summarization",
         "apex-mem-agentic-semi-structured-memory"
@@ -262,7 +259,6 @@
       "img": "2305.16302",
       "img_w": 932,
       "img_h": 812,
-      "scholar_citations": 15,
       "related": [
         "question-context-alignment-answer-sentence-selection",
         "wdrass-web-scale-document-retrieval-answer-sentence-selection"
@@ -310,7 +306,6 @@
       "img": "ecml",
       "img_w": 1453,
       "img_h": 560,
-      "scholar_citations": 16,
       "related": [
         "wdrass-web-scale-document-retrieval-answer-sentence-selection",
         "question-context-alignment-answer-sentence-selection"
@@ -344,7 +339,6 @@
       "img": "2205.03978",
       "img_w": 1758,
       "img_h": 970,
-      "scholar_citations": 0,
       "related": [
         "controlled-text-generation-hidden-representation-transformations",
         "dr-sas-deep-reinforced-self-attention-masks"
@@ -383,7 +377,6 @@
       "img": "wdrass",
       "img_w": 1009,
       "img_h": 251,
-      "scholar_citations": 19,
       "related": [
         "cross-lingual-knowledge-distillation-answer-sentence-selection",
         "efficient-fine-tuning-knowledge-aware-response-planning"
@@ -421,7 +414,6 @@
       "img": "2205.01557",
       "img_w": 755,
       "img_h": 496,
-      "scholar_citations": 27,
       "related": [
         "communication-efficient-federated-learning-nmt",
         "cross-lingual-knowledge-distillation-answer-sentence-selection"
@@ -457,7 +449,6 @@
       "img": "2112.06135",
       "img_w": 1099,
       "img_h": 259,
-      "scholar_citations": 11,
       "related": [
         "federated-learning-mixed-domain-translation",
         "apex-mem-agentic-semi-structured-memory"
@@ -491,7 +482,6 @@
       "img": "2001.00009",
       "img_w": 1732,
       "img_h": 919,
-      "scholar_citations": 0,
       "related": [
         "bertqa-attention-on-steroids",
         "attribute-conditioning-multi-document-summarization"
@@ -525,7 +515,6 @@
       "img": "1912.10435",
       "img_w": 1489,
       "img_h": 556,
-      "scholar_citations": 11,
       "related": [
         "dr-sas-deep-reinforced-self-attention-masks",
         "question-context-alignment-answer-sentence-selection"
@@ -540,64 +529,56 @@
       "authors": "Ankit Chadha, Neha Satam, Beena Ballal",
       "year": 2013,
       "venue": "International Journal of Science and Research",
-      "arxiv_id": "1309.7334",
-      "citations": 55
+      "arxiv_id": "1309.7334"
     },
     {
       "title": "An Efficient Method for Image and Audio Steganography using Least Significant Bit (LSB) Substitution",
       "authors": "Ankit Chadha, Neha Satam, Rakshak Sood, Dattatray Bade",
       "year": 2013,
       "venue": "International Journal of Computer Applications 77(13):37-45",
-      "arxiv_id": "1311.1083",
-      "citations": 45
+      "arxiv_id": "1311.1083"
     },
     {
       "title": "Modified Binary Search Algorithm",
       "authors": "Ankit R. Chadha, Rishikesh Misal, Tanaya Mokashi",
       "year": 2014,
       "venue": "International Journal of Applied Information Systems 7(2):37-40",
-      "arxiv_id": "1406.1677",
-      "citations": 31
+      "arxiv_id": "1406.1677"
     },
     {
       "title": "Dual-Layer Video Encryption using RSA Algorithm",
       "authors": "Aman Chadha, Sushmit Mallik, Ankit Chadha, Ravdeep Johar, M. Mani Roja",
       "year": 2015,
       "venue": "International Journal of Computer Applications 116(1):33-40",
-      "arxiv_id": "1509.04387",
-      "citations": 18
+      "arxiv_id": "1509.04387"
     },
     {
       "title": "Biometric Signature Processing and Recognition Using Radial Basis Function Network",
       "authors": "Ankit Chadha, Neha Satam, Vibha Wali",
       "year": 2013,
       "venue": "arXiv preprint",
-      "arxiv_id": "1311.1694",
-      "citations": 17
+      "arxiv_id": "1311.1694"
     },
     {
       "title": "A Robust Rapid Approach to Image Segmentation with Optimal Thresholding and Watershed Transform",
       "authors": "Ankit R. Chadha, Neha S. Satam",
       "year": 2013,
       "venue": "International Journal of Computer Applications",
-      "arxiv_id": "1303.4866",
-      "citations": 14
+      "arxiv_id": "1303.4866"
     },
     {
       "title": "Image Steganography using Karhunen-Loeve Transform and Least Bit Substitution",
       "authors": "Ankit Chadha, Neha Satam, Rakshak Sood, Dattatray Bade",
       "year": 2013,
       "venue": "International Journal of Computer Applications 79(9):31-37",
-      "arxiv_id": "1311.1700",
-      "citations": 11
+      "arxiv_id": "1311.1700"
     },
     {
       "title": "ARC Sort: Enhanced and Time Efficient Sorting Algorithm",
       "authors": "Ankit Chadha, Rishikesh Misal, Tanaya Mokashi, Aman Chadha",
       "year": 2014,
       "venue": "International Journal of Applied Information Systems 7(2):1-7",
-      "arxiv_id": "1406.2262",
-      "citations": 6
+      "arxiv_id": "1406.2262"
     },
     {
       "title": "Design, Modeling and Implementation of 8-bit Processor for Intelligent Automatic Chocolate Vending Machine",
@@ -605,8 +586,7 @@
       "year": 2014,
       "venue": "International Journal of Computer Applications",
       "arxiv_id": "",
-      "doi": "10.5120/15720-4549",
-      "citations": 3
+      "doi": "10.5120/15720-4549"
     }
   ],
   "patents": [

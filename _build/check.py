@@ -17,11 +17,15 @@ import json
 import os
 import re
 import sys
+from datetime import date, datetime, timezone
 from html.parser import HTMLParser
+from urllib.parse import parse_qs, urlparse
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = json.load(open(os.path.join(ROOT, "_build", "site.json")))
-PAPERS = json.load(open(os.path.join(ROOT, "_build", "papers.json")))["papers"]
+DATA = json.load(open(os.path.join(ROOT, "_build", "papers.json")))
+PAPERS = DATA["papers"]
+CITATIONS = json.load(open(os.path.join(ROOT, "_build", "citations.json")))
 CONTENT = json.load(open(os.path.join(ROOT, "_build", "content.json")))
 BASE = SITE["base_url"].rstrip("/")
 
@@ -283,6 +287,22 @@ for p in PAPERS:
             fail("%s: downloadable BibTeX has duplicate fields" % slug)
         if html.escape(citation.strip(), quote=True) not in h:
             fail("%s: downloadable BibTeX differs from the visible citation" % slug)
+    csl_path = "papers/%s/%s.json" % (slug, slug)
+    ris_path = "papers/%s/%s.ris" % (slug, slug)
+    try:
+        csl = json.loads(read(csl_path))
+        if len(csl) != 1 or csl[0].get("title") != p["title"]:
+            fail("%s: CSL export title/cardinality differs from the paper" % slug)
+        elif csl[0].get("DOI", "") != p.get("doi", ""):
+            fail("%s: CSL export DOI differs from the verified metadata" % slug)
+        elif len(csl[0].get("author", [])) != len(p["authors"]):
+            fail("%s: CSL export author count differs from the paper" % slug)
+        ris = read(ris_path)
+        if "TI  - " + p["title"] not in ris or \
+                len(re.findall(r"^AU  - ", ris, re.M)) != len(p["authors"]):
+            fail("%s: RIS title/authors differ from the paper" % slug)
+    except (OSError, ValueError) as ex:
+        fail("%s: citation export missing or invalid: %s" % (slug, ex))
 
     # Scholar's meta-tag-free fallback classes.
     if 'class="citation_title"' not in h:
@@ -438,6 +458,48 @@ for x in ld:
 # ---------------------------------------------------------------- site-wide
 
 print("== site wide ==")
+print("== citation snapshot ==")
+try:
+    snapshot_date = date.fromisoformat(CITATIONS["as_of"])
+    if snapshot_date > datetime.now(timezone.utc).date():
+        fail("citation snapshot: date is in the future")
+except ValueError:
+    fail("citation snapshot: invalid source date")
+if CITATIONS["source"] != "Google Scholar":
+    fail("citation snapshot: expected Google Scholar")
+if not re.fullmatch(r"[a-f0-9]{64}", CITATIONS.get("source_html_sha256", "")):
+    fail("citation snapshot: missing source HTML checksum")
+for group, papers in (("papers", PAPERS), ("earlier_work", DATA["earlier_work"])):
+    for p in papers:
+        key = p["slug"] if group == "papers" else p["title"]
+        records = CITATIONS[group].get(key, [])
+        if not records:
+            fail("citation snapshot: missing " + key)
+        page = read("papers/%s/index.html" % key) if group == "papers" else pubs
+        if CITATIONS["as_of"] not in page:
+            fail("citation snapshot: missing date on " + key)
+        for record in records:
+            record_url = urlparse(record["record_url"])
+            if (record_url.netloc != "scholar.google.com" or
+                    parse_qs(record_url.query).get("user") != ["hcslcm0AAAAJ"]):
+                fail("citation snapshot: wrong author profile for " + key)
+            count = record["count"]
+            if count is None:
+                if record["status"] != "no_citations_listed":
+                    fail("citation snapshot: ambiguous blank count for " + key)
+                if "No citations listed" not in page:
+                    fail("citation snapshot: blank count is not labelled for " + key)
+            elif type(count) is not int or count < 0 or record["status"] != "counted":
+                fail("citation snapshot: invalid count for " + key)
+            source_link = record["cited_by_url"] or record["record_url"]
+            if html.escape(source_link, quote=True) not in page:
+                fail("citation snapshot: missing source link for " + key)
+        if len(records) > 1 and "split records" not in page:
+            fail("citation snapshot: separate records silently merged for " + key)
+print("  %d papers with dated source links; split records kept separate"
+      % (len(PAPERS) + len(DATA["earlier_work"])))
+
+print("== discovery ==")
 sm = read("sitemap.xml")
 locs = re.findall(r"<loc>([^<]+)</loc>", sm)
 for loc in locs:
@@ -460,7 +522,7 @@ if "Sitemap: %s/sitemap.xml" % BASE not in read("robots.txt"):
 if not os.path.exists(os.path.join(ROOT, ".nojekyll")):
     fail(".nojekyll missing, GitHub Pages will run Jekyll and may drop files")
 if not SITE.get("google_site_verification"):
-    warn("site.json google_site_verification is empty, Search Console will not verify")
+    warn("Google HTML verification token is unset; DNS or another Search Console method may already be in use")
 if not SITE.get("indexnow_key"):
     warn("site.json indexnow_key is empty, no IndexNow submission possible")
 
@@ -489,6 +551,7 @@ for f in glob.glob(os.path.join(ROOT, "**", "*.html"), recursive=True):
                     if is_sub:
                         externals.add(ref)
                     continue
+                ref = ref.split("#", 1)[0].split("?", 1)[0]
                 t = os.path.join(ROOT, ref.lstrip("/")) if ref.startswith("/") \
                     else os.path.join(here, ref)
                 if os.path.isdir(t):

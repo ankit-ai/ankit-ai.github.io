@@ -1,0 +1,11 @@
+TY  - GEN
+TI  - ACM -- Attribute Conditioning for Abstractive Multi Document Summarization
+AU  - Sankar, Aiswarya
+AU  - Chadha, Ankit
+PY  - 2022
+DA  - 2022/5/9
+DO  - 10.48550/arXiv.2205.03978
+UR  - https://arxiv.org/abs/2205.03978
+L1  - https://ankitrchadha.com/papers/attribute-conditioning-multi-document-summarization/attribute-conditioning-summarization.pdf
+AB  - Abstractive multi document summarization has evolved as a task through the basic sequence to sequence approaches to transformer and graph based techniques. Each of these approaches has primarily focused on the issues of multi document information synthesis and attention based approaches to extract salient information. A challenge that arises with multi document summarization which is not prevalent in single document summarization is the need to effectively summarize multiple documents that might have conflicting polarity, sentiment or subjective information about a given topic. In this paper we propose ACM, attribute conditioned multi document summarization,a model that incorporates attribute conditioning modules in order to decouple conflicting information by conditioning for a certain attribute in the output summary. This approach shows strong gains in ROUGE score over baseline multi document summarization approaches and shows gains in fluency, informativeness and reduction in repetitiveness as shown through a human annotation analysis study.
+ER  - 

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "10.18653/v1/2022.naacl-main.186",
+    "type": "paper-conference",
+    "title": "Training Mixed-Domain Translation Models via Federated Learning",
+    "author": [
+      {
+        "family": "Passban",
+        "given": "Peyman"
+      },
+      {
+        "family": "Roosta",
+        "given": "Tanya"
+      },
+      {
+        "family": "Gupta",
+        "given": "Rahul"
+      },
+      {
+        "family": "Chadha",
+        "given": "Ankit"
+      },
+      {
+        "family": "Chung",
+        "given": "Clement"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2022
+        ]
+      ]
+    },
+    "abstract": "Training mixed-domain translation models is a complex task that demands tailored architectures and costly data preparation techniques. In this work, we leverage federated learning (FL) in order to tackle the problem. Our investigation demonstrates that with slight modifications in the training process, neural machine translation (NMT) engines can be easily adapted when an FL-based aggregation is applied to fuse different domains. Experimental results also show that engines built via FL are able to perform on par with state-of-the-art baselines that rely on centralized training techniques. We evaluate our hypothesis in the presence of five datasets with different sizes, from different domains, to translate from German into English and discuss how FL and NMT can mutually benefit from each other. In addition to providing benchmarking results on the union of FL and NMT, we also propose a novel technique to dynamically control the communication bandwidth by selecting impactful parameters during FL updates. This is a significant achievement considering the large size of NMT engines that need to be exchanged between FL parties.",
+    "URL": "https://aclanthology.org/2022.naacl-main.186/",
+    "DOI": "10.18653/v1/2022.naacl-main.186",
+    "container-title": "Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies",
+    "page": "2576-2586",
+    "publisher": "Association for Computational Linguistics"
+  }
+]

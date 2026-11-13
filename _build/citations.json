@@ -1,0 +1,229 @@
+{
+  "source": "Google Scholar",
+  "profile_url": "https://scholar.google.com/citations?user=hcslcm0AAAAJ",
+  "as_of": "2026-11-13",
+  "source_html_sha256": "0f8d3427986e057312f9f0208f0e0646e6aa19447a8134fe0c1d48a27dd4ff8e",
+  "profile": {
+    "citations": 362,
+    "h_index": 12,
+    "i10_index": 15
+  },
+  "papers": {
+    "wk-drift-procedural-memory-maintenance": [
+      {
+        "title": "WK-Drift: Benchmarking Procedural Memory Maintenance under World Knowledge Drift",
+        "record_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=hcslcm0AAAAJ&pagesize=100&citation_for_view=hcslcm0AAAAJ:e5wmG9Sq2KIC",
+        "cited_by_url": "",
+        "count": null,
+        "status": "no_citations_listed"
+      }
+    ],
+    "routed-graph-handoff": [
+      {
+        "title": "Routed Graph Handoff: Adaptive Format Selection for Multi-Agent LLM Delegation",
+        "record_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=hcslcm0AAAAJ&pagesize=100&citation_for_view=hcslcm0AAAAJ:HDshCWvjkbEC",
+        "cited_by_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=12655752386651796778",
+        "count": 2,
+        "status": "counted"
+      }
+    ],
+    "apex-mem-agentic-semi-structured-memory": [
+      {
+        "title": "APEX-MEM: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI",
+        "record_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=hcslcm0AAAAJ&pagesize=100&citation_for_view=hcslcm0AAAAJ:-f6ydRqryjwC",
+        "cited_by_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=2850943938415816010",
+        "count": 33,
+        "status": "counted"
+      }
+    ],
+    "apex-em-procedural-episodic-experience-replay": [
+      {
+        "title": "APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay",
+        "record_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=hcslcm0AAAAJ&pagesize=100&citation_for_view=hcslcm0AAAAJ:IWHjjKOFINEC",
+        "cited_by_url": "",
+        "count": null,
+        "status": "no_citations_listed"
+      }
+    ],
+    "question-context-alignment-answer-sentence-selection": [
+      {
+        "title": "Question-context alignment and answer-context dependencies for effective answer sentence selection",
+        "record_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=hcslcm0AAAAJ&pagesize=100&citation_for_view=hcslcm0AAAAJ:ZeXyd9-uunAC",
+        "cited_by_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=8487851426282587879",
+        "count": 2,
+        "status": "counted"
+      },
+      {
+        "title": "Question-context alignment and answer-context dependencies for effective answer sentence selection",
+        "record_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=hcslcm0AAAAJ&pagesize=100&citation_for_view=hcslcm0AAAAJ:7PzlFSSx8tAC",
+        "cited_by_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=15253318687120256668",
+        "count": 1,
+        "status": "counted"
+      }
+    ],
+    "controlled-text-generation-hidden-representation-transformations": [
+      {
+        "title": "Controlled text generation with hidden representation transformations",
+        "record_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=hcslcm0AAAAJ&pagesize=100&citation_for_view=hcslcm0AAAAJ:dhFuZR0502QC",
+        "cited_by_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=12183936625182621543",
+        "count": 13,
+        "status": "counted"
+      }
+    ],
+    "cross-lingual-knowledge-distillation-answer-sentence-selection": [
+      {
+        "title": "Cross-lingual knowledge distillation for answer sentence selection in low-resource languages",
+        "record_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=hcslcm0AAAAJ&pagesize=100&citation_for_view=hcslcm0AAAAJ:QIV2ME_5wuYC",
+        "cited_by_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=3746107154870549093",
+        "count": 17,
+        "status": "counted"
+      }
+    ],
+    "efficient-fine-tuning-knowledge-aware-response-planning": [
+      {
+        "title": "Efficient fine-tuning large language models for knowledge-aware response planning",
+        "record_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=hcslcm0AAAAJ&pagesize=100&citation_for_view=hcslcm0AAAAJ:L8Ckcad2t8MC",
+        "cited_by_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=4145373745422826643",
+        "count": 16,
+        "status": "counted"
+      }
+    ],
+    "attribute-conditioning-multi-document-summarization": [
+      {
+        "title": "ACM--Attribute Conditioning for Abstractive Multi Document Summarization",
+        "record_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=hcslcm0AAAAJ&pagesize=100&citation_for_view=hcslcm0AAAAJ:M3ejUd6NZC8C",
+        "cited_by_url": "",
+        "count": null,
+        "status": "no_citations_listed"
+      }
+    ],
+    "wdrass-web-scale-document-retrieval-answer-sentence-selection": [
+      {
+        "title": "Wdrass: A web-scale dataset for document retrieval and answer sentence selection",
+        "record_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=hcslcm0AAAAJ&pagesize=100&citation_for_view=hcslcm0AAAAJ:4DMP91E08xMC",
+        "cited_by_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=13050066740109043859",
+        "count": 19,
+        "status": "counted"
+      }
+    ],
+    "federated-learning-mixed-domain-translation": [
+      {
+        "title": "Training mixed-domain translation models via federated learning",
+        "record_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=hcslcm0AAAAJ&pagesize=100&citation_for_view=hcslcm0AAAAJ:_kc_bZDykSQC",
+        "cited_by_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=3282202690110481065",
+        "count": 29,
+        "status": "counted"
+      }
+    ],
+    "communication-efficient-federated-learning-nmt": [
+      {
+        "title": "Communication-efficient federated learning for neural machine translation",
+        "record_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=hcslcm0AAAAJ&pagesize=100&citation_for_view=hcslcm0AAAAJ:YOwf2qJgpHMC",
+        "cited_by_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=16906235483303695737",
+        "count": 11,
+        "status": "counted"
+      }
+    ],
+    "dr-sas-deep-reinforced-self-attention-masks": [
+      {
+        "title": "Deep Reinforced Self-Attention Masks for Abstractive Summarization (DR. SAS)",
+        "record_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=hcslcm0AAAAJ&pagesize=100&citation_for_view=hcslcm0AAAAJ:ULOm3_A8WrAC",
+        "cited_by_url": "",
+        "count": null,
+        "status": "no_citations_listed"
+      }
+    ],
+    "bertqa-attention-on-steroids": [
+      {
+        "title": "BertQA - Attention on Steroids",
+        "record_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=hcslcm0AAAAJ&pagesize=100&citation_for_view=hcslcm0AAAAJ:Zph67rFs4hoC",
+        "cited_by_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=4516888205253870960",
+        "count": 11,
+        "status": "counted"
+      }
+    ]
+  },
+  "earlier_work": {
+    "Orthogonal Frequency Division Multiplexing and its Applications": [
+      {
+        "title": "Orthogonal frequency division multiplexing and its applications",
+        "record_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=hcslcm0AAAAJ&pagesize=100&citation_for_view=hcslcm0AAAAJ:9yKSN-GCB0IC",
+        "cited_by_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=14410791818618521186",
+        "count": 56,
+        "status": "counted"
+      }
+    ],
+    "An Efficient Method for Image and Audio Steganography using Least Significant Bit (LSB) Substitution": [
+      {
+        "title": "An efficient method for image and audio steganography using least significant bit (LSB) substitution",
+        "record_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=hcslcm0AAAAJ&pagesize=100&citation_for_view=hcslcm0AAAAJ:qjMakFHDy7sC",
+        "cited_by_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=9296531525109293603",
+        "count": 45,
+        "status": "counted"
+      }
+    ],
+    "Modified Binary Search Algorithm": [
+      {
+        "title": "Modified binary search algorithm",
+        "record_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=hcslcm0AAAAJ&pagesize=100&citation_for_view=hcslcm0AAAAJ:Tyk-4Ss8FVUC",
+        "cited_by_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=1136316672263242115",
+        "count": 31,
+        "status": "counted"
+      }
+    ],
+    "Dual-Layer Video Encryption using RSA Algorithm": [
+      {
+        "title": "Dual-layer video encryption using RSA algorithm",
+        "record_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=hcslcm0AAAAJ&pagesize=100&citation_for_view=hcslcm0AAAAJ:W7OEmFMy1HYC",
+        "cited_by_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=13224371772190478468",
+        "count": 18,
+        "status": "counted"
+      }
+    ],
+    "Biometric Signature Processing and Recognition Using Radial Basis Function Network": [
+      {
+        "title": "Biometric signature processing & recognition using radial basis function network",
+        "record_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=hcslcm0AAAAJ&pagesize=100&citation_for_view=hcslcm0AAAAJ:UeHWp8X0CEIC",
+        "cited_by_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=4021591880945340573",
+        "count": 17,
+        "status": "counted"
+      }
+    ],
+    "A Robust Rapid Approach to Image Segmentation with Optimal Thresholding and Watershed Transform": [
+      {
+        "title": "A robust rapid approach to image segmentation with optimal thresholding and watershed transform",
+        "record_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=hcslcm0AAAAJ&pagesize=100&citation_for_view=hcslcm0AAAAJ:d1gkVwhDpl0C",
+        "cited_by_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=12915483039462702625",
+        "count": 16,
+        "status": "counted"
+      }
+    ],
+    "Image Steganography using Karhunen-Loeve Transform and Least Bit Substitution": [
+      {
+        "title": "Image steganography using Karhunen-Loève transform and least bit substitution",
+        "record_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=hcslcm0AAAAJ&pagesize=100&citation_for_view=hcslcm0AAAAJ:2osOgNQ5qMEC",
+        "cited_by_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=13611865267609545275",
+        "count": 11,
+        "status": "counted"
+      }
+    ],
+    "ARC Sort: Enhanced and Time Efficient Sorting Algorithm": [
+      {
+        "title": "Arc sort: Enhanced and time efficient sorting algorithm",
+        "record_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=hcslcm0AAAAJ&pagesize=100&citation_for_view=hcslcm0AAAAJ:zYLM7Y9cAGgC",
+        "cited_by_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=11393646631003156380",
+        "count": 6,
+        "status": "counted"
+      }
+    ],
+    "Design, Modeling and Implementation of 8-bit Processor for Intelligent Automatic Chocolate Vending Machine": [
+      {
+        "title": "Design, Modeling and Implementation of 8-bit Processor for Intelligent Automatic Chocolate Vending Machine (AVM)",
+        "record_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=hcslcm0AAAAJ&pagesize=100&citation_for_view=hcslcm0AAAAJ:Y0pCki6q_DkC",
+        "cited_by_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=10441378190699677034",
+        "count": 3,
+        "status": "counted"
+      }
+    ]
+  }
+}

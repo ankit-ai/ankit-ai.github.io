@@ -3,18 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WK-Drift: Benchmarking Procedural Memory Maintenance under World Knowledge Drift | Ankit Chadha</title>
+<title>WK-Drift: Procedural Memory Maintenance | Ankit Chadha</title>
 <link rel="canonical" href="https://ankitrchadha.com/papers/wk-drift-procedural-memory-maintenance/">
+<link rel="alternate" type="application/atom+xml" title="Ankit Chadha publications" href="/feed.xml">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="description" content="WK-Drift benchmarks procedural agent memory under changing world knowledge. Findings of IJCNLP-AACL 2026 paper, results, PDF, DOI, and BibTeX citation.">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="Ankit Chadha">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Ankit Chadha">
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://ankitrchadha.com/papers/wk-drift-procedural-memory-maintenance/">
-<meta property="og:title" content="WK-Drift: Benchmarking Procedural Memory Maintenance under World Knowledge Drift | Ankit Chadha">
+<meta property="og:title" content="WK-Drift: Procedural Memory Maintenance | Ankit Chadha">
 <meta property="og:description" content="WK-Drift benchmarks procedural agent memory under changing world knowledge. Findings of IJCNLP-AACL 2026 paper, results, PDF, DOI, and BibTeX citation.">
 <meta property="og:image" content="https://ankitrchadha.com/assets/img/cards/wk-drift-procedural-memory-maintenance-1200x630.jpg">
 <meta property="og:image:width" content="1200">
@@ -23,7 +25,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@ankitrchadha">
 <meta name="twitter:creator" content="@ankitrchadha">
-<meta name="twitter:title" content="WK-Drift: Benchmarking Procedural Memory Maintenance under World Knowledge Drift | Ankit Chadha">
+<meta name="twitter:title" content="WK-Drift: Procedural Memory Maintenance | Ankit Chadha">
 <meta name="twitter:description" content="WK-Drift benchmarks procedural agent memory under changing world knowledge. Findings of IJCNLP-AACL 2026 paper, results, PDF, DOI, and BibTeX citation.">
 <meta name="twitter:image" content="https://ankitrchadha.com/assets/img/cards/wk-drift-procedural-memory-maintenance-1200x630.jpg">
 <meta name="twitter:image:alt" content="WK-Drift, Findings of IJCNLP-AACL 2026. Clinical benchmark accuracy after known drift rises from 37.5% with stale memory to 64.0% with surgical graph updates. Pratyay Banerjee, Masud Moshtaghi, and Ankit Chadha.">
@@ -47,6 +49,10 @@
 <meta name="DC.issued" content="2026-11">
 <meta name="DC.relation.ispartof" content="Findings of the Association for Computational Linguistics: IJCNLP-AACL 2026">
 <meta name="DC.identifier" content="https://ankitrchadha.com/papers/wk-drift-procedural-memory-maintenance/wk-drift.pdf">
+<meta name="DC.identifier" content="https://ankitrchadha.com/papers/wk-drift-procedural-memory-maintenance/">
+<meta name="DC.identifier" content="https://doi.org/10.18653/2026.findings-aacl.140">
+<meta name="DC.publisher" content="Association for Computational Linguistics">
+<meta name="DC.rights" content="https://creativecommons.org/licenses/by/4.0/">
 <meta name="DC.language" content="en">
 <meta property="article:modified_time" content="2026-11-13T00:00:00Z">
 <meta property="article:author" content="https://ankitrchadha.com/">
@@ -169,6 +175,19 @@ nav.crumb a:hover{text-decoration:underline}
  background:var(--tint)}
 .actions a:first-child{border-color:var(--acc2);color:var(--acc);font-weight:600;
  background:var(--tint)}
+.citation-tools{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;
+ font-size:13.5px;margin:16px 0}
+.citation-tools button{font:inherit;padding:7px 12px;border:1px solid var(--acc2);
+ border-radius:6px;background:var(--tint);color:var(--acc);cursor:pointer}
+.copy-status{color:var(--mut);font-size:12.5px}
+.paper-links{display:flex;flex-wrap:wrap;gap:14px;margin:10px 0 0;font-size:12.5px}
+.publication-search{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px}
+.publication-search input,.publication-search select{font:inherit;font-size:14px;
+ padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:#fff;
+ color:var(--ink);max-width:100%}
+.publication-search input{flex:1 1 240px;min-width:0}
+.publication-search select{flex:0 1 180px}
+[hidden]{display:none!important}
 
 /* ---- the two signature blocks ---- */
 .tldr{margin:28px 0 2px;border-left:3px solid var(--acc);padding:1px 0 1px 21px}
@@ -569,6 +588,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
     "agent evaluation"
   ],
   "image": [
+    "https://ankitrchadha.com/assets/img/cards/wk-drift-procedural-memory-maintenance-1200x630.jpg",
     "https://ankitrchadha.com/assets/img/figs/wk-drift.jpg"
   ],
   "encoding": {
@@ -623,7 +643,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site"><div class="wrap">
-<a class="who" href="/" aria-label="Ankit Chadha, home">AC</a>
+<a class="who" href="/" aria-label="Ankit Chadha, home">Ankit Chadha</a>
 <nav aria-label="Site"><a href="/">About</a> <a href="/research/">Research</a> <a href="/publications/">Publications</a> <a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me">Scholar</a> <a href="/contact/">Contact me</a></nav>
 </div></header>
 <main class="wrap" id="main">
@@ -635,8 +655,9 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <p class="actions"><a href="wk-drift.pdf"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4 M10 17v-5h1.6a1.7 1.7 0 0 1 0 3.4H10"/></svg>PDF</a>
 <a href="https://doi.org/10.18653/2026.findings-aacl.140" rel="noopener"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 15l6-6 M11 6l1.5-1.5a4.2 4.2 0 0 1 6 6L17 12 M13 18l-1.5 1.5a4.2 4.2 0 0 1-6-6L7 12"/></svg>DOI</a>
 <a href="https://aclanthology.org/2026.findings-aacl.140/" rel="noopener"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 5.5C4 4.1 6.7 3 10 3s6 1.1 6 2.5V21c0-1.4-2.7-2.5-6-2.5S4 19.6 4 21z M16 5.5C16 4.1 17.3 3 19 3v15.5c-1.7 0-3 1.1-3 2.5"/></svg>Publisher page</a>
-<a href="#cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>BibTeX</a></p>
+<a href="#cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>Cite</a></p>
 <p class="tiny note">No public code or dataset is listed for this paper.</p>
+<p class="tiny paper-citations"><a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=hcslcm0AAAAJ&amp;pagesize=100&amp;citation_for_view=hcslcm0AAAAJ:e5wmG9Sq2KIC" rel="noopener" title="Google Scholar: No citations listed, checked 2026-11-13">No citations listed</a> on Google Scholar. Checked <time datetime="2026-11-13">2026-11-13</time>.</p>
 <div class="tldr"><span class="lab">In one sentence</span><p>WK-Drift benchmarks how agents maintain stored procedures when the world changes; targeted graph updates raise post-drift clinical accuracy from <span class="n">37.5%</span> to <span class="n">64.0%</span> with known drift events.</p></div>
 <p class="contribution"><span class="lab">Research contribution</span>Introduced a benchmark for procedural memory maintenance under world knowledge drift, with typed drift events, a four-phase evaluation protocol, and propagation depth as a controlled difficulty axis.</p>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4"/></svg>Abstract</h2>
@@ -668,7 +689,8 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <p>The results point to useful next questions: extend maintenance to end-to-end drift detection, since the benchmark supplies known drift events and their corrected values. Natural multi-hop datasets would test the depth result beyond the synthetic dependency chains used here. A larger independent human evaluation would strengthen the knowledge-QA and clinical results, which use an LLM judge checked on a 100-item sample by one author. Gains also depend on how much the backbone can recover on its own. The paper reports roughly <span class="n">10%</span> more tool calls and generated tokens for invalidating configurations; a fixed-budget comparison would better establish the cost of maintenance. The clinical tasks measure guideline reasoning, not clinical validation.</p></section>
 <h2 id="cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>How to cite</h2>
 <p>Pratyay Banerjee, Masud Moshtaghi, and Ankit Chadha. 2026. WK-Drift: Benchmarking Procedural Memory Maintenance under World Knowledge Drift. In <em>Findings of the Association for Computational Linguistics: IJCNLP-AACL 2026</em>, pages 2719&ndash;2736.</p>
-<pre><code>@inproceedings{banerjee-etal-2026-wk,
+<p class="citation-tools"><button type="button" class="copy-citation" hidden>Copy BibTeX</button><a href="wk-drift-procedural-memory-maintenance.bib" download>Download BibTeX</a><a href="wk-drift-procedural-memory-maintenance.ris" download>RIS (Zotero / EndNote)</a><a href="wk-drift-procedural-memory-maintenance.json" download>CSL JSON</a><span class="copy-status" role="status" aria-live="polite"></span></p>
+<pre id="bibtex"><code>@inproceedings{banerjee-etal-2026-wk,
     title = &quot;{WK}-Drift: Benchmarking Procedural Memory Maintenance under World Knowledge Drift&quot;,
     author = &quot;Banerjee, Pratyay  and
       Moshtaghi, Masud  and
@@ -688,10 +710,9 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
     pages = &quot;2719--2736&quot;,
     ISBN = &quot;979-8-89176-444-6&quot;
 }</code></pre>
-<p class="small"><a href="wk-drift-procedural-memory-maintenance.bib" download><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>Download BibTeX</a></p>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 15l6-6 M11 6l1.5-1.5a4.2 4.2 0 0 1 6 6L17 12 M13 18l-1.5 1.5a4.2 4.2 0 0 1-6-6L7 12"/></svg>Related work of mine</h2>
 <ul class="tl">
-<li><a href="/papers/apex-em-procedural-episodic-experience-replay/">APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay</a><span class="v">EMNLP 2026, accepted, to appear</span></li>
+<li><a href="/papers/apex-em-procedural-episodic-experience-replay/">APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay</a><span class="v">Findings of EMNLP 2026</span></li>
 <li><a href="/papers/apex-mem-agentic-semi-structured-memory/">APEX-MEM: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI</a><span class="v">ACL 2026 (Main Conference, Long Papers)</span></li>
 </ul>
 <p class="tiny note">Published proceedings version, pages 2719–2736. Licensed CC BY 4.0. The abstract above follows the final PDF.</p>
@@ -702,5 +723,17 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <p class="links"><a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me noopener">Google Scholar</a> &middot; <a href="https://orcid.org/0000-0002-5029-0136" rel="me noopener">ORCID</a> &middot; <a href="https://github.com/ankit-ai" rel="me noopener">GitHub</a> &middot; <a href="https://www.linkedin.com/in/ankitrc/" rel="me noopener">LinkedIn</a> &middot; <a href="https://aclanthology.org/people/ankit-chadha/" rel="me noopener">ACL Anthology</a> &middot; <a href="https://openalex.org/A5027218595" rel="me noopener">OpenAlex</a> &middot; <a href="https://www.amazon.science/author/ankit-chadha" rel="me noopener">Amazon Science</a> &middot; <a href="https://x.com/ankitrchadha" rel="me noopener">X</a></p>
 <p class="fine">Ankit Chadha, California.</p>
 </div></footer>
+<script>
+const copyButton=document.querySelector('.copy-citation');
+if(copyButton&&navigator.clipboard){
+ copyButton.hidden=false;
+ copyButton.addEventListener('click',async()=>{
+  const status=document.querySelector('.copy-status');
+  try{await navigator.clipboard.writeText(document.querySelector('#bibtex code').textContent);
+   status.textContent='BibTeX copied.';}
+  catch{status.textContent='Use Download BibTeX or select the citation below.';}
+ });
+}
+</script>
 </body>
 </html>

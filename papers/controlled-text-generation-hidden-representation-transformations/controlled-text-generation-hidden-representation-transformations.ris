@@ -1,0 +1,19 @@
+TY  - CONF
+TI  - Controlled Text Generation with Hidden Representation Transformations
+AU  - Kumar, Vaibhav
+AU  - Koorehdavoudi, Hana
+AU  - Moshtaghi, Masud
+AU  - Misra, Amita
+AU  - Chadha, Ankit
+AU  - Ferrara, Emilio
+PY  - 2023
+DA  - 2023
+T2  - Findings of the Association for Computational Linguistics: ACL 2023
+DO  - 10.18653/v1/2023.findings-acl.602
+PB  - Association for Computational Linguistics
+SP  - 9440
+EP  - 9455
+UR  - https://aclanthology.org/2023.findings-acl.602/
+L1  - https://ankitrchadha.com/papers/controlled-text-generation-hidden-representation-transformations/controlled-text-generation-chrt.pdf
+AB  - We propose CHRT (Control Hidden Representation Transformation) – a controlled language generation framework that steers large language models to generate text pertaining to certain attributes (such as toxicity). CHRT gains attribute control by modifying the hidden representation of the base model through learned transformations. We employ a contrastive-learning framework to learn these transformations that can be combined to gain multi-attribute control. The effectiveness of CHRT is experimentally shown by comparing it with seven baselines over three attributes. CHRT outperforms all the baselines in the task of detoxification, positive sentiment steering, and text simplification while minimizing the loss in linguistic qualities. Further, our approach has the lowest inference latency of only 0.01 seconds more than the base model, making it the most suitable for high-performance production environments. We open-source our code and release two novel datasets to further propel controlled language generation research.
+ER  - 

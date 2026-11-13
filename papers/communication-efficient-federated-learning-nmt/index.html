@@ -3,30 +3,32 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Communication-Efficient Federated Learning for Neural Machine Translation | Ankit Chadha</title>
+<title>Communication-Efficient Federated Translation | Ankit Chadha</title>
 <link rel="canonical" href="https://ankitrchadha.com/papers/communication-efficient-federated-learning-nmt/">
+<link rel="alternate" type="application/atom+xml" title="Ankit Chadha publications" href="/feed.xml">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="description" content="To train translation models across separate data owners, the authors share only a few small added &quot;Controller&quot; layers, cutting exchanged parameters about six times with average translation quality slightly above the matched baseline.">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="Ankit Chadha">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Ankit Chadha">
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://ankitrchadha.com/papers/communication-efficient-federated-learning-nmt/">
-<meta property="og:title" content="Communication-Efficient Federated Learning for Neural Machine Translation | Ankit Chadha">
+<meta property="og:title" content="Communication-Efficient Federated Translation | Ankit Chadha">
 <meta property="og:description" content="To train translation models across separate data owners, the authors share only a few small added &quot;Controller&quot; layers, cutting exchanged parameters about six times with average translation quality slightly above the matched baseline.">
 <meta property="og:image" content="https://ankitrchadha.com/assets/img/cards/communication-efficient-federated-learning-nmt-1200x630.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Only the inserted Controller layers are trained and sent to the server; the original Transformer layers stay frozen.">
+<meta property="og:image:alt" content="Communication-Efficient Federated Learning for Neural Machine Translation. NeurIPS 2021 ENLSP Workshop. By Tanya Roosta, Peyman Passban, Ankit Chadha.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@ankitrchadha">
 <meta name="twitter:creator" content="@ankitrchadha">
-<meta name="twitter:title" content="Communication-Efficient Federated Learning for Neural Machine Translation | Ankit Chadha">
+<meta name="twitter:title" content="Communication-Efficient Federated Translation | Ankit Chadha">
 <meta name="twitter:description" content="To train translation models across separate data owners, the authors share only a few small added &quot;Controller&quot; layers, cutting exchanged parameters about six times with average translation quality slightly above the matched baseline.">
 <meta name="twitter:image" content="https://ankitrchadha.com/assets/img/cards/communication-efficient-federated-learning-nmt-1200x630.jpg">
-<meta name="twitter:image:alt" content="Only the inserted Controller layers are trained and sent to the server; the original Transformer layers stay frozen.">
+<meta name="twitter:image:alt" content="Communication-Efficient Federated Learning for Neural Machine Translation. NeurIPS 2021 ENLSP Workshop. By Tanya Roosta, Peyman Passban, Ankit Chadha.">
 <meta name="citation_title" content="Communication-Efficient Federated Learning for Neural Machine Translation">
 <meta name="citation_author" content="Roosta, Tanya">
 <meta name="citation_author" content="Passban, Peyman">
@@ -46,6 +48,7 @@
 <meta name="DC.issued" content="2021">
 <meta name="DC.relation.ispartof" content="NeurIPS 2021 Workshop on Efficient Natural Language and Speech Processing">
 <meta name="DC.identifier" content="https://ankitrchadha.com/papers/communication-efficient-federated-learning-nmt/communication-efficient-federated-nmt.pdf">
+<meta name="DC.identifier" content="https://ankitrchadha.com/papers/communication-efficient-federated-learning-nmt/">
 <meta name="DC.language" content="en">
 <meta property="article:modified_time" content="2026-11-13T00:00:00Z">
 <meta property="article:author" content="https://ankitrchadha.com/">
@@ -168,6 +171,19 @@ nav.crumb a:hover{text-decoration:underline}
  background:var(--tint)}
 .actions a:first-child{border-color:var(--acc2);color:var(--acc);font-weight:600;
  background:var(--tint)}
+.citation-tools{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;
+ font-size:13.5px;margin:16px 0}
+.citation-tools button{font:inherit;padding:7px 12px;border:1px solid var(--acc2);
+ border-radius:6px;background:var(--tint);color:var(--acc);cursor:pointer}
+.copy-status{color:var(--mut);font-size:12.5px}
+.paper-links{display:flex;flex-wrap:wrap;gap:14px;margin:10px 0 0;font-size:12.5px}
+.publication-search{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px}
+.publication-search input,.publication-search select{font:inherit;font-size:14px;
+ padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:#fff;
+ color:var(--ink);max-width:100%}
+.publication-search input{flex:1 1 240px;min-width:0}
+.publication-search select{flex:0 1 180px}
+[hidden]{display:none!important}
 
 /* ---- the two signature blocks ---- */
 .tldr{margin:28px 0 2px;border-left:3px solid var(--acc);padding:1px 0 1px 21px}
@@ -565,6 +581,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
     "non-iid data"
   ],
   "image": [
+    "https://ankitrchadha.com/assets/img/cards/communication-efficient-federated-learning-nmt-1200x630.jpg",
     "https://ankitrchadha.com/assets/img/figs/2112.06135.jpg"
   ],
   "encoding": {
@@ -612,7 +629,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site"><div class="wrap">
-<a class="who" href="/" aria-label="Ankit Chadha, home">AC</a>
+<a class="who" href="/" aria-label="Ankit Chadha, home">Ankit Chadha</a>
 <nav aria-label="Site"><a href="/">About</a> <a href="/research/">Research</a> <a href="/publications/">Publications</a> <a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me">Scholar</a> <a href="/contact/">Contact me</a></nav>
 </div></header>
 <main class="wrap" id="main">
@@ -624,8 +641,9 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <p class="actions"><a href="communication-efficient-federated-nmt.pdf"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4 M10 17v-5h1.6a1.7 1.7 0 0 1 0 3.4H10"/></svg>PDF</a>
 <a href="https://arxiv.org/abs/2112.06135" rel="noopener"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M14 4h6v6 M20 4 11 13 M18 14v5H5V6h5"/></svg>arXiv</a>
 <a href="https://www.amazon.science/publications/communication-efficient-federated-learning-for-neural-machine-translation" rel="noopener"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 5.5C4 4.1 6.7 3 10 3s6 1.1 6 2.5V21c0-1.4-2.7-2.5-6-2.5S4 19.6 4 21z M16 5.5C16 4.1 17.3 3 19 3v15.5c-1.7 0-3 1.1-3 2.5"/></svg>Publisher page</a>
-<a href="#cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>BibTeX</a></p>
+<a href="#cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>Cite</a></p>
 <p class="tiny note">No public code or dataset is listed for this paper.</p>
+<p class="tiny paper-citations"><a href="https://scholar.google.com/scholar?oi=bibs&amp;hl=en&amp;cites=16906235483303695737" rel="noopener" title="Google Scholar: 11 citations, checked 2026-11-13">11 citations</a> on Google Scholar. Checked <time datetime="2026-11-13">2026-11-13</time>.</p>
 <div class="tldr"><span class="lab">In one sentence</span><p>To train translation models across separate data owners, the authors share only a few small added &quot;Controller&quot; layers, cutting exchanged parameters about six times with average translation quality slightly above the matched baseline.</p></div>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4"/></svg>Abstract</h2>
 <p class="abs">Training neural machine translation (NMT) models in federated learning (FL) settings could be inefficient both computationally and communication-wise, due to the large size of translation engines as well as the multiple rounds of updates required to train clients and a central server. In this paper, we explore how to efficiently build NMT models in an FL setup by proposing a novel solution. In order to reduce the communication overhead, out of all neural layers we only exchange what we term “Controller” layers. Controllers are a small number of additional neural components connected to our pre-trained architectures. These new components are placed in between original layers. They act as liaisons to communicate with the central server and learn minimal information that is sufficient enough to update clients. We evaluated the performance of our models on five datasets from different domains to translate from German into English. We noted that the models equipped with Controllers preform on par with those trained in a central and non-FL setting. In addition, we observed a substantial reduction in the communication traffic of the FL pipeline, which is a direct consequence of using Controllers. Based on our experiments, Controller-based models are ∼ 6 times less expensive than their other peers. This reduction is significantly important when we consider the number of parameters in large models and it becomes even more critical when such parameters need to be exchanged for multiple rounds in FL settings.</p>
@@ -655,7 +673,8 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <p>The results point to useful next questions: The Controller models lose to both comparators in our own tables, <span class="n">29.46</span> BLEU against <span class="n">33.83</span> for full-parameter federated training and <span class="n">32.00</span> for centralized fine-tuning, so &quot;on par&quot; is generous. The roughly 6 times saving is a parameter count, not measured bytes on the wire or wall-clock time. No comparison against the standard communication-efficiency baselines such as sparsification or quantization, and the adapter comparison is qualitative with no numbers. Controllers are adapter-style layers under a new name, which the paper acknowledges.</p></section>
 <h2 id="cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>How to cite</h2>
 <p>Tanya Roosta, Peyman Passban, and Ankit Chadha. 2021. Communication-Efficient Federated Learning for Neural Machine Translation. In <em>NeurIPS 2021 Workshop on Efficient Natural Language and Speech Processing</em>.</p>
-<pre><code>@inproceedings{roosta2021communication,
+<p class="citation-tools"><button type="button" class="copy-citation" hidden>Copy BibTeX</button><a href="communication-efficient-federated-learning-nmt.bib" download>Download BibTeX</a><a href="communication-efficient-federated-learning-nmt.ris" download>RIS (Zotero / EndNote)</a><a href="communication-efficient-federated-learning-nmt.json" download>CSL JSON</a><span class="copy-status" role="status" aria-live="polite"></span></p>
+<pre id="bibtex"><code>@inproceedings{roosta2021communication,
   title         = {Communication-Efficient Federated Learning for Neural Machine Translation},
   author        = {Roosta, Tanya and Passban, Peyman and Chadha, Ankit},
   booktitle     = {Proceedings of the 1st Workshop on Efficient Natural Language and Speech Processing (ENLSP), 35th Conference on Neural Information Processing Systems (NeurIPS 2021)},
@@ -665,7 +684,6 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
   primaryClass  = {cs.CL},
   url           = {https://arxiv.org/abs/2112.06135}
 }</code></pre>
-<p class="small"><a href="communication-efficient-federated-learning-nmt.bib" download><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>Download BibTeX</a></p>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 15l6-6 M11 6l1.5-1.5a4.2 4.2 0 0 1 6 6L17 12 M13 18l-1.5 1.5a4.2 4.2 0 0 1-6-6L7 12"/></svg>Related work of mine</h2>
 <ul class="tl">
 <li><a href="/papers/federated-learning-mixed-domain-translation/">Training Mixed-Domain Translation Models via Federated Learning</a><span class="v">NAACL 2022 (Main Conference)</span></li>
@@ -679,5 +697,17 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <p class="links"><a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me noopener">Google Scholar</a> &middot; <a href="https://orcid.org/0000-0002-5029-0136" rel="me noopener">ORCID</a> &middot; <a href="https://github.com/ankit-ai" rel="me noopener">GitHub</a> &middot; <a href="https://www.linkedin.com/in/ankitrc/" rel="me noopener">LinkedIn</a> &middot; <a href="https://aclanthology.org/people/ankit-chadha/" rel="me noopener">ACL Anthology</a> &middot; <a href="https://openalex.org/A5027218595" rel="me noopener">OpenAlex</a> &middot; <a href="https://www.amazon.science/author/ankit-chadha" rel="me noopener">Amazon Science</a> &middot; <a href="https://x.com/ankitrchadha" rel="me noopener">X</a></p>
 <p class="fine">Ankit Chadha, California.</p>
 </div></footer>
+<script>
+const copyButton=document.querySelector('.copy-citation');
+if(copyButton&&navigator.clipboard){
+ copyButton.hidden=false;
+ copyButton.addEventListener('click',async()=>{
+  const status=document.querySelector('.copy-status');
+  try{await navigator.clipboard.writeText(document.querySelector('#bibtex code').textContent);
+   status.textContent='BibTeX copied.';}
+  catch{status.textContent='Use Download BibTeX or select the citation below.';}
+ });
+}
+</script>
 </body>
 </html>

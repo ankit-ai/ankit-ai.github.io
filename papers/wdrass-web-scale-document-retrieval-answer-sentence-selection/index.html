@@ -3,30 +3,32 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WDRASS: A Web-scale Dataset for Document Retrieval and Answer Sentence Selection | Ankit Chadha</title>
+<title>WDRASS: Web-Scale Retrieval and Answer Selection | Ankit Chadha</title>
 <link rel="canonical" href="https://ankitrchadha.com/papers/wdrass-web-scale-document-retrieval-answer-sentence-selection/">
+<link rel="alternate" type="application/atom+xml" title="Ankit Chadha publications" href="/feed.xml">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="description" content="WDRASS introduced a web-scale open-domain question answering dataset for document retrieval, dense passage retrieval, reranking, and answer sentence selection over 30 million documents.">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="Ankit Chadha">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Ankit Chadha">
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://ankitrchadha.com/papers/wdrass-web-scale-document-retrieval-answer-sentence-selection/">
-<meta property="og:title" content="WDRASS: A Web-scale Dataset for Document Retrieval and Answer Sentence Selection | Ankit Chadha">
+<meta property="og:title" content="WDRASS: Web-Scale Retrieval and Answer Selection | Ankit Chadha">
 <meta property="og:description" content="WDRASS introduced a web-scale open-domain question answering dataset for document retrieval, dense passage retrieval, reranking, and answer sentence selection over 30 million documents.">
 <meta property="og:image" content="https://ankitrchadha.com/assets/img/cards/wdrass-web-scale-document-retrieval-answer-sentence-selection-1200x630.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Web index retrieves candidates, annotators label answer sentences, then those labels propagate back to passages and docs.">
+<meta property="og:image:alt" content="WDRASS: A Web-scale Dataset for Document Retrieval and Answer Sentence Selection. CIKM 2022. By Zeyu Zhang, Thuy Vu, Sunil Gandhi, Ankit Chadha, Alessandro Moschitti.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@ankitrchadha">
 <meta name="twitter:creator" content="@ankitrchadha">
-<meta name="twitter:title" content="WDRASS: A Web-scale Dataset for Document Retrieval and Answer Sentence Selection | Ankit Chadha">
+<meta name="twitter:title" content="WDRASS: Web-Scale Retrieval and Answer Selection | Ankit Chadha">
 <meta name="twitter:description" content="WDRASS introduced a web-scale open-domain question answering dataset for document retrieval, dense passage retrieval, reranking, and answer sentence selection over 30 million documents.">
 <meta name="twitter:image" content="https://ankitrchadha.com/assets/img/cards/wdrass-web-scale-document-retrieval-answer-sentence-selection-1200x630.jpg">
-<meta name="twitter:image:alt" content="Web index retrieves candidates, annotators label answer sentences, then those labels propagate back to passages and docs.">
+<meta name="twitter:image:alt" content="WDRASS: A Web-scale Dataset for Document Retrieval and Answer Sentence Selection. CIKM 2022. By Zeyu Zhang, Thuy Vu, Sunil Gandhi, Ankit Chadha, Alessandro Moschitti.">
 <meta name="citation_title" content="WDRASS: A Web-scale Dataset for Document Retrieval and Answer Sentence Selection">
 <meta name="citation_author" content="Zhang, Zeyu">
 <meta name="citation_author" content="Vu, Thuy">
@@ -51,6 +53,10 @@
 <meta name="DC.issued" content="2022-10-17">
 <meta name="DC.relation.ispartof" content="Proceedings of the 31st ACM International Conference on Information &amp; Knowledge Management (CIKM &#x27;22)">
 <meta name="DC.identifier" content="https://ankitrchadha.com/papers/wdrass-web-scale-document-retrieval-answer-sentence-selection/wdrass.pdf">
+<meta name="DC.identifier" content="https://ankitrchadha.com/papers/wdrass-web-scale-document-retrieval-answer-sentence-selection/">
+<meta name="DC.identifier" content="https://doi.org/10.1145/3511808.3557678">
+<meta name="DC.publisher" content="Association for Computing Machinery">
+<meta name="DC.rights" content="https://creativecommons.org/licenses/by/4.0/">
 <meta name="DC.language" content="en">
 <meta property="article:published_time" content="2022-10-17T00:00:00Z">
 <meta property="article:modified_time" content="2026-11-13T00:00:00Z">
@@ -174,6 +180,19 @@ nav.crumb a:hover{text-decoration:underline}
  background:var(--tint)}
 .actions a:first-child{border-color:var(--acc2);color:var(--acc);font-weight:600;
  background:var(--tint)}
+.citation-tools{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;
+ font-size:13.5px;margin:16px 0}
+.citation-tools button{font:inherit;padding:7px 12px;border:1px solid var(--acc2);
+ border-radius:6px;background:var(--tint);color:var(--acc);cursor:pointer}
+.copy-status{color:var(--mut);font-size:12.5px}
+.paper-links{display:flex;flex-wrap:wrap;gap:14px;margin:10px 0 0;font-size:12.5px}
+.publication-search{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px}
+.publication-search input,.publication-search select{font:inherit;font-size:14px;
+ padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:#fff;
+ color:var(--ink);max-width:100%}
+.publication-search input{flex:1 1 240px;min-width:0}
+.publication-search select{flex:0 1 180px}
+[hidden]{display:none!important}
 
 /* ---- the two signature blocks ---- */
 .tldr{margin:28px 0 2px;border-left:3px solid var(--acc);padding:1px 0 1px 21px}
@@ -581,6 +600,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
     "web-scale information retrieval"
   ],
   "image": [
+    "https://ankitrchadha.com/assets/img/cards/wdrass-web-scale-document-retrieval-answer-sentence-selection-1200x630.jpg",
     "https://ankitrchadha.com/assets/img/figs/wdrass.jpg"
   ],
   "encoding": {
@@ -635,7 +655,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site"><div class="wrap">
-<a class="who" href="/" aria-label="Ankit Chadha, home">AC</a>
+<a class="who" href="/" aria-label="Ankit Chadha, home">Ankit Chadha</a>
 <nav aria-label="Site"><a href="/">About</a> <a href="/research/">Research</a> <a href="/publications/">Publications</a> <a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me">Scholar</a> <a href="/contact/">Contact me</a></nav>
 </div></header>
 <main class="wrap" id="main">
@@ -647,8 +667,9 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <p class="actions"><a href="wdrass.pdf"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4 M10 17v-5h1.6a1.7 1.7 0 0 1 0 3.4H10"/></svg>PDF</a>
 <a href="https://doi.org/10.1145/3511808.3557678" rel="noopener"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 15l6-6 M11 6l1.5-1.5a4.2 4.2 0 0 1 6 6L17 12 M13 18l-1.5 1.5a4.2 4.2 0 0 1-6-6L7 12"/></svg>DOI</a>
 <a href="https://doi.org/10.1145/3511808.3557678" rel="noopener"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 5.5C4 4.1 6.7 3 10 3s6 1.1 6 2.5V21c0-1.4-2.7-2.5-6-2.5S4 19.6 4 21z M16 5.5C16 4.1 17.3 3 19 3v15.5c-1.7 0-3 1.1-3 2.5"/></svg>Publisher page</a>
-<a href="#cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>BibTeX</a></p>
+<a href="#cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>Cite</a></p>
 <p class="tiny note">No public code or dataset is listed for this paper.</p>
+<p class="tiny paper-citations"><a href="https://scholar.google.com/scholar?oi=bibs&amp;hl=en&amp;cites=13050066740109043859" rel="noopener" title="Google Scholar: 19 citations, checked 2026-11-13">19 citations</a> on Google Scholar. Checked <time datetime="2026-11-13">2026-11-13</time>.</p>
 <div class="tldr"><span class="lab">In one sentence</span><p>WDRASS introduced a web-scale open-domain question answering dataset with 64,000 questions and 800,000+ labeled passages and sentences drawn from 30 million documents.</p></div>
 <p class="contribution"><span class="lab">Research contribution</span>Introduced a web-scale dataset that connects document retrieval, passage reranking, and answer sentence selection using complete sentence-level answers rather than short answer matching.</p>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4"/></svg>Abstract</h2>
@@ -679,7 +700,8 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <p>The results point to useful next questions: The retrieval comparison against Natural Questions is measured only on our own test set, and the paper says why: that test set is not a random sample of NQ data. There is no reverse evaluation on NQ, and no comparison against BM25, ColBERT, or any dense retriever other than DPR. The gap also closes to about 2 points by K equals 5,000. Quote the tables rather than the prose: Section 4.3 and Table 4 disagree on the accuracy gains, and the corpus size is stated four different ways across the paper.</p></section>
 <h2 id="cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>How to cite</h2>
 <p>Zeyu Zhang, Thuy Vu, Sunil Gandhi, Ankit Chadha, and Alessandro Moschitti. 2022. WDRASS: A Web-scale Dataset for Document Retrieval and Answer Sentence Selection. In <em>Proceedings of the 31st ACM International Conference on Information &amp; Knowledge Management (CIKM &#x27;22)</em>, pages 4707&ndash;4711.</p>
-<pre><code>@inproceedings{zhang2022wdrass,
+<p class="citation-tools"><button type="button" class="copy-citation" hidden>Copy BibTeX</button><a href="wdrass-web-scale-document-retrieval-answer-sentence-selection.bib" download>Download BibTeX</a><a href="wdrass-web-scale-document-retrieval-answer-sentence-selection.ris" download>RIS (Zotero / EndNote)</a><a href="wdrass-web-scale-document-retrieval-answer-sentence-selection.json" download>CSL JSON</a><span class="copy-status" role="status" aria-live="polite"></span></p>
+<pre id="bibtex"><code>@inproceedings{zhang2022wdrass,
   author    = {Zhang, Zeyu and Vu, Thuy and Gandhi, Sunil and Chadha, Ankit and Moschitti, Alessandro},
   title     = {{WDRASS}: A Web-scale Dataset for Document Retrieval and Answer Sentence Selection},
   booktitle = {Proceedings of the 31st ACM International Conference on Information and Knowledge Management (CIKM &#x27;22)},
@@ -692,7 +714,6 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
   doi       = {10.1145/3511808.3557678},
   url       = {https://doi.org/10.1145/3511808.3557678}
 }</code></pre>
-<p class="small"><a href="wdrass-web-scale-document-retrieval-answer-sentence-selection.bib" download><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>Download BibTeX</a></p>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 15l6-6 M11 6l1.5-1.5a4.2 4.2 0 0 1 6 6L17 12 M13 18l-1.5 1.5a4.2 4.2 0 0 1-6-6L7 12"/></svg>Related work of mine</h2>
 <ul class="tl">
 <li><a href="/papers/cross-lingual-knowledge-distillation-answer-sentence-selection/">Cross-Lingual Knowledge Distillation for Answer Sentence Selection in Low-Resource Languages</a><span class="v">Findings of ACL 2023</span></li>
@@ -706,5 +727,17 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <p class="links"><a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me noopener">Google Scholar</a> &middot; <a href="https://orcid.org/0000-0002-5029-0136" rel="me noopener">ORCID</a> &middot; <a href="https://github.com/ankit-ai" rel="me noopener">GitHub</a> &middot; <a href="https://www.linkedin.com/in/ankitrc/" rel="me noopener">LinkedIn</a> &middot; <a href="https://aclanthology.org/people/ankit-chadha/" rel="me noopener">ACL Anthology</a> &middot; <a href="https://openalex.org/A5027218595" rel="me noopener">OpenAlex</a> &middot; <a href="https://www.amazon.science/author/ankit-chadha" rel="me noopener">Amazon Science</a> &middot; <a href="https://x.com/ankitrchadha" rel="me noopener">X</a></p>
 <p class="fine">Ankit Chadha, California.</p>
 </div></footer>
+<script>
+const copyButton=document.querySelector('.copy-citation');
+if(copyButton&&navigator.clipboard){
+ copyButton.hidden=false;
+ copyButton.addEventListener('click',async()=>{
+  const status=document.querySelector('.copy-status');
+  try{await navigator.clipboard.writeText(document.querySelector('#bibtex code').textContent);
+   status.textContent='BibTeX copied.';}
+  catch{status.textContent='Use Download BibTeX or select the citation below.';}
+ });
+}
+</script>
 </body>
 </html>

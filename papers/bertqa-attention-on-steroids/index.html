@@ -3,30 +3,32 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BERTQA -- Attention on Steroids | Ankit Chadha</title>
+<title>BERTQA: Attention on Steroids | Ankit Chadha</title>
 <link rel="canonical" href="https://ankitrchadha.com/papers/bertqa-attention-on-steroids/">
+<link rel="alternate" type="application/atom+xml" title="Ankit Chadha publications" href="/feed.xml">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="description" content="Adds two extra attention layers to BERT so a question and its passage look at each other directly, which lifts SQuAD 2.0 dev F1 from 74.15 to 77.03 on the base model.">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="Ankit Chadha">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Ankit Chadha">
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://ankitrchadha.com/papers/bertqa-attention-on-steroids/">
-<meta property="og:title" content="BERTQA -- Attention on Steroids | Ankit Chadha">
+<meta property="og:title" content="BERTQA: Attention on Steroids | Ankit Chadha">
 <meta property="og:description" content="Adds two extra attention layers to BERT so a question and its passage look at each other directly, which lifts SQuAD 2.0 dev F1 from 74.15 to 77.03 on the base model.">
 <meta property="og:image" content="https://ankitrchadha.com/assets/img/cards/bertqa-attention-on-steroids-1200x630.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="BERT embeddings are split into query and context, then passed through 7 directed C2Q/Q2C coattention blocks.">
+<meta property="og:image:alt" content="BERTQA -- Attention on Steroids. arXiv preprint. By Ankit Chadha, Rewa Sood.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@ankitrchadha">
 <meta name="twitter:creator" content="@ankitrchadha">
-<meta name="twitter:title" content="BERTQA -- Attention on Steroids | Ankit Chadha">
+<meta name="twitter:title" content="BERTQA: Attention on Steroids | Ankit Chadha">
 <meta name="twitter:description" content="Adds two extra attention layers to BERT so a question and its passage look at each other directly, which lifts SQuAD 2.0 dev F1 from 74.15 to 77.03 on the base model.">
 <meta name="twitter:image" content="https://ankitrchadha.com/assets/img/cards/bertqa-attention-on-steroids-1200x630.jpg">
-<meta name="twitter:image:alt" content="BERT embeddings are split into query and context, then passed through 7 directed C2Q/Q2C coattention blocks.">
+<meta name="twitter:image:alt" content="BERTQA -- Attention on Steroids. arXiv preprint. By Ankit Chadha, Rewa Sood.">
 <meta name="citation_title" content="BERTQA -- Attention on Steroids">
 <meta name="citation_author" content="Chadha, Ankit">
 <meta name="citation_author" content="Sood, Rewa">
@@ -43,6 +45,8 @@
 <meta name="DC.creator" content="Sood, Rewa">
 <meta name="DC.issued" content="2019-12-14">
 <meta name="DC.identifier" content="https://ankitrchadha.com/papers/bertqa-attention-on-steroids/bertqa-attention-on-steroids.pdf">
+<meta name="DC.identifier" content="https://ankitrchadha.com/papers/bertqa-attention-on-steroids/">
+<meta name="DC.identifier" content="https://doi.org/10.48550/arXiv.1912.10435">
 <meta name="DC.language" content="en">
 <meta property="article:published_time" content="2019-12-14T00:00:00Z">
 <meta property="article:modified_time" content="2026-11-13T00:00:00Z">
@@ -166,6 +170,19 @@ nav.crumb a:hover{text-decoration:underline}
  background:var(--tint)}
 .actions a:first-child{border-color:var(--acc2);color:var(--acc);font-weight:600;
  background:var(--tint)}
+.citation-tools{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;
+ font-size:13.5px;margin:16px 0}
+.citation-tools button{font:inherit;padding:7px 12px;border:1px solid var(--acc2);
+ border-radius:6px;background:var(--tint);color:var(--acc);cursor:pointer}
+.copy-status{color:var(--mut);font-size:12.5px}
+.paper-links{display:flex;flex-wrap:wrap;gap:14px;margin:10px 0 0;font-size:12.5px}
+.publication-search{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px}
+.publication-search input,.publication-search select{font:inherit;font-size:14px;
+ padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:#fff;
+ color:var(--ink);max-width:100%}
+.publication-search input{flex:1 1 240px;min-width:0}
+.publication-search select{flex:0 1 180px}
+[hidden]{display:none!important}
 
 /* ---- the two signature blocks ---- */
 .tldr{margin:28px 0 2px;border-left:3px solid var(--acc);padding:1px 0 1px 21px}
@@ -559,6 +576,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
     "model ensembling"
   ],
   "image": [
+    "https://ankitrchadha.com/assets/img/cards/bertqa-attention-on-steroids-1200x630.jpg",
     "https://ankitrchadha.com/assets/img/figs/1912.10435.jpg"
   ],
   "encoding": {
@@ -608,7 +626,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site"><div class="wrap">
-<a class="who" href="/" aria-label="Ankit Chadha, home">AC</a>
+<a class="who" href="/" aria-label="Ankit Chadha, home">Ankit Chadha</a>
 <nav aria-label="Site"><a href="/">About</a> <a href="/research/">Research</a> <a href="/publications/">Publications</a> <a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me">Scholar</a> <a href="/contact/">Contact me</a></nav>
 </div></header>
 <main class="wrap" id="main">
@@ -620,8 +638,9 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <p class="actions"><a href="bertqa-attention-on-steroids.pdf"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4 M10 17v-5h1.6a1.7 1.7 0 0 1 0 3.4H10"/></svg>PDF</a>
 <a href="https://arxiv.org/abs/1912.10435" rel="noopener"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M14 4h6v6 M20 4 11 13 M18 14v5H5V6h5"/></svg>arXiv</a>
 <a href="https://github.com/ankit-ai/BertQA-Attention-on-Steroids" rel="noopener"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9.5 8 5 12l4.5 4 M14.5 8 19 12l-4.5 4"/></svg>Code</a>
-<a href="#cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>BibTeX</a></p>
+<a href="#cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>Cite</a></p>
 <p class="tiny note">Public code is linked above; no public dataset is listed.</p>
+<p class="tiny paper-citations"><a href="https://scholar.google.com/scholar?oi=bibs&amp;hl=en&amp;cites=4516888205253870960" rel="noopener" title="Google Scholar: 11 citations, checked 2026-11-13">11 citations</a> on Google Scholar. Checked <time datetime="2026-11-13">2026-11-13</time>.</p>
 <div class="tldr"><span class="lab">In one sentence</span><p>Adds two extra attention layers to BERT so a question and its passage look at each other directly, which lifts SQuAD 2.0 dev F1 from <span class="n">74.15</span> to <span class="n">77.03</span> on the base model.</p></div>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4"/></svg>Abstract</h2>
 <p class="abs">In this work, we extend the Bidirectional Encoder Representations from Transformers (BERT) with an emphasis on directed coattention to obtain an improved F1 performance on the SQUAD2.0 dataset. The Transformer architecture on which BERT is based places hierarchical global attention on the concatenation of the context and query. Our additions to the BERT architecture augment this attention with a more focused context to query (C2Q) and query to context (Q2C) attention via a set of modified Transformer encoder units. In addition, we explore adding convolution based feature extraction within the coattention architecture to add localized information to self-attention. We found that coattention significantly improves the no answer F1 by 4 points in the base and 1 point in the large architecture. After adding skip connections the no answer F1 improved further without causing an additional loss in has answer F1. The addition of localized feature extraction added to attention produced an overall dev F1 of 77.03 in the base architecture. We applied our findings to the large BERT model which contains twice as many layers and further used our own augmented version of the SQUAD 2.0 dataset created by back translation, which we have named SQUAD 2.Q. Finally, we performed hyperparameter tuning and ensembled our best models for a final F1/EM of 82.317/79.442 (Attention on Steroids, PCE Test Leaderboard).</p>
@@ -651,7 +670,8 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <p>The results point to useful next questions: This is a Stanford CS224n course project report from March 2019, posted to arXiv nine months later. It is not a peer-reviewed paper and should not be read as one. Single runs on one dataset, no seeds or error bars, and no comparison against the 2019 leaders such as XLNet or RoBERTa. The conclusion claims a <span class="n">3.5</span> point ensemble gain; the table shows <span class="n">2.84</span>. The headline test numbers are from the internal course leaderboard, not the public SQuAD 2.0 one. Answerable-question F1 never beats the baseline, so the gains come almost entirely from predicting &quot;no answer&quot; better.</p></section>
 <h2 id="cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>How to cite</h2>
 <p>Ankit Chadha and Rewa Sood. 2019. BERTQA -- Attention on Steroids. arXiv:1912.10435.</p>
-<pre><code>@misc{chadha2019bertqa,
+<p class="citation-tools"><button type="button" class="copy-citation" hidden>Copy BibTeX</button><a href="bertqa-attention-on-steroids.bib" download>Download BibTeX</a><a href="bertqa-attention-on-steroids.ris" download>RIS (Zotero / EndNote)</a><a href="bertqa-attention-on-steroids.json" download>CSL JSON</a><span class="copy-status" role="status" aria-live="polite"></span></p>
+<pre id="bibtex"><code>@misc{chadha2019bertqa,
   title         = {{BERTQA} - Attention on Steroids},
   author        = {Ankit Chadha and Rewa Sood},
   year          = {2019},
@@ -661,7 +681,6 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
   url           = {https://arxiv.org/abs/1912.10435},
   note          = {Stanford CS224n Pre-trained Contextual Embeddings course project report, dated March 17, 2019}
 }</code></pre>
-<p class="small"><a href="bertqa-attention-on-steroids.bib" download><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>Download BibTeX</a></p>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 15l6-6 M11 6l1.5-1.5a4.2 4.2 0 0 1 6 6L17 12 M13 18l-1.5 1.5a4.2 4.2 0 0 1-6-6L7 12"/></svg>Related work of mine</h2>
 <ul class="tl">
 <li><a href="/papers/dr-sas-deep-reinforced-self-attention-masks/">Deep Reinforced Self-Attention Masks for Abstractive Summarization (DR.SAS)</a><span class="v">arXiv preprint</span></li>
@@ -675,5 +694,17 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <p class="links"><a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me noopener">Google Scholar</a> &middot; <a href="https://orcid.org/0000-0002-5029-0136" rel="me noopener">ORCID</a> &middot; <a href="https://github.com/ankit-ai" rel="me noopener">GitHub</a> &middot; <a href="https://www.linkedin.com/in/ankitrc/" rel="me noopener">LinkedIn</a> &middot; <a href="https://aclanthology.org/people/ankit-chadha/" rel="me noopener">ACL Anthology</a> &middot; <a href="https://openalex.org/A5027218595" rel="me noopener">OpenAlex</a> &middot; <a href="https://www.amazon.science/author/ankit-chadha" rel="me noopener">Amazon Science</a> &middot; <a href="https://x.com/ankitrchadha" rel="me noopener">X</a></p>
 <p class="fine">Ankit Chadha, California.</p>
 </div></footer>
+<script>
+const copyButton=document.querySelector('.copy-citation');
+if(copyButton&&navigator.clipboard){
+ copyButton.hidden=false;
+ copyButton.addEventListener('click',async()=>{
+  const status=document.querySelector('.copy-status');
+  try{await navigator.clipboard.writeText(document.querySelector('#bibtex code').textContent);
+   status.textContent='BibTeX copied.';}
+  catch{status.textContent='Use Download BibTeX or select the citation below.';}
+ });
+}
+</script>
 </body>
 </html>

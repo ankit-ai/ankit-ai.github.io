@@ -1,0 +1,38 @@
+[
+  {
+    "id": "10.18653/v1/2023.findings-acl.885",
+    "type": "paper-conference",
+    "title": "Cross-Lingual Knowledge Distillation for Answer Sentence Selection in Low-Resource Languages",
+    "author": [
+      {
+        "family": "Gupta",
+        "given": "Shivanshu"
+      },
+      {
+        "family": "Matsubara",
+        "given": "Yoshitomo"
+      },
+      {
+        "family": "Chadha",
+        "given": "Ankit"
+      },
+      {
+        "family": "Moschitti",
+        "given": "Alessandro"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "abstract": "While impressive performance has been achieved on the task of Answer Sentence Selection (AS2) for English, the same does not hold for languages that lack large labeled datasets. In this work, we propose Cross-Lingual Knowledge Distillation (CLKD) from a strong English AS2 teacher as a method to train AS2 models for low-resource languages in the tasks without the need of labeled data for the target language. To evaluate our method, we introduce 1) Xtr-WikiQA, a translation-based WikiQA dataset for 9 additional languages, and 2) TyDi-AS2, a multilingual AS2 dataset with over 70K questions spanning 8 typologically diverse languages. We conduct extensive experiments on Xtr-WikiQA and TyDi-AS2 with multiple teachers, diverse monolingual and multilingual pretrained language models (PLMs) as students, and both monolingual and multilingual training. The results demonstrate that CLKD either outperforms or rivals even supervised fine-tuning with the same amount of labeled data and a combination of machine translation and the teacher model. Our method can potentially enable stronger AS2 models for low-resource languages, while TyDi-AS2 can serve as the largest multilingual AS2 dataset for further studies in the research community.",
+    "URL": "https://aclanthology.org/2023.findings-acl.885/",
+    "DOI": "10.18653/v1/2023.findings-acl.885",
+    "container-title": "Findings of the Association for Computational Linguistics: ACL 2023",
+    "page": "14078-14092",
+    "publisher": "Association for Computational Linguistics"
+  }
+]

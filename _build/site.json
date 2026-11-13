@@ -17,8 +17,8 @@
  "google_site_verification": "",
  "indexnow_key": "56e1fe451f491f75646a90f08e651a86",
  "build_date": "2026-11-13",
- "tagline": "Director of Applied Science at Amazon AGI. I lead science and engineering teams building grounded reasoning for AI agents, agent memory, and web-scale retrieval across text, images, and structured data.",
- "meta_description": "Ankit Chadha is a Director of Applied Science at Amazon AGI working on grounded reasoning for AI agents, agent memory, procedural knowledge graphs, retrieval-augmented generation, and multimodal web-scale search.",
+ "tagline": "Director of Applied Science at Amazon AGI. My research asks how AI agents find reliable evidence, retain useful experience, and keep their knowledge current as the world changes.",
+ "meta_description": "Ankit Chadha, Director of Applied Science at Amazon AGI. Research on agent memory, procedural knowledge graphs, world knowledge drift, grounded reasoning, and web-scale retrieval.",
  "bio": [
   "I lead Applied Science and Engineering teams at Amazon AGI, turning research in foundation models and agents into systems that work at web scale. My work spans post-training and alignment, multimodal and grounded retrieval, agent memory, and evaluation. A recurring question connects it: how can an AI system find reliable evidence, reason over it, and retain useful experience? Previously I led deep learning work at Salesforce and worked at Apple and Samsung."
  ],
@@ -143,7 +143,7 @@
   "https://openalex.org/A5133906017"
  ],
  "publications_intro": [],
- "earlier_work_note": "These are from my undergraduate years, in electronics and computer engineering rather than AI, and they appeared in low-selectivity, author-pays journals. I list them because they are genuinely mine and because they still account for a large share of my total citations, not because I would submit them anywhere today. Full text for all of them is on arXiv. Note that Aman Chadha, a co-author on two of these, is a different person.",
+ "earlier_work_note": "These are from my undergraduate years, in electronics and computer engineering rather than AI, and they appeared in low-selectivity, author-pays journals. I list them because they are mine, not because I would submit them anywhere today. Most have full text on arXiv. Note that Aman Chadha, a co-author on two of these, is a different person.",
  "same_as_never": {
   "https://arxiv.org/a/chadha_a_1": "Aman Chadha, a different person. No arXiv author ID exists for Ankit Chadha.",
   "https://www.semanticscholar.org/author/143836337": "Contaminated: also holds the Wright State power-electronics and NHS clinician work.",

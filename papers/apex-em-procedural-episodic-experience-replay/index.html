@@ -3,37 +3,42 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay | Ankit Chadha</title>
+<title>APEX-EM: Procedural Experience Replay for Agents | Ankit Chadha</title>
 <link rel="canonical" href="https://ankitrchadha.com/papers/apex-em-procedural-episodic-experience-replay/">
+<link rel="alternate" type="application/atom+xml" title="Ankit Chadha publications" href="/feed.xml">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="description" content="APEX-EM introduced procedural knowledge graphs for LLM agent memory: a typed Procedural Knowledge Graph stores complete procedural-episodic traces for structural retrieval and experience replay.">
+<meta name="description" content="APEX-EM studies procedural-episodic memory for autonomous agents without weight updates. Findings of EMNLP 2026: abstract, results, PDF, and citation.">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="Ankit Chadha">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Ankit Chadha">
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://ankitrchadha.com/papers/apex-em-procedural-episodic-experience-replay/">
-<meta property="og:title" content="APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay | Ankit Chadha">
-<meta property="og:description" content="APEX-EM introduced procedural knowledge graphs for LLM agent memory: a typed Procedural Knowledge Graph stores complete procedural-episodic traces for structural retrieval and experience replay.">
+<meta property="og:title" content="APEX-EM: Procedural Experience Replay for Agents | Ankit Chadha">
+<meta property="og:description" content="APEX-EM studies procedural-episodic memory for autonomous agents without weight updates. Findings of EMNLP 2026: abstract, results, PDF, and citation.">
 <meta property="og:image" content="https://ankitrchadha.com/assets/img/cards/apex-em-procedural-episodic-experience-replay-1200x630.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="PRGII loop: plan, retrieve past successes and failures, generate, iterate, then quality-gate commit into the memory graph.">
+<meta property="og:image:alt" content="APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay. Findings of EMNLP 2026. By Pratyay Banerjee, Masud Moshtaghi, Ankit Chadha.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@ankitrchadha">
 <meta name="twitter:creator" content="@ankitrchadha">
-<meta name="twitter:title" content="APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay | Ankit Chadha">
-<meta name="twitter:description" content="APEX-EM introduced procedural knowledge graphs for LLM agent memory: a typed Procedural Knowledge Graph stores complete procedural-episodic traces for structural retrieval and experience replay.">
+<meta name="twitter:title" content="APEX-EM: Procedural Experience Replay for Agents | Ankit Chadha">
+<meta name="twitter:description" content="APEX-EM studies procedural-episodic memory for autonomous agents without weight updates. Findings of EMNLP 2026: abstract, results, PDF, and citation.">
 <meta name="twitter:image" content="https://ankitrchadha.com/assets/img/cards/apex-em-procedural-episodic-experience-replay-1200x630.jpg">
-<meta name="twitter:image:alt" content="PRGII loop: plan, retrieve past successes and failures, generate, iterate, then quality-gate commit into the memory graph.">
+<meta name="twitter:image:alt" content="APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay. Findings of EMNLP 2026. By Pratyay Banerjee, Masud Moshtaghi, Ankit Chadha.">
 <meta name="citation_title" content="APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay">
 <meta name="citation_author" content="Banerjee, Pratyay">
 <meta name="citation_author" content="Moshtaghi, Masud">
 <meta name="citation_author" content="Chadha, Ankit">
-<meta name="citation_publication_date" content="2026/8/31">
+<meta name="citation_publication_date" content="2026/10">
 <meta name="citation_online_date" content="2026/08/31">
-<meta name="citation_doi" content="10.48550/arXiv.2603.29093">
+<meta name="citation_conference_title" content="Findings of the Association for Computational Linguistics: EMNLP 2026">
+<meta name="citation_firstpage" content="42547">
+<meta name="citation_lastpage" content="42568">
+<meta name="citation_doi" content="10.18653/2026.findings-emnlp.1996">
 <meta name="citation_arxiv_id" content="2603.29093">
 <meta name="citation_pdf_url" content="https://ankitrchadha.com/papers/apex-em-procedural-episodic-experience-replay/apex-em.pdf">
 <meta name="citation_abstract" content="LLM agents rerun full reasoning for every task, even one they solved moments earlier. We introduce APEX-EM, a non-parametric experience memory that stores complete procedural-episodic traces in a typed Procedural Knowledge Graph (PKG) and retrieves them through three channels: semantic search, structural-signature matching over abstract operation sequences, and graph traversal. A Plan-Retrieve-Generate-Iterate-Ingest (PRGII) workflow produces, quality-gates, and commits experiences, indexing both successes and failures so the agent learns what to reuse and what to avoid. No weights change during deployment. We evaluate on five benchmarks: BigCodeBench, KGQAGen-10k, HLE, Lifelong Agent Bench, and ALFWorld. Because prior work uses different backbones, we base our claims on same-backbone comparisons that hold model capability fixed. On held-out BigCodeBench transfer with a shared GPT-4o backbone, APEX-EM gains +7.6 pp over the no-memory baseline, 3.3× MemRL’s +2.3 pp under the identical setup. On Lifelong Agent Bench with a shared GPT-4o-mini backbone, it gains +1.4 pp (OS) and +1.0 pp (DB) cumulative success. On KGQAGen-10k, frozen memory transfers to a blind 1,079-question test split at 73.7% versus 42.0% with no memory, approaching an oracle handed the ground-truth subgraph (84.9%). Across three Opus scales the memory gain stays at +27 to +32 pp, so it adds to model capability rather than substituting for it. Component analysis shows no single mechanism dominates: teacher feedback is negligible for code but adds +10.3 pp on structured queries, structural signatures give 3.3× the transfer of semantic-only retrieval, and within-epoch iteration recovers most of the gain when rich feedback is unavailable. These results argue for modular memory composed per domain.">
@@ -43,10 +48,14 @@
 <meta name="DC.creator" content="Banerjee, Pratyay">
 <meta name="DC.creator" content="Moshtaghi, Masud">
 <meta name="DC.creator" content="Chadha, Ankit">
-<meta name="DC.issued" content="2026-08-31">
+<meta name="DC.issued" content="2026-10">
+<meta name="DC.relation.ispartof" content="Findings of the Association for Computational Linguistics: EMNLP 2026">
 <meta name="DC.identifier" content="https://ankitrchadha.com/papers/apex-em-procedural-episodic-experience-replay/apex-em.pdf">
+<meta name="DC.identifier" content="https://ankitrchadha.com/papers/apex-em-procedural-episodic-experience-replay/">
+<meta name="DC.identifier" content="https://doi.org/10.18653/2026.findings-emnlp.1996">
+<meta name="DC.publisher" content="Association for Computational Linguistics">
+<meta name="DC.rights" content="https://creativecommons.org/licenses/by/4.0/">
 <meta name="DC.language" content="en">
-<meta property="article:published_time" content="2026-08-31T00:00:00Z">
 <meta property="article:modified_time" content="2026-11-13T00:00:00Z">
 <meta property="article:author" content="https://ankitrchadha.com/">
 <meta property="article:tag" content="llm agent memory">
@@ -168,6 +177,19 @@ nav.crumb a:hover{text-decoration:underline}
  background:var(--tint)}
 .actions a:first-child{border-color:var(--acc2);color:var(--acc);font-weight:600;
  background:var(--tint)}
+.citation-tools{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;
+ font-size:13.5px;margin:16px 0}
+.citation-tools button{font:inherit;padding:7px 12px;border:1px solid var(--acc2);
+ border-radius:6px;background:var(--tint);color:var(--acc);cursor:pointer}
+.copy-status{color:var(--mut);font-size:12.5px}
+.paper-links{display:flex;flex-wrap:wrap;gap:14px;margin:10px 0 0;font-size:12.5px}
+.publication-search{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px}
+.publication-search input,.publication-search select{font:inherit;font-size:14px;
+ padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:#fff;
+ color:var(--ink);max-width:100%}
+.publication-search input{flex:1 1 240px;min-width:0}
+.publication-search select{flex:0 1 180px}
+[hidden]{display:none!important}
 
 /* ---- the two signature blocks ---- */
 .tldr{margin:28px 0 2px;border-left:3px solid var(--acc);padding:1px 0 1px 21px}
@@ -525,7 +547,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
   "abstract": "LLM agents rerun full reasoning for every task, even one they solved moments earlier. We introduce APEX-EM, a non-parametric experience memory that stores complete procedural-episodic traces in a typed Procedural Knowledge Graph (PKG) and retrieves them through three channels: semantic search, structural-signature matching over abstract operation sequences, and graph traversal. A Plan-Retrieve-Generate-Iterate-Ingest (PRGII) workflow produces, quality-gates, and commits experiences, indexing both successes and failures so the agent learns what to reuse and what to avoid. No weights change during deployment. We evaluate on five benchmarks: BigCodeBench, KGQAGen-10k, HLE, Lifelong Agent Bench, and ALFWorld. Because prior work uses different backbones, we base our claims on same-backbone comparisons that hold model capability fixed. On held-out BigCodeBench transfer with a shared GPT-4o backbone, APEX-EM gains +7.6 pp over the no-memory baseline, 3.3× MemRL’s +2.3 pp under the identical setup. On Lifelong Agent Bench with a shared GPT-4o-mini backbone, it gains +1.4 pp (OS) and +1.0 pp (DB) cumulative success. On KGQAGen-10k, frozen memory transfers to a blind 1,079-question test split at 73.7% versus 42.0% with no memory, approaching an oracle handed the ground-truth subgraph (84.9%). Across three Opus scales the memory gain stays at +27 to +32 pp, so it adds to model capability rather than substituting for it. Component analysis shows no single mechanism dominates: teacher feedback is negligible for code but adds +10.3 pp on structured queries, structural signatures give 3.3× the transfer of semantic-only retrieval, and within-epoch iteration recovers most of the gain when rich feedback is unavailable. These results argue for modular memory composed per domain.",
   "description": "APEX-EM introduced procedural knowledge graphs for LLM agent memory: its typed Procedural Knowledge Graph stores complete solution traces and retrieves them by meaning, operation structure, and graph traversal, with no model retraining.",
   "inLanguage": "en",
-  "datePublished": "2026-08-31",
+  "datePublished": "2026-10",
   "dateModified": "2026-11-13",
   "author": [
     {
@@ -569,6 +591,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
     "cross-domain structural retrieval"
   ],
   "image": [
+    "https://ankitrchadha.com/assets/img/cards/apex-em-procedural-episodic-experience-replay-1200x630.jpg",
     "https://ankitrchadha.com/assets/img/figs/2603.29093.jpg"
   ],
   "encoding": {
@@ -576,11 +599,22 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
     "contentUrl": "https://ankitrchadha.com/papers/apex-em-procedural-episodic-experience-replay/apex-em.pdf",
     "encodingFormat": "application/pdf"
   },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Association for Computational Linguistics"
+  },
+  "publication": {
+    "@type": "PublicationEvent",
+    "name": "Findings of the Association for Computational Linguistics: EMNLP 2026"
+  },
+  "pagination": "42547–42568",
+  "pageStart": "42547",
+  "pageEnd": "42568",
   "identifier": [
     {
       "@type": "PropertyValue",
       "propertyID": "DOI",
-      "value": "10.48550/arXiv.2603.29093"
+      "value": "10.18653/2026.findings-emnlp.1996"
     },
     {
       "@type": "PropertyValue",
@@ -589,9 +623,10 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
     }
   ],
   "sameAs": [
-    "https://doi.org/10.48550/arXiv.2603.29093",
+    "https://doi.org/10.18653/2026.findings-emnlp.1996",
     "https://arxiv.org/abs/2603.29093"
   ],
+  "license": "https://creativecommons.org/licenses/by/4.0/",
   "isBasedOn": "https://arxiv.org/abs/2603.29093"
 }
 </script>
@@ -618,7 +653,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site"><div class="wrap">
-<a class="who" href="/" aria-label="Ankit Chadha, home">AC</a>
+<a class="who" href="/" aria-label="Ankit Chadha, home">Ankit Chadha</a>
 <nav aria-label="Site"><a href="/">About</a> <a href="/research/">Research</a> <a href="/publications/">Publications</a> <a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me">Scholar</a> <a href="/contact/">Contact me</a></nav>
 </div></header>
 <main class="wrap" id="main">
@@ -626,11 +661,14 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <article>
 <h1 class="citation_title">APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay</h1>
 <h3 class="citation_author byline">Pratyay Banerjee, Masud Moshtaghi, <strong>Ankit Chadha</strong></h3>
-<p class="venue"><span class="pill">Agent memory</span>EMNLP 2026, accepted, to appear &middot; Amazon<br><span class="tiny">Accepted to EMNLP 2026. The proceedings have not been published yet, so this page cites the arXiv version. arXiv comment field, verified 2026-09-15: &quot;22 pages, 6 figures, Accepted to EMNLP 2026&quot;.</span></p>
+<p class="venue"><span class="pill">Agent memory</span>Findings of EMNLP 2026, pages 42547&ndash;42568 &middot; Amazon</p>
 <p class="actions"><a href="apex-em.pdf"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4 M10 17v-5h1.6a1.7 1.7 0 0 1 0 3.4H10"/></svg>PDF</a>
 <a href="https://arxiv.org/abs/2603.29093" rel="noopener"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M14 4h6v6 M20 4 11 13 M18 14v5H5V6h5"/></svg>arXiv</a>
-<a href="#cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>BibTeX</a></p>
+<a href="https://doi.org/10.18653/2026.findings-emnlp.1996" rel="noopener"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 15l6-6 M11 6l1.5-1.5a4.2 4.2 0 0 1 6 6L17 12 M13 18l-1.5 1.5a4.2 4.2 0 0 1-6-6L7 12"/></svg>DOI</a>
+<a href="https://aclanthology.org/2026.findings-emnlp.1996/" rel="noopener"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 5.5C4 4.1 6.7 3 10 3s6 1.1 6 2.5V21c0-1.4-2.7-2.5-6-2.5S4 19.6 4 21z M16 5.5C16 4.1 17.3 3 19 3v15.5c-1.7 0-3 1.1-3 2.5"/></svg>Publisher page</a>
+<a href="#cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>Cite</a></p>
 <p class="tiny note">No public code or dataset is listed for this paper.</p>
+<p class="tiny paper-citations"><a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=hcslcm0AAAAJ&amp;pagesize=100&amp;citation_for_view=hcslcm0AAAAJ:IWHjjKOFINEC" rel="noopener" title="Google Scholar: No citations listed, checked 2026-11-13">No citations listed</a> on Google Scholar. Checked <time datetime="2026-11-13">2026-11-13</time>.</p>
 <div class="tldr"><span class="lab">In one sentence</span><p>APEX-EM introduced procedural knowledge graphs for LLM agent memory: its typed Procedural Knowledge Graph stores complete solution traces and retrieves them by meaning, operation structure, and graph traversal, with no model retraining.</p></div>
 <p class="contribution"><span class="lab">Research contribution</span>Introduced procedural knowledge graphs for LLM agent memory through a typed Procedural Knowledge Graph, procedural-episodic experience replay, and cross-domain structural retrieval.</p>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4"/></svg>Abstract</h2>
@@ -660,26 +698,34 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <section class="calib"><h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M12 3v2 M12 19v2 M4.2 12H2 M22 12h-2.2 M6 6 4.5 4.5 M18 6l1.5-1.5 M9.5 15a4.5 4.5 0 1 1 5 0v2.5h-5z M10 20h4"/></svg>Opportunities for future work</h2>
 <p>The results point to useful next questions: No human evaluation. The headline comparison against MemRL is not a controlled one, because each system runs on its own backbone; only 3 of 5 benchmarks get a same-backbone comparison, and where they do the margins are thin, plus <span class="n">1.4</span> and plus <span class="n">1.0</span> points on Lifelong and a tie at <span class="n">78.8</span> percent on the OS split. The <span class="n">3.3</span> times MemRL figure depends on which no-memory baseline the delta uses, and the paper does not say; against GPT-4o&#x27;s own no-memory row the multiple is closer to <span class="n">2.2</span> times. The teacher judge makes code generation worse, not better, and costs about 30 percent more compute. Cost and latency are estimated from list pricing, not measured.</p></section>
 <h2 id="cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>How to cite</h2>
-<p>Pratyay Banerjee, Masud Moshtaghi, and Ankit Chadha. 2026. APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay. arXiv:2603.29093.</p>
-<pre><code>@misc{banerjee2026apexem,
-  title         = {{APEX-EM}: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay},
-  author        = {Banerjee, Pratyay and Moshtaghi, Masud and Chadha, Ankit},
-  year          = {2026},
-  month         = aug,
-  eprint        = {2603.29093},
-  archivePrefix = {arXiv},
-  primaryClass  = {cs.CL},
-  note          = {arXiv:2603.29093v3. Accepted to EMNLP 2026, proceedings not yet published},
-  url           = {https://arxiv.org/abs/2603.29093}
+<p>Pratyay Banerjee, Masud Moshtaghi, and Ankit Chadha. 2026. APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay. In <em>Findings of the Association for Computational Linguistics: EMNLP 2026</em>, pages 42547&ndash;42568.</p>
+<p class="citation-tools"><button type="button" class="copy-citation" hidden>Copy BibTeX</button><a href="apex-em-procedural-episodic-experience-replay.bib" download>Download BibTeX</a><a href="apex-em-procedural-episodic-experience-replay.ris" download>RIS (Zotero / EndNote)</a><a href="apex-em-procedural-episodic-experience-replay.json" download>CSL JSON</a><span class="copy-status" role="status" aria-live="polite"></span></p>
+<pre id="bibtex"><code>@inproceedings{banerjee-etal-2026-apex-em,
+    title = &quot;{APEX}-{EM}: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay&quot;,
+    author = &quot;Banerjee, Pratyay  and
+      Moshtaghi, Masud  and
+      Chadha, Ankit&quot;,
+    editor = &quot;Lee, Hung-Yi  and
+      Dev, Sunipa  and
+      Li, Jessy  and
+      Elliott, Desmond&quot;,
+    booktitle = &quot;Findings of the {A}ssociation for {C}omputational {L}inguistics: {EMNLP} 2026&quot;,
+    month = oct,
+    year = &quot;2026&quot;,
+    address = &quot;Budapest, Hungary&quot;,
+    publisher = &quot;Association for Computational Linguistics&quot;,
+    url = &quot;https://aclanthology.org/2026.findings-emnlp.1996/&quot;,
+    doi = &quot;10.18653/2026.findings-emnlp.1996&quot;,
+    pages = &quot;42547--42568&quot;,
+    ISBN = &quot;979-8-89176-462-0&quot;
 }</code></pre>
-<p class="small"><a href="apex-em-procedural-episodic-experience-replay.bib" download><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>Download BibTeX</a></p>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M9 15l6-6 M11 6l1.5-1.5a4.2 4.2 0 0 1 6 6L17 12 M13 18l-1.5 1.5a4.2 4.2 0 0 1-6-6L7 12"/></svg>Related work of mine</h2>
 <ul class="tl">
 <li><a href="/papers/apex-mem-agentic-semi-structured-memory/">APEX-MEM: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI</a><span class="v">ACL 2026 (Main Conference, Long Papers)</span></li>
-<li><a href="/papers/routed-graph-handoff/">Routed Graph Handoff: Adaptive Format Selection for Multi-Agent LLM Delegation</a><span class="v">EMNLP 2026, accepted, to appear</span></li>
+<li><a href="/papers/routed-graph-handoff/">Routed Graph Handoff: Adaptive Format Selection for Multi-Agent LLM Delegation</a><span class="v">Findings of EMNLP 2026</span></li>
 <li><a href="/papers/wk-drift-procedural-memory-maintenance/">WK-Drift: Benchmarking Procedural Memory Maintenance under World Knowledge Drift</a><span class="v">Findings of IJCNLP-AACL 2026</span></li>
 </ul>
-<p class="tiny note">arXiv version, v3.</p>
+<p class="tiny note">Published proceedings version, pages 42547–42568. Licensed CC BY 4.0.</p>
 </article>
 <p class="back"><a href="/publications/">&larr; All publications</a></p>
 </main>
@@ -687,5 +733,17 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <p class="links"><a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me noopener">Google Scholar</a> &middot; <a href="https://orcid.org/0000-0002-5029-0136" rel="me noopener">ORCID</a> &middot; <a href="https://github.com/ankit-ai" rel="me noopener">GitHub</a> &middot; <a href="https://www.linkedin.com/in/ankitrc/" rel="me noopener">LinkedIn</a> &middot; <a href="https://aclanthology.org/people/ankit-chadha/" rel="me noopener">ACL Anthology</a> &middot; <a href="https://openalex.org/A5027218595" rel="me noopener">OpenAlex</a> &middot; <a href="https://www.amazon.science/author/ankit-chadha" rel="me noopener">Amazon Science</a> &middot; <a href="https://x.com/ankitrchadha" rel="me noopener">X</a></p>
 <p class="fine">Ankit Chadha, California.</p>
 </div></footer>
+<script>
+const copyButton=document.querySelector('.copy-citation');
+if(copyButton&&navigator.clipboard){
+ copyButton.hidden=false;
+ copyButton.addEventListener('click',async()=>{
+  const status=document.querySelector('.copy-status');
+  try{await navigator.clipboard.writeText(document.querySelector('#bibtex code').textContent);
+   status.textContent='BibTeX copied.';}
+  catch{status.textContent='Use Download BibTeX or select the citation below.';}
+ });
+}
+</script>
 </body>
 </html>

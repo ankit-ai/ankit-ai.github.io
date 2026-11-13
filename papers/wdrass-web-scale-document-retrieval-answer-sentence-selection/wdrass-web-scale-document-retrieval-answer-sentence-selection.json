@@ -1,0 +1,44 @@
+[
+  {
+    "id": "10.1145/3511808.3557678",
+    "type": "paper-conference",
+    "title": "WDRASS: A Web-scale Dataset for Document Retrieval and Answer Sentence Selection",
+    "author": [
+      {
+        "family": "Zhang",
+        "given": "Zeyu"
+      },
+      {
+        "family": "Vu",
+        "given": "Thuy"
+      },
+      {
+        "family": "Gandhi",
+        "given": "Sunil"
+      },
+      {
+        "family": "Chadha",
+        "given": "Ankit"
+      },
+      {
+        "family": "Moschitti",
+        "given": "Alessandro"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2022,
+          10,
+          17
+        ]
+      ]
+    },
+    "abstract": "Open-Domain Question Answering (ODQA) systems generate answers from relevant text returned by search engines, e.g., lexical features-based such as BM25, or embeddings-based such as dense passage retrieval (DPR). Few datasets are available for this task: they mainly focus on QA systems based on machine reading (MR) approach, and show problematic evaluation, mostly based on uncontextualized short answer matching. In this paper, we present WDRASS, a dataset for ODQA based on answer sentence selection (AS2) models, which consider sentences as candidate answers for QA systems. WDRASS consists of ∼64k questions and 800k+ labeled passages and sentences extracted from 30M documents. We evaluate the dataset by training models on it and comparing with the same models trained on Google NQ. Our experiments show that WDRASS significantly improves the performance of retrieval and reranking models, thus boosting the accuracy of downstream QA tasks. We believe our dataset can produce significant impact in advancing IR research.",
+    "URL": "https://doi.org/10.1145/3511808.3557678",
+    "DOI": "10.1145/3511808.3557678",
+    "container-title": "Proceedings of the 31st ACM International Conference on Information & Knowledge Management (CIKM '22)",
+    "page": "4707-4711",
+    "publisher": "Association for Computing Machinery"
+  }
+]

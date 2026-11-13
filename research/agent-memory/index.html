@@ -5,10 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Agent memory: changing facts and reusable procedures | Ankit Chadha</title>
 <link rel="canonical" href="https://ankitrchadha.com/research/agent-memory/">
+<link rel="alternate" type="application/atom+xml" title="Ankit Chadha publications" href="/feed.xml">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="description" content="A guide to temporal event memory, procedural experience replay, and maintaining stored procedures when world knowledge changes.">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="Ankit Chadha">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Ankit Chadha">
@@ -140,6 +142,19 @@ nav.crumb a:hover{text-decoration:underline}
  background:var(--tint)}
 .actions a:first-child{border-color:var(--acc2);color:var(--acc);font-weight:600;
  background:var(--tint)}
+.citation-tools{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;
+ font-size:13.5px;margin:16px 0}
+.citation-tools button{font:inherit;padding:7px 12px;border:1px solid var(--acc2);
+ border-radius:6px;background:var(--tint);color:var(--acc);cursor:pointer}
+.copy-status{color:var(--mut);font-size:12.5px}
+.paper-links{display:flex;flex-wrap:wrap;gap:14px;margin:10px 0 0;font-size:12.5px}
+.publication-search{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px}
+.publication-search input,.publication-search select{font:inherit;font-size:14px;
+ padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:#fff;
+ color:var(--ink);max-width:100%}
+.publication-search input{flex:1 1 240px;min-width:0}
+.publication-search select{flex:0 1 180px}
+[hidden]{display:none!important}
 
 /* ---- the two signature blocks ---- */
 .tldr{margin:28px 0 2px;border-left:3px solid var(--acc);padding:1px 0 1px 21px}
@@ -482,12 +497,51 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
  ol.cv .yr{order:-1;font-size:12.5px}
  ul.kr li{font-size:15.5px}
 }</style>
-
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": "https://ankitrchadha.com/research/agent-memory/#guide",
+  "url": "https://ankitrchadha.com/research/agent-memory/",
+  "name": "Agent memory: changing facts and reusable procedures",
+  "description": "A guide to temporal event memory, procedural experience replay, and maintaining stored procedures when world knowledge changes.",
+  "author": {
+    "@id": "https://ankitrchadha.com/#person"
+  },
+  "dateModified": "2026-11-13",
+  "isPartOf": {
+    "@id": "https://ankitrchadha.com/#website"
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "APEX-MEM: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI",
+        "url": "https://ankitrchadha.com/papers/apex-mem-agentic-semi-structured-memory/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay",
+        "url": "https://ankitrchadha.com/papers/apex-em-procedural-episodic-experience-replay/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "WK-Drift: Benchmarking Procedural Memory Maintenance under World Knowledge Drift",
+        "url": "https://ankitrchadha.com/papers/wk-drift-procedural-memory-maintenance/"
+      }
+    ]
+  }
+}
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site"><div class="wrap">
-<a class="who" href="/" aria-label="Ankit Chadha, home">AC</a>
+<a class="who" href="/" aria-label="Ankit Chadha, home">Ankit Chadha</a>
 <nav aria-label="Site"><a href="/">About</a> <a href="/research/" aria-current="page">Research</a> <a href="/publications/">Publications</a> <a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me">Scholar</a> <a href="/contact/">Contact me</a></nav>
 </div></header>
 <main class="wrap" id="main">
@@ -507,7 +561,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 </figure>
 <p class="actions"><a href="/papers/apex-mem-agentic-semi-structured-memory/"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4"/></svg>Read the paper page</a>
 <a href="/papers/apex-mem-agentic-semi-structured-memory/apex-mem.pdf"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4 M10 17v-5h1.6a1.7 1.7 0 0 1 0 3.4H10"/></svg>PDF</a>
-<a href="/papers/apex-mem-agentic-semi-structured-memory/"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>Citation + BibTeX</a></p>
+<a href="/papers/apex-mem-agentic-semi-structured-memory/#cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>Citation + BibTeX</a></p>
 </section>
 <section>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M12 3v2 M12 19v2 M4.2 12H2 M22 12h-2.2 M6 6 4.5 4.5 M18 6l1.5-1.5 M9.5 15a4.5 4.5 0 1 1 5 0v2.5h-5z M10 20h4"/></svg>For repeated procedures</h2>
@@ -523,7 +577,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 </figure>
 <p class="actions"><a href="/papers/apex-em-procedural-episodic-experience-replay/"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4"/></svg>Read the paper page</a>
 <a href="/papers/apex-em-procedural-episodic-experience-replay/apex-em.pdf"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4 M10 17v-5h1.6a1.7 1.7 0 0 1 0 3.4H10"/></svg>PDF</a>
-<a href="/papers/apex-em-procedural-episodic-experience-replay/"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>Citation + BibTeX</a></p>
+<a href="/papers/apex-em-procedural-episodic-experience-replay/#cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>Citation + BibTeX</a></p>
 </section>
 <section>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M12 3v2 M12 19v2 M4.2 12H2 M22 12h-2.2 M6 6 4.5 4.5 M18 6l1.5-1.5 M9.5 15a4.5 4.5 0 1 1 5 0v2.5h-5z M10 20h4"/></svg>For procedures that go stale</h2>
@@ -539,7 +593,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 </figure>
 <p class="actions"><a href="/papers/wk-drift-procedural-memory-maintenance/"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4"/></svg>Read the paper page</a>
 <a href="/papers/wk-drift-procedural-memory-maintenance/wk-drift.pdf"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4 M10 17v-5h1.6a1.7 1.7 0 0 1 0 3.4H10"/></svg>PDF</a>
-<a href="/papers/wk-drift-procedural-memory-maintenance/"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>Citation + BibTeX</a></p>
+<a href="/papers/wk-drift-procedural-memory-maintenance/#cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>Citation + BibTeX</a></p>
 </section>
 <section class="calib"><h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M12 3v2 M12 19v2 M4.2 12H2 M22 12h-2.2 M6 6 4.5 4.5 M18 6l1.5-1.5 M9.5 15a4.5 4.5 0 1 1 5 0v2.5h-5z M10 20h4"/></svg>Opportunities for future work</h2>
 <p>A natural next step is to combine temporal event memory, procedural experience replay, and drift-aware maintenance across shared settings and model backbones. WK-Drift supplies known drift events; detecting them in deployment remains an open problem.</p></section>
@@ -548,5 +602,6 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <p class="links"><a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me noopener">Google Scholar</a> &middot; <a href="https://orcid.org/0000-0002-5029-0136" rel="me noopener">ORCID</a> &middot; <a href="https://github.com/ankit-ai" rel="me noopener">GitHub</a> &middot; <a href="https://www.linkedin.com/in/ankitrc/" rel="me noopener">LinkedIn</a> &middot; <a href="https://aclanthology.org/people/ankit-chadha/" rel="me noopener">ACL Anthology</a> &middot; <a href="https://openalex.org/A5027218595" rel="me noopener">OpenAlex</a> &middot; <a href="https://www.amazon.science/author/ankit-chadha" rel="me noopener">Amazon Science</a> &middot; <a href="https://x.com/ankitrchadha" rel="me noopener">X</a></p>
 <p class="fine">Ankit Chadha, California.</p>
 </div></footer>
+
 </body>
 </html>

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "10.18653/v1/2023.findings-acl.602",
+    "type": "paper-conference",
+    "title": "Controlled Text Generation with Hidden Representation Transformations",
+    "author": [
+      {
+        "family": "Kumar",
+        "given": "Vaibhav"
+      },
+      {
+        "family": "Koorehdavoudi",
+        "given": "Hana"
+      },
+      {
+        "family": "Moshtaghi",
+        "given": "Masud"
+      },
+      {
+        "family": "Misra",
+        "given": "Amita"
+      },
+      {
+        "family": "Chadha",
+        "given": "Ankit"
+      },
+      {
+        "family": "Ferrara",
+        "given": "Emilio"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "abstract": "We propose CHRT (Control Hidden Representation Transformation) – a controlled language generation framework that steers large language models to generate text pertaining to certain attributes (such as toxicity). CHRT gains attribute control by modifying the hidden representation of the base model through learned transformations. We employ a contrastive-learning framework to learn these transformations that can be combined to gain multi-attribute control. The effectiveness of CHRT is experimentally shown by comparing it with seven baselines over three attributes. CHRT outperforms all the baselines in the task of detoxification, positive sentiment steering, and text simplification while minimizing the loss in linguistic qualities. Further, our approach has the lowest inference latency of only 0.01 seconds more than the base model, making it the most suitable for high-performance production environments. We open-source our code and release two novel datasets to further propel controlled language generation research.",
+    "URL": "https://aclanthology.org/2023.findings-acl.602/",
+    "DOI": "10.18653/v1/2023.findings-acl.602",
+    "container-title": "Findings of the Association for Computational Linguistics: ACL 2023",
+    "page": "9440-9455",
+    "publisher": "Association for Computational Linguistics"
+  }
+]

@@ -4,3 +4,92 @@
   X-Frame-Options: DENY
   Permissions-Policy: camera=(), geolocation=(), microphone=()
   Strict-Transport-Security: max-age=31536000
+
+/papers/wk-drift-procedural-memory-maintenance/wk-drift.pdf
+  Link: <https://ankitrchadha.com/papers/wk-drift-procedural-memory-maintenance/>; rel="canonical"
+  Content-Type: application/pdf
+
+/papers/routed-graph-handoff/routed-graph-handoff.pdf
+  Link: <https://ankitrchadha.com/papers/routed-graph-handoff/>; rel="canonical"
+  Content-Type: application/pdf
+
+/papers/apex-mem-agentic-semi-structured-memory/apex-mem.pdf
+  Link: <https://ankitrchadha.com/papers/apex-mem-agentic-semi-structured-memory/>; rel="canonical"
+  Content-Type: application/pdf
+
+/papers/apex-em-procedural-episodic-experience-replay/apex-em.pdf
+  Link: <https://ankitrchadha.com/papers/apex-em-procedural-episodic-experience-replay/>; rel="canonical"
+  Content-Type: application/pdf
+
+/papers/question-context-alignment-answer-sentence-selection/question-context-alignment.pdf
+  Link: <https://ankitrchadha.com/papers/question-context-alignment-answer-sentence-selection/>; rel="canonical"
+  Content-Type: application/pdf
+
+/papers/controlled-text-generation-hidden-representation-transformations/controlled-text-generation-chrt.pdf
+  Link: <https://ankitrchadha.com/papers/controlled-text-generation-hidden-representation-transformations/>; rel="canonical"
+  Content-Type: application/pdf
+
+/papers/cross-lingual-knowledge-distillation-answer-sentence-selection/cross-lingual-knowledge-distillation.pdf
+  Link: <https://ankitrchadha.com/papers/cross-lingual-knowledge-distillation-answer-sentence-selection/>; rel="canonical"
+  Content-Type: application/pdf
+
+/papers/efficient-fine-tuning-knowledge-aware-response-planning/knowledge-aware-response-planning.pdf
+  Link: <https://ankitrchadha.com/papers/efficient-fine-tuning-knowledge-aware-response-planning/>; rel="canonical"
+  Content-Type: application/pdf
+
+/papers/attribute-conditioning-multi-document-summarization/attribute-conditioning-summarization.pdf
+  Link: <https://ankitrchadha.com/papers/attribute-conditioning-multi-document-summarization/>; rel="canonical"
+  Content-Type: application/pdf
+
+/papers/wdrass-web-scale-document-retrieval-answer-sentence-selection/wdrass.pdf
+  Link: <https://ankitrchadha.com/papers/wdrass-web-scale-document-retrieval-answer-sentence-selection/>; rel="canonical"
+  Content-Type: application/pdf
+
+/papers/federated-learning-mixed-domain-translation/mixed-domain-federated-translation.pdf
+  Link: <https://ankitrchadha.com/papers/federated-learning-mixed-domain-translation/>; rel="canonical"
+  Content-Type: application/pdf
+
+/papers/communication-efficient-federated-learning-nmt/communication-efficient-federated-nmt.pdf
+  Link: <https://ankitrchadha.com/papers/communication-efficient-federated-learning-nmt/>; rel="canonical"
+  Content-Type: application/pdf
+
+/papers/dr-sas-deep-reinforced-self-attention-masks/dr-sas.pdf
+  Link: <https://ankitrchadha.com/papers/dr-sas-deep-reinforced-self-attention-masks/>; rel="canonical"
+  Content-Type: application/pdf
+
+/papers/bertqa-attention-on-steroids/bertqa-attention-on-steroids.pdf
+  Link: <https://ankitrchadha.com/papers/bertqa-attention-on-steroids/>; rel="canonical"
+  Content-Type: application/pdf
+
+/papers/*.bib
+  Content-Type: application/x-bibtex; charset=utf-8
+  X-Robots-Tag: noindex
+
+/publications.bib
+  Content-Type: application/x-bibtex; charset=utf-8
+  X-Robots-Tag: noindex
+
+/papers/*.ris
+  Content-Type: application/x-research-info-systems; charset=utf-8
+  X-Robots-Tag: noindex
+
+/publications.ris
+  Content-Type: application/x-research-info-systems; charset=utf-8
+  X-Robots-Tag: noindex
+
+/papers/*.json
+  Content-Type: application/vnd.citationstyles.csl+json; charset=utf-8
+  X-Robots-Tag: noindex
+
+/publications.json
+  Content-Type: application/vnd.citationstyles.csl+json; charset=utf-8
+  X-Robots-Tag: noindex
+
+/_build/*
+  X-Robots-Tag: noindex
+
+/feed.xml
+  Content-Type: application/atom+xml; charset=utf-8
+
+/404.html
+  X-Robots-Tag: noindex

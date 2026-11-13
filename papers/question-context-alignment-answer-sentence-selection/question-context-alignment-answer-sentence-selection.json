@@ -1,0 +1,48 @@
+[
+  {
+    "id": "10.21437/Interspeech.2023-2240",
+    "type": "paper-conference",
+    "title": "Question-Context Alignment and Answer-Context Dependencies for Effective Answer Sentence Selection",
+    "author": [
+      {
+        "family": "Nguyen",
+        "given": "Minh Van"
+      },
+      {
+        "family": "KC",
+        "given": "Kishan"
+      },
+      {
+        "family": "Nguyen",
+        "given": "Toan"
+      },
+      {
+        "family": "Nguyen",
+        "given": "Thien Huu"
+      },
+      {
+        "family": "Chadha",
+        "given": "Ankit"
+      },
+      {
+        "family": "Vu",
+        "given": "Thuy"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2023,
+          8,
+          20
+        ]
+      ]
+    },
+    "abstract": "Answer sentence selection (AS2) in open-domain question answering finds answer for a question by ranking candidate sentences extracted from web documents. Recent work exploits answer context, i.e., sentences around a candidate, by incorporating them as additional input string to the Transformer models to improve the correctness scoring. In this paper, we propose to improve the candidate scoring by explicitly incorporating the dependencies between question-context and answer-context into the final representation of a candidate. Specifically, we use Optimal Transport to compute the question-based dependencies among sentences in the passage where the answer is extracted from. We then represent these dependencies as edges in a graph and use Graph Convolutional Network to derive the representation of a candidate, a node in the graph. Our proposed model achieves significant improvements on popular AS2 benchmarks, i.e., WikiQA and WDRASS, obtaining new state-of-the-art on all benchmarks.",
+    "URL": "https://www.isca-archive.org/interspeech_2023/nguyen23b_interspeech.html",
+    "DOI": "10.21437/Interspeech.2023-2240",
+    "container-title": "INTERSPEECH 2023",
+    "page": "3437-3441",
+    "publisher": "International Speech Communication Association"
+  }
+]
