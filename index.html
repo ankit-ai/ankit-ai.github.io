@@ -62,7 +62,7 @@ header.site .wrap{display:flex;flex-wrap:wrap;gap:2px 22px;align-items:center;
  padding-top:16px;padding-bottom:15px}
 header.site .who{font-size:15px;font-weight:720;letter-spacing:.01em;
  color:var(--navy);text-decoration:none}
-header.site nav{font-size:14px;display:flex;gap:20px;margin-left:auto}
+header.site nav{font-size:14px;display:flex;flex-wrap:wrap;gap:6px 20px;margin-left:auto}
 header.site nav a{color:var(--mut);text-decoration:none;padding-bottom:3px}
 header.site nav a:hover{color:var(--acc)}
 header.site nav a[aria-current]{color:var(--ink);font-weight:600;
@@ -444,6 +444,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 @media (max-width:640px){
  body{font-size:16px;line-height:1.68}
  .wrap{padding:0 18px}
+ header.site nav{font-size:13px;gap:6px 12px}
  main.wrap{padding-top:26px}
  h1{font-size:27px;letter-spacing:-.02em}
  h2{font-size:19px;margin-top:2.3em;padding-top:.95em}
@@ -491,7 +492,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
   "@id": "https://ankitrchadha.com/#profilepage",
   "url": "https://ankitrchadha.com/",
   "name": "Ankit Chadha",
-  "dateModified": "2026-10-11",
+  "dateModified": "2026-11-13",
   "isPartOf": {
     "@id": "https://ankitrchadha.com/#website"
   },
@@ -553,7 +554,8 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
     "preference optimization and reinforcement learning from feedback",
     "multimodal and web-scale search",
     "tool use and agent orchestration",
-    "factuality and faithfulness evaluation"
+    "factuality and faithfulness evaluation",
+    "procedural memory maintenance under world knowledge drift"
   ],
   "identifier": [
     {
@@ -636,6 +638,20 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 20V9 M10 20V4 M16 20v-7 M22 20H2"/></svg>Selected research contributions</h2>
 <p class="small mut">For the live publication and citation record, see <a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate">my Google Scholar profile</a>.</p>
 <div class="pub featured">
+<a class="paperthumb" href="/papers/wk-drift-procedural-memory-maintenance/" aria-label="Read WK-Drift: Benchmarking Procedural Memory Maintenance under World Knowledge Drift">
+<picture>
+<img src="/assets/img/featured/wk-drift.jpg" width="600" height="450"
+ loading="lazy" decoding="async" alt="WK-Drift links stored procedures to shared entities, so a replacement value can reach every affected plan; a retrieve–generate–consolidate loop carries the correction into future tasks.">
+</picture>
+</a><div class="body">
+<p class="meta"><span class="pill">Agent memory</span><span>Findings of IJCNLP-AACL 2026, pages 2719&ndash;2736</span><span class="impact">+26.5 pp on WK-Drift, clinical</span></p>
+<h3><a href="/papers/wk-drift-procedural-memory-maintenance/">WK-Drift: Benchmarking Procedural Memory Maintenance under World Knowledge Drift</a></h3>
+<p class="who">Pratyay Banerjee, Masud Moshtaghi, <strong>Ankit Chadha</strong></p>
+<p class="sum">WK-Drift benchmarks how agents maintain stored procedures when the world changes; targeted graph updates raise post-drift clinical accuracy from <span class="n">37.5%</span> to <span class="n">64.0%</span> with known drift events.</p>
+<p class="contribution"><span class="lab">Research contribution</span>Introduced a benchmark for procedural memory maintenance under world knowledge drift, with typed drift events, a four-phase evaluation protocol, and propagation depth as a controlled difficulty axis.</p>
+</div>
+</div>
+<div class="pub featured">
 <a class="paperthumb" href="/papers/apex-mem-agentic-semi-structured-memory/" aria-label="Read APEX-MEM: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI">
 <picture>
 <img src="/assets/img/featured/apex-mem.jpg" width="600" height="450"
@@ -691,22 +707,23 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <p class="contribution"><span class="lab">Research contribution</span>Introduced a web-scale dataset that connects document retrieval, passage reranking, and answer sentence selection using complete sentence-level answers rather than short answer matching.</p>
 </div>
 </div>
-<p class="back"><a href="/publications/">All 13 papers, with abstracts and numbers &rarr;</a></p>
+<p class="back"><a href="/publications/">All 14 papers, with abstracts and numbers &rarr;</a></p>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 4.5h6.5V11H4z M13.5 4.5H20V11h-6.5z M4 13h6.5v6.5H4z M13.5 13H20v6.5h-6.5z"/></svg>Research guides</h2>
 <p class="small mut">Practical reading guides that connect related papers without replacing their primary evidence.</p><ul class="tl">
-<li><a href="/research/agent-memory/">Agent memory: changing facts and reusable procedures</a><span class="v">A guide to two complementary agent-memory designs: temporal event memory and procedural experience replay.</span></li>
+<li><a href="/research/agent-memory/">Agent memory: changing facts and reusable procedures</a><span class="v">A guide to temporal event memory, procedural experience replay, and maintaining stored procedures when world knowledge changes.</span></li>
 <li><a href="/research/agent-delegation/">Adaptive handoffs for multi-agent systems</a><span class="v">A practical reading guide to choosing a typed dependency graph or natural-language handoff for each agent task.</span></li>
 <li><a href="/research/web-qa/">Web QA: retrieve evidence, rank answers, extend to more languages</a><span class="v">A research lineage from web-scale training data to context-aware answer ranking and low-resource multilingual supervision.</span></li>
 </ul>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 4.5h6.5V11H4z M13.5 4.5H20V11h-6.5z M4 13h6.5v6.5H4z M13.5 13H20v6.5h-6.5z"/></svg>Research and systems</h2>
 <dl class="work">
 <div class="row">
-<dt>Agent memory<span class="when">2026<br>2 papers</span><span class="pill">Current</span></dt>
+<dt>Agent memory<span class="when">2026<br>3 papers</span><span class="pill">Current</span></dt>
 <dd>
-<p class="g">Introduced typed procedural knowledge graphs for reusable agent experience and append-only property graph memory for temporal conversational reasoning.</p>
+<p class="g">Introduced procedural knowledge graphs for reusable agent experience, append-only temporal conversational memory, and a benchmark for maintaining stored procedures when world knowledge changes.</p>
 <ul class="tl">
 <li><a href="/papers/apex-mem-agentic-semi-structured-memory/">APEX-MEM: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI</a><span class="v">ACL 2026 (Main Conference, Long Papers)</span><span class="d">+3.5 pp <span class="on">on LOCOMO</span></span></li>
 <li><a href="/papers/apex-em-procedural-episodic-experience-replay/">APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay</a><span class="v">EMNLP 2026, accepted, to appear</span><span class="d">+31.7 pp <span class="on">on KGQAGen-10k</span></span></li>
+<li><a href="/papers/wk-drift-procedural-memory-maintenance/">WK-Drift: Benchmarking Procedural Memory Maintenance under World Knowledge Drift</a><span class="v">Findings of IJCNLP-AACL 2026</span><span class="d">+26.5 pp <span class="on">on WK-Drift, clinical</span></span></li>
 </ul>
 </dd>
 </div>

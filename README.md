@@ -14,6 +14,7 @@ index.html                    about page
 publications/index.html       full list, peer reviewed then preprints then earlier work
 papers/<slug>/index.html      one page per paper
 papers/<slug>/<paper>.pdf     the PDF, as a SIBLING of the HTML, not in /assets
+papers/<slug>/<slug>.bib      downloadable citation, matching the visible BibTeX
 404.html  robots.txt  sitemap.xml  .nojekyll
 assets/img/headshot-*.{jpg,webp}
 assets/img/papers/            4:3 index cards cropped from each paper
@@ -37,6 +38,20 @@ python3 _build/check.py           # must print "0 fail" before publishing
 prose and config, `_build/papers.json` the bibliographic metadata, and
 `_build/content.json` the per-paper page content. Edit those, never the generated
 HTML, which is overwritten on every build.
+
+WK-Drift uses the final IJCNLP-AACL 2026 proceedings PDF and the publisher's
+BibTeX, including its verified November publication month. To recreate its
+figure and share card (requires PyMuPDF and Pillow):
+
+```
+python3 _build/make_wk_drift_assets.py
+python3 _build/make_cards.py --slug wk-drift-procedural-memory-maintenance
+```
+
+After a build is published, `python3 _build/submit_indexnow.py` verifies the live
+ownership file and submits the sitemap URLs to IndexNow. Pass specific canonical
+URLs or site-relative paths to submit just those pages. This requests discovery
+by participating search engines; Google and Google Scholar use their own crawlers.
 
 ## Local preview
 
@@ -82,29 +97,23 @@ the page body, in the listing, and on the social card.
 
 ## Publishing
 
-Nothing has been pushed. To publish:
+The site is published at `https://ankitrchadha.com/`. Its source is
+`ankit-ai/ankit-ai.github.io`, branch `main`; the GitHub Pages copy uses the same
+custom-domain canonical URLs.
 
-1. Create the repo `ankit-ai/ankit-ai.github.io` on GitHub. The name must match the
-   account exactly. It must be a **user site**, not a project site, because
-   `robots.txt`, the IndexNow key file, and Search Console's HTML-file verification
-   only work at the host root.
-2. Push the contents of this directory. `_work/` is gitignored. `_build/` is
-   committed on purpose so the site stays reproducible from the repo alone, and
-   `robots.txt` disallows `/_build/` so `content.json` is never indexed as a
-   duplicate of the paper pages.
-3. Settings, Pages, deploy from branch `main`, folder `/`.
-4. Verify `https://ankit-ai.github.io/robots.txt` loads, then add the site to Google
-   Search Console and submit `https://ankit-ai.github.io/sitemap.xml`. Google's old
-   sitemap ping endpoint was retired in June 2023 and now 404s, so there is no ping
-   step.
-5. Fill in `google_site_verification` and `indexnow_key` in `_build/site.json`, then
-   rebuild. IndexNow reaches Bing, Yandex, Naver, Seznam and Yep. Google does not
-   participate.
-6. Set the Homepage field on the Google Scholar profile to
-   `https://ankit-ai.github.io/`. It currently points at `ankitrchadha.com`, which
-   has no nameservers and does not resolve.
+1. Edit the source data and generator, recreate changed image assets, then run
+   `python3 _build/build.py` and `python3 _build/check.py`.
+2. Check desktop and mobile layouts, then commit and push `main`. `_work/` is
+   gitignored. `_build/` stays committed so the site is reproducible, and
+   `robots.txt` disallows it to avoid indexing duplicate abstracts.
+3. Verify the changed pages, sibling PDFs, citation downloads, `robots.txt`, and
+   `https://ankitrchadha.com/sitemap.xml` on the live custom domain.
+4. Run `python3 _build/submit_indexnow.py` after the ownership file is live.
+5. For Google Search Console, verify the custom-domain property and submit
+   `https://ankitrchadha.com/sitemap.xml`. The HTML verification token can be added
+   to `google_site_verification` in `_build/site.json`; it is currently unset.
+   Search Console also supports other verification methods.
 
-### Decide the domain before publishing, not after
-
-If a custom domain is wanted, set it up first. Moving later means 301 redirects plus
-another 6 to 9 month wait for Scholar to re-associate the paper URLs.
+Keep canonical paper URLs stable, and use `https://ankitrchadha.com/` as the
+homepage on research profiles. A crawl request or sitemap submission does not
+guarantee when Google or Google Scholar will index a paper.

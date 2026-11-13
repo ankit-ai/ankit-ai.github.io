@@ -199,8 +199,9 @@ for p in PAPERS:
         if any(w in a.lower() for w in ("university", "amazon", "phd", "dr.", "prof")):
             fail("%s: citation_author carries an affiliation or title: %r" % (slug, a))
     d = md.get("citation_publication_date", [""])[0]
-    if not re.match(r"^\d{4}(/\d{1,2}/\d{1,2})?$", d):
-        fail("%s: citation_publication_date %r is not YYYY or YYYY/M/D" % (slug, d))
+    if not re.match(r"^\d{4}(/\d{1,2}(/\d{1,2})?)?$", d):
+        fail("%s: citation_publication_date %r is not YYYY, YYYY/M, or YYYY/M/D"
+             % (slug, d))
 
     # Venue tags, gated on status: published, accepted, or preprint.
     if "citation_conference_title" in md and "citation_journal_title" in md:
@@ -269,6 +270,19 @@ for p in PAPERS:
         if k in bibtex_keys and bibtex_keys[k] != slug:
             fail("%s: BibTeX key %r is also used by %s" % (slug, k, bibtex_keys[k]))
         bibtex_keys[k] = slug
+    # Citation downloads must have one value per field; repeated URL/DOI fields
+    # are ambiguous to reference managers even if the HTML looks correct.
+    citation_path = os.path.join(ROOT, "papers", slug, slug + ".bib")
+    if not os.path.exists(citation_path):
+        fail("%s: downloadable BibTeX missing" % slug)
+    else:
+        citation = read("papers/%s/%s.bib" % (slug, slug))
+        fields = re.findall(r"(?im)^\s*(\w+)\s*=", citation)
+        fields = [f.lower() for f in fields]
+        if len(fields) != len(set(fields)):
+            fail("%s: downloadable BibTeX has duplicate fields" % slug)
+        if html.escape(citation.strip(), quote=True) not in h:
+            fail("%s: downloadable BibTeX differs from the visible citation" % slug)
 
     # Scholar's meta-tag-free fallback classes.
     if 'class="citation_title"' not in h:

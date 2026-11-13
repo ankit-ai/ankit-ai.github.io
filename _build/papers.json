@@ -1,12 +1,49 @@
 {
   "_comment": "Hand-curated bibliographic metadata. Every field here was verified against the ACL Anthology, Crossref, ISCA archive, amazon.science, or the PDF itself. citation_publication_date uses a full date ONLY where the date is verified; otherwise year alone, which Google Scholar explicitly permits. arxiv_date comes from the arXiv stamp printed in the PDF margin.",
   "featured": [
+    "wk-drift-procedural-memory-maintenance",
     "apex-mem-agentic-semi-structured-memory",
     "apex-em-procedural-episodic-experience-replay",
     "federated-learning-mixed-domain-translation",
     "wdrass-web-scale-document-retrieval-answer-sentence-selection"
   ],
   "papers": [
+    {
+      "slug": "wk-drift-procedural-memory-maintenance",
+      "title": "WK-Drift: Benchmarking Procedural Memory Maintenance under World Knowledge Drift",
+      "authors": [
+        "Pratyay Banerjee",
+        "Masud Moshtaghi",
+        "Ankit Chadha"
+      ],
+      "affiliations": "Amazon AGI, Sunnyvale, USA",
+      "year": 2026,
+      "venue_short": "Findings of IJCNLP-AACL 2026",
+      "venue_long": "Findings of the Association for Computational Linguistics: IJCNLP-AACL 2026",
+      "venue_note": "",
+      "is_preprint": false,
+      "status": "published",
+      "pages": "2719-2736",
+      "citation_publication_date": "2026/11",
+      "arxiv_date": "",
+      "arxiv_id": "",
+      "doi": "10.18653/2026.findings-aacl.140",
+      "anthology_url": "https://aclanthology.org/2026.findings-aacl.140/",
+      "publisher": "Association for Computational Linguistics",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "code_url": "",
+      "data_url": "",
+      "pdf_local": "wk-drift-findings-aacl-2026.pdf",
+      "pdf_filename": "wk-drift.pdf",
+      "pdf_note": "Published proceedings version, pages 2719–2736. Licensed CC BY 4.0. The abstract above follows the final PDF.",
+      "img": "wk-drift",
+      "img_w": 1200,
+      "img_h": 900,
+      "related": [
+        "apex-em-procedural-episodic-experience-replay",
+        "apex-mem-agentic-semi-structured-memory"
+      ]
+    },
     {
       "slug": "routed-graph-handoff",
       "title": "Routed Graph Handoff: Adaptive Format Selection for Multi-Agent LLM Delegation",
@@ -75,7 +112,8 @@
       "scholar_citations": 14,
       "related": [
         "apex-em-procedural-episodic-experience-replay",
-        "routed-graph-handoff"
+        "routed-graph-handoff",
+        "wk-drift-procedural-memory-maintenance"
       ],
       "status": "published",
       "publisher": "Association for Computational Linguistics"
@@ -110,7 +148,8 @@
       "scholar_citations": 0,
       "related": [
         "apex-mem-agentic-semi-structured-memory",
-        "routed-graph-handoff"
+        "routed-graph-handoff",
+        "wk-drift-procedural-memory-maintenance"
       ],
       "status": "accepted",
       "accepted_note": "Accepted to EMNLP 2026. The proceedings have not been published yet, so this page cites the arXiv version. arXiv comment field, verified 2026-09-15: \"22 pages, 6 figures, Accepted to EMNLP 2026\".",

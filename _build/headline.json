@@ -140,5 +140,22 @@
   "base": {"label": "BERT base", "value": "74.15"},
   "ours": {"label": "BERTQA", "value": "77.03"},
   "note": "the gain is a trade: has-answer F1 falls 80.62 to 76.30"
+ },
+
+ "wk-drift-procedural-memory-maintenance": {
+  "bench": "WK-Drift, clinical",
+  "metric": "post-drift accuracy, known drift events",
+  "scale": 100,
+  "delta_unit": "pp",
+  "source_kr": 1,
+  "base": {
+   "label": "stale memory",
+   "value": "37.5"
+  },
+  "ours": {
+   "label": "surgical graph updates",
+   "value": "64.0"
+  },
+  "note": "42.0% with the same graph but no maintenance"
  }
 }

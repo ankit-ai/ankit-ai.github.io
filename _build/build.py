@@ -80,10 +80,12 @@ def url(path=""):
 
 
 def iso(date_slashes):
-    """'2026/8/26' -> '2026-08-26'.  '2026' -> '2026'."""
+    """Preserve verified date precision: year, year/month, or year/month/day."""
     parts = [p for p in str(date_slashes).split("/") if p]
     if len(parts) == 3:
         return "%04d-%02d-%02d" % (int(parts[0]), int(parts[1]), int(parts[2]))
+    if len(parts) == 2:
+        return "%04d-%02d" % (int(parts[0]), int(parts[1]))
     return parts[0] if parts else ""
 
 
@@ -173,10 +175,11 @@ def bibtex_for(p, c):
     """Return the maintained citation, adding verified identifiers when absent."""
     text = c["bibtex"].strip()
     additions = []
-    if p.get("doi") and not p["doi"].startswith("10.48550") and "doi" not in text.lower():
+    if p.get("doi") and not p["doi"].startswith("10.48550") and \
+            not re.search(r"(?im)^\s*doi\s*=", text):
         additions.append("  doi           = {%s}" % p["doi"])
     venue_url = p.get("anthology_url") or p.get("publisher_url")
-    if venue_url and "\n  url" not in text.lower():
+    if venue_url and not re.search(r"(?im)^\s*url\s*=", text):
         additions.append("  url           = {%s}" % venue_url)
     if additions:
         text = re.sub(r"\n}\s*$", ",\n" + ",\n".join(additions) + "\n}", text)
@@ -350,7 +353,7 @@ header.site .wrap{display:flex;flex-wrap:wrap;gap:2px 22px;align-items:center;
  padding-top:16px;padding-bottom:15px}
 header.site .who{font-size:15px;font-weight:720;letter-spacing:.01em;
  color:var(--navy);text-decoration:none}
-header.site nav{font-size:14px;display:flex;gap:20px;margin-left:auto}
+header.site nav{font-size:14px;display:flex;flex-wrap:wrap;gap:6px 20px;margin-left:auto}
 header.site nav a{color:var(--mut);text-decoration:none;padding-bottom:3px}
 header.site nav a:hover{color:var(--acc)}
 header.site nav a[aria-current]{color:var(--ink);font-weight:600;
@@ -732,6 +735,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 @media (max-width:640px){
  body{font-size:16px;line-height:1.68}
  .wrap{padding:0 18px}
+ header.site nav{font-size:13px;gap:6px 12px}
  main.wrap{padding-top:26px}
  h1{font-size:27px;letter-spacing:-.02em}
  h2{font-size:19px;margin-top:2.3em;padding-top:.95em}
@@ -1105,7 +1109,7 @@ def paper_page(p):
         canonical=canon,
         og_type="article",
         og_image=card,
-        og_image_alt=c["figure_alt"],
+        og_image_alt=c.get("share_card_alt") or c["figure_alt"],
         extra_meta=citation_meta(p, c),
         jsonld=[article_node(p, c), breadcrumb_node(p)],
     )]
@@ -1200,6 +1204,8 @@ def paper_page(p):
     parts.append(h2("How to cite", "quote", ' id="cite"') + '<p>%s</p>\n'
                  % plain_citation(p))
     parts.append("<pre><code>%s</code></pre>\n" % e(bibtex_for(p, c)))
+    parts.append('<p class="small"><a href="%s.bib" download>'
+                 '%sDownload BibTeX</a></p>\n' % (e(slug), icon("quote")))
 
     rel = [BY_SLUG[s] for s in p.get("related", []) if s in BY_SLUG and s in CONTENT]
     if rel:
@@ -1353,10 +1359,11 @@ def pub_card(p, c, featured=False):
 HUBS = {
     "agent-memory": {
         "title": "Agent memory: changing facts and reusable procedures",
-        "description": ("A guide to two complementary agent-memory designs: temporal "
-                        "event memory and procedural experience replay."),
+        "description": ("A guide to temporal event memory, procedural experience replay, "
+                        "and maintaining stored procedures when world knowledge changes."),
         "intro": ("An agent may need to resolve what is true now, or reuse how it "
-                  "solved a task before. These are related but distinct memory problems."),
+                  "solved a task before. It also needs to keep those procedures current "
+                  "when APIs, guidelines, or knowledge graphs change."),
         "papers": [
             ("apex-mem-agentic-semi-structured-memory",
              "For changing conversational facts",
@@ -1366,10 +1373,15 @@ HUBS = {
              "For repeated procedures",
              "A typed Procedural Knowledge Graph stores complete successful and failed traces, retrieved through semantic search, structural signatures, and graph traversal—without changing model weights during deployment.",
              "On a blind KGQAGen-10k test split with frozen memory, the paper reports 73.7% versus 42.0% without memory."),
+            ("wk-drift-procedural-memory-maintenance",
+             "For procedures that go stale",
+             "WK-Drift evaluates procedural memory with a learn–drift–evaluate–recover protocol. Typed drift events and entity-plan links let a correction reach the stored procedures it affects.",
+             "With supplied drift events, surgical graph updates reach 64.0% post-drift clinical accuracy versus 37.5% for stale memory. On code, structured retrieval accounts for the main benefit."),
         ],
-        "caveat": ("A natural next step is to test how temporal event memory and "
-                   "procedural experience replay can work together across shared settings "
-                   "and model backbones."),
+        "caveat": ("A natural next step is to combine temporal event memory, procedural "
+                   "experience replay, and drift-aware maintenance across shared settings "
+                   "and model backbones. WK-Drift supplies known drift events; detecting "
+                   "them in deployment remains an open problem."),
     },
     "agent-delegation": {
         "title": "Adaptive handoffs for multi-agent systems",
@@ -1887,6 +1899,8 @@ def main():
             continue
         d = "papers/%s" % p["slug"]
         made.append(write("%s/index.html" % d, page))
+        made.append(write("%s/%s.bib" % (d, p["slug"]),
+                          bibtex_for(p, CONTENT[p["slug"]]) + "\n"))
         src = os.path.join(ROOT, "assets", "pdf", p["pdf_local"])
         dst = os.path.join(ROOT, d, p["pdf_filename"])
         size = os.path.getsize(src)

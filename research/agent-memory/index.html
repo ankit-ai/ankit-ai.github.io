@@ -8,14 +8,14 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="description" content="A guide to two complementary agent-memory designs: temporal event memory and procedural experience replay.">
+<meta name="description" content="A guide to temporal event memory, procedural experience replay, and maintaining stored procedures when world knowledge changes.">
 <meta name="author" content="Ankit Chadha">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Ankit Chadha">
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://ankitrchadha.com/research/agent-memory/">
 <meta property="og:title" content="Agent memory: changing facts and reusable procedures | Ankit Chadha">
-<meta property="og:description" content="A guide to two complementary agent-memory designs: temporal event memory and procedural experience replay.">
+<meta property="og:description" content="A guide to temporal event memory, procedural experience replay, and maintaining stored procedures when world knowledge changes.">
 <meta property="og:image" content="https://ankitrchadha.com/assets/img/cards/site-1200x630.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -24,7 +24,7 @@
 <meta name="twitter:site" content="@ankitrchadha">
 <meta name="twitter:creator" content="@ankitrchadha">
 <meta name="twitter:title" content="Agent memory: changing facts and reusable procedures | Ankit Chadha">
-<meta name="twitter:description" content="A guide to two complementary agent-memory designs: temporal event memory and procedural experience replay.">
+<meta name="twitter:description" content="A guide to temporal event memory, procedural experience replay, and maintaining stored procedures when world knowledge changes.">
 <meta name="twitter:image" content="https://ankitrchadha.com/assets/img/cards/site-1200x630.jpg">
 <meta name="twitter:image:alt" content="Share card: Ankit Chadha research guide.">
 <style>:root{--ink:#10202f;--ink2:#293b4a;--mut:#596b79;--faint:#748592;
@@ -59,7 +59,7 @@ header.site .wrap{display:flex;flex-wrap:wrap;gap:2px 22px;align-items:center;
  padding-top:16px;padding-bottom:15px}
 header.site .who{font-size:15px;font-weight:720;letter-spacing:.01em;
  color:var(--navy);text-decoration:none}
-header.site nav{font-size:14px;display:flex;gap:20px;margin-left:auto}
+header.site nav{font-size:14px;display:flex;flex-wrap:wrap;gap:6px 20px;margin-left:auto}
 header.site nav a{color:var(--mut);text-decoration:none;padding-bottom:3px}
 header.site nav a:hover{color:var(--acc)}
 header.site nav a[aria-current]{color:var(--ink);font-weight:600;
@@ -441,6 +441,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 @media (max-width:640px){
  body{font-size:16px;line-height:1.68}
  .wrap{padding:0 18px}
+ header.site nav{font-size:13px;gap:6px 12px}
  main.wrap{padding-top:26px}
  h1{font-size:27px;letter-spacing:-.02em}
  h2{font-size:19px;margin-top:2.3em;padding-top:.95em}
@@ -491,7 +492,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 </div></header>
 <main class="wrap" id="main">
 <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/research/">Research</a> / Agent memory: changing facts and reusable procedures</nav>
-<article><h1>Agent memory: changing facts and reusable procedures</h1><p class="bp">An agent may need to resolve what is true now, or reuse how it solved a task before. These are related but distinct memory problems.</p>
+<article><h1>Agent memory: changing facts and reusable procedures</h1><p class="bp">An agent may need to resolve what is true now, or reuse how it solved a task before. It also needs to keep those procedures current when APIs, guidelines, or knowledge graphs change.</p>
 <section>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M12 3v2 M12 19v2 M4.2 12H2 M22 12h-2.2 M6 6 4.5 4.5 M18 6l1.5-1.5 M9.5 15a4.5 4.5 0 1 1 5 0v2.5h-5z M10 20h4"/></svg>For changing conversational facts</h2>
 
@@ -524,8 +525,24 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <a href="/papers/apex-em-procedural-episodic-experience-replay/apex-em.pdf"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4 M10 17v-5h1.6a1.7 1.7 0 0 1 0 3.4H10"/></svg>PDF</a>
 <a href="/papers/apex-em-procedural-episodic-experience-replay/"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>Citation + BibTeX</a></p>
 </section>
+<section>
+<h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M12 3v2 M12 19v2 M4.2 12H2 M22 12h-2.2 M6 6 4.5 4.5 M18 6l1.5-1.5 M9.5 15a4.5 4.5 0 1 1 5 0v2.5h-5z M10 20h4"/></svg>For procedures that go stale</h2>
+
+<p class="lab">For procedures that go stale</p>
+<h3 style="font-size:19px;letter-spacing:-.015em;text-transform:none;color:var(--ink);margin:0 0 .55em">WK-Drift: Benchmarking Procedural Memory Maintenance under World Knowledge Drift</h3>
+<p>WK-Drift evaluates procedural memory with a learn–drift–evaluate–recover protocol. Typed drift events and entity-plan links let a correction reach the stored procedures it affects.</p>
+<p class="calib">With supplied drift events, surgical graph updates reach <span class="n">64.0%</span> post-drift clinical accuracy versus <span class="n">37.5%</span> for stale memory. On code, structured retrieval accounts for the main benefit.</p>
+<figure>
+<picture><source srcset="/assets/img/figs/wk-drift.webp" type="image/webp">
+<img src="/assets/img/figs/wk-drift.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="A procedural knowledge graph links stored plans to shared entities and replacement values. A retrieve–generate–consolidate loop applies drift events to the entity layer and carries corrections into future retrievals."></picture>
+<figcaption>Figure 1: Stored plans link to entity nodes; deprecated entities carry replacement pointers. The retrieve–generate–consolidate loop applies drift events to the entity layer, then surfaces corrections when plans are retrieved. Taken from the paper.</figcaption>
+</figure>
+<p class="actions"><a href="/papers/wk-drift-procedural-memory-maintenance/"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4"/></svg>Read the paper page</a>
+<a href="/papers/wk-drift-procedural-memory-maintenance/wk-drift.pdf"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4 M10 17v-5h1.6a1.7 1.7 0 0 1 0 3.4H10"/></svg>PDF</a>
+<a href="/papers/wk-drift-procedural-memory-maintenance/"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>Citation + BibTeX</a></p>
+</section>
 <section class="calib"><h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M12 3v2 M12 19v2 M4.2 12H2 M22 12h-2.2 M6 6 4.5 4.5 M18 6l1.5-1.5 M9.5 15a4.5 4.5 0 1 1 5 0v2.5h-5z M10 20h4"/></svg>Opportunities for future work</h2>
-<p>A natural next step is to test how temporal event memory and procedural experience replay can work together across shared settings and model backbones.</p></section>
+<p>A natural next step is to combine temporal event memory, procedural experience replay, and drift-aware maintenance across shared settings and model backbones. WK-Drift supplies known drift events; detecting them in deployment remains an open problem.</p></section>
 </article></main>
 <footer class="site"><div class="wrap">
 <p class="links"><a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me noopener">Google Scholar</a> &middot; <a href="https://orcid.org/0000-0002-5029-0136" rel="me noopener">ORCID</a> &middot; <a href="https://github.com/ankit-ai" rel="me noopener">GitHub</a> &middot; <a href="https://www.linkedin.com/in/ankitrc/" rel="me noopener">LinkedIn</a> &middot; <a href="https://aclanthology.org/people/ankit-chadha/" rel="me noopener">ACL Anthology</a> &middot; <a href="https://openalex.org/A5027218595" rel="me noopener">OpenAlex</a> &middot; <a href="https://www.amazon.science/author/ankit-chadha" rel="me noopener">Amazon Science</a> &middot; <a href="https://x.com/ankitrchadha" rel="me noopener">X</a></p>

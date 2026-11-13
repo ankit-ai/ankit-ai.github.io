@@ -59,7 +59,7 @@ header.site .wrap{display:flex;flex-wrap:wrap;gap:2px 22px;align-items:center;
  padding-top:16px;padding-bottom:15px}
 header.site .who{font-size:15px;font-weight:720;letter-spacing:.01em;
  color:var(--navy);text-decoration:none}
-header.site nav{font-size:14px;display:flex;gap:20px;margin-left:auto}
+header.site nav{font-size:14px;display:flex;flex-wrap:wrap;gap:6px 20px;margin-left:auto}
 header.site nav a{color:var(--mut);text-decoration:none;padding-bottom:3px}
 header.site nav a:hover{color:var(--acc)}
 header.site nav a[aria-current]{color:var(--ink);font-weight:600;
@@ -441,6 +441,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 @media (max-width:640px){
  body{font-size:16px;line-height:1.68}
  .wrap{padding:0 18px}
+ header.site nav{font-size:13px;gap:6px 12px}
  main.wrap{padding-top:26px}
  h1{font-size:27px;letter-spacing:-.02em}
  h2{font-size:19px;margin-top:2.3em;padding-top:.95em}
@@ -493,7 +494,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> / Research</nav>
 <h1>Research guides</h1><p class="bp">These guides connect related papers around a practical question. They are not substitutes for the papers; each guide links to the primary paper, PDF, and citation.</p>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 4.5h6.5V11H4z M13.5 4.5H20V11h-6.5z M4 13h6.5v6.5H4z M13.5 13H20v6.5h-6.5z"/></svg>Agent memory: changing facts and reusable procedures</h2>
-<p>A guide to two complementary agent-memory designs: temporal event memory and procedural experience replay.</p><p class="actions"><a href="/research/agent-memory/"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M14 4h6v6 M20 4 11 13 M18 14v5H5V6h5"/></svg>Read the guide</a></p>
+<p>A guide to temporal event memory, procedural experience replay, and maintaining stored procedures when world knowledge changes.</p><p class="actions"><a href="/research/agent-memory/"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M14 4h6v6 M20 4 11 13 M18 14v5H5V6h5"/></svg>Read the guide</a></p>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 4.5h6.5V11H4z M13.5 4.5H20V11h-6.5z M4 13h6.5v6.5H4z M13.5 13H20v6.5h-6.5z"/></svg>Adaptive handoffs for multi-agent systems</h2>
 <p>A practical reading guide to choosing a typed dependency graph or natural-language handoff for each agent task.</p><p class="actions"><a href="/research/agent-delegation/"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M14 4h6v6 M20 4 11 13 M18 14v5H5V6h5"/></svg>Read the guide</a></p>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 4.5h6.5V11H4z M13.5 4.5H20V11h-6.5z M4 13h6.5v6.5H4z M13.5 13H20v6.5h-6.5z"/></svg>Web QA: retrieve evidence, rank answers, extend to more languages</h2>

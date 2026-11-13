@@ -11,6 +11,8 @@ against the PDF text by a second pass.
 
 import json
 import os
+import argparse
+from urllib.parse import urlparse
 
 from PIL import Image, ImageDraw, ImageFont
 
@@ -47,6 +49,9 @@ LINE = (227, 230, 234)
 # slug -> (metric label, from, to, what it is measured on)
 # Each pair is quoted from the paper, with the comparator named.
 HEADLINE = {
+ "wk-drift-procedural-memory-maintenance":
+   ("Post-drift accuracy on the clinical benchmark", "37.5", "64.0",
+    "stale memory to surgical graph updates; drift events supplied"),
  "apex-mem-agentic-semi-structured-memory":
    ("Accuracy on LOCOMO memory questions", "85.38", "88.88",
     "best prior system to APEX-MEM, GPT-5"),
@@ -168,7 +173,8 @@ def card(p):
     # Footer: who, and where the paper lives.
     d.line([PAD, FOOT, W - PAD, FOOT], fill=LINE, width=1)
     d.text((PAD, FOOT + 20), SITE["name"], font=f_name, fill=INK)
-    d.text((PAD, FOOT + 50), "%s  ·  ankit-ai.github.io" % SITE["job_title"],
+    d.text((PAD, FOOT + 50), "%s  ·  %s" % (
+        SITE["job_title"], urlparse(SITE["base_url"]).netloc),
            font=f_ven, fill=MUT)
 
     path = os.path.join(OUT, "%s-1200x630.jpg" % p["slug"])
@@ -242,7 +248,8 @@ def profile_card(name, kicker, lines, out_name):
         y += 30
 
     d.line([PAD, FOOT, W - PAD, FOOT], fill=LINE, width=1)
-    d.text((PAD, FOOT + 20), "ankit-ai.github.io", font=font(SF, 22, 620), fill=INK)
+    d.text((PAD, FOOT + 20), urlparse(SITE["base_url"]).netloc,
+           font=font(SF, 22, 620), fill=INK)
     d.text((PAD, FOOT + 50), "Every paper has its own page, abstract and PDF.",
            font=f_ven, fill=MUT)
 
@@ -251,8 +258,15 @@ def profile_card(name, kicker, lines, out_name):
     return path
 
 
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("--slug", help="Generate only this paper card, plus updated site cards.")
+args = parser.parse_args()
+if args.slug and args.slug not in {p["slug"] for p in PAPERS}:
+    parser.error("Unknown paper slug: %s" % args.slug)
 made = 0
 for p in PAPERS:
+    if args.slug and p["slug"] != args.slug:
+        continue
     if p["slug"] not in HEADLINE:
         print("NO HEADLINE for %s, skipped" % p["slug"])
         continue
