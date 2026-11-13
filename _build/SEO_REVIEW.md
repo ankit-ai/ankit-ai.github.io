@@ -28,6 +28,7 @@ citation tools.
 - Refreshed citation counts from the complete public Google Scholar profile.
   The snapshot has a visible source date, record links, and a source checksum.
   Separate records are displayed separately because their citations may overlap.
+  Public pages show positive counts only; blank and zero counts are omitted.
 - Fixed narrow-screen navigation and checked layouts at 360, 390, 768, and
   1440 pixels. Checked exact clipboard citations, filtering, images, downloads,
   scholarly metadata, and internal links.

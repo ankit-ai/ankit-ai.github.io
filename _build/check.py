@@ -476,8 +476,14 @@ for group, papers in (("papers", PAPERS), ("earlier_work", DATA["earlier_work"])
         if not records:
             fail("citation snapshot: missing " + key)
         page = read("papers/%s/index.html" % key) if group == "papers" else pubs
-        if CITATIONS["as_of"] not in page:
+        positive = [r for r in records
+                    if type(r["count"]) is int and r["count"] > 0]
+        if positive and CITATIONS["as_of"] not in page:
             fail("citation snapshot: missing date on " + key)
+        if "No citations listed" in page:
+            fail("citation snapshot: empty citation label displayed on " + key)
+        if group == "papers" and not positive and 'class="tiny paper-citations"' in page:
+            fail("citation snapshot: empty citation line displayed on " + key)
         for record in records:
             record_url = urlparse(record["record_url"])
             if (record_url.netloc != "scholar.google.com" or
@@ -487,16 +493,14 @@ for group, papers in (("papers", PAPERS), ("earlier_work", DATA["earlier_work"])
             if count is None:
                 if record["status"] != "no_citations_listed":
                     fail("citation snapshot: ambiguous blank count for " + key)
-                if "No citations listed" not in page:
-                    fail("citation snapshot: blank count is not labelled for " + key)
             elif type(count) is not int or count < 0 or record["status"] != "counted":
                 fail("citation snapshot: invalid count for " + key)
             source_link = record["cited_by_url"] or record["record_url"]
-            if html.escape(source_link, quote=True) not in page:
+            if record in positive and html.escape(source_link, quote=True) not in page:
                 fail("citation snapshot: missing source link for " + key)
-        if len(records) > 1 and "split records" not in page:
+        if len(positive) > 1 and "split records" not in page:
             fail("citation snapshot: separate records silently merged for " + key)
-print("  %d papers with dated source links; split records kept separate"
+print("  %d verified paper snapshots; positive counts linked, empty counts omitted"
       % (len(PAPERS) + len(DATA["earlier_work"])))
 
 print("== discovery ==")

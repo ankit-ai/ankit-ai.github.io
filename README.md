@@ -104,8 +104,8 @@ text by a second pass. Results that were null or went the wrong way are included
 marked. Each page names the baseline and gives the from and to values. Citation
 counts are dated Google Scholar snapshots, with direct links to their source
 records. Separate Scholar records are never summed because citations may overlap.
-A blank Scholar count is labelled "No citations listed"; it is not converted into
-an invented numeric count. Download and star counts are not mirrored. Nothing
+Blank or zero counts are omitted from public pages. The source snapshot preserves
+missing values without inventing numeric counts. Download and star counts are not mirrored. Nothing
 claims a venue it has not been accepted to. Preprints are labelled as preprints in
 the page body, in the listing, and on the social card.
 

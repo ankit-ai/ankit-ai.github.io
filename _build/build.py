@@ -81,16 +81,18 @@ def url(path=""):
 
 
 def citation_counts(p):
-    """Linked source counts; never sum separate Scholar records."""
+    """Show positive source counts; never sum separate Scholar records."""
     records = (CITATIONS["papers"].get(p.get("slug")) if p.get("slug")
                else CITATIONS["earlier_work"].get(p["title"]))
+    records = [r for r in records or []
+               if r["count"] is not None and r["count"] > 0]
     if not records:
         return ""
     links = []
     for record in records:
         count = record["count"]
-        label = "No citations listed" if count is None else str(count)
-        if count is not None and len(records) == 1:
+        label = str(count)
+        if len(records) == 1:
             label += " citation" + ("" if count == 1 else "s")
         detail = ("Google Scholar: %s, checked %s"
                   % (label, CITATIONS["as_of"]))
@@ -1304,9 +1306,11 @@ def paper_page(p):
     acts.append('<a href="#cite">%sCite</a>' % icon("quote"))
     parts.append('<p class="actions">%s</p>\n' % "\n".join(acts))
     parts.append('<p class="tiny note">%s</p>\n' % e(artifact_note(p)))
-    parts.append('<p class="tiny paper-citations">%s on Google Scholar. '
-                 'Checked <time datetime="%s">%s</time>.</p>\n'
-                 % (citation_counts(p), e(CITATIONS["as_of"]), e(CITATIONS["as_of"])))
+    citations = citation_counts(p)
+    if citations:
+        parts.append('<p class="tiny paper-citations">%s on Google Scholar. '
+                     'Checked <time datetime="%s">%s</time>.</p>\n'
+                     % (citations, e(CITATIONS["as_of"]), e(CITATIONS["as_of"])))
 
     parts.append('<div class="tldr"><span class="lab">In one sentence</span>'
                  '<p>%s</p></div>\n' % nums(c["tldr"]))
@@ -1496,6 +1500,7 @@ def pub_card(p, c, featured=False):
             impact = '<span class="impact">%s%s on %s</span>' % (
                 e(dtxt), e(unit), e(h["bench"]))
 
+    citations = citation_counts(p)
     return """<div class="{card_class}" id="{slug}" data-topic="{topic}">
 {thumb}<div class="body">
 <p class="meta">{tag}<span>{where}</span>{impact}</p>
@@ -1505,7 +1510,7 @@ def pub_card(p, c, featured=False):
 <p class="paper-links"><a href="/papers/{slug}/{pdf}">PDF</a>
 <a href="/papers/{slug}/#cite">Cite</a>
 <a href="/papers/{slug}/{slug}.bib" download>BibTeX</a>
-<span class="paper-citations">{citations}</span></p>
+{citations}</p>
 {contribution}
 </div>
 </div>
@@ -1514,7 +1519,8 @@ def pub_card(p, c, featured=False):
            impact=impact, tldr=nums(c["tldr"]),
                contribution=contribution, card_class=card_class,
                pdf=e(p["pdf_filename"]), topic=e(TAG_OF.get(p["slug"], "")),
-               citations=citation_counts(p))
+               citations=('<span class="paper-citations">%s</span>' % citations
+                          if citations else ""))
 
 
 HUBS = {
