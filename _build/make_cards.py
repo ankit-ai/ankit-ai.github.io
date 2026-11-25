@@ -268,8 +268,8 @@ for p in PAPERS:
     if args.slug and p["slug"] != args.slug:
         continue
     if p.get("arxiv_id") in ("2611.31727", "2611.31771"):
-        # These share cards use unchanged source figures, with explanatory
-        # editorial labels. Keep them reproducible through the usual command.
+        # These share cards explain the papers with named tasks and expanded
+        # terms. Keep them reproducible through the usual command.
         from make_nov2026_paper_assets import SPECS, original, card as figure_card
         pid = p["arxiv_id"]
         figure_card(pid, SPECS[pid], original(pid, SPECS[pid]), "og").save(

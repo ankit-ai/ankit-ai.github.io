@@ -908,8 +908,8 @@
   "meta_description": "Agent-Kernel retries a failed branch and its dependents while preserving completed sibling work, and passes parent outputs into downstream prompts without blocking independent tasks.",
   "topics_sentence": "Topics include LLM agent orchestration, non-blocking runtime, sub-graph recovery, dependency graphs, context inheritance, durable task state, selective retries, tool-use reliability, parallel agent execution.",
   "featured_thumbnail": "2611.31727",
-  "featured_thumbnail_alt": "Original Figure 2 compares selective recovery and full replay: after node a fails, SGR retries a and dependent node s while preserving completed siblings b and c; full replay repeats all four nodes.",
-  "share_card_alt": "Original Figure 2 compares selective recovery and full replay: after node a fails, SGR retries a and dependent node s while preserving completed siblings b and c; full replay repeats all four nodes.",
+    "featured_thumbnail_alt": "Agent-Kernel price-comparison explainer: Sub-Graph Recovery (SGR) retries a failed Vendor A fetch, keeps completed prices from Vendors B and C, and compares prices once all three are ready.",
+    "share_card_alt": "Agent-Kernel price-comparison explainer: Sub-Graph Recovery (SGR) retries a failed Vendor A fetch, keeps completed prices from Vendors B and C, and compares prices once all three are ready.",
   "verification": {
    "abstract_verbatim": true,
    "unverified_numbers": [],
@@ -971,8 +971,8 @@
   "meta_description": "Interleaves dense retrieval with question-specific Wikidata traversal, parsing LLM-generated SPARQL into reliable single-hop lookups and using discovered bridge entities to refine the next search.",
   "topics_sentence": "Topics include multi-hop question answering, knowledge graph retrieval, Wikidata, SPARQL planning, single-hop traversal, dense retrieval, query refinement, retrieval precision, GraphRAG, HotpotQA, 2WikiMultiHopQA, MuSiQue.",
   "featured_thumbnail": "2611.31771",
-  "featured_thumbnail_alt": "Original Figure 1 shows a loop: dense retrieval seeds passages; a resolver confirms evidence and rewrites the question; a planning agent writes SPARQL, parses it into single-hop Wikidata lookups, and returns bridge entities for another retrieval pass. The reader answers once sufficient evidence is confirmed.",
-  "share_card_alt": "Original Figure 1 shows a loop: dense retrieval seeds passages; a resolver confirms evidence and rewrites the question; a planning agent writes SPARQL, parses it into single-hop Wikidata lookups, and returns bridge entities for another retrieval pass. The reader answers once sufficient evidence is confirmed.",
+    "featured_thumbnail_alt": "Graph-guided retrieval explainer using fictional entities: Film X links to Director Y, then City Z. SPARQL is explained as a query language for graph data. Execute one relation per lookup, search again using new names, and answer from text evidence.",
+    "share_card_alt": "Graph-guided retrieval explainer using fictional entities: Film X links to Director Y, then City Z. SPARQL is explained as a query language for graph data. Execute one relation per lookup, search again using new names, and answer from text evidence.",
   "verification": {
    "abstract_verbatim": true,
    "unverified_numbers": [],

@@ -17,7 +17,8 @@
       1200,
       597
     ],
-    "annotation": "Source figure unchanged; explanatory text added outside the crop."
+    "annotation": "Paper-page figure is an unchanged crop. Social, featured and share images are newly drawn paper-based explainers.",
+    "explainer_source": "Figure 2 and Section 3.3's vendor-price example"
   },
   "2611.31771": {
     "source": "https://arxiv.org/pdf/2611.31771v1",
@@ -37,6 +38,7 @@
       1200,
       371
     ],
-    "annotation": "Source figure unchanged; explanatory text added outside the crop."
+    "annotation": "Paper-page figure is an unchanged crop. Social, featured and share images are newly drawn paper-based explainers.",
+    "explainer_source": "Figure 1 and Sections 3.2\u20133.6; fictional film/director entities illustrate the mechanism."
   }
 }
