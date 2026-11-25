@@ -2,86 +2,94 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ankitrchadha.com/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://ankitrchadha.com/research/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://ankitrchadha.com/publications/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://ankitrchadha.com/contact/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://ankitrchadha.com/research/agent-memory/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://ankitrchadha.com/research/agent-delegation/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://ankitrchadha.com/research/web-qa/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://ankitrchadha.com/papers/sparql-planned-knowledge-graph-multi-hop-qa/</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://ankitrchadha.com/papers/agent-kernel-non-blocking-llm-orchestration/</loc>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://ankitrchadha.com/papers/wk-drift-procedural-memory-maintenance/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://ankitrchadha.com/papers/routed-graph-handoff/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://ankitrchadha.com/papers/apex-mem-agentic-semi-structured-memory/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://ankitrchadha.com/papers/apex-em-procedural-episodic-experience-replay/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://ankitrchadha.com/papers/question-context-alignment-answer-sentence-selection/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://ankitrchadha.com/papers/controlled-text-generation-hidden-representation-transformations/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://ankitrchadha.com/papers/cross-lingual-knowledge-distillation-answer-sentence-selection/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://ankitrchadha.com/papers/efficient-fine-tuning-knowledge-aware-response-planning/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://ankitrchadha.com/papers/attribute-conditioning-multi-document-summarization/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://ankitrchadha.com/papers/wdrass-web-scale-document-retrieval-answer-sentence-selection/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://ankitrchadha.com/papers/federated-learning-mixed-domain-translation/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://ankitrchadha.com/papers/communication-efficient-federated-learning-nmt/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://ankitrchadha.com/papers/dr-sas-deep-reinforced-self-attention-masks/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://ankitrchadha.com/papers/bertqa-attention-on-steroids/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
 </urlset>

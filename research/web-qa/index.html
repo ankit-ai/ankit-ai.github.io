@@ -3,21 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Web QA: retrieve evidence, rank answers, extend to more languages | Ankit Chadha</title>
+<title>Web QA: retrieve evidence, follow graph links, rank answers | Ankit Chadha</title>
 <link rel="canonical" href="https://ankitrchadha.com/research/web-qa/">
 <link rel="alternate" type="application/atom+xml" title="Ankit Chadha publications" href="/feed.xml">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="description" content="A research lineage from web-scale training data to context-aware answer ranking and low-resource multilingual supervision.">
+<meta name="description" content="A research lineage from web-scale training data to graph-guided multi-hop retrieval, context-aware answer ranking and multilingual supervision.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="Ankit Chadha">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Ankit Chadha">
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://ankitrchadha.com/research/web-qa/">
-<meta property="og:title" content="Web QA: retrieve evidence, rank answers, extend to more languages | Ankit Chadha">
-<meta property="og:description" content="A research lineage from web-scale training data to context-aware answer ranking and low-resource multilingual supervision.">
+<meta property="og:title" content="Web QA: retrieve evidence, follow graph links, rank answers | Ankit Chadha">
+<meta property="og:description" content="A research lineage from web-scale training data to graph-guided multi-hop retrieval, context-aware answer ranking and multilingual supervision.">
 <meta property="og:image" content="https://ankitrchadha.com/assets/img/cards/site-1200x630.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -25,8 +25,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@ankitrchadha">
 <meta name="twitter:creator" content="@ankitrchadha">
-<meta name="twitter:title" content="Web QA: retrieve evidence, rank answers, extend to more languages | Ankit Chadha">
-<meta name="twitter:description" content="A research lineage from web-scale training data to context-aware answer ranking and low-resource multilingual supervision.">
+<meta name="twitter:title" content="Web QA: retrieve evidence, follow graph links, rank answers | Ankit Chadha">
+<meta name="twitter:description" content="A research lineage from web-scale training data to graph-guided multi-hop retrieval, context-aware answer ranking and multilingual supervision.">
 <meta name="twitter:image" content="https://ankitrchadha.com/assets/img/cards/site-1200x630.jpg">
 <meta name="twitter:image:alt" content="Share card: Ankit Chadha research guide.">
 <style>:root{--ink:#10202f;--ink2:#293b4a;--mut:#596b79;--faint:#748592;
@@ -503,12 +503,12 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
   "@type": "CollectionPage",
   "@id": "https://ankitrchadha.com/research/web-qa/#guide",
   "url": "https://ankitrchadha.com/research/web-qa/",
-  "name": "Web QA: retrieve evidence, rank answers, extend to more languages",
-  "description": "A research lineage from web-scale training data to context-aware answer ranking and low-resource multilingual supervision.",
+  "name": "Web QA: retrieve evidence, follow graph links, rank answers",
+  "description": "A research lineage from web-scale training data to graph-guided multi-hop retrieval, context-aware answer ranking and multilingual supervision.",
   "author": {
     "@id": "https://ankitrchadha.com/#person"
   },
-  "dateModified": "2026-11-13",
+  "dateModified": "2026-11-25",
   "isPartOf": {
     "@id": "https://ankitrchadha.com/#website"
   },
@@ -518,18 +518,24 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
       {
         "@type": "ListItem",
         "position": 1,
+        "name": "SPARQL-Planned Single-Hop Traversal over a Live Knowledge Graph for Multi-Hop Question Answering",
+        "url": "https://ankitrchadha.com/papers/sparql-planned-knowledge-graph-multi-hop-qa/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
         "name": "WDRASS: A Web-scale Dataset for Document Retrieval and Answer Sentence Selection",
         "url": "https://ankitrchadha.com/papers/wdrass-web-scale-document-retrieval-answer-sentence-selection/"
       },
       {
         "@type": "ListItem",
-        "position": 2,
+        "position": 3,
         "name": "Question-Context Alignment and Answer-Context Dependencies for Effective Answer Sentence Selection",
         "url": "https://ankitrchadha.com/papers/question-context-alignment-answer-sentence-selection/"
       },
       {
         "@type": "ListItem",
-        "position": 3,
+        "position": 4,
         "name": "Cross-Lingual Knowledge Distillation for Answer Sentence Selection in Low-Resource Languages",
         "url": "https://ankitrchadha.com/papers/cross-lingual-knowledge-distillation-answer-sentence-selection/"
       }
@@ -545,8 +551,24 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <nav aria-label="Site"><a href="/">About</a> <a href="/research/" aria-current="page">Research</a> <a href="/publications/">Publications</a> <a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me">Scholar</a> <a href="/contact/">Contact me</a></nav>
 </div></header>
 <main class="wrap" id="main">
-<nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/research/">Research</a> / Web QA: retrieve evidence, rank answers, extend to more languages</nav>
-<article><h1>Web QA: retrieve evidence, rank answers, extend to more languages</h1><p class="bp">This is a reading map rather than one end-to-end system: WDRASS supplies data and evaluation, Question–Context Alignment improves candidate ranking, and Cross-Lingual Knowledge Distillation extends answer selection to lower-resource languages.</p>
+<nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/research/">Research</a> / Web QA: retrieve evidence, follow graph links, rank answers</nav>
+<article><h1>Web QA: retrieve evidence, follow graph links, rank answers</h1><p class="bp">WDRASS supplies web-scale data and evaluation. SPARQL-planned retrieval uses a live knowledge graph to discover bridge evidence for multi-hop questions. Question–Context Alignment improves candidate ranking, and Cross-Lingual Knowledge Distillation extends answer selection to lower-resource languages.</p>
+<section>
+<h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M12 3v2 M12 19v2 M4.2 12H2 M22 12h-2.2 M6 6 4.5 4.5 M18 6l1.5-1.5 M9.5 15a4.5 4.5 0 1 1 5 0v2.5h-5z M10 20h4"/></svg>Find bridge evidence for multi-hop questions</h2>
+
+<p class="lab">Find bridge evidence for multi-hop questions</p>
+<h3 style="font-size:19px;letter-spacing:-.015em;text-transform:none;color:var(--ink);margin:0 0 .55em">SPARQL-Planned Single-Hop Traversal over a Live Knowledge Graph for Multi-Hop Question Answering</h3>
+<p>Dense retrieval and live Wikidata traversal refine one another. Generated SPARQL is parsed into anchored single-hop lookups, and confirmed bridge entities guide another retrieval pass.</p>
+<p class="calib">On token-matched 2WikiMultiHopQA, exact match is <span class="n">67.7</span> versus <span class="n">55.2</span> for reproduced T2RAG at 3,082 versus 3,218 query-time LLM tokens per question.</p>
+<figure>
+<picture><source srcset="/assets/img/figs/2611.31771.webp" type="image/webp">
+<img src="/assets/img/figs/2611.31771.jpg" width="1200" height="371" loading="lazy" decoding="async" alt="Original Figure 1 shows a loop: dense retrieval seeds passages; a resolver confirms evidence and rewrites the question; a planning agent writes SPARQL, parses it into single-hop Wikidata lookups, and returns bridge entities for another retrieval pass. The reader answers once sufficient evidence is confirmed."></picture>
+<figcaption>Figure 1: Dense retrieval, resolution and knowledge-graph planning form a feedback loop. Generated SPARQL is parsed into anchored single-hop Wikidata lookups; discovered bridge entities refine the next dense query. The reader answers from confirmed passages. Taken from the paper.</figcaption>
+</figure>
+<p class="actions"><a href="/papers/sparql-planned-knowledge-graph-multi-hop-qa/"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4"/></svg>Read the paper page</a>
+<a href="/papers/sparql-planned-knowledge-graph-multi-hop-qa/sparql-planned-multi-hop-qa.pdf"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4 M10 17v-5h1.6a1.7 1.7 0 0 1 0 3.4H10"/></svg>PDF</a>
+<a href="/papers/sparql-planned-knowledge-graph-multi-hop-qa/#cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>Citation + BibTeX</a></p>
+</section>
 <section>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M12 3v2 M12 19v2 M4.2 12H2 M22 12h-2.2 M6 6 4.5 4.5 M18 6l1.5-1.5 M9.5 15a4.5 4.5 0 1 1 5 0v2.5h-5z M10 20h4"/></svg>Train and evaluate at web scale</h2>
 

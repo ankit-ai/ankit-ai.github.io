@@ -16,7 +16,7 @@
  "email_display": "ankitrchadha [at] gmail [dot] com",
  "google_site_verification": "",
  "indexnow_key": "56e1fe451f491f75646a90f08e651a86",
- "build_date": "2026-11-13",
+ "build_date": "2026-11-25",
  "tagline": "Director of Applied Science at Amazon AGI. My research asks how AI agents find reliable evidence, retain useful experience, and keep their knowledge current as the world changes.",
  "meta_description": "Ankit Chadha, Director of Applied Science at Amazon AGI. Research on agent memory, procedural knowledge graphs, world knowledge drift, grounded reasoning, and web-scale retrieval.",
  "bio": [
@@ -51,16 +51,18 @@
    ]
   },
   {
-   "heading": "How agents delegate",
-   "body": "Introduced adaptive routing between typed dependency graphs and natural-language handoffs for multi-agent LLM systems.",
+   "heading": "Agent orchestration",
+   "body": "Study adaptive handoff formats and non-blocking runtimes that preserve completed work when a dependency fails.",
    "papers": [
+    "agent-kernel-non-blocking-llm-orchestration",
     "routed-graph-handoff"
    ]
   },
   {
    "heading": "Web-scale question answering",
-   "body": "Built web-scale document retrieval, passage reranking, and answer sentence selection methods spanning thirty million documents and nine languages.",
+   "body": "Combine web-scale retrieval and answer sentence selection with question-specific knowledge-graph traversal for multi-hop evidence discovery.",
    "papers": [
+    "sparql-planned-knowledge-graph-multi-hop-qa",
     "wdrass-web-scale-document-retrieval-answer-sentence-selection",
     "cross-lingual-knowledge-distillation-answer-sentence-selection",
     "question-context-alignment-answer-sentence-selection",
@@ -164,12 +166,14 @@
   {
    "tag": "Multi-agent",
    "papers": [
+    "agent-kernel-non-blocking-llm-orchestration",
     "routed-graph-handoff"
    ]
   },
   {
    "tag": "Web-scale QA",
    "papers": [
+    "sparql-planned-knowledge-graph-multi-hop-qa",
     "wdrass-web-scale-document-retrieval-answer-sentence-selection",
     "cross-lingual-knowledge-distillation-answer-sentence-selection",
     "question-context-alignment-answer-sentence-selection",

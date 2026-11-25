@@ -1,0 +1,29 @@
+[
+  {
+    "id": "10.48550/arXiv.2611.31727",
+    "type": "article",
+    "title": "fork() for Agents: Agent Kernel for Non-blocking LLM Orchestration",
+    "author": [
+      {
+        "family": "Chadha",
+        "given": "Ankit"
+      },
+      {
+        "family": "Banerjee",
+        "given": "Pratyay"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2026,
+          11,
+          24
+        ]
+      ]
+    },
+    "abstract": "LLM-based agents typically execute tool calls synchronously and discard completed work upon failure. Subgraph-selective recovery, re-executing only a failed node's transitive descendants, is a well-established pattern in distributed systems (Spark, Erlang/OTP, Dryad), and recent agent runtimes (Sherlock, AgentGit, Atomix) preserve completed work through verifiers, version control, or transactional tool boundaries. We present Agent-Kernel, a non-blocking runtime that ports this pattern to the LLM content plane: its primitive, Sub-Graph Recovery (SGR), fires on a raw exception with no trained verifier or planner, resets a failed node's descendants while preserving completed siblings, and composes each parent's text into its children's prompts (context inheritance), all on a durable substrate with a formal state-preservation guarantee. Across 14,434 runs on synthetic and standard benchmarks (tau-bench, Gaia2, AutomationBench, InterruptBench), SGR reaches full recovery within budget=3 where whole-trajectory replay exhausts (100% vs. 55%), and is roughly 10× faster than an adapted Sherlock rollback that also recovers. It matches ReAct-serial accuracy within noise on linear workloads while adding recovery and parallelism (up to 12.7× speedup) where structure permits. Ablation isolates SGR: removing it collapses success to 39.4%.",
+    "URL": "https://arxiv.org/abs/2611.31727",
+    "DOI": "10.48550/arXiv.2611.31727"
+  }
+]

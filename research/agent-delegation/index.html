@@ -3,21 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Adaptive handoffs for multi-agent systems | Ankit Chadha</title>
+<title>Agent orchestration: adaptive handoffs and selective recovery | Ankit Chadha</title>
 <link rel="canonical" href="https://ankitrchadha.com/research/agent-delegation/">
 <link rel="alternate" type="application/atom+xml" title="Ankit Chadha publications" href="/feed.xml">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="description" content="A practical reading guide to choosing a typed dependency graph or natural-language handoff for each agent task.">
+<meta name="description" content="A reading guide to adaptive agent handoffs and non-blocking runtimes that preserve completed work after a failure.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="Ankit Chadha">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Ankit Chadha">
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://ankitrchadha.com/research/agent-delegation/">
-<meta property="og:title" content="Adaptive handoffs for multi-agent systems | Ankit Chadha">
-<meta property="og:description" content="A practical reading guide to choosing a typed dependency graph or natural-language handoff for each agent task.">
+<meta property="og:title" content="Agent orchestration: adaptive handoffs and selective recovery | Ankit Chadha">
+<meta property="og:description" content="A reading guide to adaptive agent handoffs and non-blocking runtimes that preserve completed work after a failure.">
 <meta property="og:image" content="https://ankitrchadha.com/assets/img/cards/site-1200x630.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -25,8 +25,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@ankitrchadha">
 <meta name="twitter:creator" content="@ankitrchadha">
-<meta name="twitter:title" content="Adaptive handoffs for multi-agent systems | Ankit Chadha">
-<meta name="twitter:description" content="A practical reading guide to choosing a typed dependency graph or natural-language handoff for each agent task.">
+<meta name="twitter:title" content="Agent orchestration: adaptive handoffs and selective recovery | Ankit Chadha">
+<meta name="twitter:description" content="A reading guide to adaptive agent handoffs and non-blocking runtimes that preserve completed work after a failure.">
 <meta name="twitter:image" content="https://ankitrchadha.com/assets/img/cards/site-1200x630.jpg">
 <meta name="twitter:image:alt" content="Share card: Ankit Chadha research guide.">
 <style>:root{--ink:#10202f;--ink2:#293b4a;--mut:#596b79;--faint:#748592;
@@ -503,12 +503,12 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
   "@type": "CollectionPage",
   "@id": "https://ankitrchadha.com/research/agent-delegation/#guide",
   "url": "https://ankitrchadha.com/research/agent-delegation/",
-  "name": "Adaptive handoffs for multi-agent systems",
-  "description": "A practical reading guide to choosing a typed dependency graph or natural-language handoff for each agent task.",
+  "name": "Agent orchestration: adaptive handoffs and selective recovery",
+  "description": "A reading guide to adaptive agent handoffs and non-blocking runtimes that preserve completed work after a failure.",
   "author": {
     "@id": "https://ankitrchadha.com/#person"
   },
-  "dateModified": "2026-11-13",
+  "dateModified": "2026-11-25",
   "isPartOf": {
     "@id": "https://ankitrchadha.com/#website"
   },
@@ -518,6 +518,12 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
       {
         "@type": "ListItem",
         "position": 1,
+        "name": "fork() for Agents: Agent Kernel for Non-blocking LLM Orchestration",
+        "url": "https://ankitrchadha.com/papers/agent-kernel-non-blocking-llm-orchestration/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
         "name": "Routed Graph Handoff: Adaptive Format Selection for Multi-Agent LLM Delegation",
         "url": "https://ankitrchadha.com/papers/routed-graph-handoff/"
       }
@@ -533,8 +539,24 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <nav aria-label="Site"><a href="/">About</a> <a href="/research/" aria-current="page">Research</a> <a href="/publications/">Publications</a> <a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me">Scholar</a> <a href="/contact/">Contact me</a></nav>
 </div></header>
 <main class="wrap" id="main">
-<nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/research/">Research</a> / Adaptive handoffs for multi-agent systems</nav>
-<article><h1>Adaptive handoffs for multi-agent systems</h1><p class="bp">A delegation need not always be prose or always be structured. Routed Graph Handoff selects a typed dependency graph or natural language for each task, then relies on an executor that understands the chosen form.</p>
+<nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/research/">Research</a> / Agent orchestration: adaptive handoffs and selective recovery</nav>
+<article><h1>Agent orchestration: adaptive handoffs and selective recovery</h1><p class="bp">Routed Graph Handoff selects a typed dependency graph or natural language for each task. Agent-Kernel studies the execution layer: preserving completed work and retrying the affected subgraph when a dependency fails.</p>
+<section>
+<h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M12 3v2 M12 19v2 M4.2 12H2 M22 12h-2.2 M6 6 4.5 4.5 M18 6l1.5-1.5 M9.5 15a4.5 4.5 0 1 1 5 0v2.5h-5z M10 20h4"/></svg>Keep completed work when a dependency fails</h2>
+
+<p class="lab">Keep completed work when a dependency fails</p>
+<h3 style="font-size:19px;letter-spacing:-.015em;text-transform:none;color:var(--ink);margin:0 0 .55em">fork() for Agents: Agent Kernel for Non-blocking LLM Orchestration</h3>
+<p>Agent-Kernel retries a failed branch and its dependents, preserves completed sibling outputs, and composes parent text into downstream prompts.</p>
+<p class="calib">On the transient-failure ablation, task success is <span class="n">100.0%</span> versus <span class="n">56.2%</span> for whole-task replay with retry budget 3. Linear workloads show no speed gain.</p>
+<figure>
+<picture><source srcset="/assets/img/figs/2611.31727.webp" type="image/webp">
+<img src="/assets/img/figs/2611.31727.jpg" width="1200" height="597" loading="lazy" decoding="async" alt="Original Figure 2 compares selective recovery and full replay: after node a fails, SGR retries a and dependent node s while preserving completed siblings b and c; full replay repeats all four nodes."></picture>
+<figcaption>Figure 2: A failed task a feeds a dependent task s. Sub-Graph Recovery re-executes a and s while keeping the completed outputs of siblings b and c. FullReplan repeats a, b, c and s. Taken from the paper.</figcaption>
+</figure>
+<p class="actions"><a href="/papers/agent-kernel-non-blocking-llm-orchestration/"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4"/></svg>Read the paper page</a>
+<a href="/papers/agent-kernel-non-blocking-llm-orchestration/agent-kernel.pdf"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 3h7l4 4v14H7z M14 3v4h4 M10 17v-5h1.6a1.7 1.7 0 0 1 0 3.4H10"/></svg>PDF</a>
+<a href="/papers/agent-kernel-non-blocking-llm-orchestration/#cite"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10.5 4C8 4 9 10 5.5 12c3.5 2 2.5 8 5 8 M13.5 4c2.5 0 1.5 6 5 8-3.5 2-2.5 8-5 8"/></svg>Citation + BibTeX</a></p>
+</section>
 <section>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M12 3v2 M12 19v2 M4.2 12H2 M22 12h-2.2 M6 6 4.5 4.5 M18 6l1.5-1.5 M9.5 15a4.5 4.5 0 1 1 5 0v2.5h-5z M10 20h4"/></svg>Route the handoff format, not just the task</h2>
 

@@ -459,6 +459,8 @@ for x in ld:
 
 print("== site wide ==")
 print("== citation snapshot ==")
+snapshot_date = None
+post_snapshot_papers = []
 try:
     snapshot_date = date.fromisoformat(CITATIONS["as_of"])
     if snapshot_date > datetime.now(timezone.utc).date():
@@ -474,7 +476,22 @@ for group, papers in (("papers", PAPERS), ("earlier_work", DATA["earlier_work"])
         key = p["slug"] if group == "papers" else p["title"]
         records = CITATIONS[group].get(key, [])
         if not records:
-            fail("citation snapshot: missing " + key)
+            # A dated snapshot cannot cover a paper first posted afterward.
+            # Require a verified full publication date; older missing records
+            # remain failures. Do not fabricate a zero count or a Scholar URL.
+            publication_date = None
+            if group == "papers":
+                parts = str(p.get("citation_publication_date", "")).split("/")
+                if len(parts) == 3:
+                    try:
+                        publication_date = date(*map(int, parts))
+                    except ValueError:
+                        pass
+            if (snapshot_date and publication_date and
+                    publication_date > snapshot_date):
+                post_snapshot_papers.append(key)
+            else:
+                fail("citation snapshot: missing " + key)
         page = read("papers/%s/index.html" % key) if group == "papers" else pubs
         positive = [r for r in records
                     if type(r["count"]) is int and r["count"] > 0]
@@ -501,7 +518,10 @@ for group, papers in (("papers", PAPERS), ("earlier_work", DATA["earlier_work"])
         if len(positive) > 1 and "split records" not in page:
             fail("citation snapshot: separate records silently merged for " + key)
 print("  %d verified paper snapshots; positive counts linked, empty counts omitted"
-      % (len(PAPERS) + len(DATA["earlier_work"])))
+      % (len(PAPERS) + len(DATA["earlier_work"]) - len(post_snapshot_papers)))
+if post_snapshot_papers:
+    print("  %d newer papers postdate the snapshot; citation counts omitted"
+          % len(post_snapshot_papers))
 
 print("== discovery ==")
 sm = read("sitemap.xml")

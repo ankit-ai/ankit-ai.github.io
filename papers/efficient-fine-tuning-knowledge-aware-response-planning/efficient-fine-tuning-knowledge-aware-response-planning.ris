@@ -15,4 +15,4 @@ EP  - 611
 UR  - https://doi.org/10.1007/978-3-031-43415-0_35
 L1  - https://ankitrchadha.com/papers/efficient-fine-tuning-knowledge-aware-response-planning/knowledge-aware-response-planning.pdf
 AB  - Large Language Models (LLMs) have shown impressive emergent language capabilities, especially in applications with high ambiguity, such as language reasoning and knowledge consolidation. However, previous work explores the use of LLMs for acquiring information using either parametric or external knowledge, which might lead to serious issues such as hallucination. Toward solving these issues, we present a novel approach of knowledge-aware response planning (KARP) and propose a novel framework that employs (i) a knowledge retriever to obtain relevant information from web documents or databases for a given user query, and (ii) a robust fine-tuning strategy for LLMs to exploit the retrieved external knowledge for planning a final response. Experimental results show that our proposed framework can provide natural, concise answers for open-domain questions with high accuracy.
-ER  - 
+ER  -

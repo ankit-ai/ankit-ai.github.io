@@ -60,6 +60,18 @@ python3 _build/make_wk_drift_assets.py
 python3 _build/make_cards.py --slug wk-drift-procedural-memory-maintenance
 ```
 
+The two November 24 arXiv preprints use their original PDF figures, with explanatory
+text outside the unchanged crops. Recreate those figures and website images with:
+
+```
+python3 _build/make_nov2026_paper_assets.py
+```
+
+Pass `--social-dir <folder>` to also generate LinkedIn (1200×1500) and X (1600×900)
+upload images. `_build/nov2026_figure_sources.json` records the figure, PDF page and
+crop coordinates. The standard `make_cards.py` command also preserves these
+figure-based share cards.
+
 After a build is published, `python3 _build/submit_indexnow.py` verifies the live
 ownership file and submits the sitemap URLs to IndexNow. Pass specific canonical
 URLs or site-relative paths to submit just those pages. This requests discovery
@@ -68,7 +80,7 @@ by participating search engines; Google and Google Scholar use their own crawler
 ## Local preview
 
 ```
-python3 -m http.server 8899
+python3 -m http.server 8899 --bind 127.0.0.1
 open http://localhost:8899/
 ```
 
@@ -108,6 +120,10 @@ Blank or zero counts are omitted from public pages. The source snapshot preserve
 missing values without inventing numeric counts. Download and star counts are not mirrored. Nothing
 claims a venue it has not been accepted to. Preprints are labelled as preprints in
 the page body, in the listing, and on the social card.
+
+Papers with a verified full publication date after the saved Scholar snapshot have
+no citation count until the next refresh. The checker permits only this dated
+exception; a missing record for an older paper still fails.
 
 To refresh citation counts, save the complete public Google Scholar profile HTML
 under ignored `_work/`, then run

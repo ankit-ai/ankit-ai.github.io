@@ -279,7 +279,7 @@ def ris_for(p, c):
     fields += [("UR", csl_for(p, c)["URL"]),
                ("L1", url("/papers/%s/%s" % (p["slug"], p["pdf_filename"]))),
                ("AB", c["abstract"]), ("ER", "")]
-    return "\n".join("%s  - %s" % (key, re.sub(r"\s+", " ", str(value)))
+    return "\n".join(("%s  - %s" % (key, re.sub(r"\s+", " ", str(value)))).rstrip()
                      for key, value in fields) + "\n"
 
 
@@ -1551,13 +1551,17 @@ HUBS = {
                    "them in deployment remains an open problem."),
     },
     "agent-delegation": {
-        "title": "Adaptive handoffs for multi-agent systems",
-        "description": ("A practical reading guide to choosing a typed dependency graph "
-                        "or natural-language handoff for each agent task."),
-        "intro": ("A delegation need not always be prose or always be structured. "
-                  "Routed Graph Handoff selects a typed dependency graph or natural language "
-                  "for each task, then relies on an executor that understands the chosen form."),
+        "title": "Agent orchestration: adaptive handoffs and selective recovery",
+        "description": ("A reading guide to adaptive agent handoffs and non-blocking "
+                        "runtimes that preserve completed work after a failure."),
+        "intro": ("Routed Graph Handoff selects a typed dependency graph or natural language "
+                  "for each task. Agent-Kernel studies the execution layer: preserving "
+                  "completed work and retrying the affected subgraph when a dependency fails."),
         "papers": [
+            ("agent-kernel-non-blocking-llm-orchestration",
+             "Keep completed work when a dependency fails",
+             "Agent-Kernel retries a failed branch and its dependents, preserves completed sibling outputs, and composes parent text into downstream prompts.",
+             "On the transient-failure ablation, task success is 100.0% versus 56.2% for whole-task replay with retry budget 3. Linear workloads show no speed gain."),
             ("routed-graph-handoff",
              "Route the handoff format, not just the task",
              "The system routes between a typed DAG and prose fallback. The contribution is adaptive selection; graph-only handoff is not presented as universally better.",
@@ -1568,13 +1572,18 @@ HUBS = {
                    "fallback as a useful design option."),
     },
     "web-qa": {
-        "title": "Web QA: retrieve evidence, rank answers, extend to more languages",
-        "description": ("A research lineage from web-scale training data to context-aware "
-                        "answer ranking and low-resource multilingual supervision."),
-        "intro": ("This is a reading map rather than one end-to-end system: WDRASS supplies "
-                  "data and evaluation, Question–Context Alignment improves candidate ranking, "
-                  "and Cross-Lingual Knowledge Distillation extends answer selection to lower-resource languages."),
+        "title": "Web QA: retrieve evidence, follow graph links, rank answers",
+        "description": ("A research lineage from web-scale training data to graph-guided "
+                        "multi-hop retrieval, context-aware answer ranking and multilingual supervision."),
+        "intro": ("WDRASS supplies web-scale data and evaluation. SPARQL-planned retrieval "
+                  "uses a live knowledge graph to discover bridge evidence for multi-hop questions. "
+                  "Question–Context Alignment improves candidate ranking, and Cross-Lingual "
+                  "Knowledge Distillation extends answer selection to lower-resource languages."),
         "papers": [
+            ("sparql-planned-knowledge-graph-multi-hop-qa",
+             "Find bridge evidence for multi-hop questions",
+             "Dense retrieval and live Wikidata traversal refine one another. Generated SPARQL is parsed into anchored single-hop lookups, and confirmed bridge entities guide another retrieval pass.",
+             "On token-matched 2WikiMultiHopQA, exact match is 67.7 versus 55.2 for reproduced T2RAG at 3,082 versus 3,218 query-time LLM tokens per question."),
             ("wdrass-web-scale-document-retrieval-answer-sentence-selection",
              "Train and evaluate at web scale",
              "WDRASS connects document retrieval, passage reranking, and answer sentence selection with roughly 64,000 questions and more than 800,000 labeled passages and sentences drawn from 30 million documents.",

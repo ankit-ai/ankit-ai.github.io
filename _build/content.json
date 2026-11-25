@@ -856,5 +856,128 @@
   },
   "why_it_matters": "A stored procedure can become a liability when an API disappears, a guideline changes, or a knowledge graph is reorganized. WK-Drift tests whether an agent's memory applies the correction to the right plans, rather than simply retrieving a newer document. Its learn–drift–evaluate–recover protocol distinguishes storing experience from maintaining it, and separates maintenance from the drift-detection problem by supplying known change events.",
   "search_title": "WK-Drift: Procedural Memory Maintenance"
+ },
+ "agent-kernel-non-blocking-llm-orchestration": {
+  "figure_alt": "Original Figure 2 compares selective recovery and full replay: after node a fails, SGR retries a and dependent node s while preserving completed siblings b and c; full replay repeats all four nodes.",
+  "figure_caption": "Figure 2: A failed task a feeds a dependent task s. Sub-Graph Recovery re-executes a and s while keeping the completed outputs of siblings b and c. FullReplan repeats a, b, c and s.",
+  "tldr": "Agent-Kernel retries a failed branch and its dependents while preserving completed sibling work, and passes parent outputs into downstream prompts without blocking independent tasks.",
+  "contribution": "Brings exception-triggered selective recovery, budgeted inheritance of parent text and durable task state into one non-blocking LLM-agent runtime.",
+  "why_it_matters": "A tool failure can make a whole-workflow retry repeat useful work that already succeeded. Agent-Kernel retains unaffected outputs and reruns only the affected dependency subgraph. This established distributed-systems pattern is paired with LLM-specific prompt composition, making recovery and concurrency available without a trained verifier or planner.",
+  "honesty_note": "broaden the main transient-crash evaluation to semantic failures and additional model families; preserve external tool effects through idempotency or transactional boundaries; and test more real framework configurations. The guarantee covers stored task state, not external side effects. Linear tau-bench and Gaia2 workloads show no wall-clock benefit, and the reported multi-seed timing means do not characterize per-seed dispersion. The broad framework grid uses primitive re-implementations; real-binary tests cover one diamond topology. Format-drift recovery is preliminary at 18 scenarios.",
+  "topics": [
+   "LLM agent orchestration",
+   "non-blocking runtime",
+   "sub-graph recovery",
+   "dependency graphs",
+   "context inheritance",
+   "durable task state",
+   "selective retries",
+   "tool-use reliability",
+   "parallel agent execution"
+  ],
+  "key_results": [
+   {
+    "is_negative_or_null": false,
+    "text": "On the synthetic failure-grid ablation with retry budget 3, Agent-Kernel reaches 100.0% success versus 56.2% for FullReplan, which restarts the whole task, and 39.4% without Sub-Graph Recovery (Table 6)."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "On AutomationBench's 20 tasks using Sonnet 4.5, mean wall-clock time is 5.5 seconds for Agent-Kernel versus 24.8 seconds for ReAct-serial, a 4.5× speedup; on InterruptBench's 113 tasks it is 14.2 versus 38.1 seconds, a 2.7× speedup (Table 4). These are latency results, not accuracy gains."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "In the K=8, L=8 transient-failure recovery comparison, Agent-Kernel and the generous Sherlock rollback adaptation both reach 100.0% recovery, with mean wall-clock times of 21 and 149 seconds, respectively; the advantage is recovery speed rather than a unique ability to recover (Table 3)."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "On linear tau-bench and Gaia2 workloads, Agent-Kernel matches ReAct-serial task accuracy within noise and shows no speed gain: wall-clock times are 17.2 versus 17.1 seconds on tau-bench and 18.2 versus 18.0 seconds on Gaia2 (Table 4)."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "In the real-binary diamond-DAG test, both Agent-Kernel and LangGraph 1.2 with a custom retry filter recover 60/60 cases. The mean recovery times are 0.12 versus 0.52 seconds; LangGraph's default filter excludes the injected exceptions (Table 7)."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "In the preliminary format-drift study, prompt mutation with error context and an expected schema recovers 14/18 cases (77.8%) versus 6/18 (33.3%) for blind re-execution; the small sample is a mechanism-level signal rather than a headline reliability result (Table 25)."
+   }
+  ],
+  "search_title": "Agent-Kernel: Selective Recovery for LLM Agents",
+  "abstract": "LLM-based agents typically execute tool calls synchronously and discard completed work upon failure. Subgraph-selective recovery, re-executing only a failed node's transitive descendants, is a well-established pattern in distributed systems (Spark, Erlang/OTP, Dryad), and recent agent runtimes (Sherlock, AgentGit, Atomix) preserve completed work through verifiers, version control, or transactional tool boundaries. We present Agent-Kernel, a non-blocking runtime that ports this pattern to the LLM content plane: its primitive, Sub-Graph Recovery (SGR), fires on a raw exception with no trained verifier or planner, resets a failed node's descendants while preserving completed siblings, and composes each parent's text into its children's prompts (context inheritance), all on a durable substrate with a formal state-preservation guarantee. Across 14,434 runs on synthetic and standard benchmarks (tau-bench, Gaia2, AutomationBench, InterruptBench), SGR reaches full recovery within budget=3 where whole-trajectory replay exhausts (100% vs. 55%), and is roughly 10× faster than an adapted Sherlock rollback that also recovers. It matches ReAct-serial accuracy within noise on linear workloads while adding recovery and parallelism (up to 12.7× speedup) where structure permits. Ablation isolates SGR: removing it collapses success to 39.4%.",
+  "abstract_word_count": 179,
+  "bibtex": "@misc{chadha2026agentkernel,\n  title = {fork() for Agents: Agent Kernel for Non-blocking LLM Orchestration},\n  author = {Chadha, Ankit and Banerjee, Pratyay},\n  year = {2026},\n  month = nov,\n  eprint = {2611.31727},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.CL},\n  url = {https://arxiv.org/abs/2611.31727},\n  note = {arXiv preprint}\n}",
+  "meta_description": "Agent-Kernel retries a failed branch and its dependents while preserving completed sibling work, and passes parent outputs into downstream prompts without blocking independent tasks.",
+  "topics_sentence": "Topics include LLM agent orchestration, non-blocking runtime, sub-graph recovery, dependency graphs, context inheritance, durable task state, selective retries, tool-use reliability, parallel agent execution.",
+  "featured_thumbnail": "2611.31727",
+  "featured_thumbnail_alt": "Original Figure 2 compares selective recovery and full replay: after node a fails, SGR retries a and dependent node s while preserving completed siblings b and c; full replay repeats all four nodes.",
+  "share_card_alt": "Original Figure 2 compares selective recovery and full replay: after node a fails, SGR retries a and dependent node s while preserving completed siblings b and c; full replay repeats all four nodes.",
+  "verification": {
+   "abstract_verbatim": true,
+   "unverified_numbers": [],
+   "verdict": "CLEAN",
+   "source": "arXiv v1 PDF and abstract page, verified 2026-11-25"
+  }
+ },
+ "sparql-planned-knowledge-graph-multi-hop-qa": {
+  "figure_alt": "Original Figure 1 shows a loop: dense retrieval seeds passages; a resolver confirms evidence and rewrites the question; a planning agent writes SPARQL, parses it into single-hop Wikidata lookups, and returns bridge entities for another retrieval pass. The reader answers once sufficient evidence is confirmed.",
+  "figure_caption": "Figure 1: Dense retrieval, resolution and knowledge-graph planning form a feedback loop. Generated SPARQL is parsed into anchored single-hop Wikidata lookups; discovered bridge entities refine the next dense query. The reader answers from confirmed passages.",
+  "tldr": "Interleaves dense retrieval with question-specific Wikidata traversal, parsing LLM-generated SPARQL into reliable single-hop lookups and using discovered bridge entities to refine the next search.",
+  "contribution": "Uses SPARQL as a graph-traversal plan rather than executing the generated query, coupling anchored single-hop lookups with passage confirmation and dense-query refinement.",
+  "why_it_matters": "Multi-hop questions often need a bridging passage that is a poor semantic match for the original question. Simply retrieving more passages also adds distractors. This method lets an existing knowledge graph guide the next search and checks retrieved passages against the reasoning path, improving evidence quality without constructing a new graph from every benchmark corpus.",
+  "honesty_note": "study reader and entity-linking sensitivity beyond Qwen3-32B and benchmark passage titles that align with Wikidata labels. The offline construction advantage depends on a suitable curated graph already covering the domain; it does not make graph construction or curation free. The unbounded setting uses more query-time tokens than the token-matched setting. On MuSiQue, the bounded setting trails T2RAG in answer F1, and deeper chains remain difficult. LightRAG's near-zero exact-match scores are sensitive to its verbose answer format and should not be interpreted as a general factual-quality failure.",
+  "topics": [
+   "multi-hop question answering",
+   "knowledge graph retrieval",
+   "Wikidata",
+   "SPARQL planning",
+   "single-hop traversal",
+   "dense retrieval",
+   "query refinement",
+   "retrieval precision",
+   "GraphRAG",
+   "HotpotQA",
+   "2WikiMultiHopQA",
+   "MuSiQue"
+  ],
+  "key_results": [
+   {
+    "is_negative_or_null": false,
+    "text": "On 1,000-question 2WikiMultiHopQA splits with a shared Qwen3-32B reader and corpus, the bounded method reaches 67.7 exact match versus 55.2 for reproduced T2RAG. Its query-time cost is 3,082 LLM tokens per question versus 3,218 for T2RAG (Tables 1 and 5)."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "At the higher-budget unbounded operating point, exact match / answer F1 is 62.5 / 75.1 on HotpotQA, 73.5 / 81.0 on 2WikiMultiHopQA and 37.1 / 50.0 on MuSiQue. Each split has 1,000 questions, and the same configuration is used across all three datasets (Table 1)."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "On HotpotQA, the unbounded method raises supporting-passage recall from 80.3 to 91.6 and precision from 32.1 to 80.7 relative to DPR-only retrieval (Table 2)."
+   },
+   {
+    "is_negative_or_null": false,
+    "text": "On bounded 2WikiMultiHopQA, parsing generated SPARQL into single-hop lookups reaches 67.7 exact match versus 56.3 when the generated query is executed directly. On HotpotQA the same comparison is 57.2 versus 56.9, and on MuSiQue 27.3 versus 24.8 (Table 4)."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "The bounded setting scores 27.3 exact match / 36.1 answer F1 on MuSiQue versus 26.6 / 37.7 for T2RAG, so it does not beat that baseline on both answer metrics. Bounded supporting-passage recall is 48.0 versus 68.0 for the unbounded setting (Tables 1 and 2)."
+   },
+   {
+    "is_negative_or_null": true,
+    "text": "On 2Wiki, the unbounded setting consumes 6,763 query-time LLM tokens and 4.6 calls per question, versus 3,082 tokens and 3.6 calls for bounded operation and 3,218 tokens and 3.3 calls for T2RAG (Table 5)."
+   }
+  ],
+  "search_title": "SPARQL-Planned Retrieval for Multi-Hop QA",
+  "abstract": "Semantic retrieval struggles with multi-hop question answering on both recall and precision: gold passages are buried among distractors that degrade the reader's answer, and retrieving them requires reasoning over the query rather than matching it. GraphRAG techniques expand semantic retrieval by connecting passages to graph nodes and performing one or more hops of expansion after initial retrieval. This improves recall, but multi-hop expansion becomes expensive and brings additional noise into the retrieved set. We break this tradeoff by interleaving dense retrieval with knowledge-graph traversal for complex multi-hop questions. Dense retrieval locates the first relevant regions of the search space at good recall, while traversal of a pre-existing external KG (Wikidata) restores precision and improves recall by confirming retrieved passages against a reasoning path through the KG. To keep traversal both question-adaptive and reliable, we have an LLM plan it as code generation task for graph traversal in SPARQL format but parse rather than execute the query. On full 1,000-question splits under a shared corpus and reader, and with a single configuration applied identically to every dataset, we reach 62.5 / 75.1 EM/F1 on HotpotQA, 73.5 / 81.0 on 2WikiMultiHopQA, and 37.1 / 50.0 on MuSiQue, ahead of reproduced HippoRAG2, T2RAG, and IRCoT on all three benchmarks. A second, token-matched setting stays ahead of T2RAG on HotpotQA and 2Wiki while spending roughly its per-query budget. Executing the generated SPARQL instead of parsing it costs up to 11.4 EM, mostly because raw queries return empty results, not because of syntax errors.",
+  "abstract_word_count": 249,
+  "bibtex": "@misc{vakharia2026sparqlplanned,\n  title = {SPARQL-Planned Single-Hop Traversal over a Live Knowledge Graph for Multi-Hop Question Answering},\n  author = {Vakharia, Priyesh and Moshtaghi, Masud and Banerjee, Pratyay and Jedema, Nicholas and Misra, Amita and Chadha, Ankit},\n  year = {2026},\n  month = nov,\n  eprint = {2611.31771},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.CL},\n  url = {https://arxiv.org/abs/2611.31771},\n  note = {arXiv preprint}\n}",
+  "meta_description": "Interleaves dense retrieval with question-specific Wikidata traversal, parsing LLM-generated SPARQL into reliable single-hop lookups and using discovered bridge entities to refine the next search.",
+  "topics_sentence": "Topics include multi-hop question answering, knowledge graph retrieval, Wikidata, SPARQL planning, single-hop traversal, dense retrieval, query refinement, retrieval precision, GraphRAG, HotpotQA, 2WikiMultiHopQA, MuSiQue.",
+  "featured_thumbnail": "2611.31771",
+  "featured_thumbnail_alt": "Original Figure 1 shows a loop: dense retrieval seeds passages; a resolver confirms evidence and rewrites the question; a planning agent writes SPARQL, parses it into single-hop Wikidata lookups, and returns bridge entities for another retrieval pass. The reader answers once sufficient evidence is confirmed.",
+  "share_card_alt": "Original Figure 1 shows a loop: dense retrieval seeds passages; a resolver confirms evidence and rewrites the question; a planning agent writes SPARQL, parses it into single-hop Wikidata lookups, and returns bridge entities for another retrieval pass. The reader answers once sufficient evidence is confirmed.",
+  "verification": {
+   "abstract_verbatim": true,
+   "unverified_numbers": [],
+   "verdict": "CLEAN",
+   "source": "arXiv v1 PDF and abstract page, verified 2026-11-25"
+  }
  }
 }

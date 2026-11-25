@@ -267,6 +267,16 @@ made = 0
 for p in PAPERS:
     if args.slug and p["slug"] != args.slug:
         continue
+    if p.get("arxiv_id") in ("2611.31727", "2611.31771"):
+        # These share cards use unchanged source figures, with explanatory
+        # editorial labels. Keep them reproducible through the usual command.
+        from make_nov2026_paper_assets import SPECS, original, card as figure_card
+        pid = p["arxiv_id"]
+        figure_card(pid, SPECS[pid], original(pid, SPECS[pid]), "og").save(
+            os.path.join(OUT, p["slug"] + "-1200x630.jpg"),
+            "JPEG", quality=95, optimize=True, progressive=True)
+        made += 1
+        continue
     if p["slug"] not in HEADLINE:
         print("NO HEADLINE for %s, skipped" % p["slug"])
         continue

@@ -507,7 +507,7 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
   "@id": "https://ankitrchadha.com/#profilepage",
   "url": "https://ankitrchadha.com/",
   "name": "Ankit Chadha",
-  "dateModified": "2026-11-13",
+  "dateModified": "2026-11-25",
   "isPartOf": {
     "@id": "https://ankitrchadha.com/#website"
   },
@@ -651,6 +651,42 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <div class="signal"><div class="signal-head"><span class="lab">Research record</span><span class="signal-mark"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 5.5C4 4.1 6.7 3 10 3s6 1.1 6 2.5V21c0-1.4-2.7-2.5-6-2.5S4 19.6 4 21z M16 5.5C16 4.1 17.3 3 19 3v15.5c-1.7 0-3 1.1-3 2.5"/></svg></span></div><p><strong>A sustained publication record.</strong>Peer-reviewed work across ACL, NAACL, CIKM, INTERSPEECH, and ECML PKDD, with additional work at NeurIPS workshops.</p></div>
 </div>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 20V9 M10 20V4 M16 20v-7 M22 20H2"/></svg>Selected research contributions</h2>
+<div class="pub featured" id="agent-kernel-non-blocking-llm-orchestration" data-topic="Multi-agent">
+<a class="paperthumb" href="/papers/agent-kernel-non-blocking-llm-orchestration/" aria-label="Read fork() for Agents: Agent Kernel for Non-blocking LLM Orchestration">
+<picture>
+<img src="/assets/img/featured/2611.31727.jpg" width="600" height="450"
+ loading="lazy" decoding="async" alt="Original Figure 2 compares selective recovery and full replay: after node a fails, SGR retries a and dependent node s while preserving completed siblings b and c; full replay repeats all four nodes.">
+</picture>
+</a><div class="body">
+<p class="meta"><span class="pill">Multi-agent</span><span>arXiv preprint <span class="flag">Preprint</span></span><span class="impact">+43.8 pp on Synthetic failure-grid ablation</span></p>
+<h3><a href="/papers/agent-kernel-non-blocking-llm-orchestration/">fork() for Agents: Agent Kernel for Non-blocking LLM Orchestration</a></h3>
+<p class="who"><strong>Ankit Chadha</strong>, Pratyay Banerjee</p>
+<p class="sum">Agent-Kernel retries a failed branch and its dependents while preserving completed sibling work, and passes parent outputs into downstream prompts without blocking independent tasks.</p>
+<p class="paper-links"><a href="/papers/agent-kernel-non-blocking-llm-orchestration/agent-kernel.pdf">PDF</a>
+<a href="/papers/agent-kernel-non-blocking-llm-orchestration/#cite">Cite</a>
+<a href="/papers/agent-kernel-non-blocking-llm-orchestration/agent-kernel-non-blocking-llm-orchestration.bib" download>BibTeX</a>
+</p>
+<p class="contribution"><span class="lab">Research contribution</span>Brings exception-triggered selective recovery, budgeted inheritance of parent text and durable task state into one non-blocking LLM-agent runtime.</p>
+</div>
+</div>
+<div class="pub featured" id="sparql-planned-knowledge-graph-multi-hop-qa" data-topic="Web-scale QA">
+<a class="paperthumb" href="/papers/sparql-planned-knowledge-graph-multi-hop-qa/" aria-label="Read SPARQL-Planned Single-Hop Traversal over a Live Knowledge Graph for Multi-Hop Question Answering">
+<picture>
+<img src="/assets/img/featured/2611.31771.jpg" width="600" height="450"
+ loading="lazy" decoding="async" alt="Original Figure 1 shows a loop: dense retrieval seeds passages; a resolver confirms evidence and rewrites the question; a planning agent writes SPARQL, parses it into single-hop Wikidata lookups, and returns bridge entities for another retrieval pass. The reader answers once sufficient evidence is confirmed.">
+</picture>
+</a><div class="body">
+<p class="meta"><span class="pill">Web-scale QA</span><span>arXiv preprint <span class="flag">Preprint</span></span><span class="impact">+12.5 pp on 2WikiMultiHopQA · 1,000 questions</span></p>
+<h3><a href="/papers/sparql-planned-knowledge-graph-multi-hop-qa/">SPARQL-Planned Single-Hop Traversal over a Live Knowledge Graph for Multi-Hop Question Answering</a></h3>
+<p class="who">Priyesh Vakharia, Masud Moshtaghi, Pratyay Banerjee, Nicholas Jedema, Amita Misra, <strong>Ankit Chadha</strong></p>
+<p class="sum">Interleaves dense retrieval with question-specific Wikidata traversal, parsing LLM-generated SPARQL into reliable single-hop lookups and using discovered bridge entities to refine the next search.</p>
+<p class="paper-links"><a href="/papers/sparql-planned-knowledge-graph-multi-hop-qa/sparql-planned-multi-hop-qa.pdf">PDF</a>
+<a href="/papers/sparql-planned-knowledge-graph-multi-hop-qa/#cite">Cite</a>
+<a href="/papers/sparql-planned-knowledge-graph-multi-hop-qa/sparql-planned-knowledge-graph-multi-hop-qa.bib" download>BibTeX</a>
+</p>
+<p class="contribution"><span class="lab">Research contribution</span>Uses SPARQL as a graph-traversal plan rather than executing the generated query, coupling anchored single-hop lookups with passage confirmation and dense-query refinement.</p>
+</div>
+</div>
 <div class="pub featured" id="wk-drift-procedural-memory-maintenance" data-topic="Agent memory">
 <a class="paperthumb" href="/papers/wk-drift-procedural-memory-maintenance/" aria-label="Read WK-Drift: Benchmarking Procedural Memory Maintenance under World Knowledge Drift">
 <picture>
@@ -705,53 +741,17 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 <p class="contribution"><span class="lab">Research contribution</span>Introduced procedural knowledge graphs for LLM agent memory through a typed Procedural Knowledge Graph, procedural-episodic experience replay, and cross-domain structural retrieval.</p>
 </div>
 </div>
-<div class="pub featured" id="federated-learning-mixed-domain-translation" data-topic="Federated learning">
-<a class="paperthumb" href="/papers/federated-learning-mixed-domain-translation/" aria-label="Read Training Mixed-Domain Translation Models via Federated Learning">
-<picture>
-<img src="/assets/img/featured/federated-translation.jpg" width="600" height="450"
- loading="lazy" decoding="async" alt="A line chart showing German-to-English BLEU increasing as federated learning rounds rise from five to fifty.">
-</picture>
-</a><div class="body">
-<p class="meta"><span class="pill">Federated learning</span><span>NAACL 2022 (Main Conference), pages 2576&ndash;2586</span><span class="impact">+1.83 BLEU on German to English</span></p>
-<h3><a href="/papers/federated-learning-mixed-domain-translation/">Training Mixed-Domain Translation Models via Federated Learning</a></h3>
-<p class="who">Peyman Passban, Tanya Roosta, Rahul Gupta, <strong>Ankit Chadha</strong>, Clement Chung</p>
-<p class="sum">Five domain-specific translation models use federated learning to build a mixed-domain neural machine translation system without pooling their data, with a method for selecting impactful parameters to control communication bandwidth.</p>
-<p class="paper-links"><a href="/papers/federated-learning-mixed-domain-translation/mixed-domain-federated-translation.pdf">PDF</a>
-<a href="/papers/federated-learning-mixed-domain-translation/#cite">Cite</a>
-<a href="/papers/federated-learning-mixed-domain-translation/federated-learning-mixed-domain-translation.bib" download>BibTeX</a>
-<span class="paper-citations"><a href="https://scholar.google.com/scholar?oi=bibs&amp;hl=en&amp;cites=3282202690110481065" rel="noopener" title="Google Scholar: 29 citations, checked 2026-11-13">29 citations</a></span></p>
-<p class="contribution"><span class="lab">Research contribution</span>Introduced a federated approach to mixed-domain neural machine translation and a bandwidth-control method that selects impactful parameters during federated updates.</p>
-</div>
-</div>
-<div class="pub featured" id="wdrass-web-scale-document-retrieval-answer-sentence-selection" data-topic="Web-scale QA">
-<a class="paperthumb" href="/papers/wdrass-web-scale-document-retrieval-answer-sentence-selection/" aria-label="Read WDRASS: A Web-scale Dataset for Document Retrieval and Answer Sentence Selection">
-<picture>
-<img src="/assets/img/featured/wdrass.jpg" width="600" height="450"
- loading="lazy" decoding="async" alt="A pipeline from a web index through sentence splitting and answer ranking to candidates labeled by expert annotators.">
-</picture>
-</a><div class="body">
-<p class="meta"><span class="pill">Web-scale QA</span><span>CIKM 2022, pages 4707&ndash;4711</span><span class="impact">+9.6 pp on WDRASS</span></p>
-<h3><a href="/papers/wdrass-web-scale-document-retrieval-answer-sentence-selection/">WDRASS: A Web-scale Dataset for Document Retrieval and Answer Sentence Selection</a></h3>
-<p class="who">Zeyu Zhang, Thuy Vu, Sunil Gandhi, <strong>Ankit Chadha</strong>, Alessandro Moschitti</p>
-<p class="sum">WDRASS introduced a web-scale open-domain question answering dataset with 64,000 questions and 800,000+ labeled passages and sentences drawn from 30 million documents.</p>
-<p class="paper-links"><a href="/papers/wdrass-web-scale-document-retrieval-answer-sentence-selection/wdrass.pdf">PDF</a>
-<a href="/papers/wdrass-web-scale-document-retrieval-answer-sentence-selection/#cite">Cite</a>
-<a href="/papers/wdrass-web-scale-document-retrieval-answer-sentence-selection/wdrass-web-scale-document-retrieval-answer-sentence-selection.bib" download>BibTeX</a>
-<span class="paper-citations"><a href="https://scholar.google.com/scholar?oi=bibs&amp;hl=en&amp;cites=13050066740109043859" rel="noopener" title="Google Scholar: 19 citations, checked 2026-11-13">19 citations</a></span></p>
-<p class="contribution"><span class="lab">Research contribution</span>Introduced a web-scale dataset that connects document retrieval, passage reranking, and answer sentence selection using complete sentence-level answers rather than short answer matching.</p>
-</div>
-</div>
-<p class="back"><a href="/publications/">All 14 papers, with abstracts and numbers &rarr;</a></p>
+<p class="back"><a href="/publications/">All 16 papers, with abstracts and numbers &rarr;</a></p>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 4.5h6.5V11H4z M13.5 4.5H20V11h-6.5z M4 13h6.5v6.5H4z M13.5 13H20v6.5h-6.5z"/></svg>Research guides</h2>
 <p class="small mut">Practical reading guides that connect related papers without replacing their primary evidence.</p><ul class="tl">
 <li><a href="/research/agent-memory/">Agent memory: changing facts and reusable procedures</a><span class="v">A guide to temporal event memory, procedural experience replay, and maintaining stored procedures when world knowledge changes.</span></li>
-<li><a href="/research/agent-delegation/">Adaptive handoffs for multi-agent systems</a><span class="v">A practical reading guide to choosing a typed dependency graph or natural-language handoff for each agent task.</span></li>
-<li><a href="/research/web-qa/">Web QA: retrieve evidence, rank answers, extend to more languages</a><span class="v">A research lineage from web-scale training data to context-aware answer ranking and low-resource multilingual supervision.</span></li>
+<li><a href="/research/agent-delegation/">Agent orchestration: adaptive handoffs and selective recovery</a><span class="v">A reading guide to adaptive agent handoffs and non-blocking runtimes that preserve completed work after a failure.</span></li>
+<li><a href="/research/web-qa/">Web QA: retrieve evidence, follow graph links, rank answers</a><span class="v">A research lineage from web-scale training data to graph-guided multi-hop retrieval, context-aware answer ranking and multilingual supervision.</span></li>
 </ul>
 <h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 4.5h6.5V11H4z M13.5 4.5H20V11h-6.5z M4 13h6.5v6.5H4z M13.5 13H20v6.5h-6.5z"/></svg>Research and systems</h2>
 <dl class="work">
 <div class="row">
-<dt>Agent memory<span class="when">2026<br>3 papers</span><span class="pill">Current</span></dt>
+<dt>Agent memory<span class="when">2026<br>3 papers</span></dt>
 <dd>
 <p class="g">Introduced procedural knowledge graphs for reusable agent experience, append-only temporal conversational memory, and a benchmark for maintaining stored procedures when world knowledge changes.</p>
 <ul class="tl">
@@ -762,19 +762,21 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 </dd>
 </div>
 <div class="row">
-<dt>How agents delegate<span class="when">2026<br>1 paper</span></dt>
+<dt>Agent orchestration<span class="when">2026<br>2 papers</span></dt>
 <dd>
-<p class="g">Introduced adaptive routing between typed dependency graphs and natural-language handoffs for multi-agent LLM systems.</p>
+<p class="g">Study adaptive handoff formats and non-blocking runtimes that preserve completed work when a dependency fails.</p>
 <ul class="tl">
+<li><a href="/papers/agent-kernel-non-blocking-llm-orchestration/">fork() for Agents: Agent Kernel for Non-blocking LLM Orchestration</a><span class="v">arXiv preprint</span><span class="d">+43.8 pp <span class="on">on Synthetic failure-grid ablation</span></span></li>
 <li><a href="/papers/routed-graph-handoff/">Routed Graph Handoff: Adaptive Format Selection for Multi-Agent LLM Delegation</a><span class="v">Findings of EMNLP 2026</span><span class="d">+12.7 pp <span class="on">on τ-bench retail</span></span></li>
 </ul>
 </dd>
 </div>
 <div class="row">
-<dt>Web-scale question answering<span class="when">2022&ndash;2023<br>4 papers</span></dt>
+<dt>Web-scale question answering<span class="when">2022&ndash;2026<br>5 papers</span><span class="pill">Current</span></dt>
 <dd>
-<p class="g">Built web-scale document retrieval, passage reranking, and answer sentence selection methods spanning thirty million documents and nine languages.</p>
+<p class="g">Combine web-scale retrieval and answer sentence selection with question-specific knowledge-graph traversal for multi-hop evidence discovery.</p>
 <ul class="tl">
+<li><a href="/papers/sparql-planned-knowledge-graph-multi-hop-qa/">SPARQL-Planned Single-Hop Traversal over a Live Knowledge Graph for Multi-Hop Question Answering</a><span class="v">arXiv preprint</span><span class="d">+12.5 pp <span class="on">on 2WikiMultiHopQA · 1,000 questions</span></span></li>
 <li><a href="/papers/wdrass-web-scale-document-retrieval-answer-sentence-selection/">WDRASS: A Web-scale Dataset for Document Retrieval and Answer Sentence Selection</a><span class="v">CIKM 2022</span><span class="d">+9.6 pp <span class="on">on WDRASS</span></span></li>
 <li><a href="/papers/cross-lingual-knowledge-distillation-answer-sentence-selection/">Cross-Lingual Knowledge Distillation for Answer Sentence Selection in Low-Resource Languages</a><span class="v">Findings of ACL 2023</span><span class="d">+12.1 pp <span class="on">on Xtr-WikiQA, Arabic</span></span></li>
 <li><a href="/papers/question-context-alignment-answer-sentence-selection/">Question-Context Alignment and Answer-Context Dependencies for Effective Answer Sentence Selection</a><span class="v">INTERSPEECH 2023</span><span class="d">+6.07 pp <span class="on">on WikiQA</span></span></li>

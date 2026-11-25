@@ -5,6 +5,14 @@
   Permissions-Policy: camera=(), geolocation=(), microphone=()
   Strict-Transport-Security: max-age=31536000
 
+/papers/sparql-planned-knowledge-graph-multi-hop-qa/sparql-planned-multi-hop-qa.pdf
+  Link: <https://ankitrchadha.com/papers/sparql-planned-knowledge-graph-multi-hop-qa/>; rel="canonical"
+  Content-Type: application/pdf
+
+/papers/agent-kernel-non-blocking-llm-orchestration/agent-kernel.pdf
+  Link: <https://ankitrchadha.com/papers/agent-kernel-non-blocking-llm-orchestration/>; rel="canonical"
+  Content-Type: application/pdf
+
 /papers/wk-drift-procedural-memory-maintenance/wk-drift.pdf
   Link: <https://ankitrchadha.com/papers/wk-drift-procedural-memory-maintenance/>; rel="canonical"
   Content-Type: application/pdf

@@ -1,0 +1,42 @@
+{
+  "2611.31727": {
+    "source": "https://arxiv.org/pdf/2611.31727v1",
+    "page": 4,
+    "figure": "Figure 2",
+    "crop_pdf_points": [
+      317,
+      203,
+      516,
+      302
+    ],
+    "native_pixels": [
+      1592,
+      792
+    ],
+    "website_pixels": [
+      1200,
+      597
+    ],
+    "annotation": "Source figure unchanged; explanatory text added outside the crop."
+  },
+  "2611.31771": {
+    "source": "https://arxiv.org/pdf/2611.31771v1",
+    "page": 4,
+    "figure": "Figure 1",
+    "crop_pdf_points": [
+      88,
+      69,
+      508,
+      199
+    ],
+    "native_pixels": [
+      3360,
+      1040
+    ],
+    "website_pixels": [
+      1200,
+      371
+    ],
+    "annotation": "Source figure unchanged; explanatory text added outside the crop."
+  }
+}

@@ -1,0 +1,15 @@
+TY  - GEN
+TI  - SPARQL-Planned Single-Hop Traversal over a Live Knowledge Graph for Multi-Hop Question Answering
+AU  - Vakharia, Priyesh
+AU  - Moshtaghi, Masud
+AU  - Banerjee, Pratyay
+AU  - Jedema, Nicholas
+AU  - Misra, Amita
+AU  - Chadha, Ankit
+PY  - 2026
+DA  - 2026/11/24
+DO  - 10.48550/arXiv.2611.31771
+UR  - https://arxiv.org/abs/2611.31771
+L1  - https://ankitrchadha.com/papers/sparql-planned-knowledge-graph-multi-hop-qa/sparql-planned-multi-hop-qa.pdf
+AB  - Semantic retrieval struggles with multi-hop question answering on both recall and precision: gold passages are buried among distractors that degrade the reader's answer, and retrieving them requires reasoning over the query rather than matching it. GraphRAG techniques expand semantic retrieval by connecting passages to graph nodes and performing one or more hops of expansion after initial retrieval. This improves recall, but multi-hop expansion becomes expensive and brings additional noise into the retrieved set. We break this tradeoff by interleaving dense retrieval with knowledge-graph traversal for complex multi-hop questions. Dense retrieval locates the first relevant regions of the search space at good recall, while traversal of a pre-existing external KG (Wikidata) restores precision and improves recall by confirming retrieved passages against a reasoning path through the KG. To keep traversal both question-adaptive and reliable, we have an LLM plan it as code generation task for graph traversal in SPARQL format but parse rather than execute the query. On full 1,000-question splits under a shared corpus and reader, and with a single configuration applied identically to every dataset, we reach 62.5 / 75.1 EM/F1 on HotpotQA, 73.5 / 81.0 on 2WikiMultiHopQA, and 37.1 / 50.0 on MuSiQue, ahead of reproduced HippoRAG2, T2RAG, and IRCoT on all three benchmarks. A second, token-matched setting stays ahead of T2RAG on HotpotQA and 2Wiki while spending roughly its per-query budget. Executing the generated SPARQL instead of parsing it costs up to 11.4 EM, mostly because raw queries return empty results, not because of syntax errors.
+ER  -

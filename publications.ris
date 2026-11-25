@@ -1,3 +1,31 @@
+TY  - GEN
+TI  - SPARQL-Planned Single-Hop Traversal over a Live Knowledge Graph for Multi-Hop Question Answering
+AU  - Vakharia, Priyesh
+AU  - Moshtaghi, Masud
+AU  - Banerjee, Pratyay
+AU  - Jedema, Nicholas
+AU  - Misra, Amita
+AU  - Chadha, Ankit
+PY  - 2026
+DA  - 2026/11/24
+DO  - 10.48550/arXiv.2611.31771
+UR  - https://arxiv.org/abs/2611.31771
+L1  - https://ankitrchadha.com/papers/sparql-planned-knowledge-graph-multi-hop-qa/sparql-planned-multi-hop-qa.pdf
+AB  - Semantic retrieval struggles with multi-hop question answering on both recall and precision: gold passages are buried among distractors that degrade the reader's answer, and retrieving them requires reasoning over the query rather than matching it. GraphRAG techniques expand semantic retrieval by connecting passages to graph nodes and performing one or more hops of expansion after initial retrieval. This improves recall, but multi-hop expansion becomes expensive and brings additional noise into the retrieved set. We break this tradeoff by interleaving dense retrieval with knowledge-graph traversal for complex multi-hop questions. Dense retrieval locates the first relevant regions of the search space at good recall, while traversal of a pre-existing external KG (Wikidata) restores precision and improves recall by confirming retrieved passages against a reasoning path through the KG. To keep traversal both question-adaptive and reliable, we have an LLM plan it as code generation task for graph traversal in SPARQL format but parse rather than execute the query. On full 1,000-question splits under a shared corpus and reader, and with a single configuration applied identically to every dataset, we reach 62.5 / 75.1 EM/F1 on HotpotQA, 73.5 / 81.0 on 2WikiMultiHopQA, and 37.1 / 50.0 on MuSiQue, ahead of reproduced HippoRAG2, T2RAG, and IRCoT on all three benchmarks. A second, token-matched setting stays ahead of T2RAG on HotpotQA and 2Wiki while spending roughly its per-query budget. Executing the generated SPARQL instead of parsing it costs up to 11.4 EM, mostly because raw queries return empty results, not because of syntax errors.
+ER  -
+
+TY  - GEN
+TI  - fork() for Agents: Agent Kernel for Non-blocking LLM Orchestration
+AU  - Chadha, Ankit
+AU  - Banerjee, Pratyay
+PY  - 2026
+DA  - 2026/11/24
+DO  - 10.48550/arXiv.2611.31727
+UR  - https://arxiv.org/abs/2611.31727
+L1  - https://ankitrchadha.com/papers/agent-kernel-non-blocking-llm-orchestration/agent-kernel.pdf
+AB  - LLM-based agents typically execute tool calls synchronously and discard completed work upon failure. Subgraph-selective recovery, re-executing only a failed node's transitive descendants, is a well-established pattern in distributed systems (Spark, Erlang/OTP, Dryad), and recent agent runtimes (Sherlock, AgentGit, Atomix) preserve completed work through verifiers, version control, or transactional tool boundaries. We present Agent-Kernel, a non-blocking runtime that ports this pattern to the LLM content plane: its primitive, Sub-Graph Recovery (SGR), fires on a raw exception with no trained verifier or planner, resets a failed node's descendants while preserving completed siblings, and composes each parent's text into its children's prompts (context inheritance), all on a durable substrate with a formal state-preservation guarantee. Across 14,434 runs on synthetic and standard benchmarks (tau-bench, Gaia2, AutomationBench, InterruptBench), SGR reaches full recovery within budget=3 where whole-trajectory replay exhausts (100% vs. 55%), and is roughly 10× faster than an adapted Sherlock rollback that also recovers. It matches ReAct-serial accuracy within noise on linear workloads while adding recovery and parallelism (up to 12.7× speedup) where structure permits. Ablation isolates SGR: removing it collapses success to 39.4%.
+ER  -
+
 TY  - CONF
 TI  - WK-Drift: Benchmarking Procedural Memory Maintenance under World Knowledge Drift
 AU  - Banerjee, Pratyay
@@ -13,7 +41,7 @@ EP  - 2736
 UR  - https://aclanthology.org/2026.findings-aacl.140/
 L1  - https://ankitrchadha.com/papers/wk-drift-procedural-memory-maintenance/wk-drift.pdf
 AB  - LLM agents that accumulate procedural memory can reuse successful plans, but what happens when the world changes? Deprecated APIs, revised clinical thresholds, and reorganized knowledge graphs silently invalidate stored procedures, and no existing benchmark evaluates whether a memory system can maintain its procedures under such drift. We introduce WK-Drift, built from three public temporal datasets (Time-Sensitive QA, GitChameleon, DriftMed). It formalizes drift as typed events with a fact-change/procedure-change taxonomy, defines a four-phase protocol (learn, drift, evaluate, recover), and introduces entity-plan linkage for targeted maintenance; because drift events are supplied, it isolates maintenance from drift detection. Across ten configurations spanning no-memory, unstructured (including Mem0 and MemRL), tagged, and graph-based memory, graph-based surgical updates reach 90% post-drift accuracy on knowledge QA (+6pp over stale baselines), 64% on clinical (+26.5pp), and 57% on code (+7.4pp), cutting staleness from 77–86% to 41–42%. The advantage concentrates on procedure-change drift (+17.4pp) and scales with propagation depth (+50pp at depth 3); on code, structured retrieval rather than maintenance is the dominant benefit. Ablations split the maintenance effect evenly between invalidating stale plans and supplying the replacement value, and the same corrected content is worth only 2.5pp when it is not linked to the plans it invalidates: what matters is applying the correction, not possessing it. Surgical maintenance reaches 59% in the first post-drift epoch against 26% for stale baselines, eliminating multi-epoch recovery latency.
-ER  - 
+ER  -
 
 TY  - CONF
 TI  - APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay
@@ -30,7 +58,7 @@ EP  - 42568
 UR  - https://aclanthology.org/2026.findings-emnlp.1996/
 L1  - https://ankitrchadha.com/papers/apex-em-procedural-episodic-experience-replay/apex-em.pdf
 AB  - LLM agents rerun full reasoning for every task, even one they solved moments earlier. We introduce APEX-EM, a non-parametric experience memory that stores complete procedural-episodic traces in a typed Procedural Knowledge Graph (PKG) and retrieves them through three channels: semantic search, structural-signature matching over abstract operation sequences, and graph traversal. A Plan-Retrieve-Generate-Iterate-Ingest (PRGII) workflow produces, quality-gates, and commits experiences, indexing both successes and failures so the agent learns what to reuse and what to avoid. No weights change during deployment. We evaluate on five benchmarks: BigCodeBench, KGQAGen-10k, HLE, Lifelong Agent Bench, and ALFWorld. Because prior work uses different backbones, we base our claims on same-backbone comparisons that hold model capability fixed. On held-out BigCodeBench transfer with a shared GPT-4o backbone, APEX-EM gains +7.6 pp over the no-memory baseline, 3.3× MemRL’s +2.3 pp under the identical setup. On Lifelong Agent Bench with a shared GPT-4o-mini backbone, it gains +1.4 pp (OS) and +1.0 pp (DB) cumulative success. On KGQAGen-10k, frozen memory transfers to a blind 1,079-question test split at 73.7% versus 42.0% with no memory, approaching an oracle handed the ground-truth subgraph (84.9%). Across three Opus scales the memory gain stays at +27 to +32 pp, so it adds to model capability rather than substituting for it. Component analysis shows no single mechanism dominates: teacher feedback is negligible for code but adds +10.3 pp on structured queries, structural signatures give 3.3× the transfer of semantic-only retrieval, and within-epoch iteration recovers most of the gain when rich feedback is unavailable. These results argue for modular memory composed per domain.
-ER  - 
+ER  -
 
 TY  - CONF
 TI  - Routed Graph Handoff: Adaptive Format Selection for Multi-Agent LLM Delegation
@@ -46,7 +74,7 @@ EP  - 42765
 UR  - https://aclanthology.org/2026.findings-emnlp.2008/
 L1  - https://ankitrchadha.com/papers/routed-graph-handoff/routed-graph-handoff.pdf
 AB  - Multi-agent LLM systems coordinate through natural-language messages that consume 40–60% of their token budget. Replacing these with structured graphs reduces cost but fails on tasks requiring adaptive reasoning. We propose Routed Graph Handoff, where a lightweight LLM router (155 tokens, 0.15% overhead) selects between a typed dependency graph and natural language for each delegation. On four benchmarks (1,050+ trajectories), the routed system matches or exceeds NL-only on every task: +12.7 pp on τ-retail at 3.2× compression (p<0.01), +8.7 pp on BrowseComp at 2.2× compression (p<0.05), and parity on BFCL and AppWorld. Without the router, graph-only delegation regresses 14.6 pp on AppWorld; the router eliminates this at near-zero cost. A graph-aware executor prompt is required: the same schema without interpretation guidance yields no gain. An oracle analysis reveals 8.6 pp of additional headroom, motivating execution-time adaptive routing as future work.
-ER  - 
+ER  -
 
 TY  - CONF
 TI  - APEX-MEM: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI
@@ -65,7 +93,7 @@ EP  - 16489
 UR  - https://aclanthology.org/2026.acl-long.749/
 L1  - https://ankitrchadha.com/papers/apex-mem-agentic-semi-structured-memory/apex-mem.pdf
 AB  - Large language models still struggle with reliable long-term conversational memory: simply enlarging context windows or applying naïve retrieval often introduces noise and destabilizes responses. We present APEX-MEM, a conversational memory system that combines three key innovations: (1) a property graph which uses domain-agnostic ontology to structure conversations as temporally grounded events in an entity-centric framework, (2) append-only storage that preserves the full temporal evolution of information, and (3) a multi-tool retrieval agent that understands and resolves conflicting or evolving information at query time, producing a compact and contextually relevant memory summary. This retrieval-time resolution preserves the full interaction history while suppressing irrelevant details. APEX-MEM achieves 88.88% accuracy on LOCOMO’s Question Answering task and 86.2% on LongMemEval, outperforming state-of-the-art session-aware approaches and demonstrating that structured property graphs enable more temporally coherent long-term conversational reasoning.
-ER  - 
+ER  -
 
 TY  - CONF
 TI  - Efficient Fine-Tuning Large Language Models for Knowledge-Aware Response Planning
@@ -84,7 +112,7 @@ EP  - 611
 UR  - https://doi.org/10.1007/978-3-031-43415-0_35
 L1  - https://ankitrchadha.com/papers/efficient-fine-tuning-knowledge-aware-response-planning/knowledge-aware-response-planning.pdf
 AB  - Large Language Models (LLMs) have shown impressive emergent language capabilities, especially in applications with high ambiguity, such as language reasoning and knowledge consolidation. However, previous work explores the use of LLMs for acquiring information using either parametric or external knowledge, which might lead to serious issues such as hallucination. Toward solving these issues, we present a novel approach of knowledge-aware response planning (KARP) and propose a novel framework that employs (i) a knowledge retriever to obtain relevant information from web documents or databases for a given user query, and (ii) a robust fine-tuning strategy for LLMs to exploit the retrieved external knowledge for planning a final response. Experimental results show that our proposed framework can provide natural, concise answers for open-domain questions with high accuracy.
-ER  - 
+ER  -
 
 TY  - CONF
 TI  - Question-Context Alignment and Answer-Context Dependencies for Effective Answer Sentence Selection
@@ -104,7 +132,7 @@ EP  - 3441
 UR  - https://www.isca-archive.org/interspeech_2023/nguyen23b_interspeech.html
 L1  - https://ankitrchadha.com/papers/question-context-alignment-answer-sentence-selection/question-context-alignment.pdf
 AB  - Answer sentence selection (AS2) in open-domain question answering finds answer for a question by ranking candidate sentences extracted from web documents. Recent work exploits answer context, i.e., sentences around a candidate, by incorporating them as additional input string to the Transformer models to improve the correctness scoring. In this paper, we propose to improve the candidate scoring by explicitly incorporating the dependencies between question-context and answer-context into the final representation of a candidate. Specifically, we use Optimal Transport to compute the question-based dependencies among sentences in the passage where the answer is extracted from. We then represent these dependencies as edges in a graph and use Graph Convolutional Network to derive the representation of a candidate, a node in the graph. Our proposed model achieves significant improvements on popular AS2 benchmarks, i.e., WikiQA and WDRASS, obtaining new state-of-the-art on all benchmarks.
-ER  - 
+ER  -
 
 TY  - CONF
 TI  - Controlled Text Generation with Hidden Representation Transformations
@@ -124,7 +152,7 @@ EP  - 9455
 UR  - https://aclanthology.org/2023.findings-acl.602/
 L1  - https://ankitrchadha.com/papers/controlled-text-generation-hidden-representation-transformations/controlled-text-generation-chrt.pdf
 AB  - We propose CHRT (Control Hidden Representation Transformation) – a controlled language generation framework that steers large language models to generate text pertaining to certain attributes (such as toxicity). CHRT gains attribute control by modifying the hidden representation of the base model through learned transformations. We employ a contrastive-learning framework to learn these transformations that can be combined to gain multi-attribute control. The effectiveness of CHRT is experimentally shown by comparing it with seven baselines over three attributes. CHRT outperforms all the baselines in the task of detoxification, positive sentiment steering, and text simplification while minimizing the loss in linguistic qualities. Further, our approach has the lowest inference latency of only 0.01 seconds more than the base model, making it the most suitable for high-performance production environments. We open-source our code and release two novel datasets to further propel controlled language generation research.
-ER  - 
+ER  -
 
 TY  - CONF
 TI  - Cross-Lingual Knowledge Distillation for Answer Sentence Selection in Low-Resource Languages
@@ -142,7 +170,7 @@ EP  - 14092
 UR  - https://aclanthology.org/2023.findings-acl.885/
 L1  - https://ankitrchadha.com/papers/cross-lingual-knowledge-distillation-answer-sentence-selection/cross-lingual-knowledge-distillation.pdf
 AB  - While impressive performance has been achieved on the task of Answer Sentence Selection (AS2) for English, the same does not hold for languages that lack large labeled datasets. In this work, we propose Cross-Lingual Knowledge Distillation (CLKD) from a strong English AS2 teacher as a method to train AS2 models for low-resource languages in the tasks without the need of labeled data for the target language. To evaluate our method, we introduce 1) Xtr-WikiQA, a translation-based WikiQA dataset for 9 additional languages, and 2) TyDi-AS2, a multilingual AS2 dataset with over 70K questions spanning 8 typologically diverse languages. We conduct extensive experiments on Xtr-WikiQA and TyDi-AS2 with multiple teachers, diverse monolingual and multilingual pretrained language models (PLMs) as students, and both monolingual and multilingual training. The results demonstrate that CLKD either outperforms or rivals even supervised fine-tuning with the same amount of labeled data and a combination of machine translation and the teacher model. Our method can potentially enable stronger AS2 models for low-resource languages, while TyDi-AS2 can serve as the largest multilingual AS2 dataset for further studies in the research community.
-ER  - 
+ER  -
 
 TY  - CONF
 TI  - WDRASS: A Web-scale Dataset for Document Retrieval and Answer Sentence Selection
@@ -161,7 +189,7 @@ EP  - 4711
 UR  - https://doi.org/10.1145/3511808.3557678
 L1  - https://ankitrchadha.com/papers/wdrass-web-scale-document-retrieval-answer-sentence-selection/wdrass.pdf
 AB  - Open-Domain Question Answering (ODQA) systems generate answers from relevant text returned by search engines, e.g., lexical features-based such as BM25, or embeddings-based such as dense passage retrieval (DPR). Few datasets are available for this task: they mainly focus on QA systems based on machine reading (MR) approach, and show problematic evaluation, mostly based on uncontextualized short answer matching. In this paper, we present WDRASS, a dataset for ODQA based on answer sentence selection (AS2) models, which consider sentences as candidate answers for QA systems. WDRASS consists of ∼64k questions and 800k+ labeled passages and sentences extracted from 30M documents. We evaluate the dataset by training models on it and comparing with the same models trained on Google NQ. Our experiments show that WDRASS significantly improves the performance of retrieval and reranking models, thus boosting the accuracy of downstream QA tasks. We believe our dataset can produce significant impact in advancing IR research.
-ER  - 
+ER  -
 
 TY  - GEN
 TI  - ACM -- Attribute Conditioning for Abstractive Multi Document Summarization
@@ -173,7 +201,7 @@ DO  - 10.48550/arXiv.2205.03978
 UR  - https://arxiv.org/abs/2205.03978
 L1  - https://ankitrchadha.com/papers/attribute-conditioning-multi-document-summarization/attribute-conditioning-summarization.pdf
 AB  - Abstractive multi document summarization has evolved as a task through the basic sequence to sequence approaches to transformer and graph based techniques. Each of these approaches has primarily focused on the issues of multi document information synthesis and attention based approaches to extract salient information. A challenge that arises with multi document summarization which is not prevalent in single document summarization is the need to effectively summarize multiple documents that might have conflicting polarity, sentiment or subjective information about a given topic. In this paper we propose ACM, attribute conditioned multi document summarization,a model that incorporates attribute conditioning modules in order to decouple conflicting information by conditioning for a certain attribute in the output summary. This approach shows strong gains in ROUGE score over baseline multi document summarization approaches and shows gains in fluency, informativeness and reduction in repetitiveness as shown through a human annotation analysis study.
-ER  - 
+ER  -
 
 TY  - CONF
 TI  - Training Mixed-Domain Translation Models via Federated Learning
@@ -192,7 +220,7 @@ EP  - 2586
 UR  - https://aclanthology.org/2022.naacl-main.186/
 L1  - https://ankitrchadha.com/papers/federated-learning-mixed-domain-translation/mixed-domain-federated-translation.pdf
 AB  - Training mixed-domain translation models is a complex task that demands tailored architectures and costly data preparation techniques. In this work, we leverage federated learning (FL) in order to tackle the problem. Our investigation demonstrates that with slight modifications in the training process, neural machine translation (NMT) engines can be easily adapted when an FL-based aggregation is applied to fuse different domains. Experimental results also show that engines built via FL are able to perform on par with state-of-the-art baselines that rely on centralized training techniques. We evaluate our hypothesis in the presence of five datasets with different sizes, from different domains, to translate from German into English and discuss how FL and NMT can mutually benefit from each other. In addition to providing benchmarking results on the union of FL and NMT, we also propose a novel technique to dynamically control the communication bandwidth by selecting impactful parameters during FL updates. This is a significant achievement considering the large size of NMT engines that need to be exchanged between FL parties.
-ER  - 
+ER  -
 
 TY  - CONF
 TI  - Communication-Efficient Federated Learning for Neural Machine Translation
@@ -205,7 +233,7 @@ T2  - NeurIPS 2021 Workshop on Efficient Natural Language and Speech Processing
 UR  - https://www.amazon.science/publications/communication-efficient-federated-learning-for-neural-machine-translation
 L1  - https://ankitrchadha.com/papers/communication-efficient-federated-learning-nmt/communication-efficient-federated-nmt.pdf
 AB  - Training neural machine translation (NMT) models in federated learning (FL) settings could be inefficient both computationally and communication-wise, due to the large size of translation engines as well as the multiple rounds of updates required to train clients and a central server. In this paper, we explore how to efficiently build NMT models in an FL setup by proposing a novel solution. In order to reduce the communication overhead, out of all neural layers we only exchange what we term “Controller” layers. Controllers are a small number of additional neural components connected to our pre-trained architectures. These new components are placed in between original layers. They act as liaisons to communicate with the central server and learn minimal information that is sufficient enough to update clients. We evaluated the performance of our models on five datasets from different domains to translate from German into English. We noted that the models equipped with Controllers preform on par with those trained in a central and non-FL setting. In addition, we observed a substantial reduction in the communication traffic of the FL pipeline, which is a direct consequence of using Controllers. Based on our experiments, Controller-based models are ∼ 6 times less expensive than their other peers. This reduction is significantly important when we consider the number of parameters in large models and it becomes even more critical when such parameters need to be exchanged for multiple rounds in FL settings.
-ER  - 
+ER  -
 
 TY  - GEN
 TI  - Deep Reinforced Self-Attention Masks for Abstractive Summarization (DR.SAS)
@@ -217,7 +245,7 @@ DO  - 10.48550/arXiv.2001.00009
 UR  - https://arxiv.org/abs/2001.00009
 L1  - https://ankitrchadha.com/papers/dr-sas-deep-reinforced-self-attention-masks/dr-sas.pdf
 AB  - We present a novel architectural scheme to tackle the abstractive summarization problem based on the CNN/DM dataset [1] which fuses Reinforcement Learning (RL) with UniLM, which is a pre-trained Deep Learning Model, to solve various natural language tasks. We have tested the limits of learning fine-grained attention in Transfomers [3] to improve the summarization quality. UniLM applies attention to the entire token space in a global fashion. We propose DR.SAS which applies the Actor Critic (AC) algorithm [2] to learn a dynamic self-attention distribution over the tokens to reduce redundancy and generate factual and coherent summaries to improve the quality of summarization. After performing hyperparameter tuning, we achieved better ROUGE results compared to the baseline. Our model tends to be more extractive/factual yet coherent in details because of optimization over ROUGE rewards. We present detailed error analysis with examples of strengths and limitations of our model. Our codebase will be publicly available on our github [20]
-ER  - 
+ER  -
 
 TY  - GEN
 TI  - BERTQA -- Attention on Steroids
@@ -229,4 +257,4 @@ DO  - 10.48550/arXiv.1912.10435
 UR  - https://arxiv.org/abs/1912.10435
 L1  - https://ankitrchadha.com/papers/bertqa-attention-on-steroids/bertqa-attention-on-steroids.pdf
 AB  - In this work, we extend the Bidirectional Encoder Representations from Transformers (BERT) with an emphasis on directed coattention to obtain an improved F1 performance on the SQUAD2.0 dataset. The Transformer architecture on which BERT is based places hierarchical global attention on the concatenation of the context and query. Our additions to the BERT architecture augment this attention with a more focused context to query (C2Q) and query to context (Q2C) attention via a set of modified Transformer encoder units. In addition, we explore adding convolution based feature extraction within the coattention architecture to add localized information to self-attention. We found that coattention significantly improves the no answer F1 by 4 points in the base and 1 point in the large architecture. After adding skip connections the no answer F1 improved further without causing an additional loss in has answer F1. The addition of localized feature extraction added to attention produced an overall dev F1 of 77.03 in the base architecture. We applied our findings to the large BERT model which contains twice as many layers and further used our own augmented version of the SQUAD 2.0 dataset created by back translation, which we have named SQUAD 2.Q. Finally, we performed hyperparameter tuning and ensembled our best models for a final F1/EM of 82.317/79.442 (Attention on Steroids, PCE Test Leaderboard).
-ER  - 
+ER  -

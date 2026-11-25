@@ -157,5 +157,37 @@
    "value": "64.0"
   },
   "note": "42.0% with the same graph but no maintenance"
+ },
+ "agent-kernel-non-blocking-llm-orchestration": {
+  "bench": "Synthetic failure-grid ablation",
+  "metric": "task success, retry budget 3",
+  "scale": 100,
+  "delta_unit": "pp",
+  "source_kr": 1,
+  "base": {
+   "label": "FullReplan",
+   "value": "56.2"
+  },
+  "ours": {
+   "label": "Agent-Kernel",
+   "value": "100.0"
+  },
+  "note": "Transient failures; preserve completed siblings."
+ },
+ "sparql-planned-knowledge-graph-multi-hop-qa": {
+  "bench": "2WikiMultiHopQA · 1,000 questions",
+  "metric": "exact match, token-matched setting",
+  "scale": 100,
+  "delta_unit": "pp",
+  "source_kr": 1,
+  "base": {
+   "label": "T2RAG",
+   "value": "55.2"
+  },
+  "ours": {
+   "label": "SPARQL-planned",
+   "value": "67.7"
+  },
+  "note": "3,082 vs 3,218 query-time LLM tokens/question."
  }
 }
