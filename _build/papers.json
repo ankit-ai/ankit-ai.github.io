@@ -21,11 +21,11 @@
       ],
       "affiliations": "Amazon",
       "year": 2026,
-      "venue_short": "arXiv preprint",
+      "venue_short": "Accepted, Findings of EACL 2027",
       "venue_long": "",
       "venue_note": "",
-      "is_preprint": true,
-      "status": "preprint",
+      "is_preprint": false,
+      "status": "accepted",
       "pages": "",
       "publisher": "",
       "citation_publication_date": "2026/11/24",
@@ -37,14 +37,15 @@
       "data_url": "",
       "pdf_local": "arxiv-2611.31771.pdf",
       "pdf_filename": "sparql-planned-multi-hop-qa.pdf",
-      "pdf_note": "arXiv v1, posted November 24, 2026. Preprint, not peer reviewed.",
+      "pdf_note": "arXiv v1, posted November 24, 2026. The authors report acceptance to Findings of EACL 2027; proceedings are forthcoming.",
       "img": "2611.31771",
       "img_w": 1200,
       "img_h": 371,
       "related": [
         "apex-em-procedural-episodic-experience-replay",
         "wdrass-web-scale-document-retrieval-answer-sentence-selection"
-      ]
+      ],
+      "accepted_note": "The authors report acceptance to Findings of EACL 2027 in the arXiv comments, verified November 25, 2026. Proceedings are forthcoming; the available paper and citation refer to the November 24, 2026 arXiv release."
     },
     {
       "slug": "agent-kernel-non-blocking-llm-orchestration",
@@ -55,11 +56,11 @@
       ],
       "affiliations": "Amazon AGI, Sunnyvale, USA",
       "year": 2026,
-      "venue_short": "arXiv preprint",
+      "venue_short": "Accepted, Findings of EACL 2027",
       "venue_long": "",
       "venue_note": "",
-      "is_preprint": true,
-      "status": "preprint",
+      "is_preprint": false,
+      "status": "accepted",
       "pages": "",
       "publisher": "",
       "citation_publication_date": "2026/11/24",
@@ -71,14 +72,15 @@
       "data_url": "",
       "pdf_local": "arxiv-2611.31727.pdf",
       "pdf_filename": "agent-kernel.pdf",
-      "pdf_note": "arXiv v1, posted November 24, 2026. Preprint, not peer reviewed.",
+      "pdf_note": "arXiv v1, posted November 24, 2026. The authors report acceptance to Findings of EACL 2027; proceedings are forthcoming.",
       "img": "2611.31727",
       "img_w": 1200,
       "img_h": 597,
       "related": [
         "routed-graph-handoff",
         "apex-em-procedural-episodic-experience-replay"
-      ]
+      ],
+      "accepted_note": "The authors report acceptance to Findings of EACL 2027 in the arXiv comments, verified November 25, 2026. Proceedings are forthcoming; the available paper and citation refer to the November 24, 2026 arXiv release."
     },
     {
       "slug": "wk-drift-procedural-memory-maintenance",

@@ -904,17 +904,17 @@
   "search_title": "Agent-Kernel: Selective Recovery for LLM Agents",
   "abstract": "LLM-based agents typically execute tool calls synchronously and discard completed work upon failure. Subgraph-selective recovery, re-executing only a failed node's transitive descendants, is a well-established pattern in distributed systems (Spark, Erlang/OTP, Dryad), and recent agent runtimes (Sherlock, AgentGit, Atomix) preserve completed work through verifiers, version control, or transactional tool boundaries. We present Agent-Kernel, a non-blocking runtime that ports this pattern to the LLM content plane: its primitive, Sub-Graph Recovery (SGR), fires on a raw exception with no trained verifier or planner, resets a failed node's descendants while preserving completed siblings, and composes each parent's text into its children's prompts (context inheritance), all on a durable substrate with a formal state-preservation guarantee. Across 14,434 runs on synthetic and standard benchmarks (tau-bench, Gaia2, AutomationBench, InterruptBench), SGR reaches full recovery within budget=3 where whole-trajectory replay exhausts (100% vs. 55%), and is roughly 10× faster than an adapted Sherlock rollback that also recovers. It matches ReAct-serial accuracy within noise on linear workloads while adding recovery and parallelism (up to 12.7× speedup) where structure permits. Ablation isolates SGR: removing it collapses success to 39.4%.",
   "abstract_word_count": 179,
-  "bibtex": "@misc{chadha2026agentkernel,\n  title = {fork() for Agents: Agent Kernel for Non-blocking LLM Orchestration},\n  author = {Chadha, Ankit and Banerjee, Pratyay},\n  year = {2026},\n  month = nov,\n  eprint = {2611.31727},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.CL},\n  url = {https://arxiv.org/abs/2611.31727},\n  note = {arXiv preprint}\n}",
+  "bibtex": "@misc{chadha2026agentkernel,\n  title = {fork() for Agents: Agent Kernel for Non-blocking LLM Orchestration},\n  author = {Chadha, Ankit and Banerjee, Pratyay},\n  year = {2026},\n  month = nov,\n  eprint = {2611.31727},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.CL},\n  url = {https://arxiv.org/abs/2611.31727},\n  note = {Accepted to Findings of EACL 2027; arXiv version}\n}",
   "meta_description": "Agent-Kernel retries a failed branch and its dependents while preserving completed sibling work, and passes parent outputs into downstream prompts without blocking independent tasks.",
   "topics_sentence": "Topics include LLM agent orchestration, non-blocking runtime, sub-graph recovery, dependency graphs, context inheritance, durable task state, selective retries, tool-use reliability, parallel agent execution.",
   "featured_thumbnail": "2611.31727",
-    "featured_thumbnail_alt": "Agent-Kernel price-comparison explainer: Sub-Graph Recovery (SGR) retries a failed Vendor A fetch, keeps completed prices from Vendors B and C, and compares prices once all three are ready.",
-    "share_card_alt": "Agent-Kernel price-comparison explainer: Sub-Graph Recovery (SGR) retries a failed Vendor A fetch, keeps completed prices from Vendors B and C, and compares prices once all three are ready.",
+  "featured_thumbnail_alt": "Agent-Kernel price-comparison explainer: Sub-Graph Recovery (SGR) retries a failed Vendor A fetch, keeps completed prices from Vendors B and C, and compares prices once all three are ready.",
+  "share_card_alt": "Agent-Kernel price-comparison explainer: Sub-Graph Recovery (SGR) retries a failed Vendor A fetch, keeps completed prices from Vendors B and C, and compares prices once all three are ready.",
   "verification": {
    "abstract_verbatim": true,
    "unverified_numbers": [],
    "verdict": "CLEAN",
-   "source": "arXiv v1 PDF and abstract page, verified 2026-11-25"
+   "source": "arXiv v1 PDF and abstract page, including author-reported EACL 2027 Findings acceptance, verified 2026-11-25"
   }
  },
  "sparql-planned-knowledge-graph-multi-hop-qa": {
@@ -967,17 +967,17 @@
   "search_title": "SPARQL-Planned Retrieval for Multi-Hop QA",
   "abstract": "Semantic retrieval struggles with multi-hop question answering on both recall and precision: gold passages are buried among distractors that degrade the reader's answer, and retrieving them requires reasoning over the query rather than matching it. GraphRAG techniques expand semantic retrieval by connecting passages to graph nodes and performing one or more hops of expansion after initial retrieval. This improves recall, but multi-hop expansion becomes expensive and brings additional noise into the retrieved set. We break this tradeoff by interleaving dense retrieval with knowledge-graph traversal for complex multi-hop questions. Dense retrieval locates the first relevant regions of the search space at good recall, while traversal of a pre-existing external KG (Wikidata) restores precision and improves recall by confirming retrieved passages against a reasoning path through the KG. To keep traversal both question-adaptive and reliable, we have an LLM plan it as code generation task for graph traversal in SPARQL format but parse rather than execute the query. On full 1,000-question splits under a shared corpus and reader, and with a single configuration applied identically to every dataset, we reach 62.5 / 75.1 EM/F1 on HotpotQA, 73.5 / 81.0 on 2WikiMultiHopQA, and 37.1 / 50.0 on MuSiQue, ahead of reproduced HippoRAG2, T2RAG, and IRCoT on all three benchmarks. A second, token-matched setting stays ahead of T2RAG on HotpotQA and 2Wiki while spending roughly its per-query budget. Executing the generated SPARQL instead of parsing it costs up to 11.4 EM, mostly because raw queries return empty results, not because of syntax errors.",
   "abstract_word_count": 249,
-  "bibtex": "@misc{vakharia2026sparqlplanned,\n  title = {SPARQL-Planned Single-Hop Traversal over a Live Knowledge Graph for Multi-Hop Question Answering},\n  author = {Vakharia, Priyesh and Moshtaghi, Masud and Banerjee, Pratyay and Jedema, Nicholas and Misra, Amita and Chadha, Ankit},\n  year = {2026},\n  month = nov,\n  eprint = {2611.31771},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.CL},\n  url = {https://arxiv.org/abs/2611.31771},\n  note = {arXiv preprint}\n}",
+  "bibtex": "@misc{vakharia2026sparqlplanned,\n  title = {SPARQL-Planned Single-Hop Traversal over a Live Knowledge Graph for Multi-Hop Question Answering},\n  author = {Vakharia, Priyesh and Moshtaghi, Masud and Banerjee, Pratyay and Jedema, Nicholas and Misra, Amita and Chadha, Ankit},\n  year = {2026},\n  month = nov,\n  eprint = {2611.31771},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.CL},\n  url = {https://arxiv.org/abs/2611.31771},\n  note = {Accepted to Findings of EACL 2027; arXiv version}\n}",
   "meta_description": "Interleaves dense retrieval with question-specific Wikidata traversal, parsing LLM-generated SPARQL into reliable single-hop lookups and using discovered bridge entities to refine the next search.",
   "topics_sentence": "Topics include multi-hop question answering, knowledge graph retrieval, Wikidata, SPARQL planning, single-hop traversal, dense retrieval, query refinement, retrieval precision, GraphRAG, HotpotQA, 2WikiMultiHopQA, MuSiQue.",
   "featured_thumbnail": "2611.31771",
-    "featured_thumbnail_alt": "Graph-guided retrieval explainer using fictional entities: Film X links to Director Y, then City Z. SPARQL is explained as a query language for graph data. Execute one relation per lookup, search again using new names, and answer from text evidence.",
-    "share_card_alt": "Graph-guided retrieval explainer using fictional entities: Film X links to Director Y, then City Z. SPARQL is explained as a query language for graph data. Execute one relation per lookup, search again using new names, and answer from text evidence.",
+  "featured_thumbnail_alt": "Graph-guided retrieval explainer using fictional entities: Film X links to Director Y, then City Z. SPARQL is explained as a query language for graph data. Execute one relation per lookup, search again using new names, and answer from text evidence.",
+  "share_card_alt": "Graph-guided retrieval explainer using fictional entities: Film X links to Director Y, then City Z. SPARQL is explained as a query language for graph data. Execute one relation per lookup, search again using new names, and answer from text evidence.",
   "verification": {
    "abstract_verbatim": true,
    "unverified_numbers": [],
    "verdict": "CLEAN",
-   "source": "arXiv v1 PDF and abstract page, verified 2026-11-25"
+   "source": "arXiv v1 PDF and abstract page, including author-reported EACL 2027 Findings acceptance, verified 2026-11-25"
   }
  }
 }
