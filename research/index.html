@@ -3,32 +3,32 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Research guides | Ankit Chadha</title>
+<title>Your agent remembers. Can it finish the job? | Ankit Chadha</title>
 <link rel="canonical" href="https://ankitrchadha.com/research/">
 <link rel="alternate" type="application/atom+xml" title="Ankit Chadha publications" href="/feed.xml">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="description" content="Research guides connecting Ankit Chadha&#x27;s work on agent memory, multi-agent delegation, web-scale question answering, and multilingual NLP.">
+<meta name="description" content="A visual journey through six 2026 papers on agent memory, experience, handoffs, knowledge-graph retrieval and recovery, with illustrated examples and links to the research.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="Ankit Chadha">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ankit Chadha">
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://ankitrchadha.com/research/">
-<meta property="og:title" content="Research guides | Ankit Chadha">
-<meta property="og:description" content="Research guides connecting Ankit Chadha&#x27;s work on agent memory, multi-agent delegation, web-scale question answering, and multilingual NLP.">
-<meta property="og:image" content="https://ankitrchadha.com/assets/img/cards/site-1200x630.jpg">
+<meta property="og:title" content="Your agent remembers. Can it finish the job? | Ankit Chadha">
+<meta property="og:description" content="A visual journey through six 2026 papers on agent memory, experience, handoffs, knowledge-graph retrieval and recovery, with illustrated examples and links to the research.">
+<meta property="og:image" content="https://ankitrchadha.com/assets/img/cards/research-journey-1200x630.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Share card: Ankit Chadha research guides.">
+<meta property="og:image:alt" content="Your agent remembers. Can it finish the job? Six questions beyond memory.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@ankitrchadha">
 <meta name="twitter:creator" content="@ankitrchadha">
-<meta name="twitter:title" content="Research guides | Ankit Chadha">
-<meta name="twitter:description" content="Research guides connecting Ankit Chadha&#x27;s work on agent memory, multi-agent delegation, web-scale question answering, and multilingual NLP.">
-<meta name="twitter:image" content="https://ankitrchadha.com/assets/img/cards/site-1200x630.jpg">
-<meta name="twitter:image:alt" content="Share card: Ankit Chadha research guides.">
+<meta name="twitter:title" content="Your agent remembers. Can it finish the job? | Ankit Chadha">
+<meta name="twitter:description" content="A visual journey through six 2026 papers on agent memory, experience, handoffs, knowledge-graph retrieval and recovery, with illustrated examples and links to the research.">
+<meta name="twitter:image" content="https://ankitrchadha.com/assets/img/cards/research-journey-1200x630.jpg">
+<meta name="twitter:image:alt" content="Your agent remembers. Can it finish the job? Six questions beyond memory.">
 <style>:root{--ink:#10202f;--ink2:#293b4a;--mut:#596b79;--faint:#748592;
  --line:#dce4e8;--hair:#edf1f3;--rule:#bdc9cf;--acc:#0d5c63;--acc2:#147983;
  --navy:#0b2239;--navy2:#153e58;--gold:#c99a4b;
@@ -496,8 +496,163 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
  .work .when{margin-top:4px}
  ol.cv .yr{order:-1;font-size:12.5px}
  ul.kr li{font-size:15.5px}
-}</style>
-
+}
+.research-index .journey-hero{display:grid;grid-template-columns:1.08fr .92fr;
+ gap:28px;padding:32px;margin-bottom:36px;background:var(--navy);color:#fff;
+ border-radius:18px;box-shadow:0 14px 45px rgba(10,34,55,.12)}
+.journey-hero .eyebrow{color:#bdabff;font-size:11px;margin-bottom:14px}
+.journey-hero h1{font-size:40px;line-height:1.15;color:#fff;letter-spacing:-.03em;
+ text-wrap:normal;margin-bottom:20px}
+.journey-hero h1 span{display:block}
+.journey-hero .journey-intro{font-size:16.5px;line-height:1.6;color:#d7e3ed;margin:0 0 16px}
+.journey-hero .journey-stakes{color:#fff;font-size:16px;line-height:1.6;font-weight:600;
+ margin:0 0 22px}
+.journey-hero .journey-actions{display:flex;flex-wrap:wrap;gap:10px;font-size:13px}
+.journey-actions a{display:inline-flex;align-items:center;gap:6px;border-radius:999px;
+ padding:9px 13px;text-decoration:none;border:1px solid #96cbd0;color:#e3f6f5;
+ font-weight:600;min-height:44px}
+.journey-actions a:first-child{background:#d7f79a;border-color:#d7f79a;color:#17324f}
+.journey-actions a:hover{background:#fff;color:#17324f}
+.journey-actions a:focus-visible,.journey-tabs a:focus-visible,.journey-controls button:focus-visible{
+ outline-color:#bdabff;outline-offset:4px}
+.journey-hero figure{margin:0;min-width:0;display:flex;flex-direction:column}
+.journey-hero figure img{width:100%;height:100%;min-height:265px;flex:1;object-fit:cover;
+ border-radius:12px;border:0;background:#153e58}
+.journey-hero figcaption{font-size:10.5px;color:#b8c8d3;margin-top:10px}
+.journey-hero figcaption a{color:inherit}
+.research-index .journey-byline{font-size:14px;color:var(--mut);margin:0 0 30px}
+.research-journey{scroll-margin-top:100px}
+.research-journey>h2{margin-top:0}
+.journey-tabs{list-style:none;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));
+ padding:0;margin:26px 0 20px;gap:8px}
+.journey-tabs li{margin:0;min-width:0}
+.journey-tabs a{display:flex;flex-direction:column;gap:7px;padding:13px 10px;
+ border:1px solid var(--line);border-radius:10px;text-decoration:none;
+ color:var(--ink2);font-size:13px;font-weight:650;min-height:77px}
+.journey-tabs .step-number{font-size:11px;font-weight:600;color:var(--mut)}
+.journey-tabs a:hover{border-color:var(--acc2);background:var(--tint)}
+.journey-tabs a[aria-selected="true"]{background:var(--navy);color:#fff;border-color:var(--navy);
+ box-shadow:inset 0 3px 0 var(--step-color)}
+.journey-tabs a[aria-selected="true"] .step-number{color:var(--step-color)}
+.journey-panel{padding:27px;border:1px solid var(--line);border-radius:14px;
+ background:#fff;margin:0 0 24px;scroll-margin-top:105px}
+.journey-panel .lab{color:var(--acc);margin-bottom:8px}
+.journey-panel h3{font-size:27px;line-height:1.22;font-weight:680;
+ text-transform:none;letter-spacing:-.025em;color:var(--ink);margin:0 0 12px}
+.journey-problem{color:var(--ink2);font-size:16px;line-height:1.65;max-width:70ch;margin-bottom:24px}
+.journey-stage{display:grid;grid-template-columns:1.05fr 1fr;gap:26px;align-items:center}
+.journey-stage figure{margin:0;min-width:0}
+.journey-stage img{width:100%;height:auto;border:0;border-radius:10px;background:#0b1325}
+.journey-idea p{font-size:15.5px;line-height:1.65;color:var(--ink2);margin-bottom:14px}
+.journey-idea .journey-example{font-size:13.5px;line-height:1.6;color:var(--mut);
+ border-left:2px solid var(--tintline);padding-left:13px;margin:0}
+.journey-paper{border-top:1px solid var(--hair);margin-top:24px;padding-top:17px}
+.journey-paper .paper-title{font-size:14.5px;line-height:1.5;color:var(--ink);font-weight:600;
+ display:block;text-decoration-color:var(--rule)}
+.journey-paper .venue{font-size:12px;margin:6px 0 14px}
+.journey-paper .actions{padding-bottom:0;border:0;font-size:12.5px}
+.journey-controls{display:flex;align-items:center;justify-content:space-between;
+ gap:15px;margin:0 0 17px}
+.journey-controls button{font:inherit;font-size:13px;font-weight:600;cursor:pointer;
+ padding:10px 15px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--acc);
+ min-height:44px}
+.journey-controls button:hover:not(:disabled){border-color:var(--acc2);background:var(--tint)}
+.journey-controls button:disabled{opacity:.4;cursor:default}
+.journey-controls .journey-progress{font-size:12.5px;color:var(--mut);text-align:center}
+.journey-scope{font-size:12px;line-height:1.65;color:var(--mut);max-width:80ch}
+.journey-scope time{white-space:nowrap}
+.journey-end{margin:23px 0 0;padding:18px 20px;background:var(--tint);border:1px solid var(--tintline);
+ border-radius:10px;font-size:16px;font-weight:600;color:var(--ink)}
+.research-guides{margin-top:48px}
+.research-guides>h2{margin-bottom:10px}
+.research-guides .guide-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:16px;margin:22px 0}
+.research-guides .guide-card{border:1px solid var(--line);border-radius:10px;padding:21px;
+ min-width:0}
+.research-guides .guide-card h3{font-size:17px;line-height:1.35;letter-spacing:-.015em;
+ text-transform:none;color:var(--ink);margin:0 0 10px}
+.research-guides .guide-card p{font-size:13.5px;line-height:1.65;color:var(--mut)}
+.research-guides .guide-card>a{font-size:13px;font-weight:600}
+@media(max-width:760px){
+ .research-index .journey-hero{grid-template-columns:1fr;padding:25px;gap:22px}
+ .journey-hero h1{font-size:36px;max-width:23ch}
+ .journey-hero figure{grid-row:1}
+ .journey-hero figure img{height:190px;min-height:190px;flex:none;object-position:50% 46%}
+ .journey-hero figcaption{font-size:10px;margin-top:6px}
+ .journey-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .journey-tabs a{min-height:67px;padding:11px 13px;gap:4px}
+ .journey-panel{padding:22px}
+ .journey-stage{grid-template-columns:1fr;gap:22px}
+ .journey-panel h3{font-size:25px}
+ .research-guides .guide-grid{grid-template-columns:1fr}
+}
+@media(max-width:410px){
+ .research-index .journey-hero{padding:21px}
+ .journey-hero h1{font-size:32px}
+ .journey-hero .journey-intro,.journey-hero .journey-stakes{font-size:15px}
+ .journey-controls{gap:8px}
+ .journey-controls button{padding:10px 11px;font-size:12px}
+ .journey-controls .journey-progress{font-size:11px}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": "https://ankitrchadha.com/research/#journey",
+  "url": "https://ankitrchadha.com/research/",
+  "name": "Your agent remembers. Can it finish the job?",
+  "description": "A visual journey through six 2026 papers on agent memory, experience, handoffs, knowledge-graph retrieval and recovery, with illustrated examples and links to the research.",
+  "dateModified": "2026-11-25",
+  "author": {
+    "@id": "https://ankitrchadha.com/#person"
+  },
+  "isPartOf": {
+    "@id": "https://ankitrchadha.com/#website"
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "APEX-MEM: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI",
+        "url": "https://ankitrchadha.com/papers/apex-mem-agentic-semi-structured-memory/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay",
+        "url": "https://ankitrchadha.com/papers/apex-em-procedural-episodic-experience-replay/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "WK-Drift: Benchmarking Procedural Memory Maintenance under World Knowledge Drift",
+        "url": "https://ankitrchadha.com/papers/wk-drift-procedural-memory-maintenance/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Routed Graph Handoff: Adaptive Format Selection for Multi-Agent LLM Delegation",
+        "url": "https://ankitrchadha.com/papers/routed-graph-handoff/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "name": "SPARQL-Planned Single-Hop Traversal over a Live Knowledge Graph for Multi-Hop Question Answering",
+        "url": "https://ankitrchadha.com/papers/sparql-planned-knowledge-graph-multi-hop-qa/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 6,
+        "name": "fork() for Agents: Agent Kernel for Non-blocking LLM Orchestration",
+        "url": "https://ankitrchadha.com/papers/agent-kernel-non-blocking-llm-orchestration/"
+      }
+    ]
+  }
+}
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -507,18 +662,113 @@ table.earlier .tiny{display:block;margin-top:2px;font-weight:400}
 </div></header>
 <main class="wrap" id="main">
 <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> / Research</nav>
-<h1>Research guides</h1><p class="bp">These guides connect related papers around a practical question. They are not substitutes for the papers; each guide links to the primary paper, PDF, and citation.</p>
-<h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 4.5h6.5V11H4z M13.5 4.5H20V11h-6.5z M4 13h6.5v6.5H4z M13.5 13H20v6.5h-6.5z"/></svg>Agent memory: changing facts and reusable procedures</h2>
-<p>A guide to temporal event memory, procedural experience replay, and maintaining stored procedures when world knowledge changes.</p><p class="actions"><a href="/research/agent-memory/"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M14 4h6v6 M20 4 11 13 M18 14v5H5V6h5"/></svg>Read the guide</a></p>
-<h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 4.5h6.5V11H4z M13.5 4.5H20V11h-6.5z M4 13h6.5v6.5H4z M13.5 13H20v6.5h-6.5z"/></svg>Agent orchestration: adaptive handoffs and selective recovery</h2>
-<p>A reading guide to adaptive agent handoffs and non-blocking runtimes that preserve completed work after a failure.</p><p class="actions"><a href="/research/agent-delegation/"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M14 4h6v6 M20 4 11 13 M18 14v5H5V6h5"/></svg>Read the guide</a></p>
-<h2><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 4.5h6.5V11H4z M13.5 4.5H20V11h-6.5z M4 13h6.5v6.5H4z M13.5 13H20v6.5h-6.5z"/></svg>Web QA: retrieve evidence, follow graph links, rank answers</h2>
-<p>A research lineage from web-scale training data to graph-guided multi-hop retrieval, context-aware answer ranking and multilingual supervision.</p><p class="actions"><a href="/research/web-qa/"><svg class="i" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M14 4h6v6 M20 4 11 13 M18 14v5H5V6h5"/></svg>Read the guide</a></p>
+<div class="research-index">
+<section class="journey-hero" aria-labelledby="journey-title">
+<div><p class="eyebrow">Research / 2026</p><h1 id="journey-title"><span>Your agent remembers.</span>Can it finish the job?</h1><p class="journey-intro">A trip request sounds simple. Then a rule changes, a fact is missing or a search fails. Can the agent keep working?</p><p class="journey-stakes">If it loses the thread, you repeat yourself, wait or start over.</p><div class="journey-actions"><a href="#research-journey">Follow the six questions ↓</a><a href="/assets/docs/agent-research-journey-2026.pdf">Open the 8-slide PDF ↗</a></div></div><figure><img src="/assets/img/research-journey/flight-window.webp" width="900" height="900" fetchpriority="high" decoding="async" alt="An airplane wing above the clouds frames an illustrative trip-planning story."><figcaption><a href="https://unsplash.com/@imagic" rel="noopener">Flight photo: Anthony Wong / Unsplash</a></figcaption></figure></section>
+<p class="journey-byline">A research journey with Pratyay Banerjee and collaborators.</p>
+<section class="research-journey" id="research-journey" data-research-journey aria-labelledby="journey-heading">
+<h2 id="journey-heading">Six problems. Six research questions.</h2><p class="small mut">Follow the trip, then open the paper on the part you care about.</p><nav aria-label="Research journey"><ol class="journey-tabs" data-journey-tabs><li><a href="#journey-step-1" id="journey-tab-1" data-step="0" data-verb="Remember" style="--step-color:#bdabff"><span class="step-number">01</span>Remember</a></li><li><a href="#journey-step-2" id="journey-tab-2" data-step="1" data-verb="Reuse" style="--step-color:#bdabff"><span class="step-number">02</span>Reuse</a></li><li><a href="#journey-step-3" id="journey-tab-3" data-step="2" data-verb="Update" style="--step-color:#7ae5ee"><span class="step-number">03</span>Update</a></li><li><a href="#journey-step-4" id="journey-tab-4" data-step="3" data-verb="Hand off" style="--step-color:#7ae5ee"><span class="step-number">04</span>Hand off</a></li><li><a href="#journey-step-5" id="journey-tab-5" data-step="4" data-verb="Find" style="--step-color:#d7f79a"><span class="step-number">05</span>Find</a></li><li><a href="#journey-step-6" id="journey-tab-6" data-step="5" data-verb="Recover" style="--step-color:#d7f79a"><span class="step-number">06</span>Recover</a></li></ol></nav><section class="journey-panel" id="journey-step-1" data-journey-panel>
+<span class="lab">01 / Remember</span><h3>It remembered. The wrong version.</h3><p class="journey-problem">Use an old preference and you suggest the wrong flight. Erase it and you lose the history of what changed.</p><div class="journey-stage"><figure><img src="/assets/img/research-journey/01-memory.webp" width="960" height="508" loading="lazy" decoding="async" alt="Two illustrated boarding passes show an earlier evening preference at 9 PM and a current morning preference at 8 AM. A timeline retains both versions."></figure><div class="journey-idea"><span class="lab">The research idea</span><p>Keep dated memories. Resolve changing information when answering, rather than overwriting the history.</p><p class="journey-example"><strong>Trip example:</strong> Keep both the earlier evening-flight preference and the current morning-flight preference. Retrieve the one that fits the question&#x27;s time.</p></div></div><div class="journey-paper"><a class="paper-title" href="/papers/apex-mem-agentic-semi-structured-memory/">APEX-MEM: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI</a><p class="venue">ACL 2026 (Main Conference, Long Papers)</p><p class="actions"><a href="/papers/apex-mem-agentic-semi-structured-memory/">Read the paper + results</a><a href="/papers/apex-mem-agentic-semi-structured-memory/apex-mem.pdf">Paper PDF</a><a href="https://aclanthology.org/2026.acl-long.749/" rel="noopener">Primary source ↗</a></p></div></section>
+<section class="journey-panel" id="journey-step-2" data-journey-panel>
+<span class="lab">02 / Reuse</span><h3>The same dead end. Again.</h3><p class="journey-problem">Without reusable experience, each trip starts from scratch. Useful steps get rediscovered. Failed attempts get repeated.</p><div class="journey-stage"><figure><img src="/assets/img/research-journey/02-experience.webp" width="960" height="508" loading="lazy" decoding="async" alt="An illustrated open travel notebook records useful search steps on one page and failed attempts on the other."></figure><div class="journey-idea"><span class="lab">The research idea</span><p>Store successful and failed task attempts. Retrieve useful experience for the next task without retraining the model.</p><p class="journey-example"><strong>Trip example:</strong> Bring useful flight-search steps forward, along with the record of an expired link that led nowhere.</p></div></div><div class="journey-paper"><a class="paper-title" href="/papers/apex-em-procedural-episodic-experience-replay/">APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay</a><p class="venue">Findings of EMNLP 2026</p><p class="actions"><a href="/papers/apex-em-procedural-episodic-experience-replay/">Read the paper + results</a><a href="/papers/apex-em-procedural-episodic-experience-replay/apex-em.pdf">Paper PDF</a><a href="https://aclanthology.org/2026.findings-emnlp.1996/" rel="noopener">Primary source ↗</a></p></div></section>
+<section class="journey-panel" id="journey-step-3" data-journey-panel>
+<span class="lab">03 / Update</span><h3>A useful plan. Until the rules change.</h3><p class="journey-problem">A saved procedure can look right and still be out of date. Which stored plans now need maintenance?</p><div class="journey-stage"><figure><img src="/assets/img/research-journey/03-maintenance.webp" width="960" height="508" loading="lazy" decoding="async" alt="A revised travel document connects to two stored-plan folders. An unaffected price plan is kept; an affected travel-rule plan is updated."></figure><div class="journey-idea"><span class="lab">The research idea</span><p>Benchmark how an agent maintains stored plans after known changes to facts or procedures. Identify affected plans, then update them.</p><p class="journey-example"><strong>Trip example:</strong> A supplied travel-rule update affects the rule-checking plan. The separate price-comparison plan stays unchanged.</p></div></div><div class="journey-paper"><a class="paper-title" href="/papers/wk-drift-procedural-memory-maintenance/">WK-Drift: Benchmarking Procedural Memory Maintenance under World Knowledge Drift</a><p class="venue">Findings of IJCNLP-AACL 2026</p><p class="actions"><a href="/papers/wk-drift-procedural-memory-maintenance/">Read the paper + results</a><a href="/papers/wk-drift-procedural-memory-maintenance/wk-drift.pdf">Paper PDF</a><a href="https://aclanthology.org/2026.findings-aacl.140/" rel="noopener">Primary source ↗</a></p></div></section>
+<section class="journey-panel" id="journey-step-4" data-journey-panel>
+<span class="lab">04 / Hand off</span><h3>The next agent joins. Does the context make it?</h3><p class="journey-problem">A handoff is useful only if the next agent can act on it. The format of the brief is part of the problem.</p><div class="journey-stage"><figure><img src="/assets/img/research-journey/04-handoff.webp" width="960" height="508" loading="lazy" decoding="async" alt="Planner and search-agent icons exchange context. Two alternative briefs show a map of connected steps and the same instructions in plain language."></figure><div class="journey-idea"><span class="lab">The research idea</span><p>Choose a structured map of steps or a plain-language brief for each task. The receiving agent must be able to execute the chosen format.</p><p class="journey-example"><strong>Trip example:</strong> A planner briefs a search agent using either connected Search, Check and Compare steps, or instructions in plain language.</p></div></div><div class="journey-paper"><a class="paper-title" href="/papers/routed-graph-handoff/">Routed Graph Handoff: Adaptive Format Selection for Multi-Agent LLM Delegation</a><p class="venue">Findings of EMNLP 2026</p><p class="actions"><a href="/papers/routed-graph-handoff/">Read the paper + results</a><a href="/papers/routed-graph-handoff/routed-graph-handoff.pdf">Paper PDF</a><a href="https://aclanthology.org/2026.findings-emnlp.2008/" rel="noopener">Primary source ↗</a></p></div></section>
+<section class="journey-panel" id="journey-step-5" data-journey-panel>
+<span class="lab">05 / Find</span><h3>The link you need. Buried in search results.</h3><p class="journey-problem">Matching words can miss a useful connection. Expanding every graph neighbor can add more noise.</p><div class="journey-stage"><figure><img src="/assets/img/research-journey/05-evidence.webp" width="960" height="508" loading="lazy" decoding="async" alt="An illustrated city connects to an airport through a served-by relationship. The discovered name guides targeted text retrieval and an evidence-supported answer."></figure><div class="journey-idea"><span class="lab">The research idea</span><p>Plan the knowledge-graph traversal. Look up one relationship at a time, use newly discovered names to retrieve passages, and ground the answer in text.</p><p class="journey-example"><strong>Trip example:</strong> Follow a city&#x27;s served-by relationship to an airport, then use that airport name to find supporting text.</p></div></div><div class="journey-paper"><a class="paper-title" href="/papers/sparql-planned-knowledge-graph-multi-hop-qa/">SPARQL-Planned Single-Hop Traversal over a Live Knowledge Graph for Multi-Hop Question Answering</a><p class="venue">Accepted, Findings of EACL 2027 · Acceptance reported by the authors; proceedings forthcoming.</p><p class="actions"><a href="/papers/sparql-planned-knowledge-graph-multi-hop-qa/">Read the paper + results</a><a href="/papers/sparql-planned-knowledge-graph-multi-hop-qa/sparql-planned-multi-hop-qa.pdf">Paper PDF</a><a href="https://arxiv.org/abs/2611.31771" rel="noopener">Primary source ↗</a></p></div></section>
+<section class="journey-panel" id="journey-step-6" data-journey-panel>
+<span class="lab">06 / Recover</span><h3>One price check fails. Why start over?</h3><p class="journey-problem">Restart the whole task and you repeat completed calls. That means more waiting and more wasted work.</p><div class="journey-stage"><figure><img src="/assets/img/research-journey/06-recovery.webp" width="960" height="508" loading="lazy" decoding="async" alt="An airport-style price-check board shows Vendor A failed and retrying, while completed results from Vendors B and C are kept."></figure><div class="journey-idea"><span class="lab">The research idea</span><p>Sub-Graph Recovery (SGR) retries failed work and the steps that depend on it, while keeping unrelated completed results.</p><p class="journey-example"><strong>Trip example:</strong> Retry Vendor A&#x27;s failed price check. Keep completed results from Vendors B and C, then compare once all three are ready.</p></div></div><div class="journey-paper"><a class="paper-title" href="/papers/agent-kernel-non-blocking-llm-orchestration/">fork() for Agents: Agent Kernel for Non-blocking LLM Orchestration</a><p class="venue">Accepted, Findings of EACL 2027 · Acceptance reported by the authors; proceedings forthcoming.</p><p class="actions"><a href="/papers/agent-kernel-non-blocking-llm-orchestration/">Read the paper + results</a><a href="/papers/agent-kernel-non-blocking-llm-orchestration/agent-kernel.pdf">Paper PDF</a><a href="https://arxiv.org/abs/2611.31727" rel="noopener">Primary source ↗</a></p></div></section>
+<div class="journey-controls" hidden><button type="button" data-previous>← Previous</button><span class="journey-progress" data-progress aria-live="polite" aria-atomic="true"></span><button type="button" data-next>Next →</button></div><p class="journey-scope">Illustrative trip story; the papers have separate experiments. Four papers are in 2026 proceedings. Two November arXiv papers report acceptance to Findings of EACL 2027, whose proceedings are forthcoming. Public records checked <time datetime="2026-11-25">November 25, 2026</time>.</p><p class="journey-end">From remembering a user to keeping a task moving.<br>Which of these breaks first in your agents?</p></section>
+<section class="research-guides" aria-labelledby="research-guides-title"><h2 id="research-guides-title">Go deeper by topic</h2><p class="small mut">Reading guides connect the mechanisms, results and open questions across related papers.</p><div class="guide-grid">
+<article class="guide-card"><h3>Agent memory: changing facts and reusable procedures</h3><p>A guide to temporal event memory, procedural experience replay, and maintaining stored procedures when world knowledge changes.</p><a href="/research/agent-memory/">Read the guide →</a></article>
+<article class="guide-card"><h3>Agent orchestration: adaptive handoffs and selective recovery</h3><p>A reading guide to adaptive agent handoffs and non-blocking runtimes that preserve completed work after a failure.</p><a href="/research/agent-delegation/">Read the guide →</a></article>
+<article class="guide-card"><h3>Web QA: retrieve evidence, follow graph links, rank answers</h3><p>A research lineage from web-scale training data to graph-guided multi-hop retrieval, context-aware answer ranking and multilingual supervision.</p><a href="/research/web-qa/">Read the guide →</a></article>
+</div><p class="back"><a href="/publications/">Browse all 16 papers →</a></p></section></div>
 </main>
 <footer class="site"><div class="wrap">
 <p class="links"><a href="https://scholar.google.com/citations?user=hcslcm0AAAAJ&amp;view_op=list_works&amp;sortby=pubdate" rel="me noopener">Google Scholar</a> &middot; <a href="https://orcid.org/0000-0002-5029-0136" rel="me noopener">ORCID</a> &middot; <a href="https://github.com/ankit-ai" rel="me noopener">GitHub</a> &middot; <a href="https://www.linkedin.com/in/ankitrc/" rel="me noopener">LinkedIn</a> &middot; <a href="https://aclanthology.org/people/ankit-chadha/" rel="me noopener">ACL Anthology</a> &middot; <a href="https://openalex.org/A5027218595" rel="me noopener">OpenAlex</a> &middot; <a href="https://www.amazon.science/author/ankit-chadha" rel="me noopener">Amazon Science</a> &middot; <a href="https://x.com/ankitrchadha" rel="me noopener">X</a></p>
 <p class="fine">Ankit Chadha, California.</p>
 </div></footer>
-
+<script>
+(()=>{
+ const root=document.querySelector('[data-research-journey]');
+ if(!root)return;
+ const list=root.querySelector('[data-journey-tabs]');
+ const tabs=Array.from(list.querySelectorAll('[data-step]'));
+ const panels=Array.from(root.querySelectorAll('[data-journey-panel]'));
+ const controls=root.querySelector('.journey-controls');
+ const previous=controls.querySelector('[data-previous]');
+ const next=controls.querySelector('[data-next]');
+ const progress=controls.querySelector('[data-progress]');
+ let current=0;
+ list.setAttribute('role','tablist');
+ list.setAttribute('aria-label','Six research questions');
+ tabs.forEach((tab,i)=>{
+   tab.parentElement.setAttribute('role','presentation');
+   tab.setAttribute('role','tab');
+   tab.setAttribute('aria-controls',panels[i].id);
+   panels[i].setAttribute('role','tabpanel');
+   panels[i].setAttribute('aria-labelledby',tab.id);
+   panels[i].tabIndex=0;
+ });
+ function show(index,updateHash=false){
+   current=Math.max(0,Math.min(panels.length-1,index));
+   tabs.forEach((tab,i)=>{
+     const selected=i===current;
+     tab.setAttribute('aria-selected',String(selected));
+     tab.tabIndex=selected?0:-1;
+     panels[i].hidden=!selected;
+   });
+   previous.disabled=current===0;
+   next.disabled=current===panels.length-1;
+   previous.textContent=current===0?'← Previous':'← '+tabs[current-1].dataset.verb;
+   next.textContent=current===panels.length-1?'Journey complete':tabs[current+1].dataset.verb+' →';
+   progress.textContent=(current+1)+' of '+panels.length+' · '+tabs[current].dataset.verb;
+   if(updateHash)history.replaceState(null,'','#'+panels[current].id);
+ }
+ function fromHash(){
+   const id=location.hash.slice(1);
+   const match=panels.findIndex(panel=>panel.id===id);
+   if(match>=0)show(match);
+ }
+ tabs.forEach((tab,i)=>{
+   tab.addEventListener('click',event=>{event.preventDefault();show(i,true)});
+   tab.addEventListener('keydown',event=>{
+     if(event.key===' '){event.preventDefault();show(i,true);return;}
+     let target;
+     if(event.key==='ArrowRight')target=(current+1)%tabs.length;
+     if(event.key==='ArrowLeft')target=(current-1+tabs.length)%tabs.length;
+     if(event.key==='Home')target=0;
+     if(event.key==='End')target=tabs.length-1;
+     if(target!==undefined){event.preventDefault();show(target,true);tabs[target].focus();}
+   });
+ });
+ function advance(delta,focus=false){
+   show(current+delta,true);
+   panels[current].scrollIntoView({block:'start'});
+   if(focus)panels[current].focus({preventScroll:true});
+ }
+ previous.addEventListener('click',()=>advance(-1,true));
+ next.addEventListener('click',()=>advance(1,true));
+ panels.forEach(panel=>{
+   let start;
+   const art=panel.querySelector('figure');
+   art.addEventListener('touchstart',event=>{
+     const point=event.changedTouches[0];start=[point.clientX,point.clientY];
+   },{passive:true});
+   art.addEventListener('touchend',event=>{
+     if(!start)return;
+     const point=event.changedTouches[0],dx=point.clientX-start[0],dy=point.clientY-start[1];
+     if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.3)advance(dx<0?1:-1);
+     start=null;
+   },{passive:true});
+ });
+ window.addEventListener('hashchange',fromHash);
+ controls.hidden=false;
+ show(0);
+ fromHash();
+})();
+</script>
 </body>
 </html>

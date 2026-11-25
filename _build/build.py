@@ -28,6 +28,7 @@ import os
 import re
 import shutil
 import sys
+from research_journey import CSS as JOURNEY_CSS, SCRIPT as JOURNEY_SCRIPT, render as render_journey
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BUILD = os.path.join(ROOT, "_build")
@@ -39,6 +40,7 @@ def load(name):
 
 
 SITE = load("site.json")
+JOURNEY = load("research_journey.json")
 DATA = load("papers.json")
 CITATIONS = load("citations.json")
 FIGDIMS = load("figdims.json")
@@ -916,7 +918,7 @@ if(controls){
 
 def head(title, desc, canonical, og_type, og_image, og_image_alt,
          extra_meta="", jsonld=(), img_w=1200, img_h=630,
-         robots_content="index, follow, max-image-preview:large"):
+         robots_content="index, follow, max-image-preview:large", extra_css=""):
     gv = SITE.get("google_site_verification") or ""
     ver = ('<meta name="google-site-verification" content="%s">\n' % e(gv)) if gv else ""
     blocks = "\n".join(
@@ -955,7 +957,7 @@ def head(title, desc, canonical, og_type, og_image, og_image_alt,
 <meta name="twitter:description" content="{e(desc)}">
 <meta name="twitter:image" content="{e(og_image)}">
 <meta name="twitter:image:alt" content="{e(og_image_alt)}">
-{extra_meta}<style>{CSS}</style>
+{extra_meta}<style>{CSS}{extra_css}</style>
 {blocks}
 </head>
 """
@@ -1675,24 +1677,48 @@ def research_hub_page(key):
 
 def research_index_page():
     out = [head(
-        title="Research guides | " + SITE["name"],
-        desc=("Research guides connecting Ankit Chadha's work on agent memory, "
-              "multi-agent delegation, web-scale question answering, and multilingual NLP."),
+        title=JOURNEY["title"] + " | " + SITE["name"],
+        desc=JOURNEY["description"],
         canonical=url("/research/"),
         og_type="website",
-        og_image=url("/assets/img/cards/site-1200x630.jpg"),
-        og_image_alt="Share card: Ankit Chadha research guides.",
+        og_image=url(JOURNEY["card"]),
+        og_image_alt="Your agent remembers. Can it finish the job? Six questions beyond memory.",
+        extra_css=JOURNEY_CSS,
+        jsonld=[{
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "@id": url("/research/#journey"),
+            "url": url("/research/"),
+            "name": JOURNEY["title"],
+            "description": JOURNEY["description"],
+            "dateModified": SITE["build_date"],
+            "author": {"@id": url("#person")},
+            "isPartOf": {"@id": url("#website")},
+            "mainEntity": {
+                "@type": "ItemList",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": i + 1,
+                     "name": BY_SLUG[step["slug"]]["title"],
+                     "url": url("/papers/%s/" % step["slug"])}
+                    for i, step in enumerate(JOURNEY["steps"])
+                ],
+            },
+        }],
     )]
     out.append(site_header("research"))
     out.append('<nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> / Research</nav>\n')
-    out.append("<h1>Research guides</h1><p class=\"bp\">These guides connect related "
-               "papers around a practical question. They are not substitutes for the papers; "
-               "each guide links to the primary paper, PDF, and citation.</p>\n")
+    out.append(render_journey(JOURNEY, BY_SLUG))
+    out.append('<section class="research-guides" aria-labelledby="research-guides-title">'
+               '<h2 id="research-guides-title">Go deeper by topic</h2>'
+               '<p class="small mut">Reading guides connect the mechanisms, results and open questions '
+               'across related papers.</p><div class="guide-grid">\n')
     for key, hub in HUBS.items():
-        out.append(h2(hub["title"], "grid"))
-        out.append("<p>%s</p><p class=\"actions\"><a href=\"/research/%s/\">%sRead the guide</a></p>\n"
-                   % (e(hub["description"]), e(key), icon("out")))
-    out.append(site_footer())
+        out.append('<article class="guide-card"><h3>%s</h3><p>%s</p>'
+                   '<a href="/research/%s/">Read the guide →</a></article>\n'
+                   % (e(hub["title"]), e(hub["description"]), e(key)))
+    out.append('</div><p class="back"><a href="/publications/">Browse all %d papers →</a>'
+               '</p></section></div>\n' % len(PAPERS))
+    out.append(site_footer(JOURNEY_SCRIPT))
     return "".join(out)
 
 
@@ -1932,6 +1958,8 @@ def home_page():
                "and numbers &rarr;</a></p>\n" % len(live))
 
     out.append(h2("Research guides", "grid"))
+    out.append('<p><a href="/research/">Your agent remembers. Can it finish the job? →</a><br>'
+               '<span class="small mut">An illustrated journey through six questions beyond memory.</span></p>\n')
     out.append('<p class="small mut">Practical reading guides that connect related papers '
                'without replacing their primary evidence.</p><ul class="tl">\n')
     for key, hub in HUBS.items():

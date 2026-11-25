@@ -1,0 +1,93 @@
+{
+  "title": "Your agent remembers. Can it finish the job?",
+  "description": "A visual journey through six 2026 papers on agent memory, experience, handoffs, knowledge-graph retrieval and recovery, with illustrated examples and links to the research.",
+  "intro": "A trip request sounds simple. Then a rule changes, a fact is missing or a search fails. Can the agent keep working?",
+  "stakes": "If it loses the thread, you repeat yourself, wait or start over.",
+  "byline": "A research journey with Pratyay Banerjee and collaborators.",
+  "pdf": "/assets/docs/agent-research-journey-2026.pdf",
+  "hero_image": "/assets/img/research-journey/flight-window.webp",
+  "hero_alt": "An airplane wing above the clouds frames an illustrative trip-planning story.",
+  "card": "/assets/img/cards/research-journey-1200x630.jpg",
+  "checked": "2026-11-25",
+  "scope": "Illustrative trip story; the papers have separate experiments. Four papers are in 2026 proceedings. Two November arXiv papers report acceptance to Findings of EACL 2027, whose proceedings are forthcoming.",
+  "photo": {
+    "credit": "Flight photo: Anthony Wong / Unsplash",
+    "profile": "https://unsplash.com/@imagic",
+    "source": "https://images.unsplash.com/photo-1746794532624-1e085d50cfc4",
+    "license": "https://unsplash.com/license"
+  },
+  "steps": [
+    {
+      "slug": "apex-mem-agentic-semi-structured-memory",
+      "label": "APEX-MEM",
+      "verb": "Remember",
+      "color": "#bdabff",
+      "question": "It remembered. The wrong version.",
+      "problem": "Use an old preference and you suggest the wrong flight. Erase it and you lose the history of what changed.",
+      "idea": "Keep dated memories. Resolve changing information when answering, rather than overwriting the history.",
+      "example": "Keep both the earlier evening-flight preference and the current morning-flight preference. Retrieve the one that fits the question's time.",
+      "image": "/assets/img/research-journey/01-memory.webp",
+      "alt": "Two illustrated boarding passes show an earlier evening preference at 9 PM and a current morning preference at 8 AM. A timeline retains both versions."
+    },
+    {
+      "slug": "apex-em-procedural-episodic-experience-replay",
+      "label": "APEX-EM",
+      "verb": "Reuse",
+      "color": "#bdabff",
+      "question": "The same dead end. Again.",
+      "problem": "Without reusable experience, each trip starts from scratch. Useful steps get rediscovered. Failed attempts get repeated.",
+      "idea": "Store successful and failed task attempts. Retrieve useful experience for the next task without retraining the model.",
+      "example": "Bring useful flight-search steps forward, along with the record of an expired link that led nowhere.",
+      "image": "/assets/img/research-journey/02-experience.webp",
+      "alt": "An illustrated open travel notebook records useful search steps on one page and failed attempts on the other."
+    },
+    {
+      "slug": "wk-drift-procedural-memory-maintenance",
+      "label": "WK-Drift",
+      "verb": "Update",
+      "color": "#7ae5ee",
+      "question": "A useful plan. Until the rules change.",
+      "problem": "A saved procedure can look right and still be out of date. Which stored plans now need maintenance?",
+      "idea": "Benchmark how an agent maintains stored plans after known changes to facts or procedures. Identify affected plans, then update them.",
+      "example": "A supplied travel-rule update affects the rule-checking plan. The separate price-comparison plan stays unchanged.",
+      "image": "/assets/img/research-journey/03-maintenance.webp",
+      "alt": "A revised travel document connects to two stored-plan folders. An unaffected price plan is kept; an affected travel-rule plan is updated."
+    },
+    {
+      "slug": "routed-graph-handoff",
+      "label": "Routed Graph Handoff",
+      "verb": "Hand off",
+      "color": "#7ae5ee",
+      "question": "The next agent joins. Does the context make it?",
+      "problem": "A handoff is useful only if the next agent can act on it. The format of the brief is part of the problem.",
+      "idea": "Choose a structured map of steps or a plain-language brief for each task. The receiving agent must be able to execute the chosen format.",
+      "example": "A planner briefs a search agent using either connected Search, Check and Compare steps, or instructions in plain language.",
+      "image": "/assets/img/research-journey/04-handoff.webp",
+      "alt": "Planner and search-agent icons exchange context. Two alternative briefs show a map of connected steps and the same instructions in plain language."
+    },
+    {
+      "slug": "sparql-planned-knowledge-graph-multi-hop-qa",
+      "label": "Graph-guided search",
+      "verb": "Find",
+      "color": "#d7f79a",
+      "question": "The link you need. Buried in search results.",
+      "problem": "Matching words can miss a useful connection. Expanding every graph neighbor can add more noise.",
+      "idea": "Plan the knowledge-graph traversal. Look up one relationship at a time, use newly discovered names to retrieve passages, and ground the answer in text.",
+      "example": "Follow a city's served-by relationship to an airport, then use that airport name to find supporting text.",
+      "image": "/assets/img/research-journey/05-evidence.webp",
+      "alt": "An illustrated city connects to an airport through a served-by relationship. The discovered name guides targeted text retrieval and an evidence-supported answer."
+    },
+    {
+      "slug": "agent-kernel-non-blocking-llm-orchestration",
+      "label": "Agent-Kernel",
+      "verb": "Recover",
+      "color": "#d7f79a",
+      "question": "One price check fails. Why start over?",
+      "problem": "Restart the whole task and you repeat completed calls. That means more waiting and more wasted work.",
+      "idea": "Sub-Graph Recovery (SGR) retries failed work and the steps that depend on it, while keeping unrelated completed results.",
+      "example": "Retry Vendor A's failed price check. Keep completed results from Vendors B and C, then compare once all three are ready.",
+      "image": "/assets/img/research-journey/06-recovery.webp",
+      "alt": "An airport-style price-check board shows Vendor A failed and retrying, while completed results from Vendors B and C are kept."
+    }
+  ]
+}

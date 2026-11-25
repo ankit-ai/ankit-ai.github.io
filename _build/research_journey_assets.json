@@ -1,0 +1,50 @@
+{
+  "checked": "2026-11-25",
+  "photo": {
+    "credit": "Flight photo: Anthony Wong / Unsplash",
+    "profile": "https://unsplash.com/@imagic",
+    "source": "https://images.unsplash.com/photo-1746794532624-1e085d50cfc4",
+    "license": "https://unsplash.com/license"
+  },
+  "illustrations": [
+    {
+      "asset": "/assets/img/research-journey/01-memory.webp",
+      "source_slide": 2,
+      "source_sha256": "8d9602c2db62f82646a18646e0ab50cd4068f99c5dd671915f340ac3d9acd5c7",
+      "illustration": "Original code-drawn explanation of an illustrative trip"
+    },
+    {
+      "asset": "/assets/img/research-journey/02-experience.webp",
+      "source_slide": 3,
+      "source_sha256": "ece8220468d97720160fb71209b7587592a681e4c61136545be594e4fa33808d",
+      "illustration": "Original code-drawn explanation of an illustrative trip"
+    },
+    {
+      "asset": "/assets/img/research-journey/03-maintenance.webp",
+      "source_slide": 4,
+      "source_sha256": "7088ce250564d6e323d17dd545b6bfb845561fd64c3914fd240e8295c99ac946",
+      "illustration": "Original code-drawn explanation of an illustrative trip"
+    },
+    {
+      "asset": "/assets/img/research-journey/04-handoff.webp",
+      "source_slide": 5,
+      "source_sha256": "6e27794494c33b90a776aa20dd07a282f1562b64792020bcf201e2732abd4684",
+      "illustration": "Original code-drawn explanation of an illustrative trip"
+    },
+    {
+      "asset": "/assets/img/research-journey/05-evidence.webp",
+      "source_slide": 6,
+      "source_sha256": "62f6907b3bebe95ceaeeda3d5d457b33dedbe9b088e84b1fb4c1b4d56f1dcc04",
+      "illustration": "Original code-drawn explanation of an illustrative trip"
+    },
+    {
+      "asset": "/assets/img/research-journey/06-recovery.webp",
+      "source_slide": 7,
+      "source_sha256": "d9882218725473761998c201a2bcca8d89d14ef497092eff3f899da0c2786b0a",
+      "illustration": "Original code-drawn explanation of an illustrative trip"
+    }
+  ],
+  "pdf": "/assets/docs/agent-research-journey-2026.pdf",
+  "pdf_sha256": "9a70091b3564f4834da29e14a9f871d509966ea27b2aa882a3a36d99f68d8d6c",
+  "share_card": "/assets/img/cards/research-journey-1200x630.jpg"
+}
